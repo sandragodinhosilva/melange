@@ -1,0 +1,11 @@
+channels:
+  - conda-forge
+  - bioconda
+
+dependencies:
+  - python=3.6   # or 2.7
+  - diamond
+  - hmmer
+  - prodigal
+  - pip:
+    - run-dbcan==2.0.11
