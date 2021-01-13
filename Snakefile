@@ -1,5 +1,6 @@
 # The main entry point of the workflow.
 # After configuring, running snakemake -n in a clone of this repository should successfully execute a dry-run of the workflow.
+# Run: snakemake --use-conda --cores 8 -j
 
 from snakemake.utils import min_version
 min_version("5.12.0")
@@ -10,9 +11,14 @@ container: "docker://continuumio/miniconda3:4.4.10"
 
 configfile: "config.yaml"
 
+
+# import glob
+# GENOMES = glob.glob('data/*')
+
+
 rule all:
     input:
-       expand(["FAW_results/Orfs_per_genome/{genome}_all_features.csv"], genome=config["genomes"]),
+       expand(["FAW_results/Orfs_per_genome/{genome}_all_features.csv"], genome=config["genomes"]), #genome=GENOMES), 
        "FAW_results/Statistics.csv"
 
 rule get_data:
@@ -31,7 +37,7 @@ rule prokka:
 	log: "logs/prokka/{genome}.log"
 	shell:
 		"""
-		prokka --cpus {threads} --outdir prokka/ --force --prefix {wildcards.genome} --locustag {wildcards.genome} {input} 2> {log}
+		prokka --cpus {threads} --outdir results/ --force --prefix {wildcards.genome} --locustag {wildcards.genome} {input} 2> {log}
 		"""
 
 rule pfam:
