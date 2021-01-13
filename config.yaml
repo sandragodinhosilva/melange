@@ -1,6 +1,9 @@
 genomes:
-  Aq_sp_Aq349: Aq_sp_Aq349
   Aq_sp_Aq135: Aq_sp_Aq135
-  Aq_sp_Aq107: Aq_sp_Aq107
+  Aq_sp_Aq349: Aq_sp_Aq349
 
+cog_evalue:
+  cog_evalue: 1e-5
 
+pfam_evalue:
+  pfam_evalue: 1e-5

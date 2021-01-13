@@ -11,6 +11,8 @@ results/
 notebook/
 logs/
 rules/
+FAW_results/
+data/
 
 #Files
 temp*

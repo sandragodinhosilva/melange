@@ -15,7 +15,6 @@ rule all:
        expand(["FAW_results/Orfs_per_genome/{genome}_all_features.csv"], genome=config["genomes"]),
        "FAW_results/Statistics.csv"
 
-
 rule get_data:
     input: "{genome}"
     output: "data/{genome}"
@@ -25,9 +24,9 @@ rule get_data:
 rule prokka:
     input: "data/{genome}.fna"
 	output: 
-		faa="prokka/{genome}.faa", 
-		gbk="prokka/{genome}.gbk"
-	threads: 4
+		faa="results/{genome}.faa", 
+		gbk="results/{genome}.gbk"
+	threads: 8
 	conda: "envs/prokka.yaml"
 	log: "logs/prokka/{genome}.log"
 	shell:
@@ -36,36 +35,46 @@ rule prokka:
 		"""
 
 rule pfam:
-    input: "prokka/{genome}.faa"
+    """
+    Pfam annotation. Default e-value: 1e-5
+    """
+    input: "results/{genome}.faa"
     output: "results/{genome}_tblout.txt"
-    threads: 4
+    threads: 8
     conda: "envs/hmmer.yaml"
    	log: "logs/pfam/{genome}.log"
-    shell:
-        "hmmsearch --cpu {threads} --tblout {output} -E 1e-5 databases/Pfam-A.hmm {input} 2> {log}"
+    params: evalue=config["pfam_evalue"]
+    shell: 
+        "hmmsearch --cpu {threads} --tblout {output} -E {params} databases/Pfam-A.hmm {input} 2> {log}"
 
 rule cog:
-    input: "prokka/{genome}.faa"
+    """
+    Cog annotation. Default e-value: 1e-5
+    """
+    input: "results/{genome}.faa"
     output: "results/{genome}.cog.out"
-    threads: 4
+    threads: 8
     conda: "envs/blast.yaml"
-	log: "logs/cog/{genome}.log"
-	shell:
-		"rpsblast -query {input} -db  databases/Cog -out {output} -outfmt 6 -evalue 1e-5 2> {log}"
+    log: "logs/cog/{genome}.log"
+    params: evalue=config["cog_evalue"]
+    shell: "rpsblast -query {input} -db  databases/Cog -out {output} -outfmt 6 -evalue {params} 2> {log}"
 
 rule cog2:
     input: "results/{genome}.cog.out"
     output: "results/{genome}protein-id_cog.txt"
-    threads: 4
+    threads: 8
     conda: "envs/perl.yaml"
 	log: "logs/cog2/{genome}.log"
 	shell:
 		"perl databases/cdd2cog2.pl -r {input} -c databases/cddid.tbl -f databases/fun.txt -w databases/whog -o results/{wildcards.genome} 2> {log}"
 
 rule cazymes:
-    input: "prokka/{genome}.faa",
+    """
+    CAZYmes annotation.
+    """
+    input: "results/{genome}.faa",
     output: "results/{genome}overview.txt"
-    threads: 4
+    threads: 8
     conda: "envs/dbcan.yaml"
     log: "logs/cazymes/{genome}.log"
 	shell: 
@@ -75,7 +84,10 @@ rule cazymes:
 		"""
 
 rule kegg:
-    input: "prokka/{genome}.gbk"
+    """
+    Kegg annotation.
+    """
+    input: "results/{genome}.gbk"
     output: "results/{genome}.ko.out"
     threads: 4
     conda:
@@ -96,16 +108,16 @@ rule ensure_all:
     log: "logs/all/{genome}.log"
     shell: "echo done > {output}"
 
-rule pre_join:
-    input: expand("results/{genome}_done.txt", zip, genome=config["genomes"])
-    output: "results/all_genomes_done.txt"
-    log: "logs/all/prejoin.log"
-    shell: "echo done > {output}"
+# rule pre_join:
+#     input: expand("results/{genome}_done.txt", zip, genome=config["genomes"])
+#     output: "results/all_genomes_done.txt"
+#     log: "logs/all/prejoin.log"
+#     shell: "echo done > {output}"
 
 rule join_all:
     input: 
-        "results/all_genomes_done.txt",
-        #expand("results/{genome}_done.txt", zip, genome=config["genomes"])
+        #"results/all_genomes_done.txt",
+        expand("results/{genome}_done.txt", zip, genome=config["genomes"])
     output: 
         expand("FAW_results/Orfs_per_genome/{genome}_all_features.csv", zip, genome=config["genomes"]),
         #"FAW_results/Statistics.csv",
@@ -114,8 +126,5 @@ rule join_all:
     threads: 4
     conda: "envs/general.yaml"
     log: "logs/all/all.log"
-    shell: "python3 orf_annotation.py {params.directory} 2> {log} "	
+    shell: "python3 orf_annotation.py {params.directory} 2> {log}"	
 
-
-
-    
