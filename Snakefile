@@ -1,14 +1,26 @@
+# The main entry point of the workflow.
+# After configuring, running snakemake -n in a clone of this repository should successfully execute a dry-run of the workflow.
+
+from snakemake.utils import min_version
+min_version("5.12.0")
+
 report: "report/workflow.rst"
+
+container: "docker://continuumio/miniconda3:4.4.10"
+
 configfile: "config.yaml"
 
 rule all:
     input:
-       expand(["FAW_results/Orfs_per_genome/{genome}_all_features.csv"], genome=config["genomes"])
+       expand(["FAW_results/Orfs_per_genome/{genome}_all_features.csv"], genome=config["genomes"]),
+       "FAW_results/Statistics.csv"
+
 
 rule get_data:
     input: "{genome}"
     output: "data/{genome}"
-    shell: "cp {input} data"
+    log: "logs/general/{genome}_get_data.log"
+    shell: "cp {input} data 2> {log}"
 
 rule prokka:
     input: "data/{genome}.fna"
@@ -81,15 +93,26 @@ rule ensure_all:
         "results/{genome}overview.txt",
         "results/{genome}.ko.out"
     output: "results/{genome}_done.txt"
+    log: "logs/all/{genome}.log"
     shell: "echo done > {output}"
 
+rule pre_join:
+    input: expand("results/{genome}_done.txt", zip, genome=config["genomes"])
+    output: "results/all_genomes_done.txt"
+    log: "logs/all/prejoin.log"
+    shell: "echo done > {output}"
 
 rule join_all:
-    input: expand("results/{{genome}}_done.txt", zip, genome=config["genomes"])
-    output: "FAW_results/Orfs_per_genome/{genome}_all_features.csv"
+    input: 
+        "results/all_genomes_done.txt",
+        #expand("results/{genome}_done.txt", zip, genome=config["genomes"])
+    output: 
+        expand("FAW_results/Orfs_per_genome/{genome}_all_features.csv", zip, genome=config["genomes"]),
+        #"FAW_results/Statistics.csv",
+        report("FAW_results/Statistics.csv", caption="FAW_results/Statistics.csv", category="Final")
     params: directory=lambda wildcards, input : os.path.dirname(input[0])
     threads: 4
-    conda: "envs/prokka.yaml"
+    conda: "envs/general.yaml"
     log: "logs/all/all.log"
     shell: "python3 orf_annotation.py {params.directory} 2> {log} "	
 
