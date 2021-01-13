@@ -110,7 +110,7 @@ for file in tblout_files:
                 if line.startswith("#"): # We only want to analyze lines with HMMER matches, so we can pass on all the lines that start with a #
                     pass
                 else:
-                    newline = re.sub("\s+", "\t", line) # Now we can replace the whitespace in the lines with tabs, which are easier to work with. 
+                    newline = re.sub(r"\s+", r"\t", line) # Now we can replace the whitespace in the lines with tabs, which are easier to work with. 
                     tabs = newline.split("\t") # And now we can create a list by splitting each line into pieces based on where the tabs are. 
                     hit = tabs[3]             
                     i +=1
@@ -271,7 +271,7 @@ for k, files in d_files.items():
                 query = tabs[0]
                 l2=[]
                 for tab in tabs[1:4]:
-                    tab = re.sub("[\(\[].*?[\)\]]", "", tab)
+                    tab = re.sub(r"[\(\[].*?[\)\]]", r"", tab)
                 l2.append(tab)
                 cnt = Counter(l2)
                 common = cnt.most_common(3)
@@ -298,7 +298,7 @@ for k, files in d_files.items():
                 query = tabs[0]
                 l2=[]
                 for tab in tabs[1:4]:
-                    tab = re.sub("[\(\[].*?[\)\]]", "", tab)
+                    tab = re.sub(r"[\(\[].*?[\)\]]", r"", tab)
                     if tab != "-":
                         l2.append(tab)
                 try:

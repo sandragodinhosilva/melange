@@ -1,5 +1,6 @@
 genomes:
-  Aq_sp_Aq349,
-  Aq_sp_Aq135,
-  Aq_sp_Aq107
-  
+  Aq_sp_Aq349: Aq_sp_Aq349
+  Aq_sp_Aq135: Aq_sp_Aq135
+  Aq_sp_Aq107: Aq_sp_Aq107
+
+
