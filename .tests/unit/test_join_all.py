@@ -22,14 +22,14 @@ def test_join_all():
         shutil.copytree(data_path, workdir)
 
         # dbg
-        print("FAW_results/Orfs_per_genome/Aq_sp_Aq349_all_features.csv FAW_results/Orfs_per_genome/Aq_sp_Aq135_all_features.csv FAW_results/Orfs_per_genome/Aq_sp_Aq107_all_features.csv FAW_results/Statistics.csv", file=sys.stderr)
+        print("FAW_results/Orfs_per_genome/GCA_002714325.1_ASM271432v1_genomic_all_features.csv FAW_results/Orfs_per_genome/Aq_sp_Aq349_all_features.csv FAW_results/Orfs_per_genome/Aq_sp_Aq135_all_features.csv FAW_results/Statistics.csv", file=sys.stderr)
 
         # Run the test job.
         sp.check_output([
             "python",
             "-m",
             "snakemake", 
-            "FAW_results/Orfs_per_genome/Aq_sp_Aq349_all_features.csv FAW_results/Orfs_per_genome/Aq_sp_Aq135_all_features.csv FAW_results/Orfs_per_genome/Aq_sp_Aq107_all_features.csv FAW_results/Statistics.csv",
+            "FAW_results/Orfs_per_genome/GCA_002714325.1_ASM271432v1_genomic_all_features.csv FAW_results/Orfs_per_genome/Aq_sp_Aq349_all_features.csv FAW_results/Orfs_per_genome/Aq_sp_Aq135_all_features.csv FAW_results/Statistics.csv",
             "-F", 
             "-j1",
             "--keep-target-files",

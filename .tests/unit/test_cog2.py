@@ -22,14 +22,14 @@ def test_cog2():
         shutil.copytree(data_path, workdir)
 
         # dbg
-        print("results/Aq_sp_Aq349protein-id_cog.txt", file=sys.stderr)
+        print("results/GCA_002714325.1_ASM271432v1_genomicprotein-id_cog.txt", file=sys.stderr)
 
         # Run the test job.
         sp.check_output([
             "python",
             "-m",
             "snakemake", 
-            "results/Aq_sp_Aq349protein-id_cog.txt",
+            "results/GCA_002714325.1_ASM271432v1_genomicprotein-id_cog.txt",
             "-F", 
             "-j1",
             "--keep-target-files",

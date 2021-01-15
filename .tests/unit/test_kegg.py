@@ -22,14 +22,14 @@ def test_kegg():
         shutil.copytree(data_path, workdir)
 
         # dbg
-        print("results/Aq_sp_Aq349.ko.out", file=sys.stderr)
+        print("results/GCA_002714325.1_ASM271432v1_genomic.ko.out", file=sys.stderr)
 
         # Run the test job.
         sp.check_output([
             "python",
             "-m",
             "snakemake", 
-            "results/Aq_sp_Aq349.ko.out",
+            "results/GCA_002714325.1_ASM271432v1_genomic.ko.out",
             "-F", 
             "-j1",
             "--keep-target-files",

@@ -1,7 +1,14 @@
-genomes:
-  Aq_sp_Aq135: Aq_sp_Aq135
-  Aq_sp_Aq349: Aq_sp_Aq349
+# Pipeline configuration
 
-cog_evalue: 1e-5
+# --- Input
+inputdir: "data"
+genome_extension: "{genome}.fna" 
+dbdir: "databases" 
 
-pfam_evalue: 1e-5
+# --- Output directory
+outdir: "results"
+logdir: "results/logs"
+
+# --- Evalues:
+cog_evalue: "1e-5"
+pfam_evalue: "1e-5"

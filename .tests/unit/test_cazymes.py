@@ -22,14 +22,14 @@ def test_cazymes():
         shutil.copytree(data_path, workdir)
 
         # dbg
-        print("results/Aq_sp_Aq349overview.txt", file=sys.stderr)
+        print("results/GCA_002714325.1_ASM271432v1_genomicoverview.txt", file=sys.stderr)
 
         # Run the test job.
         sp.check_output([
             "python",
             "-m",
             "snakemake", 
-            "results/Aq_sp_Aq349overview.txt",
+            "results/GCA_002714325.1_ASM271432v1_genomicoverview.txt",
             "-F", 
             "-j1",
             "--keep-target-files",

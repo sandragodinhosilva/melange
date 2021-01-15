@@ -2,7 +2,7 @@
 .vscode
 .snakemake
 databases/
-FAW_git merge masterresults/
+FAW_results/
 Hotpep/
 output/
 prokka/
@@ -10,8 +10,6 @@ reports/
 results/
 notebook/
 logs/
-rules/
-FAW_results/
 data/
 
 #Files
