@@ -399,14 +399,14 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
     <div id="loading-screen">
       <p class="animation">Loading Snakemake Report...</p>
       <p id="jswarning">Please enable Javascript in your browser to see this report.</p>
-      <p id="info">Loading 346 Bytes. For large reports, this can take a while.</p>
+      <p id="info">Loading 562 Bytes. For large reports, this can take a while.</p>
     </div>
 
     <nav class="navbar fixed-top navbar-dark bg-dark flex-md-nowrap p-0 shadow">
       <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="https://snakemake.readthedocs.io">Snakemake Report</a>
       <div class="nav navbar-nav navbar-center" id="brand"></div>
       <ul class="nav navbar-nav navbar-right" style="padding-right: 10px;">
-        <li class="text-white">Fri Jan 15 17:55:11 2021 WET</li>
+        <li class="text-white">Mon Jan 18 19:46:52 2021 WET</li>
         <li><a class="text-white" href="https://snakemake.readthedocs.io">Snakemake 5.30.2</a></li>
       </ul>
       <!--<input id="searchbar" class="invisible form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">-->
@@ -444,9 +444,9 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
             </h5>
             <ul class="nav flex-column mb-2">
               <li class="nav-item">
-                <a class="nav-link panel-link" data-panel="f4ed8fa656b74c5ddf5a54eca0f9aa9629d6c192225a85a5a0abb1a607285523" href="javascript:void(0)">
+                <a class="nav-link panel-link" data-panel="7a90f1f854665c265519971e75957946966a65707e17dfa6f146cfeaa0b5a1ea" href="javascript:void(0)">
                   <span data-feather="folder"></span>
-                  Final
+                  Overall data
                 </a>
               </li>
             </ul>
@@ -485,9 +485,9 @@ To annotate the genomes into Pfams, a local database is created.
 
           </div>
 
-          <div class="panel category" id="f4ed8fa656b74c5ddf5a54eca0f9aa9629d6c192225a85a5a0abb1a607285523">
-            <h2>Final</h2>
-            <table class="results-table table" data-category="f4ed8fa656b74c5ddf5a54eca0f9aa9629d6c192225a85a5a0abb1a607285523" data-subcategory="f97e9da0e3b879f0a9df979ae260a5f7e1371edb127c1862d4f861981166cdc1"></table>
+          <div class="panel category" id="7a90f1f854665c265519971e75957946966a65707e17dfa6f146cfeaa0b5a1ea">
+            <h2>Overall data</h2>
+            <table class="results-table table" data-category="7a90f1f854665c265519971e75957946966a65707e17dfa6f146cfeaa0b5a1ea" data-subcategory="f97e9da0e3b879f0a9df979ae260a5f7e1371edb127c1862d4f861981166cdc1"></table>
           </div>  
 
           <div class="panel" id="statistics">
@@ -519,15 +519,33 @@ To annotate the genomes into Pfams, a local database is created.
                     <td>
                       <a data-toggle="collapse" role="button" href="#configfile-" aria-expanded="false" aria-controls="collapse-env"><span data-feather="plus-circle"></span></a>
                       <div class="collapse" id="configfile-">
-                        <table class="sourcetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
-2
-3
-4
-5</pre></div></td><td class="code"><div class="source"><pre><span></span><code><span class="nt">cog_evalue</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">1e-5</span>
+                        <table class="sourcetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14</pre></div></td><td class="code"><div class="source"><pre><span></span><code><span class="c1"># Pipeline configuration</span>
 
-<span class="nt">pfam_evalue</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">1e-5</span>
+<span class="c1"># --- Input</span>
+<span class="nt">inputdir</span><span class="p">:</span> <span class="s">&quot;data&quot;</span>
+<span class="nt">genome_extension</span><span class="p">:</span> <span class="s">&quot;{genome}.fna&quot;</span> 
+<span class="nt">dbdir</span><span class="p">:</span> <span class="s">&quot;databases&quot;</span> 
 
-<span class="nt">genome_extension</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">.fna</span>
+<span class="c1"># --- Output directory</span>
+<span class="nt">outdir</span><span class="p">:</span> <span class="s">&quot;results&quot;</span>
+<span class="nt">logdir</span><span class="p">:</span> <span class="s">&quot;results/logs&quot;</span>
+
+<span class="c1"># --- Evalues:</span>
+<span class="nt">cog_evalue</span><span class="p">:</span> <span class="s">&quot;1e-5&quot;</span>
+<span class="nt">pfam_evalue</span><span class="p">:</span> <span class="s">&quot;1e-5&quot;</span>
 </code></pre></div>
 </td></tr></table>
                       </div>
@@ -584,9 +602,9 @@ To annotate the genomes into Pfams, a local database is created.
                     <tr>
                       <td class="rule-property" colspan=2>
                         <ul>
-                            <li>results/Aq_sp_Aq107_done.txt</li>
-                            <li>results/Aq_sp_Aq349_done.txt</li>
                             <li>results/Aq_sp_Aq135_done.txt</li>
+                            <li>results/GCA_002714325.1_ASM271432v1_done.txt</li>
+                            <li>results/Aq_sp_Aq349_done.txt</li>
                         </ul>
                       </td>
                     </tr>
@@ -597,10 +615,10 @@ To annotate the genomes into Pfams, a local database is created.
                     <tr>
                       <td class="rule-property" colspan=2>
                         <ul>
-                            <li>FAW_results/Orfs_per_genome/Aq_sp_Aq107_all_features.csv</li>
-                            <li>FAW_results/Orfs_per_genome/Aq_sp_Aq349_all_features.csv</li>
-                            <li>FAW_results/Orfs_per_genome/Aq_sp_Aq135_all_features.csv</li>
-                            <li>FAW_results/Statistics.csv</li>
+                            <li>results/Annotation_results/Orfs_per_genome/Aq_sp_Aq135_all_features.csv</li>
+                            <li>results/Annotation_results/Orfs_per_genome/GCA_002714325.1_ASM271432v1_all_features.csv</li>
+                            <li>results/Annotation_results/Orfs_per_genome/Aq_sp_Aq349_all_features.csv</li>
+                            <li>results/Annotation_results/Statistics.csv</li>
                         </ul>
                       </td>
                     </tr>
@@ -631,7 +649,7 @@ To annotate the genomes into Pfams, a local database is created.
                     </tr>
                     <tr>
                       <td class="rule-property" colspan=2>
-                        <table class="sourcetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="source"><pre><span></span><code>python3 orf_annotation.py <span class="o">{</span>params.directory<span class="o">}</span> <span class="m">2</span>&gt; <span class="o">{</span>log<span class="o">}</span>
+                        <table class="sourcetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="source"><pre><span></span><code>python3 orf_annotation.py <span class="o">{</span>params.input_dir<span class="o">}</span> <span class="m">2</span>&gt; <span class="o">{</span>log<span class="o">}</span>
 </code></pre></div>
 </td></tr></table>
                       </td>
@@ -734,6 +752,7 @@ To annotate the genomes into Pfams, a local database is created.
                       <td class="rule-property" colspan=2>
                         <ul>
                             <li>results/{genome}.faa</li>
+                            <li>databases/Pfam-A.hmm</li>
                         </ul>
                       </td>
                     </tr>
@@ -774,7 +793,7 @@ To annotate the genomes into Pfams, a local database is created.
                     </tr>
                     <tr>
                       <td class="rule-property" colspan=2>
-                        <table class="sourcetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="source"><pre><span></span><code>hmmsearch --cpu <span class="o">{</span>threads<span class="o">}</span> --tblout <span class="o">{</span>output<span class="o">}</span> -E <span class="o">{</span>params<span class="o">}</span> databases/Pfam-A.hmm <span class="o">{</span>input<span class="o">}</span> <span class="m">2</span>&gt; <span class="o">{</span>log<span class="o">}</span>
+                        <table class="sourcetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="source"><pre><span></span><code>hmmsearch --cpu <span class="o">{</span>threads<span class="o">}</span> --tblout <span class="o">{</span>output<span class="o">}</span> -E <span class="o">{</span>params.evalue<span class="o">}</span> <span class="o">{</span>params.dbdir<span class="o">}</span>/Pfam-A.hmm <span class="o">{</span>input.genome_faa<span class="o">}</span> <span class="m">2</span>&gt; <span class="o">{</span>log<span class="o">}</span>
 </code></pre></div>
 </td></tr></table>
                       </td>
@@ -887,6 +906,7 @@ To annotate the genomes into Pfams, a local database is created.
                       <td class="rule-property" colspan=2>
                         <ul>
                             <li>results/{genome}.cog.out</li>
+                            <li>databases/cdd2cog2.pl</li>
                         </ul>
                       </td>
                     </tr>
@@ -927,7 +947,7 @@ To annotate the genomes into Pfams, a local database is created.
                     </tr>
                     <tr>
                       <td class="rule-property" colspan=2>
-                        <table class="sourcetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="source"><pre><span></span><code>perl databases/cdd2cog2.pl -r <span class="o">{</span>input<span class="o">}</span> -c databases/cddid.tbl -f databases/fun.txt -w databases/whog -o results/<span class="o">{</span>wildcards.genome<span class="o">}</span> <span class="m">2</span>&gt; <span class="o">{</span>log<span class="o">}</span>
+                        <table class="sourcetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="source"><pre><span></span><code>perl <span class="o">{</span>params.dbdir<span class="o">}</span>/cdd2cog2.pl -r <span class="o">{</span>input<span class="o">}</span> -c <span class="o">{</span>params.dbdir<span class="o">}</span>/cddid.tbl -f <span class="o">{</span>params.dbdir<span class="o">}</span>/fun.txt -w <span class="o">{</span>params.dbdir<span class="o">}</span>/whog -o <span class="o">{</span>params.outdir<span class="o">}</span>/<span class="o">{</span>wildcards.genome<span class="o">}</span> <span class="m">2</span>&gt; <span class="o">{</span>log<span class="o">}</span>
 </code></pre></div>
 </td></tr></table>
                       </td>
@@ -962,6 +982,7 @@ To annotate the genomes into Pfams, a local database is created.
                       <td class="rule-property" colspan=2>
                         <ul>
                             <li>results/{genome}.faa</li>
+                            <li>databases/whog</li>
                         </ul>
                       </td>
                     </tr>
@@ -1002,7 +1023,7 @@ To annotate the genomes into Pfams, a local database is created.
                     </tr>
                     <tr>
                       <td class="rule-property" colspan=2>
-                        <table class="sourcetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="source"><pre><span></span><code>rpsblast -query <span class="o">{</span>input<span class="o">}</span> -db  databases/Cog -out <span class="o">{</span>output<span class="o">}</span> -outfmt <span class="m">6</span> -evalue <span class="o">{</span>params<span class="o">}</span> <span class="m">2</span>&gt; <span class="o">{</span>log<span class="o">}</span>
+                        <table class="sourcetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="source"><pre><span></span><code>rpsblast -query <span class="o">{</span>input.genome_faa<span class="o">}</span> -db  <span class="o">{</span>params.dbdir<span class="o">}</span>/Cog -out <span class="o">{</span>output<span class="o">}</span> -outfmt <span class="m">6</span> -evalue <span class="o">{</span>params.evalue<span class="o">}</span> <span class="m">2</span>&gt; <span class="o">{</span>log<span class="o">}</span>
 </code></pre></div>
 </td></tr></table>
                       </td>
@@ -1037,6 +1058,7 @@ To annotate the genomes into Pfams, a local database is created.
                       <td class="rule-property" colspan=2>
                         <ul>
                             <li>results/{genome}.faa</li>
+                            <li>databases/db/CAZy.dmnd</li>
                         </ul>
                       </td>
                     </tr>
@@ -1083,8 +1105,8 @@ To annotate the genomes into Pfams, a local database is created.
                       <td class="rule-property" colspan=2>
                         <table class="sourcetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
-3</pre></div></td><td class="code"><div class="source"><pre><span></span><code>		python3 scripts/run_dbcan.py --db_dir ./databases/db/  --out_pre <span class="o">{</span>wildcards.genome<span class="o">}</span>  <span class="o">{</span>input<span class="o">}</span> protein <span class="m">2</span>&gt; <span class="o">{</span>log<span class="o">}</span> 
-		mv output/* ./results
+3</pre></div></td><td class="code"><div class="source"><pre><span></span><code>		python3 scripts/run_dbcan.py --db_dir <span class="o">{</span>params.dbdir<span class="o">}</span>/db/  --out_pre <span class="o">{</span>wildcards.genome<span class="o">}</span>  <span class="o">{</span>input.genome_faa<span class="o">}</span> protein <span class="m">2</span>&gt; <span class="o">{</span>log<span class="o">}</span> 
+		mv output/* <span class="o">{</span>params.outdir<span class="o">}</span>
 		
 </code></pre></div>
 </td></tr></table>
@@ -1700,17 +1722,17 @@ if (typeof module !== 'undefined') {
 
     <script id="results">
       var results = {
-            "FAW_results/Statistics.csv": {
+            "results/Annotation_results/Statistics.csv": {
               name: "Statistics.csv",
-              path: "FAW_results/Statistics.csv",
-              size: "346 Bytes",
-              caption: "<p>,orfs,pfam,ko,cog,cazymes,Orfs_anno_ko%,Orfs_anno_cog%,Orfs_anno_cazymes%\nAq_sp_Aq349,4880,8603,1213,3137,105,24.856557377049178,64.2827868852459,2.151639344262295\nAq_sp_Aq135,3890,6625,1050,2461,75,26.99228791773779,63.26478149100257,1.9280205655526992\nAq_sp_Aq107,4431,7682,1136,2788,142,25.637553599638906,62.92033401038141,3.2046941999548633</p>\n",
+              path: "results/Annotation_results/Statistics.csv",
+              size: "562 Bytes",
+              caption: "<p>Statistics</p>\n",
               job_properties: {
                 rule: "join_all",
                 wildcards: "",
-                params: "directory=results"
+                params: "input_dir=results, output_dir=results, db_dir=databases"
               },
-              data_uri: function() { return "data:text/csv;charset=utf8;filename=Statistics.csv;base64,LG9yZnMscGZhbSxrbyxjb2csY2F6eW1lcyxPcmZzX2Fubm9fa28lLE9yZnNfYW5ub19jb2clLE9yZnNfYW5ub19jYXp5bWVzJQpBcV9zcF9BcTM0OSw0ODgwLDg2MDMsMTIxMywzMTM3LDEwNSwyNC44NTY1NTczNzcwNDkxNzgsNjQuMjgyNzg2ODg1MjQ1OSwyLjE1MTYzOTM0NDI2MjI5NQpBcV9zcF9BcTEzNSwzODkwLDY2MjUsMTA1MCwyNDYxLDc1LDI2Ljk5MjI4NzkxNzczNzc5LDYzLjI2NDc4MTQ5MTAwMjU3LDEuOTI4MDIwNTY1NTUyNjk5MgpBcV9zcF9BcTEwNyw0NDMxLDc2ODIsMTEzNiwyNzg4LDE0MiwyNS42Mzc1NTM1OTk2Mzg5MDYsNjIuOTIwMzM0MDEwMzgxNDEsMy4yMDQ2OTQxOTk5NTQ4NjMzCg=="; },
+              data_uri: function() { return "data:text/csv;charset=utf8;filename=Statistics.csv;base64,LG9yZnMscGZhbSxrbyxjb2csY2F6eW1lcyxPcmZzX2Fubm9fa28lLE9yZnNfYW5ub19jb2clLE9yZnNfYW5ub19jYXp5bWVzJQpBcV9zcF9BcTEzNSwzODkwLDY2MjUsMTA1MCwyNDYxLDc1LDI2Ljk5MjI4NzkxNzczNzc5LDYzLjI2NDc4MTQ5MTAwMjU3LDEuOTI4MDIwNTY1NTUyNjk5MgpHQ0FfMDAyNzE0MzI1LjFfQVNNMjcxNDMydjEsMTY5MSwyODI5LDU1OCwxMTI1LDM1LDMyLjk5ODIyNTkwMTgzMzI0LDY2LjUyODY4MTI1MzY5NjA1LDIuMDY5NzgxMTk0NTU5NDMyCkFxX3NwX0FxMTA3LDQ0MzEsNzY4MiwxMTM2LDI3ODgsMTQyLDI1LjYzNzU1MzU5OTYzODkwNiw2Mi45MjAzMzQwMTAzODE0MSwzLjIwNDY5NDE5OTk1NDg2MzMKR0NBXzAwMjcxNDMyNS4xX0FTTTI3MTQzMnYxX2dlbm9taWMsMTY5MSwyODI5LDU1OCwxMTI1LDM1LDMyLjk5ODIyNTkwMTgzMzI0LDY2LjUyODY4MTI1MzY5NjA1LDIuMDY5NzgxMTk0NTU5NDMyCkFxX3NwX0FxMzQ5LDQ4ODAsODYwMywxMjEzLDMxMzcsMTA1LDI0Ljg1NjU1NzM3NzA0OTE3OCw2NC4yODI3ODY4ODUyNDU5LDIuMTUxNjM5MzQ0MjYyMjk1Cg=="; },
               thumbnail_uri: function() { return null; }
             }
           
@@ -1720,9 +1742,9 @@ if (typeof module !== 'undefined') {
 
     <script>
       var categories = {
-        "f4ed8fa656b74c5ddf5a54eca0f9aa9629d6c192225a85a5a0abb1a607285523": {
+        "7a90f1f854665c265519971e75957946966a65707e17dfa6f146cfeaa0b5a1ea": {
           "f97e9da0e3b879f0a9df979ae260a5f7e1371edb127c1862d4f861981166cdc1": [
-            "FAW_results/Statistics.csv"
+            "results/Annotation_results/Statistics.csv"
           ]
         }
       };
@@ -1848,7 +1870,7 @@ if (typeof module !== 'undefined') {
 
       var rulegraph_spec = {
         "$schema": "https://vega.github.io/schema/vega/v5.json",
-        "width": 376.6,
+        "width": 597.5899999999999,
         "height": 398.0,
         "padding": 0,
         "autosize": "none",
@@ -1861,11 +1883,11 @@ if (typeof module !== 'undefined') {
         "data": [
           {
             "name": "node-data",
-            "values": [{'rule': 'all', 'fx': 166.6, 'fy': 378.0}, {'rule': 'cazymes', 'fx': 41.596, 'fy': 162.0}, {'rule': 'cog', 'fx': 131.6, 'fy': 90.0}, {'rule': 'cog2', 'fx': 129.6, 'fy': 162.0}, {'rule': 'ensure_all', 'fx': 166.6, 'fy': 234.0}, {'rule': 'join_all', 'fx': 166.6, 'fy': 306.0}, {'rule': 'kegg', 'fx': 203.6, 'fy': 162.0}, {'rule': 'pfam', 'fx': 256.6, 'fy': 90.0}, {'rule': 'prokka', 'fx': 158.6, 'fy': 18.0}]
+            "values": [{'rule': 'all', 'fx': 319.59, 'fy': 378.0}, {'rule': 'cazymes', 'fx': 205.59, 'fy': 90.0}, {'rule': 'cog', 'fx': 292.59, 'fy': 90.0}, {'rule': 'cog2', 'fx': 282.59, 'fy': 162.0}, {'rule': 'download_cazymes', 'fx': 80.593, 'fy': 18.0}, {'rule': 'download_cog', 'fx': 241.59, 'fy': 18.0}, {'rule': 'download_pfam', 'fx': 477.59, 'fy': 18.0}, {'rule': 'ensure_all', 'fx': 319.59, 'fy': 234.0}, {'rule': 'join_all', 'fx': 319.59, 'fy': 306.0}, {'rule': 'kegg', 'fx': 356.59, 'fy': 162.0}, {'rule': 'pfam', 'fx': 413.59, 'fy': 90.0}, {'rule': 'prokka', 'fx': 356.59, 'fy': 18.0}]
           },
           {
             "name": "link-data",
-            "values": [{'target': 1, 'source': 4, 'value': 1}, {'target': 2, 'source': 3, 'value': 1}, {'target': 3, 'source': 4, 'value': 1}, {'target': 4, 'source': 5, 'value': 1}, {'target': 5, 'source': 0, 'value': 1}, {'target': 6, 'source': 4, 'value': 1}, {'target': 7, 'source': 4, 'value': 1}, {'target': 8, 'source': 7, 'value': 1}, {'target': 8, 'source': 2, 'value': 1}, {'target': 8, 'source': 1, 'value': 1}, {'target': 8, 'source': 6, 'value': 1}]
+            "values": [{'target': 1, 'source': 7, 'value': 1}, {'target': 2, 'source': 3, 'value': 1}, {'target': 3, 'source': 7, 'value': 1}, {'target': 4, 'source': 1, 'value': 1}, {'target': 5, 'source': 2, 'value': 1}, {'target': 6, 'source': 10, 'value': 1}, {'target': 7, 'source': 8, 'value': 1}, {'target': 8, 'source': 0, 'value': 1}, {'target': 9, 'source': 7, 'value': 1}, {'target': 10, 'source': 7, 'value': 1}, {'target': 11, 'source': 10, 'value': 1}, {'target': 11, 'source': 2, 'value': 1}, {'target': 11, 'source': 1, 'value': 1}, {'target': 11, 'source': 9, 'value': 1}]
           }
         ],
 
@@ -1973,7 +1995,7 @@ if (typeof module !== 'undefined') {
       var runtimes_spec = {
         "$schema": "https://vega.github.io/schema/vega-lite/v3.json",
         "description": "Runtimes of jobs.",
-        "data": {"values": [{'rule': 'cazymes', 'runtime': 121.8581657409668}, {'rule': 'cazymes', 'runtime': 137.5051772594452}, {'rule': 'cazymes', 'runtime': 104.39791631698608}, {'rule': 'cog', 'runtime': 217.27176237106323}, {'rule': 'cog', 'runtime': 239.48039484024048}, {'rule': 'cog', 'runtime': 190.27124691009521}, {'rule': 'cog2', 'runtime': 0.6920120716094971}, {'rule': 'cog2', 'runtime': 0.6719846725463867}, {'rule': 'cog2', 'runtime': 0.6760125160217285}, {'rule': 'ensure_all', 'runtime': 0.0}, {'rule': 'ensure_all', 'runtime': 0.0039997100830078125}, {'rule': 'ensure_all', 'runtime': 0.003999948501586914}, {'rule': 'join_all', 'runtime': 24.140519380569458}, {'rule': 'kegg', 'runtime': 9.624174118041992}, {'rule': 'kegg', 'runtime': 9.388197898864746}, {'rule': 'kegg', 'runtime': 10.344217777252197}, {'rule': 'pfam', 'runtime': 177.94376349449158}, {'rule': 'pfam', 'runtime': 196.8000602722168}, {'rule': 'pfam', 'runtime': 171.01929235458374}, {'rule': 'prokka', 'runtime': 130.92247104644775}, {'rule': 'prokka', 'runtime': 144.70689821243286}, {'rule': 'prokka', 'runtime': 108.19359993934631}]},
+        "data": {"values": [{'rule': 'cazymes', 'runtime': 104.78383493423462}, {'rule': 'cazymes', 'runtime': 64.26801085472107}, {'rule': 'cazymes', 'runtime': 136.39192652702332}, {'rule': 'cog', 'runtime': 190.20011687278748}, {'rule': 'cog', 'runtime': 85.0661849975586}, {'rule': 'cog', 'runtime': 255.1880600452423}, {'rule': 'cog2', 'runtime': 0.7040135860443115}, {'rule': 'cog2', 'runtime': 0.912013053894043}, {'rule': 'cog2', 'runtime': 0.8600120544433594}, {'rule': 'ensure_all', 'runtime': 0.003999948501586914}, {'rule': 'ensure_all', 'runtime': 0.003999948501586914}, {'rule': 'ensure_all', 'runtime': 0.004000186920166016}, {'rule': 'join_all', 'runtime': 5.127989292144775}, {'rule': 'kegg', 'runtime': 10.344217777252197}, {'rule': 'kegg', 'runtime': 10.015137672424316}, {'rule': 'kegg', 'runtime': 9.388197898864746}, {'rule': 'pfam', 'runtime': 174.1642472743988}, {'rule': 'pfam', 'runtime': 105.08256268501282}, {'rule': 'pfam', 'runtime': 198.90885090827942}, {'rule': 'prokka', 'runtime': 108.19359993934631}, {'rule': 'prokka', 'runtime': 53.70130968093872}, {'rule': 'prokka', 'runtime': 144.70689821243286}]},
         "mark": "point",
         "encoding": {
           "x": {"field": "runtime", "type": "quantitative",
@@ -1990,7 +2012,7 @@ if (typeof module !== 'undefined') {
         "$schema": "https://vega.github.io/schema/vega-lite/v3.json",
         "description": "Timeline of jobs.",
         "data": {
-          "values": [{'rule': 'cazymes', 'starttime': '2021-01-15T17:43:57.882054', 'endtime': '2021-01-15T17:45:59.740220'}, {'rule': 'cazymes', 'starttime': '2021-01-13T22:01:06.725881', 'endtime': '2021-01-13T22:03:24.231058'}, {'rule': 'cazymes', 'starttime': '2021-01-13T21:47:17.786835', 'endtime': '2021-01-13T21:49:02.184752'}, {'rule': 'cog', 'starttime': '2021-01-15T17:45:59.748220', 'endtime': '2021-01-15T17:49:37.019982'}, {'rule': 'cog', 'starttime': '2021-01-13T22:03:24.251058', 'endtime': '2021-01-13T22:07:23.731452'}, {'rule': 'cog', 'starttime': '2021-01-13T21:44:07.503588', 'endtime': '2021-01-13T21:47:17.774835'}, {'rule': 'cog2', 'starttime': '2021-01-15T17:49:37.031982', 'endtime': '2021-01-15T17:49:37.723994'}, {'rule': 'cog2', 'starttime': '2021-01-13T22:07:23.743452', 'endtime': '2021-01-13T22:07:24.415437'}, {'rule': 'cog2', 'starttime': '2021-01-13T21:49:02.196752', 'endtime': '2021-01-13T21:49:02.872764'}, {'rule': 'ensure_all', 'starttime': '2021-01-15T17:52:35.695759', 'endtime': '2021-01-15T17:52:35.695759'}, {'rule': 'ensure_all', 'starttime': '2021-01-13T22:07:24.427437', 'endtime': '2021-01-13T22:07:24.431436'}, {'rule': 'ensure_all', 'starttime': '2021-01-13T21:58:52.432632', 'endtime': '2021-01-13T21:58:52.436632'}, {'rule': 'join_all', 'starttime': '2021-01-15T17:52:35.711759', 'endtime': '2021-01-15T17:52:59.852278'}, {'rule': 'kegg', 'starttime': '2021-01-15T17:43:57.886054', 'endtime': '2021-01-15T17:44:07.510228'}, {'rule': 'kegg', 'starttime': '2021-01-13T21:58:43.036434', 'endtime': '2021-01-13T21:58:52.424632'}, {'rule': 'kegg', 'starttime': '2021-01-13T21:58:32.680216', 'endtime': '2021-01-13T21:58:43.024434'}, {'rule': 'pfam', 'starttime': '2021-01-15T17:49:37.739995', 'endtime': '2021-01-15T17:52:35.683758'}, {'rule': 'pfam', 'starttime': '2021-01-13T21:54:18.638956', 'endtime': '2021-01-13T21:57:35.439016'}, {'rule': 'pfam', 'starttime': '2021-01-13T21:49:02.884765', 'endtime': '2021-01-13T21:51:53.904057'}, {'rule': 'prokka', 'starttime': '2021-01-15T17:41:46.947583', 'endtime': '2021-01-15T17:43:57.870054'}, {'rule': 'prokka', 'starttime': '2021-01-13T21:51:53.916057', 'endtime': '2021-01-13T21:54:18.622955'}, {'rule': 'prokka', 'starttime': '2021-01-13T21:41:37.801332', 'endtime': '2021-01-13T21:43:25.994932'}]
+          "values": [{'rule': 'cazymes', 'starttime': '2021-01-18T18:46:04.296976', 'endtime': '2021-01-18T18:47:49.080811'}, {'rule': 'cazymes', 'starttime': '2021-01-18T18:50:05.500737', 'endtime': '2021-01-18T18:51:09.768748'}, {'rule': 'cazymes', 'starttime': '2021-01-18T18:47:49.092811', 'endtime': '2021-01-18T18:50:05.484737'}, {'rule': 'cog', 'starttime': '2021-01-18T18:57:24.940200', 'endtime': '2021-01-18T19:00:35.140317'}, {'rule': 'cog', 'starttime': '2021-01-18T18:55:59.854014', 'endtime': '2021-01-18T18:57:24.920199'}, {'rule': 'cog', 'starttime': '2021-01-18T19:01:42.169565', 'endtime': '2021-01-18T19:05:57.357625'}, {'rule': 'cog2', 'starttime': '2021-01-18T19:00:35.156317', 'endtime': '2021-01-18T19:00:35.860331'}, {'rule': 'cog2', 'starttime': '2021-01-18T19:05:58.253638', 'endtime': '2021-01-18T19:05:59.165651'}, {'rule': 'cog2', 'starttime': '2021-01-18T19:05:57.377625', 'endtime': '2021-01-18T19:05:58.237638'}, {'rule': 'ensure_all', 'starttime': '2021-01-18T19:05:59.185651', 'endtime': '2021-01-18T19:05:59.189651'}, {'rule': 'ensure_all', 'starttime': '2021-01-18T19:05:59.181651', 'endtime': '2021-01-18T19:05:59.185651'}, {'rule': 'ensure_all', 'starttime': '2021-01-18T19:05:59.189651', 'endtime': '2021-01-18T19:05:59.193651'}, {'rule': 'join_all', 'starttime': '2021-01-18T19:43:51.213523', 'endtime': '2021-01-18T19:43:56.341512'}, {'rule': 'kegg', 'starttime': '2021-01-13T21:58:32.680216', 'endtime': '2021-01-13T21:58:43.024434'}, {'rule': 'kegg', 'starttime': '2021-01-18T18:22:11.311538', 'endtime': '2021-01-18T18:22:21.326676'}, {'rule': 'kegg', 'starttime': '2021-01-13T21:58:43.036434', 'endtime': '2021-01-13T21:58:52.424632'}, {'rule': 'pfam', 'starttime': '2021-01-18T18:11:14.988216', 'endtime': '2021-01-18T18:14:09.152463'}, {'rule': 'pfam', 'starttime': '2021-01-18T18:08:49.840676', 'endtime': '2021-01-18T18:10:34.923239'}, {'rule': 'pfam', 'starttime': '2021-01-18T18:14:09.164464', 'endtime': '2021-01-18T18:17:28.073315'}, {'rule': 'prokka', 'starttime': '2021-01-13T21:41:37.801332', 'endtime': '2021-01-13T21:43:25.994932'}, {'rule': 'prokka', 'starttime': '2021-01-18T17:55:54.865777', 'endtime': '2021-01-18T17:56:48.567086'}, {'rule': 'prokka', 'starttime': '2021-01-13T21:51:53.916057', 'endtime': '2021-01-13T21:54:18.622955'}]
         },
         "mark": "point",
         "encoding": {

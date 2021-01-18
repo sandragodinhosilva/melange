@@ -8,6 +8,10 @@ import textwrap
 from snakemake.utils import min_version
 min_version("5.12.0")
 
+onstart:
+    print("Starting")
+    
+
 report: "report/workflow.rst"
 
 container: "docker://continuumio/miniconda3:4.4.10"
@@ -16,7 +20,6 @@ configfile: "config.yaml"
 
 from rules.publications import publications
 #citations = {publications["Snakemake"]}
-
 
 # --- VARIABLES 
 INPUTDIR = Path(config["inputdir"])
@@ -36,16 +39,20 @@ else:
 # --- ALL RULE 
 rule all:
     input:
-       expand(["FAW_results/Orfs_per_genome/{genome}_all_features.csv"],  genome=GENOMES), #genome=config["genomes"]),
-       "FAW_results/Statistics.csv"
+       expand([OUTDIR/"Annotation_results/Orfs_per_genome/{genome}_all_features.csv"],  genome=GENOMES), 
+       OUTDIR/"Annotation_results/Statistics.csv"
 
 include: "rules/prokka.smk"
 include: "rules/pfam.smk"
 include: "rules/cog.smk"
-include: "rules/cog2.smk"
 include: "rules/cazymes.smk"
 include: "rules/kegg.smk"
 include: "rules/ensure_all.smk"
 include: "rules/join_all.smk"
 
 
+onsuccess:
+    print("Workflow finished, no error")
+
+onerror:
+    print("An error occurred")

@@ -1,13 +1,19 @@
 rule join_all:
     input: 
-        #"results/all_genomes_done.txt",
-        expand(OUTDIR/"{genome}_done.txt", zip, genome=GENOMES),#genome=config["genomes"])
+        expand(OUTDIR/"{genome}_done.txt", zip, genome=GENOMES),
     output: 
-        expand("FAW_results/Orfs_per_genome/{genome}_all_features.csv", zip, genome=GENOMES),#genome=config["genomes"]),
-        #"FAW_results/Statistics.csv",
-        report("FAW_results/Statistics.csv", caption="FAW_results/Statistics.csv", category="Final")
-    params: directory=lambda wildcards, input : os.path.dirname(input[0])
+        expand(OUTDIR/"Annotation_results/Orfs_per_genome/{genome}_all_features.csv", zip, genome=GENOMES),
+        report(OUTDIR/"Annotation_results/Statistics.csv",
+            category="Overall data",
+            caption="../report/statistics.rst")
+    params: 
+        input_dir=lambda wildcards, input : os.path.dirname(input[0]),
+        output_dir = OUTDIR, 
+        db_dir = DBDIR
     threads: 4
-    conda: "../envs/general.yaml"
-    log: LOGDIR/"all/all.log"
-    shell: "python3 orf_annotation.py {params.directory} 2> {log}"	
+    conda: 
+        "../envs/general.yaml"
+    log: 
+        LOGDIR/"all/all.log"
+    shell: "python3 orf_annotation.py {params.input_dir} 2> {log}"	# {params.output_dir} {params.db_dir}
+

@@ -20,6 +20,10 @@ __date__ = 'December 3rd, 2020'
 parser.add_argument('inputDirectory', 
 		help='Full path to the input directory where all files are')
 
+# parser.add_argument('outputDirectory')
+
+# parser.add_argument('databaseDirectory')
+
 # Execute parse_args()
 args = parser.parse_args()
 ###############################################################################
@@ -32,18 +36,14 @@ import numpy as np
 
 ###############################################################################
 # MAPPINGS:
-    
+
 script_location = sys.path[0]
 database_path = os.path.join(script_location, "databases")
 os.chdir(database_path)
     
-curdir = os.getcwd()
-print("Script location: " + curdir)
-    
 def LoadPfamMap():
     pfam_map = pd.read_csv("Pfam-A.clans.tsv", sep="\t")
     pfam_map.columns = ['PFAM_ACC', 'CLAN','CLAN_Name','PFAM_Name', 'PFAM_desc']
-    #pfam_map = pfam_map.rename(columns={"PFAM_ACC": "ID"})
     pfam_map["ID"] = pfam_map["PFAM_ACC"].str.split(".", expand=True).loc[:,0]
     pfam_map = pfam_map.drop_duplicates(subset="ID")
     return pfam_map
@@ -70,11 +70,15 @@ general_map = CreateGeneralMap()
 
 ###############################################################################
 print("Starting... ")
+
 inputDirectory = sys.argv[0]
 curdir = os.path.join(script_location, "results")
 os.chdir(curdir)
+
 print("Input directory: " + curdir)
+
 curdir = os.getcwd()
+
 ###############################################################################
 #Step 1: parse Pfam files
 
@@ -135,11 +139,7 @@ for file in tblout_files:
 ###############################################################################
 #Step 2: Create output directory and list files
 
-#path_parent = os.path.dirname(inputDirectory)
-os.chdir(sys.path[0])
-curdir = os.getcwd()
-
-output_dir = os.path.join(curdir,"FAW_results")
+output_dir = os.path.join(curdir,"Annotation_results")
 output_dir_genome = os.path.join(output_dir,"Orfs_per_genome")
 
 try:

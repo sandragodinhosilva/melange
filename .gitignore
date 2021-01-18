@@ -12,6 +12,17 @@ notebook/
 logs/
 data/
 
+#Ignore databases folder, except some specific files:
+databases/*
+!databases/Pfam-A.clans.tsv
+!databases/cdd2cog.pl
+!databases/cdd2cog2.pl
+!databases/cog_mappings.tsv
+!databases/idmapping_KO.tab.gz
+!databases/idmapping_KO.tab.gz.json
+!databases/ko_mappings.tsv
+!databases/pdb_pfam_mappings.txt
+
 #Files
 temp*
 workspace.code-workspace
