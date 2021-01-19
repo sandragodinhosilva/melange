@@ -1,7 +1,6 @@
 # Folders
 .vscode
 .snakemake
-databases/
 FAW_results/
 Hotpep/
 output/
@@ -19,7 +18,7 @@ databases/*
 !databases/cdd2cog2.pl
 !databases/cog_mappings.tsv
 !databases/idmapping_KO.tab.gz
-!databases/idmapping_KO.tab.gz.json
+#!databases/idmapping_KO.tab.gz.json
 !databases/ko_mappings.tsv
 !databases/pdb_pfam_mappings.txt
 

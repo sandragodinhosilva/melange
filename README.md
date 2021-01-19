@@ -4,7 +4,7 @@
 [![python](https://img.shields.io/badge/python-≥3.8-brightgreen.svg)](https://www.python.org/)
 
 
-This repo contains the code for a Snakemake workflow of the FAW tool
+This repository contains the code for the Snakemake workflow of the FAW tool.
 
 
 ## Usage
@@ -12,10 +12,16 @@ This repo contains the code for a Snakemake workflow of the FAW tool
 ### Step 0: Install conda and Snakemake
 [Conda](https://conda.io/docs/) and
 [Snakemake](https://snakemake.readthedocs.io) are required to be able to use
-FAW. Most people would probably want to install
-[Miniconda](https://conda.io/miniconda.html) and install Snakemake into their
-base environment. Conda will automatically install the required versions of 
-all tools required to run FAW.
+FAW. \
+Most people would probably want to install
+[Miniconda](https://conda.io/miniconda.html). \
+After having conda installed, install [Snakemake](https://snakemake.readthedocs.io/en/stable/getting_started/installation.html):
+
+    # As described in Snakemake documentation:
+    conda install -c conda-forge mamba
+    mamba create -c conda-forge -c bioconda -n snakemake snakemake
+    conda activate snakemake
+
 
 ### Step 1: Clone workflow
 To use FAW, you need a local copy of the workflow repository. Start by
