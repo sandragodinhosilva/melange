@@ -17,10 +17,9 @@ databases/*
 !databases/cdd2cog.pl
 !databases/cdd2cog2.pl
 !databases/cog_mappings.tsv
+!databases/pdb_pfam_mapping.txt
 !databases/idmapping_KO.tab.gz
-#!databases/idmapping_KO.tab.gz.json
 !databases/ko_mappings.tsv
-!databases/pdb_pfam_mappings.txt
 
 #Files
 temp*
