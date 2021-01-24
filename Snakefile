@@ -6,7 +6,7 @@ from pathlib import Path
 import textwrap
 
 from snakemake.utils import min_version
-min_version("5.31.0")
+min_version("5.30.0")
 
 onstart:
     print("Starting")

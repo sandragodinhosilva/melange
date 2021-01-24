@@ -44,6 +44,13 @@ Execute the workflow locally via
 
 This will run the workflow locally using `N` cores. 
 
+### Step 4: Investigate results
+After successful execution, you can create a self-contained interactive HTML report with all results via:
+
+    snakemake --report report.html
+
+## Future implementations
+
 ### Citing
 
 
