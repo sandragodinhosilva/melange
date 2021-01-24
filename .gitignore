@@ -25,6 +25,9 @@ databases/*
 temp*
 workspace.code-workspace
 drafts
+report.html
+dag.svg
+Aq_sp_Aq107.fna
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

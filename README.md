@@ -1,6 +1,6 @@
 # FAW-snakemake
 
-[![Snakemake](https://img.shields.io/badge/snakemake-≥5.32-brightgreen.svg)](https://snakemake.bitbucket.io)
+[![Snakemake](https://img.shields.io/badge/snakemake-≥5.31-brightgreen.svg)](https://snakemake.bitbucket.io)
 [![python](https://img.shields.io/badge/python-≥3.8-brightgreen.svg)](https://www.python.org/)
 
 
@@ -27,7 +27,7 @@ After having conda installed, install [Snakemake](https://snakemake.readthedocs.
 To use FAW, you need a local copy of the workflow repository. Start by
 making a clone of the repository: 
 
-    git clone git@github.com:sandragodinhosilva/FAW-snakemake
+    git clone https://github.com/sandragodinhosilva/FAW-snakemake.git
 
 ### Step 2: Configure workflow
 Configure the workflow according to your needs by editing the file
@@ -44,6 +44,6 @@ Execute the workflow locally via
 
 This will run the workflow locally using `N` cores. 
 
-## Citing
+### Citing
 
 
