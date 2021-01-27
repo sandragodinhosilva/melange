@@ -49,7 +49,10 @@ After successful execution, you can create a self-contained interactive HTML rep
 
     snakemake --report report.html
 
-## Future implementations
+
+### Future implementations
+- Move orf_annotation.py to folder 'scripts'
+- Improve report
 
 ### Citing
 
