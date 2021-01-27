@@ -1,5 +1,5 @@
 rule prokka:
-    input: INPUTDIR/"{genome}"genome_extension
+    input: INPUTDIR/"{genome}GENOME_EXTENSION"
 	output: 
 		faa=OUTDIR/"{genome}.faa", 
 		gbk=OUTDIR/"{genome}.gbk"

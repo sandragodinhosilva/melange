@@ -25,10 +25,10 @@ INPUTDIR = Path(config["inputdir"])
 OUTDIR = Path(config["outdir"])
 LOGDIR = Path(config["logdir"])
 DBDIR = Path(config["dbdir"])
-genome_extension = config["genome_extension"]
+GENOME_EXTENSION = config["genome_extension"]
 
 # --- GET GENOMES
-GENOMES = set(glob_wildcards(INPUTDIR/config["genome_extension"]).genome)
+GENOMES = set(glob_wildcards(INPUTDIR/GENOME_EXTENSION).genome)
 
 if len(GENOMES) < 1:
     raise WorkflowError("Found no samples! Check input file pattern and path in config.yaml")
