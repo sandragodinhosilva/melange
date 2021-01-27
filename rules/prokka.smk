@@ -1,5 +1,7 @@
+GENOME_EXTENSION = config["genome_extension"]
+
 rule prokka:
-    input: INPUTDIR/"{genome}GENOME_EXTENSION"
+    input: INPUTDIR/GENOME_EXTENSION
 	output: 
 		faa=OUTDIR/"{genome}.faa", 
 		gbk=OUTDIR/"{genome}.gbk"
