@@ -1,4 +1,4 @@
-![Header](bitmap.png)
+![Header](bitmap2.jpeg)
 
 
 [![Snakemake](https://img.shields.io/badge/snakemake-≥5.31-brightgreen.svg)](https://snakemake.bitbucket.io)
