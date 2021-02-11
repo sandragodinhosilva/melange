@@ -1,10 +1,11 @@
-# FAW-snakemake
+# MeLanGE
+**Machine Learning for GEnomics**
 
 [![Snakemake](https://img.shields.io/badge/snakemake-≥5.31-brightgreen.svg)](https://snakemake.bitbucket.io)
 [![python](https://img.shields.io/badge/python-≥3.8-brightgreen.svg)](https://www.python.org/)
 
 
-This repository contains the code for the Snakemake workflow of the FAW tool.
+This repository contains the code for the Snakemake workflow of a functional annotation tool.
 
 
 ## Usage
@@ -12,7 +13,7 @@ This repository contains the code for the Snakemake workflow of the FAW tool.
 ### Step 0: Install conda and Snakemake
 [Conda](https://conda.io/docs/) and
 [Snakemake](https://snakemake.readthedocs.io) are required to be able to use
-FAW. \
+MeLanGE. \
 Most people would probably want to install
 [Miniconda](https://conda.io/miniconda.html). \
 After having conda installed, install [Snakemake](https://snakemake.readthedocs.io/en/stable/getting_started/installation.html):
@@ -24,10 +25,10 @@ After having conda installed, install [Snakemake](https://snakemake.readthedocs.
 
 
 ### Step 1: Clone workflow
-To use FAW, you need a local copy of the workflow repository. Start by
+To use MeLanGE, you need a local copy of the workflow repository. Start by
 making a clone of the repository: 
 
-    git clone https://github.com/sandragodinhosilva/FAW-snakemake.git
+    git clone https://github.com/sandragodinhosilva/MeLanGE.git
 
 ### Step 2: Configure workflow
 Configure the workflow according to your needs by editing the file
