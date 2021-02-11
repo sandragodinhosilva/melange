@@ -1,5 +1,5 @@
-# MeLanGE
-**Machine Learning for GEnomics**
+![Header](bitmap.png)
+
 
 [![Snakemake](https://img.shields.io/badge/snakemake-≥5.31-brightgreen.svg)](https://snakemake.bitbucket.io)
 [![python](https://img.shields.io/badge/python-≥3.8-brightgreen.svg)](https://www.python.org/)
