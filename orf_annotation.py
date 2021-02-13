@@ -146,7 +146,7 @@ with mp.Pool(processes = N) as p:
     results = p.map(tblout_annotation, [file for file in tblout_files])
 ###############################################################################
 #Step 2: Create output directory and list files
-
+curdir = os.getcwd()
 output_dir = os.path.join(curdir,"Annotation_results")
 output_dir_genome = os.path.join(output_dir,"Orfs_per_genome")
 
@@ -215,167 +215,169 @@ d_files, d_count = FilesToUse()
 print("Parsing input files: Kegg, Pfam, COG and Cazyme annotations")
 ###############################################################################  
 #Step3: fill dictionaries for each annotation
-for k, files in d_files.items():
-    d_kegg = {}
-    d_stats ={}
-    name = k
-    output = name + "_all_features.csv"
-    output_resumed = name + "_1anno_per_orf.csv"
-    #print(name)
-    for file in files:
-        if file.endswith(ko_pattern):
-            kegg = file
-        elif file.endswith(pfam_pattern):
-            pfam = file
-        elif file.endswith(cog_pattern):
-            cog= file
-        elif file.endswith(cazyme_pattern):
-            cazyme = file
-        elif file.endswith(cazyme_pattern2):
-            cazyme = file
-    ###############     KEGG     #############
-    with open(os.path.join(curdir,kegg)) as f:
-        c=0
-        c_ko =0
-        lines = f.readlines()
-        for line in lines:
-            c+=1
-            line = line.rstrip() # This removes the whitespace at the end of the line
-            tabs = line.split("\t") # And now we can create a list by splitting each line into pieces based on where the tabs are.         
-            query = tabs[0] # The first item in the line is the query protein. We can assign the variable "query" to it. 
-            d_kegg[query] = []
-            if len(tabs) == 1:
-                d_kegg[query].append("")
-            else:
-                d_kegg[query].append(tabs[1])
-                d_count[name].append(tabs[1])
-                d_count_kegg[name].append(tabs[1]) # for the individual file count
-                c_ko +=1
-        d_stats["orfs"]=c
-        d_stats["ko"] = c_ko
-    ###############     Pfam     ############
-    with open(os.path.join(curdir,pfam)) as f:
-        c=0
-        lines = f.readlines()
-        for line in lines[1:]:
-            c+=1
-            line = line.rstrip() # This removes the whitespace at the end of the line
-            tabs = line.split("\t") # And now we can create a list by splitting each line into pieces based on where the tabs are.         
-            query = tabs[0] # The first item in the line is the query protein. We can assign the variable "query" to it. 
-            d_kegg[query].append(tabs[1])
-            d_count[name].append(tabs[1])
-            d_count_pfam[name].append(tabs[1]) # for the individual file count
-        d_stats["pfam"]=c
-    ###############    Cazymes     ###########
-    with open(os.path.join(curdir,cazyme)) as f:
-        c=0
-        lines = f.readlines()
-        for line in lines[1:]:
 
-            line = line.rstrip() # This removes the whitespace at the end of the line
-            if line.endswith("3"): #select orfs with at least
-                c += 1
-                tabs = line.split("\t") # And now we can create a list by splitting each line into pieces based on where the tabs are.             
-                query = tabs[0]
-                l2=[]
-                for tab in tabs[1:4]:
-                    tab = re.sub(r"[\(\[].*?[\)\]]", r"", tab)
-                l2.append(tab)
-                cnt = Counter(l2)
-                common = cnt.most_common(3)
-                if len(common)==1:
-                    result = common[0][0]
-                elif len(common) == 2:
-                    result = common[0][0]
-                elif len(common) == 3:
-                    result = l2[0] #if there isn't one most common result, select HHMER
-                d_count[name].append(result)
-                d_count_cazyme[name].append(result) # for the individual file count
-                if result.startswith("G"): # to avoid that PLUs enter in the Pfam column
-                    pass
-                else:
-                    result = "G"+result
-                try:
-                    d_kegg[query].append(result)
-                except:
-                    pass
-                        #print(name + " does not have cazyme annotation")
-            elif line.endswith("2"):#select orfs with at least 2 hits
-                c += 1
-                tabs = line.split("\t") # And now we can create a list by splitting each line into pieces based on where the tabs are.             
-                query = tabs[0]
-                l2=[]
-                for tab in tabs[1:4]:
-                    tab = re.sub(r"[\(\[].*?[\)\]]", r"", tab)
-                    if tab != "-":
-                        l2.append(tab)
-                try:
-                    result = l2[0] #if there is two hits try to select HHMER
-                except:
-                    result = l2[1] # or Hotpet
-                d_count[name].append(result)
-                d_count_cazyme[name].append(result) # for the individual file count
-                if result.startswith("G"): # to avoid that PLUs enter in the Pfam column
-                    pass
-                else:
-                    result = "G"+result
-                try:
-                    d_kegg[query].append(result)
-                except:
-                    pass
-        d_stats["cazymes"]=c
-    ###############     COG     #############        
-    with open(os.path.join(curdir,cog)) as f:
-        c=0
-        lines = f.readlines()
-        for line in lines:
-            if line.startswith("Query"):
-                pass
-            else:
+
+def fill_dic():
+    for k, files in d_files.items():
+        d_kegg = {}
+        d_stats ={}
+        name = k
+        output = name + "_all_features.csv"
+        ###############     PATTERNS     #############        
+        for file in files:
+            if file.endswith(ko_pattern):
+                kegg = file
+            elif file.endswith(pfam_pattern):
+                pfam = file
+            elif file.endswith(cog_pattern):
+                cog= file
+            elif file.endswith(cazyme_pattern):
+                cazyme = file
+            elif file.endswith(cazyme_pattern2):
+                cazyme = file
+        ###############     KEGG     #############
+        with open(os.path.join(kegg)) as f:
+            c=0
+            c_ko =0
+            lines = f.readlines()
+            for line in lines:
                 c+=1
                 line = line.rstrip() # This removes the whitespace at the end of the line
                 tabs = line.split("\t") # And now we can create a list by splitting each line into pieces based on where the tabs are.         
                 query = tabs[0] # The first item in the line is the query protein. We can assign the variable "query" to it. 
-                d_kegg[query].append(tabs[1])
+                d_kegg[query] = []
+                if len(tabs) == 1:
+                    d_kegg[query].append("")
+                else:
+                    d_kegg[query].append(tabs[1])
+                    d_count[name].append(tabs[1])
+                    d_count_kegg[name].append(tabs[1]) # for the individual file count
+                    c_ko +=1
+            d_stats["orfs"]=c
+            d_stats["ko"] = c_ko
+        ###############     Pfam     ############
+        with open(os.path.join(pfam)) as f:
+            c=0
+            l_pfam = dict() 
+            lines = f.readlines()
+            for line in lines[1:]:
+                c+=1
+                line = line.rstrip() # This removes the whitespace at the end of the line
+                tabs = line.split("\t") # And now we can create a list by splitting each line into pieces based on where the tabs are.         
+                query = tabs[0] # The first item in the line is the query protein. We can assign the variable "query" to it. 
+
+                l_pfam[query] = l_pfam.get(query, []) + [tabs[1]]
                 d_count[name].append(tabs[1])
-                d_count_cog[name].append(tabs[1]) # for the individual file count
-        d_stats["cog"]=c
+                d_count_pfam[name].append(tabs[1]) # for the individual file count
 
-    d_stats_all[name] = d_stats
-    
-    s=pd.Series(d_kegg).explode()
-    s=s[s!='']
-    df=pd.crosstab(index=s.index,columns=s.str[0],values=s,aggfunc='first')
-    
-    df = df.rename(columns={"K":"KO", "G": "CAZyme", "P":"Pfam", "C": "COG"})
-    df.to_csv(os.path.join(output_dir_genome,output))
-    try:
-        df["CAZyme"] = df["CAZyme"].str.replace("GPL", "PL") # transform masked PLUs into original format
-        pfam_ = df["Pfam"]
-        ko_ = df["KO"]
-        cog_ =df["COG"]
-        cazymes_ = df["CAZyme"]
-        df0 = cazymes_.combine_first(pfam_) #combine first to set order
-        df1 = df0.combine_first(ko_)
-        df2 = df1.combine_first(cog_)
-        d_resumed[name]=df2
+            d_stats["pfam"]=c
+        ###############    Cazymes     ###########
+        with open(os.path.join(cazyme)) as f:
+            c=0
+            lines = f.readlines()
+            l_caz= dict() 
+
+            for line in lines[1:]:
+                line = line.rstrip() # This removes the whitespace at the end of the line
+                if line.endswith("3"): #select orfs with at least
+                    c += 1
+                    tabs = line.split("\t") # And now we can create a list by splitting each line into pieces based on where the tabs are.             
+                    query = tabs[0]
+                    l_caz[query]=[]
+                    l2=[]
+                    for tab in tabs[1:4]:
+                        tab = re.sub(r"[\(\[].*?[\)\]]", r"", tab)
+                    l2.append(tab)
+                    cnt = Counter(l2)
+                    common = cnt.most_common(3)
+                    if len(common)==1:
+                        result = common[0][0]
+                    elif len(common) == 2:
+                        result = common[0][0]
+                    elif len(common) == 3:
+                        result = l2[0] #if there isn't one most common result, select HHMER
+                    try:
+                        if "+" in result:
+                            a = result.split("+")
+                            for i in a:
+                                d_count_cazyme[name].append(i) # for the individual file count
+                    except:
+                        d_count[name].append(result)
+                        d_count_cazyme[name].append(result)
+                    l_caz[query].append(result)
+                elif line.endswith("2"):#select orfs with at least 2 hits
+                    c += 1
+                    tabs = line.split("\t") # And now we can create a list by splitting each line into pieces based on where the tabs are.             
+                    query = tabs[0]
+                    l_caz[query]=[]
+                    l2=[]
+                    for tab in tabs[1:4]:
+                        tab = re.sub(r"[\(\[].*?[\)\]]", r"", tab)
+                        if tab != "-":
+                            l2.append(tab)
+                    try:
+                        result = l2[0] #if there is two hits try to select HHMER
+                    except:
+                        result = l2[1] # or Hotpet
+                    try:
+                        if "+" in result:
+                            a = result.split("+")
+                            for i in a:
+                                d_count_cazyme[name].append(i) # for the individual file count
+                    except:
+                        d_count_cazyme[name].append(result)
+                        d_count[name].append(result)
+                    l_caz[query].append(result)
+            d_stats["cazymes"]=c
+        ###############     COG     #############        
+        with open(os.path.join(cog)) as f:
+            c=0
+            lines = f.readlines()
+            for line in lines:
+                if line.startswith("Query"):
+                    pass
+                else:
+                    c+=1
+                    line = line.rstrip() # This removes the whitespace at the end of the line
+                    tabs = line.split("\t") # And now we can create a list by splitting each line into pieces based on where the tabs are.         
+                    query = tabs[0] # The first item in the line is the query protein. We can assign the variable "query" to it. 
+                    d_kegg[query].append(tabs[1])
+                    d_count[name].append(tabs[1])
+                    d_count_cog[name].append(tabs[1]) # for the individual file count
+            d_stats["cog"]=c
         
-    except:
-        print("Note: " + name + " doesn't have cazyme annotation.")
-        pfam_ = df["Pfam"]
-        ko_ = df["KO"]
-        cog_ =df["COG"]
-        df1 = pfam_.combine_first(ko_)
-        df2 = df1.combine_first(cog_)
-        d_resumed[name]=df2
-    df2.columns=["Orf", "Annotation"]
-    df2.to_csv(os.path.join(output_dir_genome,output_resumed))
+        ###############     FINAL     ############# 
+        
+        for k,i in l_pfam.items():
+            i = '+'.join(i)
+            l_pfam[k]=i
+                
+        df_pfam = pd.DataFrame.from_dict(l_pfam, orient='index')
+        df_pfam = df_pfam.rename(columns={0:"Pfam"})
+        
+        df_caz = pd.DataFrame.from_dict(l_caz, orient='index')
+        df_caz = df_caz.rename(columns={0:"CAZymes"})
+        
+        d_stats_all[name] = d_stats
 
+        s=pd.Series(d_kegg).explode()
+        s=s[s!='']
+        df=pd.crosstab(index=s.index,columns=s.str[0],values=s,aggfunc='first')
+        
+        df = df.rename(columns={"K":"KO", "C": "COG"})
+        merge = pd.merge(df, df_pfam, how="left", left_index=True, right_index=True)
+        merge = pd.merge(merge, df_caz, how="left", left_index=True, right_index=True)
+        
+        merge.to_csv(os.path.join(output_dir_genome,output))
+
+    return df
+
+df = fill_dic()
 print("All input files were correctly parsed.")
 ###############################################################################
 #Step4: Create Statistics table
-df_stats = pd.DataFrame.from_dict(d_stats_all).T
-df_stats = df_stats[["orfs", "pfam", "ko","cog", "cazymes"]]
+d_stats_all = pd.DataFrame.from_dict(d_stats_all).T
+df_stats = d_stats_all[["orfs", "pfam", "ko","cog", "cazymes"]]
 
 #df_stats["Orfs_anno_pfam%"] = df_stats["pfam"] / df_stats["orfs"] *100
 df_stats["Orfs_anno_ko%"] = df_stats["ko"] / df_stats["orfs"] *100
