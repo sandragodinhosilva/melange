@@ -32,7 +32,7 @@ rule download_cog:
     output:
         DBDIR/"whog",
     log:
-        str(LOGDIR/"cog_database_download.log")
+        str(LOGDIR/"cog/cog_database_download.log")
     shadow:
         "shallow"
     params: db = DBDIR

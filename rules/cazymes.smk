@@ -25,7 +25,7 @@ rule download_cazymes:
     output:
         DBDIR/"db/CAZy.dmnd",
     log:
-        str(LOGDIR/"cazy_database_download.log")
+        str(LOGDIR/"cazymes/cazy_database_download.log")
     shadow:
         "shallow"
     conda: "../envs/dbcan.yaml"

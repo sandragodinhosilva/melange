@@ -47,10 +47,10 @@ include: "rules/pfam.smk"
 include: "rules/cog.smk"
 include: "rules/cazymes.smk"
 include: "rules/kegg.smk"
+include: "rules/merops.smk"
 include: "rules/ensure_all.smk"
 include: "rules/join_all.smk"
 include: "rules/join_metadata.smk"
-
 
 onsuccess:
     print("Workflow finished, no error")
