@@ -7,7 +7,7 @@ rule prokka:
 		gbk=OUTDIR/"{genome}.gbk"
 	threads: 8
 	conda: "../envs/prokka.yaml"
-	log: LOGDIR/"{genome}.log"
+	log: LOGDIR/"prokka/{genome}.log"
 	shell:
 		"""
 		prokka --cpus {threads} --outdir results/ --force --prefix {wildcards.genome} --locustag {wildcards.genome} {input} 2> {log}

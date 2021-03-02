@@ -31,10 +31,10 @@ METADATA = config["metadata"]
 # --- GET GENOMES
 GENOMES = set(glob_wildcards(INPUTDIR/GENOME_EXTENSION).genome)
 
-if len(GENOMES) < 1:
-    raise WorkflowError("Found no samples! Check input file pattern and path in config.yaml")
-else:
-    print(f"Found the following samples in inputdir using input filename pattern '{config['genome_extension']}':\n{GENOMES}")
+#if len(GENOMES) < 1:
+#    raise WorkflowError("Found no samples! Check input file pattern and path in config.yaml")
+#else:
+#    print(f"Found the following samples in inputdir using input filename pattern '{config['genome_extension']}':\n{GENOMES}")
 
 # --- ALL RULE 
 rule all:

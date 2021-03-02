@@ -11,7 +11,7 @@ rule merops2:
         input_dir=lambda wildcards, input : os.path.dirname(input[0])
     conda: "../envs/general.yaml"
    	log: LOGDIR/"merops/{genome}_parse.log"
-    shell: "python3 merops_parser.py {params.input_dir} 2> {log}"	
+    shell: "python3 merops_parser.py {input} 2> {log}"	
 
 rule merops:
     """
@@ -25,12 +25,10 @@ rule merops:
     conda: "../envs/blast.yaml"
    	log:  LOGDIR/"merops/{genome}.log"
     params: evalue=config["merops_evalue"], dbdir=DBDIR
-    shell: 
-    """
-    blastp -query {input.genome_faa} -db {params.dbdir}/merops_scan.lib -out {output} 
-    -evalue {params.evalue} -outfmt 6 -num_threads {threads} 2> {log}
-    """
+    shell: """
+    blastp -query {input.genome_faa} -db {params.dbdir}/merops_scan.lib -out {output} -evalue {params.evalue} -outfmt 6 -num_threads {threads} 2> {log} """
 
+ #
 rule download_merops:
     """Download latest Merops """
     output:

@@ -3,6 +3,7 @@ rule join_all:
         expand(OUTDIR/"{genome}_done.txt", zip, genome=GENOMES),
     output: 
         expand(OUTDIR/"Annotation_results/Orfs_per_genome/{genome}_all_features.csv", zip, genome=GENOMES),
+        OUTDIR/"Annotation_results/Pfam_PA.csv",
         report(OUTDIR/"Annotation_results/Statistics.csv",
             category="Overall data",
             caption="../report/statistics.rst")
