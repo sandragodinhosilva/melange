@@ -26,6 +26,7 @@ OUTDIR = Path(config["outdir"])
 LOGDIR = Path(config["logdir"])
 DBDIR = Path(config["dbdir"])
 GENOME_EXTENSION = config["genome_extension"]
+METADATA = config["metadata"]
 
 # --- GET GENOMES
 GENOMES = set(glob_wildcards(INPUTDIR/GENOME_EXTENSION).genome)
@@ -39,7 +40,7 @@ else:
 rule all:
     input:
        expand([OUTDIR/"Annotation_results/Orfs_per_genome/{genome}_all_features.csv"],  genome=GENOMES), 
-       OUTDIR/"Annotation_results/Statistics.csv"
+       OUTDIR/"Annotation_results/Pfam_PA_metadata.csv"
 
 include: "rules/prokka.smk"
 include: "rules/pfam.smk"
@@ -48,6 +49,7 @@ include: "rules/cazymes.smk"
 include: "rules/kegg.smk"
 include: "rules/ensure_all.smk"
 include: "rules/join_all.smk"
+include: "rules/join_metadata.smk"
 
 
 onsuccess:
