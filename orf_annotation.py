@@ -216,7 +216,6 @@ print("Parsing input files: Kegg, Pfam, COG and Cazyme annotations")
 ###############################################################################  
 #Step3: fill dictionaries for each annotation
 
-
 def fill_dic():
     for k, files in d_files.items():
         d_kegg = {}
@@ -458,25 +457,7 @@ df_counter_cazyme.to_csv(os.path.join(output_dir,"Cazyme_counts.csv"), index=Fal
 df_counter_cazyme_PA.to_csv(os.path.join(output_dir,"Cazyme_PA.csv"), index=False)
 df_counter_cazyme_abund.to_csv(os.path.join(output_dir,"Cazyme_abund.csv"), index=False)
 
-###############################################################################
-#every orf only has one annotation:
-df_counter_all, df_counter_all_PA, df_counter_all_abund = GetCounter("All orfs - one annotation per orf", d_count)
-
-df_counter_all.to_csv(os.path.join(output_dir,"all_counts.csv"), index=False)
-df_counter_all_PA.to_csv(os.path.join(output_dir,"all_PA.csv"), index=False)
-df_counter_all_abund.to_csv(os.path.join(output_dir,"all_abund.csv"), index=False)
-
-###############################################################################
-#every orf only has one annotation:
-df_counter_all, df_counter_all_PA, df_counter_all_abund = GetCounter("All orfs", d_resumed)
-
-df_counter_all.to_csv(os.path.join(output_dir,"all_1_per_orf_counts.csv"), index=False)
-df_counter_all_PA.to_csv(os.path.join(output_dir,"all_1_per_orf_PA.csv"), index=False)
-df_counter_all_abund.to_csv(os.path.join(output_dir,"all_1_per_orf_abund.csv"), index=False)
-###############################################################################
 print("Success! You may find your outputs at " + str(output_dir))
-#END
-
 
 ###############################################################################
 #Create mappting files
@@ -495,3 +476,5 @@ cog_dic.drop(columns=["ID"]).to_csv(os.path.join(output_dir,"Cog_description.csv
 kegg = df_counter_kegg[["index"]]
 kegg_dic = pd.merge(kegg, ko_map, how="left", left_on="index", right_on="ID")
 kegg_dic.drop(columns=["ID"]).to_csv(os.path.join(output_dir,"Kegg_description.csv"), index=False)
+
+#END
