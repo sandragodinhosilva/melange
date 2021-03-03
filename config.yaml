@@ -14,3 +14,15 @@ logdir: "results/logs"
 cog_evalue: "1e-5"
 pfam_evalue: "1e-5"
 merops_evalue: "1e-5"
+
+# --- Pipelines to run
+# Pfam: 
+#    exec: True
+# Cog: 
+#    exec: True
+# KEGG: 
+#    exec: True
+# CAZymes: 
+#    exec: True
+# Merops: 
+#    exec: True

@@ -23,15 +23,16 @@ import os
 import re
 
 ###############################################################################
-#file = "/home/sandra/faw-snakemake/results/Aq_sp_Aq349_merops.txt"
+#file = "/home/sandra/faw-snakemake/results/Aq_sp_Aq349_tblout.txt"
 
 file = sys.argv[1]
 
 filename = os.path.basename(file)
+filename = filename.replace("_tblout.txt","")
 output_dir = os.path.dirname(file)
-out = os.path.join(output_dir, filename + "_tblout_pfam.txt")
+out = os.path.join(output_dir,  filename + "_tblout_pfam.txt")
 
-d = {}    
+
 protein2hit_dict = {}
 protein2bit_dict = {}
 dic = {}
@@ -57,9 +58,5 @@ with open(file, 'r') as f:
             for proteins in protein2hit_dict:
                 outputfile.write(dic[proteins] + "\t" + protein2hit_dict[proteins] + "\t" + str(protein2bit_dict[proteins]) +"\n")
         outputfile.close()
-        l = []
-        for proteins in protein2hit_dict:
-            l.append(protein2hit_dict[proteins])
-            d[filename] = l
 print("File " + str(out) + " was created.")
 f.close()
