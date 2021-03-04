@@ -10,6 +10,7 @@ results/
 notebook/
 logs/
 data/
+FeatureSelection/
 
 #Ignore databases folder, except some specific files:
 databases/*

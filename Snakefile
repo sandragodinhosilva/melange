@@ -26,7 +26,7 @@ OUTDIR = Path(config["outdir"])
 LOGDIR = Path(config["logdir"])
 DBDIR = Path(config["dbdir"])
 GENOME_EXTENSION = config["genome_extension"]
-METADATA = config["metadata"]
+#METADATA = config["metadata"]
 
 # --- GET GENOMES
 GENOMES = set(glob_wildcards(INPUTDIR/GENOME_EXTENSION).genome)

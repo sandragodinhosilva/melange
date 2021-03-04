@@ -3,14 +3,13 @@
 
 ###############################################################################
 #### Script to shorten contig headers                 
-#### Usage: python fasta_cleaner.py /path/to/directory_wt_all_files/ 
-#### Note: provide full path!                                          
+#### Usage: python conting_name.py /path/to/file/ 
 ###############################################################################
 
 import argparse
 import fileinput
 import os, sys
-import re
+import shutil
 
 parser=argparse.ArgumentParser(
     description='''Script to rename contig headers, starting in contig1, 
@@ -18,72 +17,72 @@ parser=argparse.ArgumentParser(
 
 __file__ = "contig_namer.py"
 __author__ = 'Sandra Godinho Silva (sandragodinhosilva@gmail.com)'
-__version__ = '0.2'
-__date__ = '05-12-2020'
+__version__ = '0.3'
+__date__ = '03-03-2021'
 
-parser.add_argument('inputDirectory', 
+parser.add_argument('inputFile', 
 	help='Full path to the input directory where all files are')
 
 args = parser.parse_args()
 ###############################################################################
-inputDirectory = sys.argv[1]
+script_location = sys.argv[0]
 
-curdir = inputDirectory
-os.chdir(curdir)
+# Input file
+in_file = sys.argv[1]
+filename = os.path.basename(in_file)
 
-entries = os.listdir(curdir)
+print("Input file: " + str(in_file))
 
-d={}
-fass=[]
+# From the script location, find results directory
+out_dir = os.path.dirname(os.path.dirname(script_location))
+out_dir = os.path.join(out_dir, "results")
+out_file = os.path.join(out_dir, filename)
 
-for filename in entries:
-    if ".fa" in filename:
-        fass.append(filename)
+print("Output file: " + str(out_file))
 
-for filename in fass:
-    with open(filename, 'r') as f:
-        count=0
-        for line in f:
-            if line.strip().startswith(">"):
-                count+=1
-                k=len(str(count))
-        d[filename]=k
+# Remove file extension (can be fna or fasta)
+try:
+    name=filename.replace(".fna","")
+except:
+    name=name.replace(".fasta","")
 
-for filename in entries:
-    if ".fa" in filename:
-        i=1
-        k = d[filename]
-        filepath = os.path.join(curdir, filename)
-        with fileinput.FileInput(filepath, inplace=True) as file: 
-            name = filename
-            x=name.split('_')
-            x[0:2] = ['_'.join(x[0:2])]
-            final=str(x[0])
-            final=re.sub('\.fa$', '', final)
-            for line in file:        
-                if line.strip().startswith(">"):
-                    if i <10:
-                        kf= k-1
-                        title=">{}_contig".format(final)+ kf*"0" +"{}\n".format(i)
-                        line = title
-                        i+=1
-                    elif i <100:
-                        kf= k-2
-                        title=">{}_contig".format(final)+ kf*"0" +"{}\n".format(i)
-                        line = title
-                        i+=1
-                    elif  i < 1000:
-                        kf= k-3
-                        title=">{}_contig".format(final)+ kf*"0" +"{}\n".format(i)
-                        line = title
-                        i+=1
-                    elif i >= 1000 & i < 10000:
-                        kf=k-4
-                        title=">{}_contig".format(final)+ kf*"0" +"{}\n".format(i)
-                        line = title
-                        i+=1
-                sys.stdout.write(line)
-                fileinput.close()
+shutil.copy2(in_file,out_file)
+
+with open(in_file, 'r') as f:
+    count=0
+    lines = f.readlines()
+    for line in lines:
+        if line.strip().startswith(">"):
+            count+=1
+            k=len(str(count))
+f.close()
+
+i=1
+with fileinput.FileInput(out_file, inplace=True) as file: 
+    for line in file:        
+        if line.strip().startswith(">"):
+            if i <10:
+                kf= k-1
+                title=">{}_contig".format(name)+ kf*"0" +"{}\n".format(i)
+                line = title
+                i+=1
+            elif i <100:
+                kf= k-2
+                title=">{}_contig".format(name)+ kf*"0" +"{}\n".format(i)
+                line = title
+                i+=1
+            elif  i < 1000:
+                kf= k-3
+                title=">{}_contig".format(name)+ kf*"0" +"{}\n".format(i)
+                line = title
+                i+=1
+            elif i >= 1000 & i < 10000:
+                kf=k-4
+                title=">{}_contig".format(name)+ kf*"0" +"{}\n".format(i)
+                line = title
+                i+=1
+        sys.stdout.write(line)
+fileinput.close()
 
 ###############################################################################
         

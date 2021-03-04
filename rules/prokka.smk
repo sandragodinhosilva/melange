@@ -1,8 +1,8 @@
-GENOME_EXTENSION = config["genome_extension"]
 DBDIR = config["dbdir"]
+LOGDIR = Path(config["logdir"])
 
 rule prokka:
-    input: input_genome= INPUTDIR/GENOME_EXTENSION , db ="databases/dbs_done.txt"
+    input: input_genome = OUTDIR/GENOME_EXTENSION
 	output: 
 		faa=OUTDIR/"{genome}.faa", 
 		gbk=OUTDIR/"{genome}.gbk"

@@ -4,7 +4,7 @@
 inputdir: "data"
 genome_extension: "{genome}.fna" 
 dbdir: "databases" 
-metadata: "data/metadata.csv"
+#metadata: "data/metadata.csv"
 
 # --- Output directory
 outdir: "results"
