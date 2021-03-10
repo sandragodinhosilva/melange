@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Introduction
+title: Tool description
 nav_order: 1
 ---
 
