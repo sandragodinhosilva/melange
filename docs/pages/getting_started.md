@@ -12,7 +12,7 @@ Apart from [conda](https://docs.conda.io/en/latest/), all databases and dependen
 ## Conda package manager
 
 MeLanGE has **one dependency**: [conda](https://docs.conda.io/en/latest/). \
-You need to install [anaconda](http://anaconda.org/) or [miniconda](https://docs.conda.io/en/latest/miniconda.html). \
+You need to install [anaconda](https://docs.conda.io/projects/conda/en/latest/user-guide/install/index.html) or [miniconda](https://docs.conda.io/en/latest/miniconda.html). \
 If you haven't done it already you need to configure conda with the bioconda-channel and the conda-forge channel. This are sources for packages beyond the default one:
 
     conda config --add channels defaults
