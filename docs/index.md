@@ -6,7 +6,7 @@ nav_exclude: true
 
 # MeLanGE - Read The Docs 
 
-![Header](../logo/bitmap3.jpeg)
+![Header](bitmap3.jpeg)
 
 
 [![Snakemake](https://img.shields.io/badge/snakemake-≥5.31-brightgreen.svg)](https://snakemake.bitbucket.io)
