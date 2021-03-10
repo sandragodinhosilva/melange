@@ -1,5 +1,6 @@
 # Folders
 .vscode
+assets
 .snakemake
 FAW_results/
 Hotpep/
