@@ -7,6 +7,8 @@
 
 This repository contains the code for the Snakemake workflow of a functional annotation tool.
 
+## Documentation: https://sandragodinhosilva.github.io/MeLanGE/
+
 
 ## Usage
 
@@ -35,26 +37,11 @@ Configure the workflow according to your needs by editing the file
 `config.yaml`.
 
 ### Step 3: Execute workflow
-Test your configuration by performing a dry-run via
-
-    snakemake --use-conda -n
-
-Execute the workflow locally via
+Execute the workflow locally using `N` cores:
 
     snakemake --use-conda --cores N
 
-This will run the workflow locally using `N` cores. 
-
-### Step 4: Investigate results
-After successful execution, you can create a self-contained interactive HTML report with all results via:
-
-    snakemake --report report.html
 
 
-### Future implementations
-- Also have unnotated orfs in file with results per genome
-- Improve report
 
 ### Citing
-
-
