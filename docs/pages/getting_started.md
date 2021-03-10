@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Demo Pages Index
+title: Getting started
 nav_order: 1
 ---
 
