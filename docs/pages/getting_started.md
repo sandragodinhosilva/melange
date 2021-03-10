@@ -22,8 +22,6 @@ MeLanGE is based on snakemake which allows to run steps of the workflow in paral
 To try MeLanGE, you can use `example data`_ for testing.
 
 
-Memory & system requirements:
-
 
 
 You need to install `anaconda <http://anaconda.org/>`_ or miniconda. If you haven't done it already you need to configure conda with the bioconda-channel and the conda-forge channel. This are sources for packages beyond the default one.::
@@ -44,5 +42,7 @@ Conda can be a bit slow because there are so many packages. A good way around th
 
 From now on you can replace ``conda install`` with ``mamba install`` and see how much faster this snake is.
 
-Install MeLanGE
-------------------------
+## Memory & system requirements:
+
+## Install MeLanGE
+
