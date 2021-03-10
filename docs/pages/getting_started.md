@@ -4,19 +4,16 @@ title: Getting started
 nav_order: 1
 ---
 
-.. _conda: http://anaconda.org/
-.. _mamba: https://github.com/TheSnakePit/mamba
-
-
 # Setup
 
-MeLanGE is based on snakemake workflow manager, allowing to run all the steps of the workflow in parallel on a cluster.
+MeLanGE is based on snakemake workflow manager, allowing to run all the steps of the workflow in parallel on a cluster. \
 Apart from [conda](https://docs.conda.io/en/latest/), all databases and dependencies are installed **on the fly**.
 
 ## Conda package manager
 
-MeLanGE has **one dependency**: [conda](https://docs.conda.io/en/latest/). 
-You need to install [anaconda](http://anaconda.org/) or [miniconda](https://docs.conda.io/en/latest/miniconda.html) If you haven't done it already you need to configure conda with the bioconda-channel and the conda-forge channel. This are sources for packages beyond the default one.::
+MeLanGE has **one dependency**: [conda](https://docs.conda.io/en/latest/). \
+You need to install [anaconda](http://anaconda.org/) or [miniconda](https://docs.conda.io/en/latest/miniconda.html). \
+If you haven't done it already you need to configure conda with the bioconda-channel and the conda-forge channel. This are sources for packages beyond the default one:
 
     conda config --add channels defaults
     conda config --add channels bioconda
@@ -31,7 +28,7 @@ From now on you can replace ``conda install`` with ``mamba install`` and see how
 
 ## Memory & system requirements:
 
-To try MeLanGE, you can use `example data`_ for testing.
+To try MeLanGE, you can use [example data](https://github.com/sandragodinhosilva/MeLanGE/tree/master/example_data) for testing.
 
 ## Install MeLanGE
 
