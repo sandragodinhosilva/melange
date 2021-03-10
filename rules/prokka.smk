@@ -1,8 +1,10 @@
+GENOME_EXTENSION = config["genome_extension"]
 DBDIR = config["dbdir"]
 LOGDIR = Path(config["logdir"])
+ 
 
 rule prokka:
-    input: input_genome = OUTDIR/GENOME_EXTENSION
+    input: input_genome = INPUTDIR/GENOME_EXTENSION
 	output: 
 		faa=OUTDIR/"{genome}.faa", 
 		gbk=OUTDIR/"{genome}.gbk"
@@ -11,5 +13,6 @@ rule prokka:
 	log: LOGDIR/"prokka/{genome}.log"
 	shell:
 		"""
-		prokka --cpus {threads} --outdir results/ --force --prefix {wildcards.genome} --locustag {wildcards.genome} {input.input_genome} 2> {log}
+		python3 scripts/contig_namer.py {input.input_genome} 
+		prokka --cpus {threads} --outdir results/ --force --prefix {wildcards.genome} --locustag {wildcards.genome} {input.input_genome} 2> {log} 
 		"""

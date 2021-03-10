@@ -1,7 +1,4 @@
-GENOME_EXTENSION = config["genome_extension"]
-
 localrules:
-    ensure_prokka_renamer,
     download_pfam,
     download_merops,
     download_cog,
@@ -18,13 +15,6 @@ rule ensure_download:
     log: LOGDIR/"dbs.log"
     shell: "echo done > {output}"
 
-rule ensure_prokka_renamer:
-    input: input_genome= INPUTDIR/GENOME_EXTENSION, db ="databases/dbs_done.txt", out = OUTDIR
-    output: OUTDIR/"{genome}.fna"
-    log: LOGDIR/"contig_renamer/{genome}_renamer.log"
-    params: out_dir =lambda wildcards, output : os.path.dirname(output[0]),
-    conda: "../envs/general.yaml"
-    shell: "python3 scripts/contig_namer.py {input.input_genome} 2> {log}"  
 
 rule download_pfam:
     """Download latest Pfam-A.hmm"""

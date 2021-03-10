@@ -23,30 +23,24 @@ __date__ = '03-03-2021'
 parser.add_argument('inputFile', 
 	help='Full path to the input directory where all files are')
 
+os.sync()
+
 args = parser.parse_args()
 ###############################################################################
-script_location = sys.argv[0]
-
 # Input file
-in_file = sys.argv[1]
+in_file = os.path.abspath(sys.argv[1])
+#in_file="/home/sandra/faw-snakemake/data/GCA_002714325.1_ASM271432v1.fna"
 filename = os.path.basename(in_file)
 
 print("Input file: " + str(in_file))
 
-# From the script location, find results directory
-out_dir = os.path.dirname(os.path.dirname(script_location))
-out_dir = os.path.join(out_dir, "results")
-out_file = os.path.join(out_dir, filename)
 
-print("Output file: " + str(out_file))
 
 # Remove file extension (can be fna or fasta)
 try:
     name=filename.replace(".fna","")
 except:
     name=name.replace(".fasta","")
-
-shutil.copy2(in_file,out_file)
 
 with open(in_file, 'r') as f:
     count=0
@@ -58,7 +52,7 @@ with open(in_file, 'r') as f:
 f.close()
 
 i=1
-with fileinput.FileInput(out_file, inplace=True) as file: 
+with fileinput.FileInput(in_file, inplace=True) as file: 
     for line in file:        
         if line.strip().startswith(">"):
             if i <10:

@@ -40,7 +40,7 @@ GENOMES = set(glob_wildcards(INPUTDIR/GENOME_EXTENSION).genome)
 rule all:
     input:
        expand([OUTDIR/"Annotation_results/Orfs_per_genome/{genome}_all_features.csv"],  genome=GENOMES), 
-       OUTDIR/"Annotation_results/Pfam_PA_metadata.csv",
+       #OUTDIR/"Annotation_results/Pfam_PA_metadata.csv",
        #DBDIR/"dbs_done.txt"
 
 include: "rules/ensure_download.smk"
@@ -52,7 +52,7 @@ include: "rules/kegg.smk"
 include: "rules/merops.smk"
 include: "rules/ensure_all.smk"
 include: "rules/join_all.smk"
-include: "rules/join_metadata.smk"
+#include: "rules/join_metadata.smk"
 
 onsuccess:
     print("Workflow finished, no error")
