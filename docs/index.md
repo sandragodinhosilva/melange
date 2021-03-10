@@ -62,10 +62,12 @@ After successful execution, you can create a self-contained interactive HTML rep
 
     snakemake --report report.html
 
+* * *
 
 ### Future implementations
-- Also have unnotated orfs in file with results per genome
-- Improve report
+- [ ] Also have unnotated orfs in file with results per genome
+- [ ] Improve report
+
 
 ### Changes:
 ### Citing
