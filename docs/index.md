@@ -1,4 +1,12 @@
-![Header](logo/bitmap3.jpeg)
+---
+layout: default
+title: Index
+nav_exclude: true
+---
+
+# MeLanGE - Read The Docs 
+
+![Header](../logo/bitmap3.jpeg)
 
 
 [![Snakemake](https://img.shields.io/badge/snakemake-≥5.31-brightgreen.svg)](https://snakemake.bitbucket.io)
@@ -56,5 +64,3 @@ After successful execution, you can create a self-contained interactive HTML rep
 - Improve report
 
 ### Citing
-
-
