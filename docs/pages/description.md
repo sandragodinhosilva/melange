@@ -16,28 +16,31 @@ All the tools in use are from third-parties. To get more information about them,
 please check the links and references.
 
 ### 1.1 Third-parties databases and scripts:
-General annotation: 
+##### Gene calling and general annotation
+* [Prokka](https://github.com/tseemann/prokka)
 
-* **Prokka** \
-https://github.com/tseemann/prokka
-
-Functional annotation - databases: 
-
+##### Functional annotation 
 * **Pfam** \
 To annotate the genomes into Pfams, a local database is created.\
-Lastest Pfam-A.hmm: ftp://ftp.ebi.ac.uk/pub/databases/Pfam/current_release 
+Lastest [Pfam-A.hmm](ftp://ftp.ebi.ac.uk/pub/databases/Pfam/current_release)
 
 * **COG** \
-cdd2cog:  https://github.com/aleimba/bac-genomics-scripts/tree/master/cdd2cog
-
-* **CAZymes** \
-dbcan: https://github.com/linnabrown/run_dbcan 
+[cdd2cog](https://github.com/aleimba/bac-genomics-scripts/tree/master/cdd2cog)
 
 * **Kegg** \
-prokka2kegg: https://github.com/SilentGene/Bio-py/tree/master/prokka2kegg
+[prokka2kegg](https://github.com/SilentGene/Bio-py/tree/master/prokka2kegg)
+Script that converts prokka annotation output into the respective KEGG IDs.
+
+* **CAZymes** \
+Tool [dbcan](https://github.com/linnabrown/run_dbcan)
+Standalone version of dbcan.
+
+* **MEROPS** \
+A local database is created from [MEROPS](ftp://ftp.ebi.ac.uk/pub/databases/merops/current_release/merops_scan.lib).
+Then a blastp against faa files is performed.
 
 
-## 1.2 Output files:
+### 1.2 Output files:
 - Statistics.csv - % of Orfs annotated with each database.
 
 - for each database: counts, presence/absence (PA) and relative abundance tables.
