@@ -14,7 +14,7 @@ parser=argparse.ArgumentParser(
 
 __file__ = "orf_annotation.py"
 __author__ = 'Sandra Godinho Silva (sandragodinhosilva@gmail.com)'
-__version__ = '0.8'
+__version__ = '0.9'
 __date__ = 'December 3rd, 2020'
 
 parser.add_argument('inputDirectory', 
