@@ -10,7 +10,7 @@ rule merops2:
         input_dir=lambda wildcards, input : os.path.dirname(input[0])
     conda: "../envs/general.yaml"
    	log: LOGDIR/"merops/{genome}_parse.log"
-    shell: "python3 merops_parser.py {input} 2> {log}"	
+    shell: "python3 scripts/merops_parser.py {input} 2> {log}"	
 
 rule merops:
     """
