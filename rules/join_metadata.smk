@@ -11,5 +11,5 @@ rule join_metadata:
         "../envs/general.yaml"
     log: 
         LOGDIR/"all/metadata.log"
-    shell: "python3 add_metadata.py {params.input_dir} {input.metadata} 2> {log}"	# {params.output_dir} {params.db_dir}
+    shell: "python3 scripts/add_metadata.py {params.input_dir} {input.metadata} 2> {log}"	# {params.output_dir} {params.db_dir}
 
