@@ -16,5 +16,5 @@ rule join_all:
         "../envs/general.yaml"
     log: 
         LOGDIR/"all/all.log"
-    shell: "python3 orf_annotation.py {params.input_dir} 2> {log}"	# {params.output_dir} {params.db_dir}
+    shell: "python3 scripts/orf_annotation.py {params.input_dir} 2> {log}"	# {params.output_dir} {params.db_dir}
 
