@@ -10,7 +10,7 @@ rule pfam2:
         input_dir=lambda wildcards, input : os.path.dirname(input[0])
     conda: "../envs/general.yaml"
    	log: LOGDIR/"pfam/{genome}_tblout_parse.log"
-    shell: "python3 pfam_parser.py {input} 2> {log}"	
+    shell: "python3 scripts/pfam_parser.py {input} 2> {log}"	
 
 rule pfam:
     """
