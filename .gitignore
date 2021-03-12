@@ -12,7 +12,7 @@ notebook/
 logs/
 data/
 drafts/
-FeatureSelection/
+
 
 #Ignore databases folder, except some specific files:
 databases/*
@@ -164,3 +164,6 @@ dmypy.json
 
 #R
 .Rhistory
+.RData
+
+.~lock*
