@@ -6,8 +6,8 @@ nav_order: 1
 
 # What is MeLanGE
 
-MeLanGE is a automated pipeline for the genomic annotation of a group of genomes, followed by the d
-MeLanGE has two independent, but connected, components: divided into two main parts: [genome annotation](#genome-annotation) + [feature selection](#feature-selection).  
+MeLanGE is a automated pipeline for the genomic annotation of a group of genomes, followed by the th detection of the most important features to distinguish a group of genomes, as determined by a metadata label.  
+MeLanGE has two independent, but connected, components: [1) Genome annotation](#1-genome-annotation) + [2) Feature selection](#2-feature-selection).  
 MeLanGE is a [Snakemake](https://snakemake.readthedocs.io/en/stable/#) pipeline.
 
 ## 1 Genome annotation
@@ -40,7 +40,6 @@ Standalone version of dbcan.
 * **MEROPS** \
 A local database is created from [MEROPS](ftp://ftp.ebi.ac.uk/pub/databases/merops/current_release/merops_scan.lib).
 Then a blastp against faa files is performed.
-
 
 ### 1.2 Output files:
 - Statistics.csv - % of Orfs annotated with each database.
