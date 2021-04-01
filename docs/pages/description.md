@@ -6,9 +6,11 @@ nav_order: 1
 
 # What is MeLanGE
 
-MeLanGE is divided into two main parts: annotation + feature selection
+MeLanGE is a automated pipeline for the genomic annotation of a group of genomes, followed by the d
+MeLanGE has two independent, but connected, components: divided into two main parts: [genome annotation](#genome-annotation) + [feature selection](#feature-selection).  
+MeLanGE is a [Snakemake](https://snakemake.readthedocs.io/en/stable/#) pipeline.
 
-## 1 Features selection
+## 1 Genome annotation
 MeLanGE allows the quick annotation of a group 
 of genomes with several databases and gives as final output formatted tables with 
 the annotations per genome. \
@@ -48,3 +50,5 @@ Then a blastp against faa files is performed.
 - Pfam_description.csv, Cog_description.csv, Kegg_description.csv - the mapping of the identified annotation with clans, names, descriptions, etc.
 
 - folder Orf_per_genome: each genome has a unique file containing all orfs identified by Prokka and the subsequent annotations with the four different databases.
+
+## 2 Feature Selection
