@@ -28,7 +28,7 @@ if __name__ == "__main__":
     labels = os.path.join(input_dir, "FeatureSelection/labels.tsv")
     
     num_runs = 1 #int(config.get('Evaluation', 'NumberRuns'))
-    num_test = 2 #int(config.get('Evaluation', 'NumberTestSplits'))
+    num_test = 3 #int(config.get('Evaluation', 'NumberTestSplits'))
     train_rf = True #config.get('RF', 'Train')
 
     #########################################################################
@@ -69,29 +69,31 @@ if __name__ == "__main__":
     print("\nStarting MeLanGE on %s..." % (dataset))
 
     abundance = pd.read_csv(dataset, index_col=0, header=None)
-    labels = pd.read_csv(labels, index_col=0, header=None)
+    features = abundance.index.values
+    full_features = abundance.index
     
+    labels = pd.read_csv(labels, index_col=0, header=None)
     labels_data, label_set = pd.factorize(labels.index.values)    
     num_class = len(np.unique(labels_data))
-    full_features = abundance.index
-    #permanova_df = get_permanova_ranked_list(abundance, labels_data, full_features, label_set)
-        
+    
+    #abundance.reset_index(drop=True, inplace=True)
+    col_sums = abundance.sum(axis=0)
+    abundance = abundance.divide(col_sums, axis=1)   
+    
+    
     col_sums = abundance.sum(axis=0)
     abundance = abundance.divide(col_sums, axis=1)
     num_pos = (abundance != 0).astype(int).sum(axis=1)
         
-    #abundance = abundance.drop(num_pos.loc[num_pos.values < float(filt_thresh_count) * abundance.values.shape[1]].index)
-    #abundance = abundance.loc[abundance.mean(1) > float(filt_thresh_mean)]        
+    abundance = abundance.drop(num_pos.loc[num_pos.values < float(filt_thresh_count) * abundance.values.shape[1]].index)
+    abundance = abundance.loc[abundance.mean(1) > float(filt_thresh_mean)]        
     features = abundance.index.values
-
-
+   
     labels.to_csv(result_path + "/labels.txt", header=None)
     print("There are %d classes...%s" % (num_class, ", ".join(label_set)))
-        
-    #permanova_df.to_csv(result_path + "/PERMANOVA_rankings.csv")
-        
+                
     np.savetxt(result_path + "/label_set.txt", label_set, fmt="%s")
-    #abundance.to_csv(result_path + "/abundance.tsv", sep="\t")
+    abundance.to_csv(result_path + "/abundance.tsv", sep="\t")
 
     #abundance = abundance.transpose().values        
     labels = labels_data
@@ -122,5 +124,10 @@ if __name__ == "__main__":
         #################################################################
         # Select and format training and testing sets
         #################################################################
-                train_x, test_x = abundance[train_index,:], abundance[test_index,:]
+
+            print("TRAIN:", train_index, "TEST:", test_index)
+            X_train, X_test = abundance[train_index], abundance[test_index]
+            y_train, y_test = y[train_index], y[test_index]
+                
+            train_x, test_x = abundance[train_index,:], abundance[test_index,:]
 
