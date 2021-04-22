@@ -3,7 +3,7 @@ channels:
   - bioconda
 
 dependencies:
-  - python=3.6   # or 2.7
+  - python=3.8   # or 2.7
   - diamond
   - hmmer
   - prodigal
