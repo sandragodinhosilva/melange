@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 ###############################################################################
-#### Goal: join KO, Pfam, COG and CAZyme annotations                  
+#### Goal: join KO, Pfam, COG annotations                  
 #### Usage: python orf_annotation.py /path/to/directory_wt_all_files/ 
 #### Note: provide full path!                                          
 ###############################################################################
@@ -10,7 +10,7 @@
 import argparse
 import sys
 parser=argparse.ArgumentParser(
-    description='''Join KO, Pfam, COG and CAZyme annotations in one table.''')
+    description='''Join KO, Pfam, COG annotations in one table.''')
 
 __file__ = "orf_annotation.py"
 __author__ = 'Sandra Godinho Silva (sandragodinhosilva@gmail.com)'
@@ -39,7 +39,10 @@ import numpy as np
 
 # From the script location, find databases directory
 script_location = sys.path[0]
-out_dir = os.path.dirname(os.path.dirname(script_location))
+#script_location = "/home/sandra/MeLanGE2/scripts"
+#out_dir = os.path.dirname(os.path.dirname(script_location))
+out_dir = os.path.dirname(script_location)
+
 database_path = os.path.join(out_dir, "databases")
 os.chdir(database_path)
     
@@ -74,7 +77,7 @@ general_map = CreateGeneralMap()
 print("Starting... ")
 
 inputDirectory = sys.argv[0]
-curdir = os.path.join(script_location, "results")
+curdir = os.path.join(out_dir, "results")
 os.chdir(curdir)
 
 print("Input directory: " + curdir)
@@ -104,8 +107,6 @@ l = os.listdir()
 ko_pattern = ".ko.out"
 pfam_pattern = "_tblout_pfam.txt"
 cog_pattern = "protein-id_cog.txt"
-cazyme_pattern = "overview.txt"
-cazyme_pattern2 = "_overview.txt"
 
 entries = list()
 for (dirpath, dirnames, filenames) in os.walk(curdir):
@@ -118,14 +119,13 @@ def CreateDictionaries():
     d_count_kegg={}
     d_count_pfam={}
     d_count_cog={}
-    d_count_cazyme={}
     d_resumed = {} # for count table with one anno per orf
     d_stats_all = {} # for statistics
-    return d_count, d_count_kegg, d_count_pfam, d_count_cog, d_count_cazyme, d_resumed, d_stats_all
+    return d_count, d_count_kegg, d_count_pfam, d_count_cog, d_resumed, d_stats_all
 
 def FilesToUse():
     d_files = {} #for summarize all annotations files per genome
-    extensionsToCheck = (ko_pattern, pfam_pattern, cog_pattern, cazyme_pattern, cazyme_pattern2)
+    extensionsToCheck = (ko_pattern, pfam_pattern, cog_pattern)
     for filename in entries:
         if filename.endswith(extensionsToCheck):
             name = os.path.basename(filename)
@@ -138,17 +138,16 @@ def FilesToUse():
                     d_count_kegg[name] = []
                     d_count_pfam[name] = []
                     d_count_cog[name] = []
-                    d_count_cazyme[name] = []
                 else:
                     d_files[name] = []
                     d_files[name].append(filename)
                     d_count[name]= []
     return d_files, d_count
 
-d_count, d_count_kegg, d_count_pfam, d_count_cog, d_count_cazyme, d_resumed, d_stats_all = CreateDictionaries()
+d_count, d_count_kegg, d_count_pfam, d_count_cog, d_resumed, d_stats_all = CreateDictionaries()
 d_files, d_count = FilesToUse()
 
-print("Parsing input files: Kegg, Pfam, COG and Cazyme annotations")
+print("Parsing input files: Kegg, Pfam, COG annotations")
 ###############################################################################  
 #Step3: fill dictionaries for each annotation
 
@@ -166,10 +165,6 @@ def fill_dic():
                 pfam = file
             elif file.endswith(cog_pattern):
                 cog= file
-            elif file.endswith(cazyme_pattern):
-                cazyme = file
-            elif file.endswith(cazyme_pattern2):
-                cazyme = file
         ###############     KEGG     #############
         with open(os.path.join(kegg)) as f:
             c=0
@@ -206,64 +201,6 @@ def fill_dic():
                 d_count_pfam[name].append(tabs[1]) # for the individual file count
 
             d_stats["pfam"]=c
-        ###############    Cazymes     ###########
-        with open(os.path.join(cazyme)) as f:
-            c=0
-            lines = f.readlines()
-            l_caz= dict() 
-
-            for line in lines[1:]:
-                line = line.rstrip() # This removes the whitespace at the end of the line
-                if line.endswith("3"): #select orfs with at least
-                    c += 1
-                    tabs = line.split("\t") # And now we can create a list by splitting each line into pieces based on where the tabs are.             
-                    query = tabs[0]
-                    l_caz[query]=[]
-                    l2=[]
-                    for tab in tabs[1:4]:
-                        tab = re.sub(r"[\(\[].*?[\)\]]", r"", tab)
-                    l2.append(tab)
-                    cnt = Counter(l2)
-                    common = cnt.most_common(3)
-                    if len(common)==1:
-                        result = common[0][0]
-                    elif len(common) == 2:
-                        result = common[0][0]
-                    elif len(common) == 3:
-                        result = l2[0] #if there isn't one most common result, select HHMER
-                    try:
-                        if "+" in result:
-                            a = result.split("+")
-                            for i in a:
-                                d_count_cazyme[name].append(i) # for the individual file count
-                    except:
-                        d_count[name].append(result)
-                        d_count_cazyme[name].append(result)
-                    l_caz[query].append(result)
-                elif line.endswith("2"):#select orfs with at least 2 hits
-                    c += 1
-                    tabs = line.split("\t") # And now we can create a list by splitting each line into pieces based on where the tabs are.             
-                    query = tabs[0]
-                    l_caz[query]=[]
-                    l2=[]
-                    for tab in tabs[1:4]:
-                        tab = re.sub(r"[\(\[].*?[\)\]]", r"", tab)
-                        if tab != "-":
-                            l2.append(tab)
-                    try:
-                        result = l2[0] #if there is two hits try to select HHMER
-                    except:
-                        result = l2[1] # or Hotpet
-                    try:
-                        if "+" in result:
-                            a = result.split("+")
-                            for i in a:
-                                d_count_cazyme[name].append(i) # for the individual file count
-                    except:
-                        d_count_cazyme[name].append(result)
-                        d_count[name].append(result)
-                    l_caz[query].append(result)
-            d_stats["cazymes"]=c
         ###############     COG     #############        
         with open(os.path.join(cog)) as f:
             c=0
@@ -290,8 +227,6 @@ def fill_dic():
         df_pfam = pd.DataFrame.from_dict(l_pfam, orient='index')
         df_pfam = df_pfam.rename(columns={0:"Pfam"})
         
-        df_caz = pd.DataFrame.from_dict(l_caz, orient='index')
-        df_caz = df_caz.rename(columns={0:"CAZymes"})
         
         d_stats_all[name] = d_stats
 
@@ -300,9 +235,7 @@ def fill_dic():
         df=pd.crosstab(index=s.index,columns=s.str[0],values=s,aggfunc='first')
         
         df = df.rename(columns={"K":"KO", "C": "COG"})
-        merge = pd.merge(df, df_pfam, how="left", left_index=True, right_index=True)
-        merge = pd.merge(merge, df_caz, how="left", left_index=True, right_index=True)
-        
+        merge = pd.merge(df, df_pfam, how="left", left_index=True, right_index=True)        
         merge.to_csv(os.path.join(output_dir_genome,output))
 
     return df
@@ -312,12 +245,11 @@ print("All input files were correctly parsed.")
 ###############################################################################
 #Step4: Create Statistics table
 d_stats_all = pd.DataFrame.from_dict(d_stats_all).T
-df_stats = d_stats_all[["orfs", "pfam", "ko","cog", "cazymes"]]
+df_stats = d_stats_all[["orfs", "pfam", "ko","cog"]]
 
 #df_stats["Orfs_anno_pfam%"] = df_stats["pfam"] / df_stats["orfs"] *100
 df_stats["Orfs_anno_ko%"] = df_stats["ko"] / df_stats["orfs"] *100
 df_stats["Orfs_anno_cog%"] = df_stats["cog"] / df_stats["orfs"] *100
-df_stats["Orfs_anno_cazymes%"] = df_stats["cazymes"] / df_stats["orfs"] *100
 
 df_stats.to_csv(os.path.join(output_dir, "Statistics.csv"))
 print("Table Statistics.csv was created.")
@@ -384,16 +316,6 @@ df_counter_cog, df_counter_cog_PA, df_counter_cog_abund = GetCounter("Cog", d_co
 df_counter_cog.to_csv(os.path.join(output_dir,"Cog_counts.csv"), index=False)
 df_counter_cog_PA.to_csv(os.path.join(output_dir,"Cog_PA.csv"), index=False)
 df_counter_cog_abund.to_csv(os.path.join(output_dir,"Cog_abund.csv"), index=False)
-
-###############################################################################
-## CAZymes
-df_counter_cazyme, df_counter_cazyme_PA, df_counter_cazyme_abund = GetCounter("Cazyme", d_count_cazyme)
-
-df_counter_cazyme.to_csv(os.path.join(output_dir,"Cazyme_counts.csv"), index=False)
-df_counter_cazyme_PA.to_csv(os.path.join(output_dir,"Cazyme_PA.csv"), index=False)
-df_counter_cazyme_abund.to_csv(os.path.join(output_dir,"Cazyme_abund.csv"), index=False)
-
-print("Success! You may find your outputs at " + str(output_dir))
 
 ###############################################################################
 #Create mappting files

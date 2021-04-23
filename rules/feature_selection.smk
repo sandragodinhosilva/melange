@@ -1,9 +1,10 @@
 rule feature_selection:
+    input: ind = METADATA, out = OUTDIR
     output:
         "test.txt"
     conda: "../envs/jupyter.yaml"
     log:
         # optional path to the processed notebook
-        notebook="logs/featureselection/processed_notebook.ipynb"
+        notebook="logs/notebooks/processed_notebook.ipynb"
     notebook:
-        "FeatureSelection/Feature_selection.ipynb"
+        "notebook2.py.ipynb"

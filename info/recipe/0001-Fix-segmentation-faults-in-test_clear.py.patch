@@ -1,0 +1,40 @@
+From 0f181e65fb7ec1289fc98137a9238cbe87b388b5 Mon Sep 17 00:00:00 2001
+From: Jason Madden <jamadden@gmail.com>
+Date: Sat, 26 Sep 2015 09:25:59 -0500
+Subject: [PATCH] Fix segmentation faults in test_clear.py.
+
+On OS X at least, test_clear.py often, but not always segfaulted. Debugging
+showed that this was because node_attr and the like were using a
+handle value that had already been closed. Now, we update these
+attributes to use the current, correct, handle, after it has been
+re-opened.
+---
+ pygraphviz/agraph.py | 5 ++++-
+ 1 file changed, 4 insertions(+), 1 deletion(-)
+
+diff --git a/pygraphviz/agraph.py b/pygraphviz/agraph.py
+index ef80569..dc85700 100644
+--- a/pygraphviz/agraph.py
++++ b/pygraphviz/agraph.py
+@@ -956,6 +956,9 @@ class AGraph(object):
+         directed = self.directed
+         gv.agclose(self.handle)
+         self.handle = gv.agraphnew(name, strict, directed)
++        self.graph_attr.handle = self.handle
++        self.node_attr.handle = self.handle
++        self.edge_attr.handle = self.handle
+ 
+     def close(self):
+         # may be useful to clean up graphviz data
+@@ -1201,7 +1204,7 @@ class AGraph(object):
+                 self.handle = gv.agread(fh, None)
+             except ValueError:
+                 raise DotError
+-            
++
+         except IOError:
+             print("IO error reading file")
+ 
+-- 
+2.14.1
+

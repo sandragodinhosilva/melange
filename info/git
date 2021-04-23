@@ -1,0 +1,22 @@
+==> git log -n1 <==
+commit c6fe189eb443a4c8cc283745fc0328bf819a1fd4
+Author: Jason Madden <jamadden@gmail.com>
+Date:   Sat Sep 26 09:25:59 2015 -0500
+
+    Fix segmentation faults in test_clear.py.
+    
+    On OS X at least, test_clear.py often, but not always segfaulted. Debugging
+    showed that this was because node_attr and the like were using a
+    handle value that had already been closed. Now, we update these
+    attributes to use the current, correct, handle, after it has been
+    re-opened.
+==> git describe --tags --dirty <==
+pygraphviz-1.3-2-gc6fe189
+==> git status <==
+# Not currently on any branch.
+# Untracked files:
+#   (use "git add <file>..." to include in what will be committed)
+#
+#	conda_build.sh
+#	record.txt
+nothing added to commit but untracked files present (use "git add" to track)

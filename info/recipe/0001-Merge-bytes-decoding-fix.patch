@@ -1,0 +1,30 @@
+From 62e2eb1ed44064df9070d6728c58eeb541a44610 Mon Sep 17 00:00:00 2001
+From: Aric Hagberg <aric.hagberg@gmail.com>
+Date: Fri, 4 Nov 2016 16:46:16 -0600
+Subject: [PATCH] Merge bytes decoding fix
+
+---
+ pygraphviz/agraph.py | 5 ++---
+ 1 file changed, 2 insertions(+), 3 deletions(-)
+
+diff --git a/pygraphviz/agraph.py b/pygraphviz/agraph.py
+index ef80569..fa2834f 100644
+--- a/pygraphviz/agraph.py
++++ b/pygraphviz/agraph.py
+@@ -1332,11 +1332,10 @@ class AGraph(object):
+             t.join()
+ 
+         if not data:
+-            raise IOError(b"".join(errors))
++            raise IOError(b"".join(errors).decode(self.encoding))
+ 
+         if len(errors) > 0:
+-            warnings.warn(b"".join(errors), RuntimeWarning)
+-
++            warnings.warn(b"".join(errors).decode(self.encoding), RuntimeWarning)
+         return b"".join(data)
+ 
+     def layout(self, prog='neato', args=''):
+-- 
+2.14.1
+

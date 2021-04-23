@@ -26,7 +26,7 @@ OUTDIR = Path(config["outdir"])
 LOGDIR = Path(config["logdir"])
 DBDIR = Path(config["dbdir"])
 GENOME_EXTENSION = config["genome_extension"]
-#METADATA = config["metadata"]
+METADATA = config["metadata"]
 
 # --- GET GENOMES
 GENOMES = set(glob_wildcards(INPUTDIR/GENOME_EXTENSION).genome)
@@ -40,6 +40,7 @@ GENOMES = set(glob_wildcards(INPUTDIR/GENOME_EXTENSION).genome)
 rule all:
     input:
        expand([OUTDIR/"Annotation_results/Orfs_per_genome/{genome}_all_features.csv"],  genome=GENOMES), 
+       #"test.txt"
        #OUTDIR/"Annotation_results/Pfam_PA_metadata.csv",
        #DBDIR/"dbs_done.txt"
 
@@ -47,11 +48,10 @@ include: "rules/ensure_download.smk"
 include: "rules/prokka.smk"
 include: "rules/pfam.smk"
 include: "rules/cog.smk"
-include: "rules/cazymes.smk"
 include: "rules/kegg.smk"
-include: "rules/merops.smk"
 include: "rules/ensure_all.smk"
 include: "rules/join_all.smk"
+include: "rules/feature_selection.smk"
 #include: "rules/join_metadata.smk"
 
 onsuccess:
