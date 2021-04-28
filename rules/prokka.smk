@@ -4,7 +4,7 @@ LOGDIR = Path(config["logdir"])
  
 
 rule prokka:
-    input: input_genome = INPUTDIR/GENOME_EXTENSION, db ="databases/dbs_done.txt", out = OUTDIR
+    input: input_genome = INPUTDIR/GENOME_EXTENSION, db ="databases/dbs_done.txt"#, out = OUTDIR
 	output: 
 		faa=OUTDIR/"{genome}.faa", 
 		gbk=OUTDIR/"{genome}.gbk"

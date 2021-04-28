@@ -1,6 +1,8 @@
 # The main entry point of the workflow.
 # After configuring, running snakemake -n in a clone of this repository should successfully execute a dry-run of the workflow.
 # Run: snakemake --use-conda --cores 8 -j
+# snakemake --dag | dot -Tpdf > dag.pdf
+# snakemake --cores 10 --use-conda --edit-notebook test.txt
 
 from pathlib import Path
 import textwrap
@@ -39,9 +41,9 @@ GENOMES = set(glob_wildcards(INPUTDIR/GENOME_EXTENSION).genome)
 # --- ALL RULE 
 rule all:
     input:
-       expand([OUTDIR/"Annotation_results/Orfs_per_genome/{genome}_all_features.csv"],  genome=GENOMES), 
-       #"test.txt"
-       #OUTDIR/"Annotation_results/Pfam_PA_metadata.csv",
+       expand([OUTDIR/"Annotation_results/Orfs_per_genome/{genome}_all_features.csv"],  genome=GENOMES),
+        OUTDIR/"Annotation_results/Pfam_PA_metadata.csv",
+        OUTDIR/"Annotation_results/Feature_selection.csv"
        #DBDIR/"dbs_done.txt"
 
 include: "rules/ensure_download.smk"
@@ -52,7 +54,6 @@ include: "rules/kegg.smk"
 include: "rules/ensure_all.smk"
 include: "rules/join_all.smk"
 include: "rules/feature_selection.smk"
-#include: "rules/join_metadata.smk"
 
 onsuccess:
     print("Workflow finished, no error")
