@@ -39,13 +39,20 @@ GENOMES = set(glob_wildcards(INPUTDIR/GENOME_EXTENSION).genome)
 #else:
 #    print(f"Found the following samples in inputdir using input filename pattern '{config['genome_extension']}':\n{GENOMES}")
 
+def setup(genome):
+    if config["FS"] == True:
+        l = [expand([OUTDIR/"Annotation_results/Orfs_per_genome/{genome}_all_features.csv"],  genome=GENOMES),
+        OUTDIR/"Annotation_results/Pfam_PA_metadata.csv",
+        OUTDIR/"Feature_selection.csv"]
+    else:
+        l = [expand([OUTDIR/"Annotation_results/Orfs_per_genome/{genome}_all_features.csv"],  genome=GENOMES),
+        OUTDIR/"Annotation_results/Pfam_PA.csv"]
+    return l
+
 # --- ALL RULE 
 rule all:
-    input:
-       expand([OUTDIR/"Annotation_results/Orfs_per_genome/{genome}_all_features.csv"],  genome=GENOMES),
-        OUTDIR/"Annotation_results/Pfam_PA_metadata.csv",
-        OUTDIR/"Feature_selection.csv"
-       #DBDIR/"dbs_done.txt"
+    input: unpack(setup)
+
 
 include: "rules/ensure_download.smk"
 include: "rules/prokka.smk"
