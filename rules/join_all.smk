@@ -1,6 +1,6 @@
 rule join_all:
     input: 
-        expand(OUTDIR/"{genome}_done.txt", zip, genome=GENOMES),
+        expand(OUTDIR_ANNO/"{genome}_done.txt", zip, genome=GENOMES),
     output: 
         expand(OUTDIR/"Annotation_results/Orfs_per_genome/{genome}_all_features.csv", zip, genome=GENOMES),
         OUTDIR/"Annotation_results/Pfam_PA.csv",

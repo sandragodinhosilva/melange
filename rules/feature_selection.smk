@@ -4,7 +4,8 @@ rule feature_selection:
         out = OUTDIR,
         file = OUTDIR/"Annotation_results/Pfam_PA.csv"
     output:
-        OUTDIR/"Annotation_results/Feature_selection.csv"
+        OUTDIR/"Feature_selection.csv",
+        OUTDIR/"Annotation_results/Pfam_PA_metadata.csv"
     conda: "../envs/jupyter.yaml"
     log:
         # optional path to the processed notebook

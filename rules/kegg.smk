@@ -2,8 +2,8 @@ rule kegg:
     """
     Kegg annotation.
     """
-    input: OUTDIR/"{genome}.gbk"
-    output: OUTDIR/"{genome}.ko.out"
+    input: OUTDIR_ANNO/"{genome}.gbk"
+    output: OUTDIR_ANNO/"{genome}.ko.out"
     threads: 4
     conda: "../envs/prokka.yaml"
     log: LOGDIR/"kegg/{genome}.log"

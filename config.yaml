@@ -8,7 +8,8 @@ metadata: "data/metadata.csv"
 
 # --- Output directory
 outdir: "results"
-logdir: "results/logs"
+outdir_anno: "results/Annotation" 
+logdir: "logs"
 
 # --- Evalues:
 cog_evalue: "1e-5"

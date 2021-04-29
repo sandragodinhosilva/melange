@@ -25,6 +25,7 @@ from rules.publications import publications
 # --- VARIABLES 
 INPUTDIR = Path(config["inputdir"])
 OUTDIR = Path(config["outdir"])
+OUTDIR_ANNO = Path(config["outdir_anno"])
 LOGDIR = Path(config["logdir"])
 DBDIR = Path(config["dbdir"])
 GENOME_EXTENSION = config["genome_extension"]
@@ -43,7 +44,7 @@ rule all:
     input:
        expand([OUTDIR/"Annotation_results/Orfs_per_genome/{genome}_all_features.csv"],  genome=GENOMES),
         OUTDIR/"Annotation_results/Pfam_PA_metadata.csv",
-        OUTDIR/"Annotation_results/Feature_selection.csv"
+        OUTDIR/"Feature_selection.csv"
        #DBDIR/"dbs_done.txt"
 
 include: "rules/ensure_download.smk"

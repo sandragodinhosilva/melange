@@ -6,8 +6,8 @@ rule cog:
     Cog annotation. Default e-value: 1e-5
     """
     input: 
-        genome_faa = OUTDIR/"{genome}.faa"
-    output: OUTDIR/"{genome}.cog.out"
+        genome_faa = OUTDIR_ANNO/"{genome}.faa"
+    output: OUTDIR_ANNO/"{genome}.cog.out"
     threads: 8
     conda: "../envs/blast.yaml"
     log: LOGDIR/"cog/{genome}.log"
@@ -16,11 +16,11 @@ rule cog:
 
 rule cog2:
     input: 
-        OUTDIR/"{genome}.cog.out"
-    output: OUTDIR/"{genome}protein-id_cog.txt"
+        OUTDIR_ANNO/"{genome}.cog.out"
+    output: OUTDIR_ANNO/"{genome}protein-id_cog.txt"
     threads: 8
     conda: "../envs/perl.yaml"
-    params: dbdir=DBDIR, outdir=OUTDIR
+    params: dbdir=DBDIR, outdir=OUTDIR_ANNO
 	log: LOGDIR/"cog2/{genome}.log"
 	shell: "perl {params.dbdir}/cdd2cog2.pl -r {input} -c {params.dbdir}/cddid.tbl -f {params.dbdir}/fun.txt -w {params.dbdir}/whog -o {params.outdir}/{wildcards.genome} 2> {log}"
 

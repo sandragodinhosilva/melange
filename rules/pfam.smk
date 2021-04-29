@@ -3,8 +3,8 @@ localrules:
     
 rule pfam2:
     """ Parse tblout files """
-    input: OUTDIR/"{genome}_tblout.txt"
-    output: OUTDIR/"{genome}_tblout_pfam.txt"
+    input: OUTDIR_ANNO/"{genome}_tblout.txt"
+    output: OUTDIR_ANNO/"{genome}_tblout_pfam.txt"
     threads: 4
     params: 
         input_dir=lambda wildcards, input : os.path.dirname(input[0])
@@ -16,8 +16,8 @@ rule pfam:
     """
     Pfam annotation. Default e-value: 1e-5
     """
-    input: genome_faa = OUTDIR/"{genome}.faa"
-    output: OUTDIR/"{genome}_tblout.txt"
+    input: genome_faa = OUTDIR_ANNO/"{genome}.faa"
+    output: OUTDIR_ANNO/"{genome}_tblout.txt"
     threads: 8
     conda: "../envs/hmmer.yaml"
    	log: LOGDIR/"pfam/{genome}.log"
