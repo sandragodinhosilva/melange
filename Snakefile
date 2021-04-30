@@ -3,6 +3,7 @@
 # Run: snakemake --use-conda --cores 8 -j
 # snakemake --dag | dot -Tpdf > dag.pdf
 # snakemake --cores 10 --use-conda --edit-notebook test.txt
+# snakemake --report report/report.html
 
 from pathlib import Path
 import textwrap

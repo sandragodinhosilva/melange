@@ -5,8 +5,8 @@ rule join_all:
         expand(OUTDIR/"Annotation_results/Orfs_per_genome/{genome}_all_features.csv", zip, genome=GENOMES),
         OUTDIR/"Annotation_results/Pfam_PA.csv",
         report(OUTDIR/"Annotation_results/Statistics.csv",
-            category="Overall data",
-            caption="../report/statistics.rst")
+            category="Annotation statistics",
+            caption=os.path.join(workflow.basedir, "report/statistics.rst"))
     params: 
         input_dir=lambda wildcards, input : os.path.dirname(input[0]),
         output_dir = OUTDIR, 
