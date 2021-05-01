@@ -14,18 +14,8 @@ logdir: "logs"
 # --- Evalues:
 cog_evalue: "1e-5"
 pfam_evalue: "1e-5"
-merops_evalue: "1e-5"
 
 # --- Run Feature Selection (True or False)
-FS: True
-# Note: add metadata.csv to inputdir folder!
+FS: False
 
-#    exec: True
-# Cog: 
-#    exec: True
-# KEGG: 
-#    exec: True
-# CAZymes: 
-#    exec: True
-# Merops: 
-#    exec: True
+# Note: add metadata.csv to inputdir folder!
