@@ -7,12 +7,12 @@ Hotpep/
 output/
 prokka/
 reports/
-results/
+results/*
 notebook/
 logs/
 data/
 drafts/
-
+.tests
 
 #Ignore databases folder, except some specific files:
 databases/*
@@ -23,6 +23,7 @@ databases/*
 !databases/pdb_pfam_mapping.txt
 !databases/idmapping_KO.tab.gz
 !databases/ko_mappings.tsv
+!databases/Feature_selection.csv
 
 #Files
 temp*

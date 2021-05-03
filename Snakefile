@@ -1,7 +1,7 @@
 # The main entry point of the workflow.
 # After configuring, running snakemake -n in a clone of this repository should successfully execute a dry-run of the workflow.
 # Run: snakemake --use-conda --cores 8 -j
-# snakemake --dag | dot -Tpdf > dag.pdf
+# to create workflow view: snakemake --dag | dot -Tpdf > dag.pdf
 # snakemake --cores 10 --use-conda --edit-notebook results/Feature_selection.csv
 # snakemake --report report/report.html
 

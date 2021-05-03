@@ -41,6 +41,8 @@ try:
     name=filename.replace(".fna","")
 except:
     name=name.replace(".fasta","")
+else:
+    name=name.replace(".fa","")
 
 with open(in_file, 'r') as f:
     count=0
