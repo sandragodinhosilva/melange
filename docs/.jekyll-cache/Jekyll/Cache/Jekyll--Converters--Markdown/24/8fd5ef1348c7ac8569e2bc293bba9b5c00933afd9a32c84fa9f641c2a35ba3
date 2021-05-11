@@ -1,0 +1,82 @@
+I"o<h1 id="melange---read-the-docs">MeLanGE - Read The Docs</h1>
+
+<p><a href="https://snakemake.bitbucket.io"><img src="https://img.shields.io/badge/snakemake-≥5.31-brightgreen.svg" alt="Snakemake" /></a>
+<a href="https://www.python.org/"><img src="https://img.shields.io/badge/python-≥3.8-brightgreen.svg" alt="python" /></a></p>
+
+<p><img src="bitmap3.jpeg" alt="Header" /></p>
+
+<h2 id="tool-description">Tool description</h2>
+<h4 id="the-problem">The problem</h4>
+<p>Machine learning is a field of artificial intelligence gaining popularity in all areas of knowledge, including modern research in biological sciences. However, its use in bacterial comparative genomics, specifically as an aid in microbiome studies, is still in its infancy. This is mainly due to the inexistence of easy-to-use tools that correspond to researchers’ needs. <strong>With the advent of high-throughput DNA sequencing technologies, the amount of genomic data available far outweighs the amount of data being thoroughly exploited.</strong> This can be partially explained by the difficulties in sorting and cross-comparing large amounts of data, which usually renders computationally intensive and oftentimes intractable. However, such large comparative genomics studies can be essential to delineate key genomic or functional traits of different groups of organisms based on phylogeny, taxonomy, ecosystem provenance, etc.</p>
+
+<h4 id="our-solution">Our solution</h4>
+<p><strong>MeLanGe</strong> (<strong>Machine Learning for Genomics</strong>) aims to facilitate large-scale comparative genomics studies by blending different annotation schemes and machine learning procedures to rapidly discern hallmark features between genome/metagenome groups in highly complex datasets. MeLanGe performs automatic, multi parallel genome annotations using diverse databases such as Pfam, COG, Kegg and CAZYmes, and returns these annotations in a tabular format that can be used in further studies. In addition, given user-input metadata, MeLanGe can perform a semi-automatic feature selection process that identifies which key functions better characterize each genome group.</p>
+
+<h4 id="performance">Performance</h4>
+<p>In a pilot study, from 6986 Pfam functions identified across 1256 marine and terrestrial bacterial genomes of the Flavobacteriaceae family, MeLanGe was able to reduce dataset complexity to as few as 81 traits that possess high correlation with organism origin, serving thus as indicators of environmental specialization. In conclusion, this tool can be an important player in the transition of microbiome studies to the “big data” era and provide an unprecedented opportunity to easily explore large groups of genomes.</p>
+
+<hr />
+
+<h3 id="quick-setup">Quick setup</h3>
+
+<h4 id="step-0-install-conda-and-snakemake">Step 0: Install conda and Snakemake</h4>
+<p><a href="https://conda.io/docs/">Conda</a> and
+<a href="https://snakemake.readthedocs.io">Snakemake</a> are required to be able to use
+MeLanGE. <br />
+Most people would probably want to install
+<a href="https://conda.io/miniconda.html">Miniconda</a>. <br />
+After having conda installed, install <a href="https://snakemake.readthedocs.io/en/stable/getting_started/installation.html">Snakemake</a>:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># As described in Snakemake documentation:
+conda install -c conda-forge mamba
+mamba create -c conda-forge -c bioconda -n snakemake snakemake
+conda activate snakemake
+</code></pre></div></div>
+
+<h4 id="step-1-clone-workflow">Step 1: Clone workflow</h4>
+<p>To use MeLanGE, you need a local copy of the workflow repository. Start by
+making a clone of the repository:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git clone https://github.com/sandragodinhosilva/MeLanGE.git
+</code></pre></div></div>
+
+<h4 id="step-2-configure-workflow">Step 2: Configure workflow</h4>
+<p>Configure the workflow according to your needs by editing the file
+<code class="language-plaintext highlighter-rouge">config.yaml</code>.</p>
+
+<h4 id="step-3-execute-workflow">Step 3: Execute workflow</h4>
+<p>Test your configuration by performing a dry-run via</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>snakemake --use-conda -n
+</code></pre></div></div>
+
+<p>Execute the workflow locally via</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>snakemake --use-conda --cores N
+</code></pre></div></div>
+
+<p>This will run the workflow locally using <code class="language-plaintext highlighter-rouge">N</code> cores.</p>
+
+<h4 id="examine-workflow">Examine workflow</h4>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>snakemake --dag  | dot -Tsvg &gt; dag.svg
+</code></pre></div></div>
+
+<h4 id="step-4-investigate-results">Step 4: Investigate results</h4>
+<p>After successful execution, you can create a self-contained interactive HTML report with all results via:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>snakemake --report report.html
+</code></pre></div></div>
+
+<hr />
+
+<h4 id="future-implementations">Future implementations</h4>
+<ul class="task-list">
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />Also have unnotated orfs in file with results per genome</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />Improve report</li>
+</ul>
+
+<h3 id="changes">Changes:</h3>
+
+<h3 id="citing">Citing</h3>
+:ET
