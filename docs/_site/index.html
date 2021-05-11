@@ -51,6 +51,11 @@
                         <a class="reference internal" href="https://sandragodinhosilva.github.io/MeLanGE/running.html">Running MeLanGE</a>
                     </li>
                 </ul>
+                <ul>
+                    <li class="toctree-l1">
+                        <a class="reference internal" href="https://sandragodinhosilva.github.io/MeLanGE/License.html">License</a>
+                    </li>
+                </ul>
         </div>
       </div>
     </nav>
@@ -84,7 +89,7 @@
 <p><img src="bitmap3.jpeg" alt="Header" /></p>
 
 <p>MeLanGE is a automated pipeline for the genomic annotation of a group of genomes, followed by the detection of the most important features to distinguish a group of genomes, as determined by a metadata label.<br />
-MeLanGE has two independent, but connected, components: <a href="#1-genome-annotation">1) Genome annotation</a> + <a href="#2-feature-selection">2) Feature selection</a>.<br />
+MeLanGE has two independent, but connected, components: <a href="description/#1-genome-annotation">1) Genome annotation</a> + <a href="description/#2-feature-selection">2) Feature selection</a>.<br />
 MeLanGE is a <a href="https://snakemake.readthedocs.io/en/stable/#">Snakemake</a> pipeline.</p>
 
 <hr />
@@ -135,15 +140,16 @@ making a clone of the repository:</p>
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>snakemake --dag  | dot -Tsvg &gt; dag.svg
 </code></pre></div></div>
 
-<p><strong>Investigate results</strong>
-After successful execution, you can create a self-contained interactive HTML report with all results via:</p>
+<p><strong>Investigate results:</strong></p>
+
+<p>After successful execution, you can create a self-contained interactive HTML report with all results via:</p>
 
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>snakemake --report report.html
 </code></pre></div></div>
 
 <hr />
 
-<h4 id="future-implementations">Future implementations</h4>
+<h3 id="future-implementations">Future implementations</h3>
 <ul class="task-list">
   <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />Improve report output.</li>
 </ul>
@@ -192,6 +198,6 @@ After successful execution, you can create a self-contained interactive HTML rep
       SphinxRtdTheme.Navigation.enable(false);
     });
   </script>
-  <!-- Build Date: 2021-05-11 20:45 -->
+  <!-- Build Date: 2021-05-11 20:58 -->
 </body>
 </html>

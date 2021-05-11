@@ -1,4 +1,4 @@
-I"‚<h1 id="how-to-run-melange">How to run MeLanGE</h1>
+I"l<h1 id="how-to-run-melange">How to run MeLanGE</h1>
 <h2 id="configure-workflow">Configure workflow</h2>
 <p>Configure the workflow according to your needs by editing the file
 <code class="language-plaintext highlighter-rouge">config.yaml</code>.</p>
@@ -17,13 +17,13 @@
 <p>This will run the workflow locally using <code class="language-plaintext highlighter-rouge">N</code> cores.</p>
 
 <h2 id="optional">Optional:</h2>
-<h3 id="examine-workflow">Examine workflow</h3>
+<p><strong>Examine workflow:</strong></p>
 
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>snakemake --dag  | dot -Tsvg &gt; dag.svg
 </code></pre></div></div>
 
-<h3 id="investigate-results">Investigate results</h3>
-<p>After successful execution, you can create a self-contained interactive HTML report with all results via:</p>
+<p><strong>Investigate results:</strong>
+After successful execution, you can create a self-contained interactive HTML report with all results via:</p>
 
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>snakemake --report report.html
 </code></pre></div></div>

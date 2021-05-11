@@ -11,7 +11,7 @@
 
   <link rel="shortcut icon" href="https://sandragodinhosilva.github.io/MeLanGE/assets/img/favicon.ico">
 
-  <title>Running MeLanGE - MeLanGE</title>
+  <title>License - MeLanGE</title>
 
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
   <link rel="stylesheet" href="https://sandragodinhosilva.github.io/MeLanGE/assets/css/theme.css" />
@@ -45,21 +45,13 @@
                     <li class="toctree-l1">
                         <a class="reference internal" href="https://sandragodinhosilva.github.io/MeLanGE/getting_started.html">Getting started</a>
                     </li>
-                </ul><ul>
-  <li class="toctree-l1 current"><a href="#how-to-run-melange">How to run MeLanGE</a>
-    <ul>
-      <li class="toctree-l2"><a href="#configure-workflow">Configure workflow</a></li>
-      <li class="toctree-l2"><a href="#execute-workflow">Execute workflow</a></li>
-      <li class="toctree-l2"><a href="#optional">Optional:</a></li>
-    </ul>
-  </li>
-</ul>
-
+                </ul>
                 <ul>
                     <li class="toctree-l1">
-                        <a class="reference internal" href="https://sandragodinhosilva.github.io/MeLanGE/License.html">License</a>
+                        <a class="reference internal" href="https://sandragodinhosilva.github.io/MeLanGE/running.html">Running MeLanGE</a>
                     </li>
                 </ul>
+
         </div>
       </div>
     </nav>
@@ -74,9 +66,9 @@
           <div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
         <li><a href="https://sandragodinhosilva.github.io">Docs</a>&raquo;</li>
-        <li>Running MeLanGE</li>
+        <li>License</li>
     <li class="wy-breadcrumbs-aside">
-        <a href="/blob/master/running.md" class="icon icon-github" target="_blank"> Edit on GitHub</a>
+        <a href="/blob/master/License.md" class="icon icon-github" target="_blank"> Edit on GitHub</a>
     </li>
   </ul>
 
@@ -85,34 +77,29 @@
 
           <div role="main">
             <div class="section">
-              <h1 id="how-to-run-melange">How to run MeLanGE</h1>
-<h2 id="configure-workflow">Configure workflow</h2>
-<p>Configure the workflow according to your needs by editing the file
-<code class="language-plaintext highlighter-rouge">config.yaml</code>.</p>
+              <p>MeLanGE is licensed under the MIT License:</p>
 
-<h2 id="execute-workflow">Execute workflow</h2>
-<p>Test your configuration by performing a dry-run via</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>MIT License
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>snakemake --use-conda -n
-</code></pre></div></div>
+Copyright (c) 2021 Sandra Godinho Silva
 
-<p>Execute the workflow locally via</p>
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>snakemake --use-conda --cores N
-</code></pre></div></div>
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
 
-<p>This will run the workflow locally using <code class="language-plaintext highlighter-rouge">N</code> cores.</p>
-
-<h2 id="optional">Optional:</h2>
-<p><strong>Examine workflow:</strong></p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>snakemake --dag  | dot -Tsvg &gt; dag.svg
-</code></pre></div></div>
-
-<p><strong>Investigate results:</strong>
-After successful execution, you can create a self-contained interactive HTML report with all results via:</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>snakemake --report report.html
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
 </code></pre></div></div>
 
 
@@ -141,8 +128,7 @@ After successful execution, you can create a self-contained interactive HTML rep
 
   <div class="rst-versions" role="note" aria-label="versions">
     <span class="rst-current-version" data-toggle="rst-current-version">
-        <span><a href="https://sandragodinhosilva.github.io/MeLanGE/getting_started.html" style="color: #fcfcfc;">&laquo; Previous</a></span>
-        <span style="margin-left: 15px"><a href="https://sandragodinhosilva.github.io/MeLanGE/License.html" style="color: #fcfcfc">Next &raquo;</a></span>
+        <span><a href="https://sandragodinhosilva.github.io/MeLanGE/running.html" style="color: #fcfcfc;">&laquo; Previous</a></span>
     </span>
 </div>
 
