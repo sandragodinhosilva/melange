@@ -24,11 +24,23 @@ Conda can be a bit slow because there are so many packages. A good way around th
 
     conda install mamba
 
-From now on you can replace ``conda install`` with ``mamba install`` and see how much faster this snake is.
-
-## Memory & system requirements:
-
-To try MeLanGE, you can use [example data](https://github.com/sandragodinhosilva/MeLanGE/tree/master/example_data) for testing.
+From now on you can replace ``conda install`` with ``mamba install`` (check how much faster this snake is!)
 
 ## Install MeLanGE
+To run MeLange, the only necessary step is to have git installed in your computer and clone MeLanGE repository.
+
+For instructions on how to install git: [https://git-scm.com/book/en/v2/Getting-Started-Installing-Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
+
+Clone the repository:
+    git clone https://github.com/sandragodinhosilva/MeLanGE.git
+
+
+## Example data
+
+To try MeLanGE, you can use [example data](https://github.com/sandragodinhosilva/MeLanGE/tree/master/example_data) for testing. This data is automatically downloaded once you clone MeLanGE repository.
+
+# Usage
+
+
+
 

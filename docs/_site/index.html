@@ -11,7 +11,7 @@
 
   <link rel="shortcut icon" href="/assets/img/favicon.ico">
 
-  <title>Index - </title>
+  <title>Home - </title>
 
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
   <link rel="stylesheet" href="/assets/css/theme.css" />
@@ -38,7 +38,7 @@
           
                 <ul>
                     <li class="toctree-l1">
-                        <a class="reference internal" href="/description.html">Tool description</a>
+                        <a class="reference internal" href="/description.html">MeLanGE description</a>
                     </li>
                 </ul>
                 <ul>
@@ -65,7 +65,7 @@
           <div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
         <li><a href="">Docs</a>&raquo;</li>
-        <li>Index</li>
+        <li>Home</li>
     <li class="wy-breadcrumbs-aside">
         <a href="/blob/master/index.md" class="icon icon-github" target="_blank"> Edit on GitHub</a>
     </li>
@@ -76,22 +76,16 @@
 
           <div role="main">
             <div class="section">
-              <h1 id="melange---read-the-docs">MeLanGE - Read The Docs</h1>
+              <h1 id="melange---documentation">MeLanGE - Documentation</h1>
 
 <p><a href="https://snakemake.bitbucket.io"><img src="https://img.shields.io/badge/snakemake-≥5.31-brightgreen.svg" alt="Snakemake" /></a>
 <a href="https://www.python.org/"><img src="https://img.shields.io/badge/python-≥3.8-brightgreen.svg" alt="python" /></a></p>
 
 <p><img src="bitmap3.jpeg" alt="Header" /></p>
 
-<h2 id="tool-description">Tool description</h2>
-<h4 id="the-problem">The problem</h4>
-<p>Machine learning is a field of artificial intelligence gaining popularity in all areas of knowledge, including modern research in biological sciences. However, its use in bacterial comparative genomics, specifically as an aid in microbiome studies, is still in its infancy. This is mainly due to the inexistence of easy-to-use tools that correspond to researchers’ needs. <strong>With the advent of high-throughput DNA sequencing technologies, the amount of genomic data available far outweighs the amount of data being thoroughly exploited.</strong> This can be partially explained by the difficulties in sorting and cross-comparing large amounts of data, which usually renders computationally intensive and oftentimes intractable. However, such large comparative genomics studies can be essential to delineate key genomic or functional traits of different groups of organisms based on phylogeny, taxonomy, ecosystem provenance, etc.</p>
-
-<h4 id="our-solution">Our solution</h4>
-<p><strong>MeLanGe</strong> (<strong>Machine Learning for Genomics</strong>) aims to facilitate large-scale comparative genomics studies by blending different annotation schemes and machine learning procedures to rapidly discern hallmark features between genome/metagenome groups in highly complex datasets. MeLanGe performs automatic, multi parallel genome annotations using diverse databases such as Pfam, COG, Kegg and CAZYmes, and returns these annotations in a tabular format that can be used in further studies. In addition, given user-input metadata, MeLanGe can perform a semi-automatic feature selection process that identifies which key functions better characterize each genome group.</p>
-
-<h4 id="performance">Performance</h4>
-<p>In a pilot study, from 6986 Pfam functions identified across 1256 marine and terrestrial bacterial genomes of the Flavobacteriaceae family, MeLanGe was able to reduce dataset complexity to as few as 81 traits that possess high correlation with organism origin, serving thus as indicators of environmental specialization. In conclusion, this tool can be an important player in the transition of microbiome studies to the “big data” era and provide an unprecedented opportunity to easily explore large groups of genomes.</p>
+<p>MeLanGE is a automated pipeline for the genomic annotation of a group of genomes, followed by the detection of the most important features to distinguish a group of genomes, as determined by a metadata label.<br />
+MeLanGE has two independent, but connected, components: <a href="#1-genome-annotation">1) Genome annotation</a> + <a href="#2-feature-selection">2) Feature selection</a>.<br />
+MeLanGE is a <a href="https://snakemake.readthedocs.io/en/stable/#">Snakemake</a> pipeline.</p>
 
 <hr />
 
@@ -199,6 +193,6 @@ making a clone of the repository:</p>
       SphinxRtdTheme.Navigation.enable(false);
     });
   </script>
-  <!-- Build Date: 2021-05-11 18:44 -->
+  <!-- Build Date: 2021-05-11 19:48 -->
 </body>
 </html>
