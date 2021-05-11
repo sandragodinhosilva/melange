@@ -9,13 +9,13 @@
   
   
 
-  <link rel="shortcut icon" href="/assets/img/favicon.ico">
+  <link rel="shortcut icon" href="https://sandragodinhosilva.github.io/MeLanGE/assets/img/favicon.ico">
 
-  <title>MeLanGE description - </title>
+  <title>MeLanGE description - MeLanGE</title>
 
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
-  <link rel="stylesheet" href="/assets/css/theme.css" />
-  <link rel="stylesheet" href="/assets/css/theme_extra.css" />
+  <link rel="stylesheet" href="https://sandragodinhosilva.github.io/MeLanGE/assets/css/theme.css" />
+  <link rel="stylesheet" href="https://sandragodinhosilva.github.io/MeLanGE/assets/css/theme_extra.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github-gist.min.css" />
 </head>
 
@@ -25,7 +25,7 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search">
-            <a href="" class="icon icon-home"> </a>
+            <a href="https://sandragodinhosilva.github.io" class="icon icon-home"> MeLanGE</a>
           <div role="search">
   <form id ="rtd-search-form" class="wy-form" action="/search.html" method="get">
     <input type="text" name="q" id="search-query" placeholder="Search docs" title="Type search term here" />
@@ -37,17 +37,15 @@
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           <ul>
   <li class="toctree-l1 current"><a href="#melange-context">MeLanGE context</a>
-      - {:.toctree-l3} <a href="#the-problem">The problem</a>
-      - {:.toctree-l3} <a href="#our-solution">Our solution</a>
-      - {:.toctree-l3} <a href="#performance">Performance</a>
     <ul>
-      <li class="toctree-l2"><a href="#1-genome-annotation">1 Genome annotation</a>
+      <li class="toctree-l2"><a href="#the-problem">The problem</a></li>
+      <li class="toctree-l2"><a href="#our-solution">Our solution</a></li>
+      <li class="toctree-l2"><a href="#performance">Performance</a></li>
+      <li class="toctree-l2"><a href="#1-genome-annotation">1 Genome annotation</a></li>
+      <li class="toctree-l2"><a href="#11-third-parties-databases-and-scripts">1.1 Third-parties databases and scripts:</a>
         <ul>
-          <li class="toctree-l3"><a href="#11-third-parties-databases-and-scripts">1.1 Third-parties databases and scripts:</a>
-            <ul>
-              <li class="toctree-l4"><a href="#functional-annotation">Functional annotation</a></li>
-            </ul>
-          </li>
+          <li class="toctree-l3"><a href="#gene-calling-and-general-annotation">Gene calling and general annotation</a></li>
+          <li class="toctree-l3"><a href="#functional-annotation">Functional annotation</a></li>
           <li class="toctree-l3"><a href="#12-output-files">1.2 Output files:</a></li>
         </ul>
       </li>
@@ -58,12 +56,12 @@
 
                 <ul>
                     <li class="toctree-l1">
-                        <a class="reference internal" href="/getting_started.html">Getting started</a>
+                        <a class="reference internal" href="https://sandragodinhosilva.github.io/MeLanGE/getting_started.html">Getting started</a>
                     </li>
                 </ul>
                 <ul>
                     <li class="toctree-l1">
-                        <a class="reference internal" href="/running.html">Running MeLanGE</a>
+                        <a class="reference internal" href="https://sandragodinhosilva.github.io/MeLanGE/running.html">Running MeLanGE</a>
                     </li>
                 </ul>
         </div>
@@ -73,13 +71,13 @@
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
       <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
         <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href=""></a>
+        <a href="https://sandragodinhosilva.github.io">MeLanGE</a>
       </nav>
       <div class="wy-nav-content">
         <div class="rst-content">
           <div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
-        <li><a href="">Docs</a>&raquo;</li>
+        <li><a href="https://sandragodinhosilva.github.io">Docs</a>&raquo;</li>
         <li>MeLanGE description</li>
     <li class="wy-breadcrumbs-aside">
         <a href="/blob/master/description.md" class="icon icon-github" target="_blank"> Edit on GitHub</a>
@@ -93,13 +91,13 @@
             <div class="section">
               <h1 id="melange-context">MeLanGE context</h1>
 
-<h3 id="the-problem">The problem</h3>
+<h2 id="the-problem">The problem</h2>
 <p>Machine learning is a field of artificial intelligence gaining popularity in all areas of knowledge, including modern research in biological sciences. However, its use in bacterial comparative genomics, specifically as an aid in microbiome studies, is still in its infancy. This is mainly due to the inexistence of easy-to-use tools that correspond to researchers’ needs. <strong>With the advent of high-throughput DNA sequencing technologies, the amount of genomic data available far outweighs the amount of data being thoroughly exploited.</strong> This can be partially explained by the difficulties in sorting and cross-comparing large amounts of data, which usually renders computationally intensive and oftentimes intractable. However, such large comparative genomics studies can be essential to delineate key genomic or functional traits of different groups of organisms based on phylogeny, taxonomy, ecosystem provenance, etc.</p>
 
-<h3 id="our-solution">Our solution</h3>
+<h2 id="our-solution">Our solution</h2>
 <p><strong>MeLanGe</strong> (<strong>Machine Learning for Genomics</strong>) aims to facilitate large-scale comparative genomics studies by blending different annotation schemes and machine learning procedures to rapidly discern hallmark features between genome/metagenome groups in highly complex datasets. MeLanGe performs automatic, multi parallel genome annotations using diverse databases such as Pfam, COG, Kegg and CAZYmes, and returns these annotations in a tabular format that can be used in further studies. In addition, given user-input metadata, MeLanGe can perform a semi-automatic feature selection process that identifies which key functions better characterize each genome group.</p>
 
-<h3 id="performance">Performance</h3>
+<h2 id="performance">Performance</h2>
 <p>In a pilot study, from 6986 Pfam functions identified across 1256 marine and terrestrial bacterial genomes of the Flavobacteriaceae family, MeLanGe was able to reduce dataset complexity to as few as 81 traits that possess high correlation with organism origin, serving thus as indicators of environmental specialization. In conclusion, this tool can be an important player in the transition of microbiome studies to the “big data” era and provide an unprecedented opportunity to easily explore large groups of genomes.</p>
 
 <h2 id="1-genome-annotation">1 Genome annotation</h2>
@@ -109,13 +107,13 @@ the annotations per genome. <br />
 All the tools in use are from third-parties. To get more information about them, 
 please check the links and references.</p>
 
-<h3 id="11-third-parties-databases-and-scripts">1.1 Third-parties databases and scripts:</h3>
-<h5 id="gene-calling-and-general-annotation">Gene calling and general annotation</h5>
+<h2 id="11-third-parties-databases-and-scripts">1.1 Third-parties databases and scripts:</h2>
+<h3 id="gene-calling-and-general-annotation">Gene calling and general annotation</h3>
 <ul>
   <li><a href="https://github.com/tseemann/prokka">Prokka</a></li>
 </ul>
 
-<h4 id="functional-annotation">Functional annotation</h4>
+<h3 id="functional-annotation">Functional annotation</h3>
 <ul>
   <li>
     <p><strong>Pfam</strong> <br />
@@ -177,22 +175,22 @@ Script that converts prokka annotation output into the respective KEGG IDs.</p>
 
   <div class="rst-versions" role="note" aria-label="versions">
     <span class="rst-current-version" data-toggle="rst-current-version">
-        <span style="margin-left: 15px"><a href="/getting_started.html" style="color: #fcfcfc">Next &raquo;</a></span>
+        <span style="margin-left: 15px"><a href="https://sandragodinhosilva.github.io/MeLanGE/getting_started.html" style="color: #fcfcfc">Next &raquo;</a></span>
     </span>
 </div>
 
 
   <script>var base_url = '';</script>
-  <script src="/assets/js/jquery-2.1.1.min.js" defer></script>
-  <script src="/assets/js/modernizr-2.8.3.min.js" defer></script>
+  <script src="https://sandragodinhosilva.github.io/MeLanGE/assets/js/jquery-2.1.1.min.js" defer></script>
+  <script src="https://sandragodinhosilva.github.io/MeLanGE/assets/js/modernizr-2.8.3.min.js" defer></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
-  <script src="/assets/js/theme.js" defer></script>
+  <script src="https://sandragodinhosilva.github.io/MeLanGE/assets/js/theme.js" defer></script>
   <script type="text/javascript" defer>
     hljs.initHighlightingOnLoad();
     window.addEventListener('load', function() {
       SphinxRtdTheme.Navigation.enable(false);
     });
   </script>
-  <!-- Build Date: 2021-05-11 20:07 -->
+  <!-- Build Date: 2021-05-11 20:45 -->
 </body>
 </html>

@@ -20,12 +20,12 @@ Execute the workflow locally via
 
 This will run the workflow locally using `N` cores. 
 
-#### Optional: 
-#### Examine workflow
+## Optional: 
+### Examine workflow
 
     snakemake --dag  | dot -Tsvg > dag.svg
 
-##### Investigate results
+### Investigate results
 After successful execution, you can create a self-contained interactive HTML report with all results via:
 
     snakemake --report report.html

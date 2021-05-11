@@ -16,13 +16,13 @@
 
 <p>This will run the workflow locally using <code class="language-plaintext highlighter-rouge">N</code> cores.</p>
 
-<h4 id="optional">Optional:</h4>
-<h4 id="examine-workflow">Examine workflow</h4>
+<h2 id="optional">Optional:</h2>
+<h3 id="examine-workflow">Examine workflow</h3>
 
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>snakemake --dag  | dot -Tsvg &gt; dag.svg
 </code></pre></div></div>
 
-<h5 id="investigate-results">Investigate results</h5>
+<h3 id="investigate-results">Investigate results</h3>
 <p>After successful execution, you can create a self-contained interactive HTML report with all results via:</p>
 
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>snakemake --report report.html
