@@ -23,6 +23,7 @@ This will run the workflow locally using `N` cores.
 ## Verify workflow & results 
 
 **Examine workflow:**
+
 Snakemake has some cool features which are implemented in MeLanGE. One of them is the possibility of automatically creating directed acyclic graph (DAG) of jobs that allows the visualization of the whole workflow.
 
 By running a single command:
@@ -35,6 +36,7 @@ Example:
 ![dag](/data/dag.png)
 
 **Investigate results:**
+
 After successful execution, you can create a self-contained interactive HTML report with all results via:
 
     snakemake --report report.html
