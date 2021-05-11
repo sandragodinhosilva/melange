@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-
 ###############################################################################
+
 import argparse
 import sys
 parser=argparse.ArgumentParser(
@@ -17,14 +17,12 @@ parser.add_argument('inputFile',
 
 # Execute parse_args()
 args = parser.parse_args()
-###############################################################################
+
 # import standard Python modules
 import os
 import re
 
 ###############################################################################
-#file = "/home/sandra/faw-snakemake/results/Aq_sp_Aq349_tblout.txt"
-
 file = sys.argv[1]
 
 filename = os.path.basename(file)

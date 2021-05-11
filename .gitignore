@@ -7,12 +7,14 @@ Hotpep/
 output/
 prokka/
 reports/
+report/*
 results/*
 notebook/
 logs/
 data/
 drafts/
 .tests
+AfterFS
 
 #Ignore databases folder, except some specific files:
 databases/*
