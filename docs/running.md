@@ -20,10 +20,19 @@ Execute the workflow locally via
 
 This will run the workflow locally using `N` cores. 
 
-## Optional: 
+## Verify workflow & results 
+
 **Examine workflow:**
+Snakemake has some cool features which are implemented in MeLanGE. One of them is the possibility of automatically creating directed acyclic graph (DAG) of jobs that allows the visualization of the whole workflow.
+
+By running a single command:
 
     snakemake --dag  | dot -Tsvg > dag.svg
+
+A DAG (saved as a .svg figure) is created. It contains a node for each job with the edges connecting them representing the dependencies. The frames of jobs that don’t need to be run (because their output is up-to-date) are dashed. 
+
+Example:
+![dag](data/dag.png)
 
 **Investigate results:**
 After successful execution, you can create a self-contained interactive HTML report with all results via:

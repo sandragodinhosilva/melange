@@ -1,4 +1,4 @@
-I"U<h1 id="melange---documentation">MeLanGE - Documentation</h1>
+I"`<h1 id="melange---documentation">MeLanGE - Documentation</h1>
 
 <p><a href="https://snakemake.bitbucket.io"><img src="https://img.shields.io/badge/snakemake-≥5.31-brightgreen.svg" alt="Snakemake" /></a>
 <a href="https://www.python.org/"><img src="https://img.shields.io/badge/python-≥3.8-brightgreen.svg" alt="python" /></a></p>
@@ -6,8 +6,10 @@
 <p><img src="bitmap3.jpeg" alt="Header" /></p>
 
 <p>MeLanGE is a automated pipeline for the genomic annotation of a group of genomes, followed by the detection of the most important features to distinguish a group of genomes, as determined by a metadata label.<br />
-MeLanGE has two independent, but connected, components: <a href="description/#1-genome-annotation">1) Genome annotation</a> + <a href="description/#2-feature-selection">2) Feature selection</a>.<br />
-MeLanGE is a <a href="https://snakemake.readthedocs.io/en/stable/#">Snakemake</a> pipeline.</p>
+MeLanGE has two independent, but connected, components: 
+    <strong>Genome annotation</strong>
+    <strong>Feature selection</strong>
+MeLanGE is implemented in a <a href="https://snakemake.readthedocs.io/en/stable/#">Snakemake</a> workflow, thus contributing to reproducible and scalable data analysis.</p>
 
 <hr />
 
