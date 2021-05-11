@@ -89,9 +89,9 @@ MeLanGE is a <a href="https://snakemake.readthedocs.io/en/stable/#">Snakemake</a
 
 <hr />
 
-<h3 id="quick-setup">Quick setup</h3>
+<h2 id="quick-setup">Quick setup</h2>
 
-<h4 id="step-0-install-conda-and-snakemake">Step 0: Install conda and Snakemake</h4>
+<h4 id="step-0-install-conda-snakemake-and-ensure-git">Step 0: Install conda, snakemake and ensure git</h4>
 <p><a href="https://conda.io/docs/">Conda</a> and
 <a href="https://snakemake.readthedocs.io">Snakemake</a> are required to be able to use
 MeLanGE. <br />
@@ -129,12 +129,13 @@ making a clone of the repository:</p>
 
 <p>This will run the workflow locally using <code class="language-plaintext highlighter-rouge">N</code> cores.</p>
 
+<h4 id="optional">Optional:</h4>
 <h4 id="examine-workflow">Examine workflow</h4>
 
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>snakemake --dag  | dot -Tsvg &gt; dag.svg
 </code></pre></div></div>
 
-<h4 id="step-4-investigate-results">Step 4: Investigate results</h4>
+<h5 id="investigate-results">Investigate results</h5>
 <p>After successful execution, you can create a self-contained interactive HTML report with all results via:</p>
 
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>snakemake --report report.html
@@ -144,13 +145,11 @@ making a clone of the repository:</p>
 
 <h4 id="future-implementations">Future implementations</h4>
 <ul class="task-list">
-  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />Also have unnotated orfs in file with results per genome</li>
-  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />Improve report</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />Improve report output.</li>
 </ul>
 
-<h3 id="changes">Changes:</h3>
-
 <h3 id="citing">Citing</h3>
+<p>For now MeLanGE does not have a publication describing its functionalities (we are working on it). Please use a link to MeLanGE github when you reference this tool.</p>
 
 
             </div>
@@ -193,6 +192,6 @@ making a clone of the repository:</p>
       SphinxRtdTheme.Navigation.enable(false);
     });
   </script>
-  <!-- Build Date: 2021-05-11 19:48 -->
+  <!-- Build Date: 2021-05-11 20:04 -->
 </body>
 </html>

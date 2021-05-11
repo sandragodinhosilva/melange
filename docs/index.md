@@ -17,9 +17,9 @@ MeLanGE is a [Snakemake](https://snakemake.readthedocs.io/en/stable/#) pipeline.
 
 * * *
 
-### Quick setup
+## Quick setup
 
-#### Step 0: Install conda and Snakemake
+#### Step 0: Install conda, snakemake and ensure git
 [Conda](https://conda.io/docs/) and
 [Snakemake](https://snakemake.readthedocs.io) are required to be able to use
 MeLanGE. \
@@ -31,7 +31,6 @@ After having conda installed, install [Snakemake](https://snakemake.readthedocs.
     conda install -c conda-forge mamba
     mamba create -c conda-forge -c bioconda -n snakemake snakemake
     conda activate snakemake
-
 
 #### Step 1: Clone workflow
 To use MeLanGE, you need a local copy of the workflow repository. Start by
@@ -54,11 +53,12 @@ Execute the workflow locally via
 
 This will run the workflow locally using `N` cores. 
 
+#### Optional: 
 #### Examine workflow
 
     snakemake --dag  | dot -Tsvg > dag.svg
 
-#### Step 4: Investigate results
+##### Investigate results
 After successful execution, you can create a self-contained interactive HTML report with all results via:
 
     snakemake --report report.html
@@ -66,10 +66,8 @@ After successful execution, you can create a self-contained interactive HTML rep
 * * *
 
 #### Future implementations
-- [ ] Also have unnotated orfs in file with results per genome
-- [ ] Improve report
+- [ ] Improve report output.
 
-
-### Changes:
 
 ### Citing
+For now MeLanGE does not have a publication describing its functionalities (we are working on it). Please use a link to MeLanGE github when you reference this tool.

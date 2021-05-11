@@ -46,7 +46,14 @@
                         <a class="reference internal" href="/getting_started.html">Getting started</a>
                     </li>
                 </ul><ul>
-  <li class="toctree-l1 current"><a href="#how-to-run-melange">How to run MeLanGE</a></li>
+  <li class="toctree-l1 current"><a href="#how-to-run-melange">How to run MeLanGE</a>
+    <ul>
+      <li class="toctree-l2"><a href="#configure-workflow">Configure workflow</a></li>
+      <li class="toctree-l2"><a href="#execute-workflow">Execute workflow</a>
+      - {:.toctree-l4} <a href="#optional">Optional:</a>
+      - {:.toctree-l4} <a href="#examine-workflow">Examine workflow</a></li>
+    </ul>
+  </li>
 </ul>
 
         </div>
@@ -75,7 +82,34 @@
           <div role="main">
             <div class="section">
               <h1 id="how-to-run-melange">How to run MeLanGE</h1>
+<h2 id="configure-workflow">Configure workflow</h2>
+<p>Configure the workflow according to your needs by editing the file
+<code class="language-plaintext highlighter-rouge">config.yaml</code>.</p>
 
+<h2 id="execute-workflow">Execute workflow</h2>
+<p>Test your configuration by performing a dry-run via</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>snakemake --use-conda -n
+</code></pre></div></div>
+
+<p>Execute the workflow locally via</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>snakemake --use-conda --cores N
+</code></pre></div></div>
+
+<p>This will run the workflow locally using <code class="language-plaintext highlighter-rouge">N</code> cores.</p>
+
+<h4 id="optional">Optional:</h4>
+<h4 id="examine-workflow">Examine workflow</h4>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>snakemake --dag  | dot -Tsvg &gt; dag.svg
+</code></pre></div></div>
+
+<h5 id="investigate-results">Investigate results</h5>
+<p>After successful execution, you can create a self-contained interactive HTML report with all results via:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>snakemake --report report.html
+</code></pre></div></div>
 
 
             </div>
@@ -119,6 +153,6 @@
       SphinxRtdTheme.Navigation.enable(false);
     });
   </script>
-  <!-- Build Date: 2021-05-11 19:48 -->
+  <!-- Build Date: 2021-05-11 20:04 -->
 </body>
 </html>
