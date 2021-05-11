@@ -20,6 +20,7 @@
 
 title: MeLanGE
 email: sandragodinhosilva@gmail.com
+author: Sandra Godinho Silva
 description: >- # this means to ignore newlines until "baseurl:"
   MeLanGE - Machine Learning for Genomics
 baseurl: "/MeLanGE" # the subpath of your site, e.g. /blog
@@ -35,3 +36,16 @@ prev_next_buttons_location: both
 search_enabled: false
 hljs_style: github-gist
 
+exclude:
+  - Makefile
+  - CNAME
+  - LICENSE
+  - update.sh
+  - Gemfile
+  - Gemfile.lock
+  - requirements.txt
+  - node_modules
+  - package.json
+  - package-lock.json
+  - webpack.config.js
+  - jekyll-rtd-theme.gemspec
