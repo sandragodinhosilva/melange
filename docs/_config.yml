@@ -26,5 +26,12 @@ baseurl: "/MeLanGE" # the subpath of your site, e.g. /blog
 url: "https://sandragodinhosilva.github.io" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: SandraGodSilva
 github_username:  sandragodinhosilva
+repo_url: 'https://github.com/sandragodinhosilva/melange'
 
+edit_on_github: true
+github_docs_folder: false
+sticky_navigation: true
+prev_next_buttons_location: both
+search_enabled: true
+hljs_style: github-gist
 

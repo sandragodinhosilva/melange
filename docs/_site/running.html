@@ -79,6 +79,10 @@
         <a href="/blob/master/running.md" class="icon icon-github" target="_blank"> Edit on GitHub</a>
     </li>
   </ul>
+    <div class="rst-breadcrumbs-buttons" role="navigation" aria-label="breadcrumb navigation">
+        <a href="https://sandragodinhosilva.github.io/MeLanGE/License.html" class="btn btn-neutral float-right" title="License">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="https://sandragodinhosilva.github.io/MeLanGE/getting_started.html" class="btn btn-neutral" title="Getting started"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+    </div>
 
   <hr/>
 </div>
@@ -105,8 +109,9 @@
 
 <h2 id="verify-workflow--results">Verify workflow &amp; results</h2>
 
-<p><strong>Examine workflow:</strong>
-Snakemake has some cool features which are implemented in MeLanGE. One of them is the possibility of automatically creating directed acyclic graph (DAG) of jobs that allows the visualization of the whole workflow.</p>
+<p><strong>Examine workflow:</strong></p>
+
+<p>Snakemake has some cool features which are implemented in MeLanGE. One of them is the possibility of automatically creating directed acyclic graph (DAG) of jobs that allows the visualization of the whole workflow.</p>
 
 <p>By running a single command:</p>
 
@@ -116,10 +121,11 @@ Snakemake has some cool features which are implemented in MeLanGE. One of them i
 <p>A DAG (saved as a .svg figure) is created. It contains a node for each job with the edges connecting them representing the dependencies. The frames of jobs that don’t need to be run (because their output is up-to-date) are dashed.</p>
 
 <p>Example:
-<img src="/data/dag.png" alt="dag" /></p>
+<img src="https://github.com/sandragodinhosilva/MeLanGE/blob/master/docs/dag.png" alt="dag" /></p>
 
-<p><strong>Investigate results:</strong>
-After successful execution, you can create a self-contained interactive HTML report with all results via:</p>
+<p><strong>Investigate results:</strong></p>
+
+<p>After successful execution, you can create a self-contained interactive HTML report with all results via:</p>
 
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>snakemake --report report.html
 </code></pre></div></div>
@@ -128,6 +134,10 @@ After successful execution, you can create a self-contained interactive HTML rep
             </div>
           </div>
           <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="https://sandragodinhosilva.github.io/MeLanGE/License.html" class="btn btn-neutral float-right" title="License">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="https://sandragodinhosilva.github.io/MeLanGE/getting_started.html" class="btn btn-neutral" title="Getting started"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+    </div>
 
     <hr/>
 
@@ -164,9 +174,9 @@ After successful execution, you can create a self-contained interactive HTML rep
   <script type="text/javascript" defer>
     hljs.initHighlightingOnLoad();
     window.addEventListener('load', function() {
-      SphinxRtdTheme.Navigation.enable(false);
+      SphinxRtdTheme.Navigation.enable(true);
     });
   </script>
-  <!-- Build Date: 2021-05-11 21:24 -->
+  <!-- Build Date: 2021-05-11 22:03 -->
 </body>
 </html>
