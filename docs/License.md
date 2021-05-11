@@ -1,3 +1,9 @@
+---
+layout: default
+title: License
+nav_order: 4 
+---
+
 MeLanGE is licensed under the MIT License: 
 
     MIT License
