@@ -6,3 +6,7 @@ git_source(:github) {|repo_name| "https://github.com/sandragodinhosilva/melange"
 
 # gem "rails"
 gem "jekyll"
+
+group :jekyll_plugins do
+    gem 'jekyll-google-tag-manager'
+  end

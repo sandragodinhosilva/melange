@@ -29,6 +29,8 @@ GEM
       rouge (~> 3.0)
       safe_yaml (~> 1.0)
       terminal-table (~> 2.0)
+    jekyll-google-tag-manager (1.0.3)
+      jekyll (>= 3.3, < 5.0)
     jekyll-sass-converter (2.1.0)
       sassc (> 2.0.1, < 3.0)
     jekyll-watch (2.2.1)
@@ -63,6 +65,7 @@ PLATFORMS
 
 DEPENDENCIES
   jekyll
+  jekyll-google-tag-manager
 
 BUNDLED WITH
    2.2.14

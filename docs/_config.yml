@@ -31,6 +31,10 @@ repo_url: 'https://github.com/sandragodinhosilva/melange'
 
 google_analytics: G-0070F7FP3Q
 
+google:
+  tag_manager:
+    container_id: GTM-5879WZW
+
 edit_on_github: false
 github_docs_folder: true
 sticky_navigation: true
