@@ -16,14 +16,14 @@ Machine learning is a field of artificial intelligence gaining popularity in all
 In a pilot study, from 6986 Pfam functions identified across 1256 marine and terrestrial bacterial genomes of the Flavobacteriaceae family, MeLanGe was able to reduce dataset complexity to as few as 81 traits that possess high correlation with organism origin, serving thus as indicators of environmental specialization. In conclusion, this tool can be an important player in the transition of microbiome studies to the “big data” era and provide an unprecedented opportunity to easily explore large groups of genomes. 
 
 
-## 1 Genome annotation
+# 1) Genome annotation
 MeLanGE allows the quick annotation of a group 
 of genomes with several databases and gives as final output formatted tables with 
 the annotations per genome. \
 All the tools in use are from third-parties. To get more information about them, 
 please check the links and references.
 
-## 1.1 Third-parties databases and scripts:
+## 1.1) Third-parties databases and scripts:
 **Gene calling and general annotation**
 
 * [Prokka](https://github.com/tseemann/prokka)
@@ -31,7 +31,6 @@ please check the links and references.
 **Functional annotation** 
 * **Pfam** \
 To annotate the genomes into Pfams, a local database is created.
-
 Lastest [Pfam-A.hmm](ftp://ftp.ebi.ac.uk/pub/databases/Pfam/current_release)
 
 * **COG** \
@@ -40,7 +39,7 @@ Lastest [Pfam-A.hmm](ftp://ftp.ebi.ac.uk/pub/databases/Pfam/current_release)
 * **Kegg** \
 [prokka2kegg](https://github.com/SilentGene/Bio-py/tree/master/prokka2kegg) - script that converts prokka annotation output into the respective KEGG IDs.
 
-### 1.2 Output files:
+## 1.2) Output files
 - Statistics.csv - % of Orfs annotated with each database.
 
 - for each database: counts, presence/absence (PA) and relative abundance tables.
@@ -49,4 +48,12 @@ Lastest [Pfam-A.hmm](ftp://ftp.ebi.ac.uk/pub/databases/Pfam/current_release)
 
 - folder Orf_per_genome: each genome has a unique file containing all orfs identified by Prokka and the subsequent annotations with the four different databases.
 
-## 2 Feature Selection
+# 2) Feature Selection
+
+After the annotation step, MeLanGE offers the opportunity to identify the most important genome functions to distinguish genomes according to a category such as isolation source, environment characteristics, etc. Such mapping information should be mentioned in the medatata.csv file.
+
+As a default, MeLanGE only performs the functional annotation pipeline. To also run the feature selection pipeline, substitute in config.yml for True to perform feature selection:
+
+    # --- Run Feature Selection (True or False)
+    FS: True
+

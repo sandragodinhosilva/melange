@@ -1,4 +1,4 @@
-I"z<h1 id="melange-context">MeLanGE context</h1>
+I"u<h1 id="melange-context">MeLanGE context</h1>
 
 <h2 id="the-problem">The problem</h2>
 <p>Machine learning is a field of artificial intelligence gaining popularity in all areas of knowledge, including modern research in biological sciences. However, its use in bacterial comparative genomics, specifically as an aid in microbiome studies, is still in its infancy. This is mainly due to the inexistence of easy-to-use tools that correspond to researchers’ needs. <strong>With the advent of high-throughput DNA sequencing technologies, the amount of genomic data available far outweighs the amount of data being thoroughly exploited.</strong> This can be partially explained by the difficulties in sorting and cross-comparing large amounts of data, which usually renders computationally intensive and oftentimes intractable. However, such large comparative genomics studies can be essential to delineate key genomic or functional traits of different groups of organisms based on phylogeny, taxonomy, ecosystem provenance, etc.</p>
@@ -9,7 +9,7 @@
 <h2 id="performance">Performance</h2>
 <p>In a pilot study, from 6986 Pfam functions identified across 1256 marine and terrestrial bacterial genomes of the Flavobacteriaceae family, MeLanGe was able to reduce dataset complexity to as few as 81 traits that possess high correlation with organism origin, serving thus as indicators of environmental specialization. In conclusion, this tool can be an important player in the transition of microbiome studies to the “big data” era and provide an unprecedented opportunity to easily explore large groups of genomes.</p>
 
-<h2 id="1-genome-annotation">1 Genome annotation</h2>
+<h1 id="1-genome-annotation">1) Genome annotation</h1>
 <p>MeLanGE allows the quick annotation of a group 
 of genomes with several databases and gives as final output formatted tables with 
 the annotations per genome. <br />
@@ -25,13 +25,11 @@ please check the links and references.</p>
 
 <p><strong>Functional annotation</strong></p>
 <ul>
-  <li><strong>Pfam</strong> <br />
-To annotate the genomes into Pfams, a local database is created.</li>
-</ul>
-
-<p>Lastest <a href="ftp://ftp.ebi.ac.uk/pub/databases/Pfam/current_release">Pfam-A.hmm</a></p>
-
-<ul>
+  <li>
+    <p><strong>Pfam</strong> <br />
+To annotate the genomes into Pfams, a local database is created.
+Lastest <a href="ftp://ftp.ebi.ac.uk/pub/databases/Pfam/current_release">Pfam-A.hmm</a></p>
+  </li>
   <li>
     <p><strong>COG</strong> <br />
 <a href="https://github.com/aleimba/bac-genomics-scripts/tree/master/cdd2cog">cdd2cog</a></p>
@@ -42,7 +40,7 @@ To annotate the genomes into Pfams, a local database is created.</li>
   </li>
 </ul>
 
-<h3 id="12-output-files">1.2 Output files:</h3>
+<h2 id="12-output-files">1.2 Output files</h2>
 <ul>
   <li>
     <p>Statistics.csv - % of Orfs annotated with each database.</p>

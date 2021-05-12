@@ -36,15 +36,15 @@
       <li class="toctree-l2"><a href="#the-problem">The problem</a></li>
       <li class="toctree-l2"><a href="#our-solution">Our solution</a></li>
       <li class="toctree-l2"><a href="#performance">Performance</a></li>
-      <li class="toctree-l2"><a href="#1-genome-annotation">1 Genome annotation</a></li>
-      <li class="toctree-l2"><a href="#11-third-parties-databases-and-scripts">1.1 Third-parties databases and scripts:</a>
-        <ul>
-          <li class="toctree-l3"><a href="#12-output-files">1.2 Output files:</a></li>
-        </ul>
-      </li>
-      <li class="toctree-l2"><a href="#2-feature-selection">2 Feature Selection</a></li>
     </ul>
   </li>
+  <li class="toctree-l1 current"><a href="#1-genome-annotation">1) Genome annotation</a>
+    <ul>
+      <li class="toctree-l2"><a href="#11-third-parties-databases-and-scripts">1.1) Third-parties databases and scripts:</a></li>
+      <li class="toctree-l2"><a href="#12-output-files">1.2) Output files</a></li>
+    </ul>
+  </li>
+  <li class="toctree-l1 current"><a href="#2-feature-selection">2) Feature Selection</a></li>
 </ul>
 
                 <ul>
@@ -102,14 +102,14 @@
 <h2 id="performance">Performance</h2>
 <p>In a pilot study, from 6986 Pfam functions identified across 1256 marine and terrestrial bacterial genomes of the Flavobacteriaceae family, MeLanGe was able to reduce dataset complexity to as few as 81 traits that possess high correlation with organism origin, serving thus as indicators of environmental specialization. In conclusion, this tool can be an important player in the transition of microbiome studies to the “big data” era and provide an unprecedented opportunity to easily explore large groups of genomes.</p>
 
-<h2 id="1-genome-annotation">1 Genome annotation</h2>
+<h1 id="1-genome-annotation">1) Genome annotation</h1>
 <p>MeLanGE allows the quick annotation of a group 
 of genomes with several databases and gives as final output formatted tables with 
 the annotations per genome. <br />
 All the tools in use are from third-parties. To get more information about them, 
 please check the links and references.</p>
 
-<h2 id="11-third-parties-databases-and-scripts">1.1 Third-parties databases and scripts:</h2>
+<h2 id="11-third-parties-databases-and-scripts">1.1) Third-parties databases and scripts:</h2>
 <p><strong>Gene calling and general annotation</strong></p>
 
 <ul>
@@ -118,13 +118,11 @@ please check the links and references.</p>
 
 <p><strong>Functional annotation</strong></p>
 <ul>
-  <li><strong>Pfam</strong> <br />
-To annotate the genomes into Pfams, a local database is created.</li>
-</ul>
-
-<p>Lastest <a href="ftp://ftp.ebi.ac.uk/pub/databases/Pfam/current_release">Pfam-A.hmm</a></p>
-
-<ul>
+  <li>
+    <p><strong>Pfam</strong> <br />
+To annotate the genomes into Pfams, a local database is created.
+Lastest <a href="ftp://ftp.ebi.ac.uk/pub/databases/Pfam/current_release">Pfam-A.hmm</a></p>
+  </li>
   <li>
     <p><strong>COG</strong> <br />
 <a href="https://github.com/aleimba/bac-genomics-scripts/tree/master/cdd2cog">cdd2cog</a></p>
@@ -135,7 +133,7 @@ To annotate the genomes into Pfams, a local database is created.</li>
   </li>
 </ul>
 
-<h3 id="12-output-files">1.2 Output files:</h3>
+<h2 id="12-output-files">1.2) Output files</h2>
 <ul>
   <li>
     <p>Statistics.csv - % of Orfs annotated with each database.</p>
@@ -151,7 +149,16 @@ To annotate the genomes into Pfams, a local database is created.</li>
   </li>
 </ul>
 
-<h2 id="2-feature-selection">2 Feature Selection</h2>
+<h1 id="2-feature-selection">2) Feature Selection</h1>
+
+<p>After the annotation step, MeLanGE offers the opportunity to identify the most important genome functions to distinguish genomes according to a category such as isolation source, environment characteristics, etc. Such mapping information should be mentioned in the medatata.csv file.</p>
+
+<p>As a default, MeLanGE only performs the functional annotation pipeline. To also run the feature selection pipeline, substitute in config.yml for True to perform feature selection:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># --- Run Feature Selection (True or False)
+FS: True
+</code></pre></div></div>
+
 
 
             </div>
@@ -199,6 +206,6 @@ To annotate the genomes into Pfams, a local database is created.</li>
       SphinxRtdTheme.Navigation.enable(true);
     });
   </script>
-  <!-- Build Date: 2021-05-11 22:59 -->
+  <!-- Build Date: 2021-05-12 09:01 -->
 </body>
 </html>

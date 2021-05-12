@@ -11,10 +11,12 @@ nav_exclude: true
 
 ![Header](bitmap3.jpeg)
 
-MeLanGE is a automated pipeline for the genomic annotation of a group of genomes, followed by the detection of the most important features to distinguish a group of genomes, as determined by a metadata label.  
+MeLanGE is a automated pipeline for the genomic annotation of a group of genomes, followed by the detection of the most important features to distinguish a group of genomes, as determined by a metadata label.
+
 MeLanGE has two independent, but connected, components:  
-    * **Genome annotation**
-    * **Feature selection**  
+* **Genome annotation**
+* **Feature selection**  
+
 MeLanGE is implemented in a [Snakemake](https://snakemake.readthedocs.io/en/stable/#) workflow, thus contributing to reproducible and scalable data analysis. 
 
 * * *
