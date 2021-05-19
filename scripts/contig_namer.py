@@ -9,7 +9,6 @@
 import argparse
 import fileinput
 import os, sys
-import shutil
 
 parser=argparse.ArgumentParser(
     description='''Script to rename contig headers, starting in contig1, 
@@ -29,7 +28,7 @@ args = parser.parse_args()
 ###############################################################################
 # Input file
 in_file = os.path.abspath(sys.argv[1])
-#in_file="/home/sandra/faw-snakemake/data/GCA_002714325.1_ASM271432v1.fna"
+#in_file="/home/sandra/faw-snakemake/data/Endozoicomonas_numazuensis_DSM25634_GCA_000722635.fna"
 filename = os.path.basename(in_file)
 
 print("Input file: " + str(in_file))
@@ -43,6 +42,9 @@ except:
     name=name.replace(".fasta","")
 else:
     name=name.replace(".fa","")
+    
+if len(name) > 27:
+    name = name[:25]
 
 with open(in_file, 'r') as f:
     count=0

@@ -14,5 +14,5 @@ rule prokka:
 	shell:
 		"""
 		python3 scripts/contig_namer.py {input.input_genome} 
-		prokka --cpus {threads} --outdir results/Annotation --force --prefix {wildcards.genome} --locustag {wildcards.genome} {input.input_genome} 2> {log} 
+		prokka --cpus {threads} --outdir results/Annotation --force --prefix {wildcards.genome} --locustag {wildcards.genome} {input.input_genome} 
 		"""

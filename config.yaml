@@ -1,8 +1,8 @@
 # Pipeline configuration
 
 # --- Input
-inputdir: "example_data"
-genome_extension: "{genome}.fa" 
+inputdir: "data"
+genome_extension: "{genome}.fna" 
 dbdir: "databases" 
 metadata: "data/metadata.csv" #only necessary if feature selection == True
 
