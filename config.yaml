@@ -7,7 +7,7 @@ dbdir: "databases"
 metadata: "data/metadata.csv" #only necessary if feature selection == True
 
 # --- Output directory
-outdir: "results"
+outdir: "results" #"results"
 outdir_anno: "results/Annotation" 
 logdir: "logs"
 
