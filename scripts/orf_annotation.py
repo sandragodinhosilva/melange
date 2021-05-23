@@ -76,16 +76,16 @@ general_map = CreateGeneralMap()
 ###############################################################################
 print("Starting... ")
 
-inputDirectory = sys.argv[0]
-curdir = os.path.join(out_dir, "results")
+outDirectory = sys.argv[1]
+curdir = outDirectory
 os.chdir(curdir)
 
 print("Input directory: " + curdir)
 
-curdir = os.getcwd()
+
 ###############################################################################
 #Step 2: Create output directory and list files
-curdir = os.getcwd()
+
 output_dir = os.path.join(curdir,"Annotation_results")
 output_dir_genome = os.path.join(output_dir,"Orfs_per_genome")
 

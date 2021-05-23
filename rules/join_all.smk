@@ -8,6 +8,7 @@ rule join_all:
             category="Annotation statistics",
             caption=os.path.join(workflow.basedir, "report/statistics.rst"))
     params: 
+        i= OUTDIR,
         input_dir=lambda wildcards, input : os.path.dirname(input[0]),
         output_dir = OUTDIR, 
         db_dir = DBDIR
@@ -16,5 +17,5 @@ rule join_all:
         "../envs/general.yaml"
     log: 
         LOGDIR/"all/all.log"
-    shell: "python3 scripts/orf_annotation.py {params.input_dir} 2> {log}"	# {params.output_dir} {params.db_dir}
+    shell: "python3 scripts/orf_annotation.py {params.i} 2> {log}"	# {params.output_dir} {params.db_dir}
 
