@@ -1,32 +1,7 @@
 <!DOCTYPE html>
 <!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
-<head>
-  {% gtm head %}
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  {% if page and page.excerpt %}<meta name="description" content="{{ page.excerpt }}">
-  {% elsif page and page.path == "index.md" %}<meta name="description" content="{{ site.description }}">{% endif %}
-  {% if site.site_author %}<meta name="author" content="{{ site.site_author }}">{% endif %}
-  {% if page and page.canonical_url %}<link rel="canonical" href="{{ page.canonical_url }}">{% endif %}
 
-  {% if config.site_favicon %}<link rel="shortcut icon" href="{{ config.site_favicon | url }}">
-  {% else %}<link rel="shortcut icon" href="{{ 'assets/img/favicon.ico' | absolute_url  }}">{% endif %}
-
-  <title>{% if page and page.title %}{{ page.title }} - {% endif %}{{ site.title }}</title>
-
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
-  <link rel="stylesheet" href="{{ 'assets/css/theme.css' | absolute_url }}" />
-  <link rel="stylesheet" href="{{ 'assets/css/theme_extra.css' | absolute_url }}" />
-  {%- if site.hljs_style %}
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/{{site.hljs_style}}.min.css" />
-  {%- else %}
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github-gist.min.css" />
-  {%- endif %}
-
-  {%- if site.google_analytics %}{% include ganalytics.html %}{% endif %}
-</head>
 
 <body class="wy-body-for-nav" role="document">
   {% gtm body %}
