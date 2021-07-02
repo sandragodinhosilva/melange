@@ -16,6 +16,7 @@ drafts/
 .tests
 AfterFS
 example_data_results
+old_data/
 
 #Ignore databases folder, except some specific files:
 databases/*

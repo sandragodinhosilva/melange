@@ -86,7 +86,7 @@ print("Input directory: " + curdir)
 ###############################################################################
 #Step 2: Create output directory and list files
 
-output_dir = os.path.join(curdir,"Annotation_results")
+output_dir = os.path.join(out_dir,"results/Annotation_results")
 output_dir_genome = os.path.join(output_dir,"Orfs_per_genome")
 
 try:
