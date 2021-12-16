@@ -1,0 +1,82 @@
+I"�<h1 id="melange---documentation">MeLanGE - Documentation</h1>
+
+<p><a href="https://snakemake.bitbucket.io"><img src="https://img.shields.io/badge/snakemake-≥5.31-brightgreen.svg" alt="Snakemake" /></a>
+<a href="https://www.python.org/"><img src="https://img.shields.io/badge/python-≥3.8-brightgreen.svg" alt="python" /></a></p>
+
+<p><img src="bitmap3.jpeg" alt="Header" /></p>
+
+<p>MeLanGE is a automated pipeline for the genomic annotation of a group of genomes, followed by the detection of the most important features to distinguish a group of genomes, as determined by a metadata label.</p>
+
+<p>MeLanGE has two independent, but connected, components:</p>
+<ul>
+  <li><strong>Genome annotation</strong></li>
+  <li><strong>Feature selection</strong></li>
+</ul>
+
+<p>MeLanGE is implemented in a <a href="https://snakemake.readthedocs.io/en/stable/#">Snakemake</a> workflow, thus contributing to reproducible and scalable data analysis.</p>
+
+<hr />
+
+<h2 id="quick-setup">Quick setup</h2>
+
+<h3 id="step-0-install-conda-snakemake-and-ensure-git">Step 0: Install conda, snakemake and ensure git</h3>
+<p><a href="https://conda.io/docs/">Conda</a> and
+<a href="https://snakemake.readthedocs.io">Snakemake</a> are required to be able to use
+MeLanGE. <br />
+Most people would probably want to install
+<a href="https://conda.io/miniconda.html">Miniconda</a>. <br />
+After having conda installed, install <a href="https://snakemake.readthedocs.io/en/stable/getting_started/installation.html">Snakemake</a>:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># As described in Snakemake documentation:
+conda install -c conda-forge mamba
+mamba create -c conda-forge -c bioconda -n snakemake snakemake
+conda activate snakemake
+</code></pre></div></div>
+
+<h3 id="step-1-clone-workflow">Step 1: Clone workflow</h3>
+<p>To use MeLanGE, you need a local copy of the workflow repository. Start by
+making a clone of the repository:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git clone https://github.com/sandragodinhosilva/MeLanGE.git
+</code></pre></div></div>
+
+<h3 id="step-2-configure-workflow">Step 2: Configure workflow</h3>
+<p>Configure the workflow according to your needs by editing the file
+<code class="language-plaintext highlighter-rouge">config.yaml</code>.</p>
+
+<h3 id="step-3-execute-workflow">Step 3: Execute workflow</h3>
+<p>Test your configuration by performing a dry-run via</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>snakemake --use-conda -n
+</code></pre></div></div>
+
+<p>Execute the workflow locally via</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>snakemake --use-conda --cores N
+</code></pre></div></div>
+
+<p>This will run the workflow locally using <code class="language-plaintext highlighter-rouge">N</code> cores.</p>
+
+<h3 id="optional">Optional:</h3>
+<p><strong>Examine workflow:</strong></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>snakemake --dag  | dot -Tsvg &gt; dag.svg
+</code></pre></div></div>
+
+<p><strong>Investigate results:</strong></p>
+
+<p>After successful execution, you can create a self-contained interactive HTML report with all results via:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>snakemake --report report.html
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="future-implementations">Future implementations</h3>
+<ul class="task-list">
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />Improve report output.</li>
+</ul>
+
+<h3 id="citing">Citing</h3>
+<p>For now MeLanGE does not have a publication describing its functionalities (we are working on it). Please use a link to MeLanGE github when you reference this tool.</p>
+:ET
