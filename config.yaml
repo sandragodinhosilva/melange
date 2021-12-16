@@ -2,7 +2,7 @@
 
 # --- Input
 inputdir: "data"
-genome_extension: "{genome}.fna" 
+genome_extension: "{genome}.fa" 
 dbdir: "databases" 
 metadata: "data/metadata.csv" #only necessary if feature selection == True
 
