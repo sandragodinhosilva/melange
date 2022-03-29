@@ -4,12 +4,12 @@ title: Running MeLanGE
 nav_order: 4
 ---
 
-# How to run MeLanGE
-## Configure workflow
+# Running MeLanGE
+## Step 1: Configure workflow
 Configure the workflow according to your needs by editing the file
 `config.yaml`.
 
-## Execute workflow
+## Step 2: Execute workflow
 Test your configuration by performing a dry-run via
 
     snakemake --use-conda -n
@@ -20,7 +20,7 @@ Execute the workflow locally via
 
 This will run the workflow locally using `N` cores. 
 
-## Verify workflow & results 
+## Step 3: Verify workflow & results 
 
 **Examine workflow:**
 

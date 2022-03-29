@@ -4,7 +4,7 @@ title: Installation
 nav_order: 2
 ---
 
-# Setup
+# Installation
 
 MeLanGE is based on snakemake workflow manager, allowing to run all the steps of the workflow in parallel on a cluster. \
 Apart from [conda](https://docs.conda.io/en/latest/), all databases and dependencies are installed **on the fly**.
