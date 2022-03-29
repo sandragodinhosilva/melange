@@ -1,7 +1,7 @@
 ---
 layout: default
-title: Setup
-nav_order: 3
+title: Installation
+nav_order: 2
 ---
 
 # Setup
@@ -34,7 +34,7 @@ For instructions on how to install git: [https://git-scm.com/book/en/v2/Getting-
 Clone the repository:
     git clone https://github.com/sandragodinhosilva/MeLanGE.git
 
-## Test correct installation with example data
+## Optional: test correct installation with example data
 To test MeLanGE correct installation, you can use [example data](https://github.com/sandragodinhosilva/MeLanGE/tree/master/example_data). This data is automatically downloaded once you clone MeLanGE repository. Just ensure the following setting in the config.yaml file:
     
     # --- Input

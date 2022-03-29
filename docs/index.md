@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Home
-nav_exclude: true
+nav_exclude: false
 ---
 
 # MeLanGE - Documentation
@@ -54,6 +54,7 @@ Lastest [Pfam-A.hmm](ftp://ftp.ebi.ac.uk/pub/databases/Pfam/current_release)
 - Pfam_description.csv, Cog_description.csv, Kegg_description.csv - the mapping of the identified annotation with clans, names, descriptions, etc.
 
 - folder Orf_per_genome: each genome has a unique file containing all orfs identified by Prokka and the subsequent annotations with the four different databases.
+* * *
 
 # 2) Feature Selection
 

@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Quick setup
-nav_order: 2
+nav_order: 3
 ---
 
 # Quick setup
@@ -40,7 +40,7 @@ Execute the workflow locally via
 
 This will run the workflow locally using `N` cores. 
 
-## Optional: 
+## Optional steps 
 **Examine workflow:**
 
     snakemake --dag  | dot -Tsvg > dag.svg
