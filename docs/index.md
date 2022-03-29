@@ -22,7 +22,6 @@ MeLanGE is implemented in a [Snakemake](https://snakemake.readthedocs.io/en/stab
 * * *
 
 
-
 ## 1) Genome annotation
 MeLanGE allows the quick annotation of a group 
 of genomes with several databases and gives as final output formatted tables with 
@@ -71,16 +70,17 @@ As a default, MeLanGE only performs the functional annotation pipeline. To also 
 ## Future implementations
 - [ ] Improve report output.
 
+* * *
 
-# Citing
+## Citing
 For now MeLanGE does not have a publication describing its functionalities (we are working on it). Please use a link to MeLanGE github when you reference this tool.
 
-## Contributions
+### Contributions
 Sandra Godinho Silva (1,2), Masun Nabhan Homsi (3), Tina Keller-Costa (1,2), Ulisses Nunes da Rocha (3) and Rodrigo Costa (1,2)
 
 (1) Institute for Bioengineering and Biosciences, Department of Bioengineering, Instituto Superior Técnico da Universidade de Lisboa, Lisbon, Portugal \
 (2) Associate Laboratory, Institute for Health and Bioeconomy, Instituto Superior Técnico, University of Lisbon, Lisbon, Portugal \
 (3) Department of Environmental Microbiology, Helmholtz Centre for Environmental Research – UFZ, Leipzig, Germany 
 
-## Funding
+### Funding
 This work was supported by the Portuguese Foundation for Science and Technology (FCT) through the research project PTDC/MAR-BIO/1547/2014 and by ‘Direção-Geral de Política do Mar’, Ministry of the Sea through the “Fundo the Azul” funding program of  (grant number FA_05_2017_032). SGS is the recipient of a PhD scholarship conceded by FCT (PD/BD/143029/2018) and was supported by a FEMS-GO-2019-511 research and training grant conceded by the Federation of European Microbiological Societies (FEMS). Further support was provided from national funds through FCT in the scope of the projects UIDB/04565/2020 and UIDP/04565/2020 of the Research Unit Institute for Bioengineering and Biosciences - iBB and the project LA/P/0140/2020 of the Associate Laboratory Institute for Health and Bioeconomy - i4HB. UNR was funded by the Helmholtz Young Investigator grant VH-NG-1248 Micro “Big Data”.
