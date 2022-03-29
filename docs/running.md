@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Running MeLanGE
-nav_order: 3
+nav_order: 4
 ---
 
 # How to run MeLanGE

@@ -1,7 +1,7 @@
 ---
 layout: default
-title: Getting started
-nav_order: 2
+title: Setup
+nav_order: 3
 ---
 
 # Setup
