@@ -85,7 +85,7 @@ Sandra Godinho Silva (1,2), Masun Nabhan Homsi (3), Tina Keller-Costa (1,2), Uli
 (3) Department of Environmental Microbiology, Helmholtz Centre for Environmental Research – UFZ, Leipzig, Germany 
 
 \
-<img src="https://github.com/sandragodinhosilva/MeLanGE/blob/master/docs/images/IBB-Logo.png" width="200">   <img src="/docs/images/IST.jpg" width="200">   <img src="/docs/images/ufz.png" width="300">
+<img src="./images/IBB-Logo.png" width="200">   <img src="/docs/images/IST.jpg" width="200">   <img src="/docs/images/ufz.png" width="300">
  
 
  
