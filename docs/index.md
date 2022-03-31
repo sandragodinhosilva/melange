@@ -30,12 +30,12 @@ To get more information about the third-parties databases and tools that MeLanGE
 please check the respective links and references. 
 
 
-**Step 1: Gene calling and general annotation**
+### 1.1) Gene calling and general annotation
 MeLanGE starts with gene calling performed with [Prokka v1.14.6](https://github.com/tseemann/prokka). Prokka provides several output files per genome, including .gbk and .faa files, which are made available and used in the following steps. 
 
-**Step2: Functional annotation** 
+### 1.2) Functional annotation
 Functional annotation is conducted with three databases: Pfam, COG and KEGG. 
-* **Pfam** \
+#### Pfam
 For the annotation using Pfam identifiers, a local database using HMMER v3.3 is constructed from the lastest Pfam-A.hmm release, downloaded from the [Pfam official website](http://pfam.xfam.org/). Then, a hmmscan search is performed for input all genomes and the best hit per ORF (cut-off: -E 1e-5) is selected. 
 
 * **COG** \
@@ -44,8 +44,7 @@ To perform the annotation regarding Clusters of Orthologous Genes (COG), the [cd
 * **Kegg** \
 To obtain the KEGG Orthology (KO) identification of the proteins, the [prokka2KEGG script](https://github.com/SilentGene/Bio-py/tree/master/prokka2kegg) was adapted. Here, previously annotated UniProtKB IDs by Prokka are converted into KO ids using a cross-reference database provided by [UniProt] (ftp.uniprot.org/pub/databases/uniprot/current_release/knowledgebase/idmapping/idmapping.dat.gz). 
 
-
-### 1.2) Output files
+### 1.3) Output files
 - Statistics.csv - % of Orfs annotated with each database.
 
 - for each database: counts, presence/absence (PA) and relative abundance tables.
