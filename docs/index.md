@@ -76,6 +76,7 @@ As a default, MeLanGE only performs the functional annotation pipeline. To also 
 ## Citing
 For now MeLanGE does not have a publication describing its functionalities (we are working on it). Please use a link to MeLanGE github when you reference this tool.
 
+
 ### MeLanGE Contributions
 * Sandra Godinho Silva <sup>1,2</sup> - [MicroEcoEvo](https://www.facebook.com/MicroEcoEvo/) - [iBB, IST](https://ibb.tecnico.ulisboa.pt/).
 * Masun Nabhan Homsi <sup>3</sup> - [UFZ, Leipzig](https://www.ufz.de/).
@@ -93,6 +94,5 @@ For now MeLanGE does not have a publication describing its functionalities (we a
 <img src="./images/ufz.png" width="250">
  
 
- 
 ### Funding
 <font size="2"> This work was supported by the Portuguese Foundation for Science and Technology (FCT) through the research project PTDC/MAR-BIO/1547/2014 and by ‘Direção-Geral de Política do Mar’, Ministry of the Sea through the “Fundo the Azul” funding program of  (grant number FA_05_2017_032). SGS is the recipient of a PhD scholarship conceded by FCT (PD/BD/143029/2018) and was supported by a FEMS-GO-2019-511 research and training grant conceded by the Federation of European Microbiological Societies (FEMS). Further support was provided from national funds through FCT in the scope of the projects UIDB/04565/2020 and UIDP/04565/2020 of the Research Unit Institute for Bioengineering and Biosciences - iBB and the project LA/P/0140/2020 of the Associate Laboratory Institute for Health and Bioeconomy - i4HB. UNR was funded by the Helmholtz Young Investigator grant VH-NG-1248 Micro “Big Data”. </font>
