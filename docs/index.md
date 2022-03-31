@@ -38,11 +38,11 @@ Functional annotation is conducted with three databases: Pfam, COG and KEGG.
 #### Pfam
 For the annotation using Pfam identifiers, a local database using HMMER v3.3 is constructed from the lastest Pfam-A.hmm release, downloaded from the [Pfam official website](http://pfam.xfam.org/). Then, a hmmscan search is performed for input all genomes and the best hit per ORF (cut-off: -E 1e-5) is selected. 
 
-* **COG** \
+#### COG
 To perform the annotation regarding Clusters of Orthologous Genes (COG), the [cdd2cog v0.2 script](https://github.com/aleimba/bac-genomics-scripts/tree/master/cdd2cog)  was adapted. In summary, query proteins are blasted with RPS-BLAST+ (Reverse Position-Specific BLAST) function, from the blast+ v2.9.0 suite, against NCBI's Conserved Domain Database (CDD) and the best hit per ORF (cut-off: -E 1e-5) is selected. 
 
-* **Kegg** \
-To obtain the KEGG Orthology (KO) identification of the proteins, the [prokka2KEGG script](https://github.com/SilentGene/Bio-py/tree/master/prokka2kegg) was adapted. Here, previously annotated UniProtKB IDs by Prokka are converted into KO ids using a cross-reference database provided by [UniProt] (ftp.uniprot.org/pub/databases/uniprot/current_release/knowledgebase/idmapping/idmapping.dat.gz). 
+#### KEGG
+To obtain the KEGG Orthology (KO) identification of the proteins, the [prokka2KEGG script](https://github.com/SilentGene/Bio-py/tree/master/prokka2kegg) was adapted. Here, previously annotated UniProtKB IDs by Prokka are converted into KO ids using a cross-reference database provided by [UniProt](https://www.uniprot.org/). 
 
 ### 1.3) Output files
 - Statistics.csv - % of Orfs annotated with each database.
