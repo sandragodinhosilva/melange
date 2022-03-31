@@ -31,10 +31,10 @@ please check the respective links and references.
 
 
 ### 1.1) Gene calling and general annotation
-MeLanGE starts with gene calling performed with [Prokka v1.14.5](https://github.com/tseemann/prokka) [[1]]("references"). Prokka provides several output files per genome, including .gbk and .faa files, which are made available and used in the following steps. 
+MeLanGE starts with gene calling performed with [Prokka v1.14.5](https://github.com/tseemann/prokka) [1]. Prokka provides several output files per genome, including .gbk and .faa files, which are made available and used in the following steps. 
 
 ### 1.2) Functional annotation
-Functional annotation is conducted with three databases: Pfam [2](#2), COG [3] and KEGG [4]. 
+Functional annotation is conducted with three databases: Pfam [2], COG [3] and KEGG [4]. 
 #### Pfam
 For the annotation using Pfam identifiers, a local database using HMMER v3.3 is constructed from the lastest Pfam-A.hmm release, downloaded from the [Pfam official website](http://pfam.xfam.org/). Then, a hmmscan search is performed for input all genomes and the best hit per ORF (cut-off: -E 1e-5) is selected. 
 
@@ -98,9 +98,9 @@ For now MeLanGE does not have a publication describing its functionalities (we a
 <font size="2"> This work was supported by the Portuguese Foundation for Science and Technology (FCT) through the research project PTDC/MAR-BIO/1547/2014 and by ‘Direção-Geral de Política do Mar’, Ministry of the Sea through the “Fundo the Azul” funding program of  (grant number FA_05_2017_032). SGS is the recipient of a PhD scholarship conceded by FCT (PD/BD/143029/2018) and was supported by a FEMS-GO-2019-511 research and training grant conceded by the Federation of European Microbiological Societies (FEMS). Further support was provided from national funds through FCT in the scope of the projects UIDB/04565/2020 and UIDP/04565/2020 of the Research Unit Institute for Bioengineering and Biosciences - iBB and the project LA/P/0140/2020 of the Associate Laboratory Institute for Health and Bioeconomy - i4HB. UNR was funded by the Helmholtz Young Investigator grant VH-NG-1248 Micro “Big Data”. </font>
 
 ## References
-<a name="references">
-[1]	Seemann T. Prokka: rapid prokaryotic genome annotation. Bioinformatics. 2014;30(14):2068-9.
-[2]	Galperin MY, Kristensen DM, Makarova KS, Wolf YI, Koonin EV. Microbial genome analysis: the COG approach. Brief Bioinform. 2019;20(4):1063-70.
-[3]	Mistry J, Chuguransky S, Williams L, Qureshi M, Salazar GA, Sonnhammer ELL, et al. Pfam: The protein families database in 2021. Nucleic Acids Res. 2020.
+
+[1]	Seemann T. Prokka: rapid prokaryotic genome annotation. Bioinformatics. 2014;30(14):2068-9. \\
+[2]	Galperin MY, Kristensen DM, Makarova KS, Wolf YI, Koonin EV. Microbial genome analysis: the COG approach. Brief Bioinform. 2019;20(4):1063-70. \\
+[3]	Mistry J, Chuguransky S, Williams L, Qureshi M, Salazar GA, Sonnhammer ELL, et al. Pfam: The protein families database in 2021. Nucleic Acids Res. 2020. \\
 [4]	Kanehisa M, Goto S. KEGG: kyoto encyclopedia of genes and genomes. Nucleic Acids Res. 2000;28(1):27-30.
-</a>
+
