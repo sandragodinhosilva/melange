@@ -26,24 +26,24 @@ MeLanGE is implemented in a [Snakemake](https://snakemake.readthedocs.io/en/stab
 MeLanGE allows the quick annotation of a group 
 of genomes with several databases and gives as final output formatted tables with 
 the annotations per genome. \
-All the tools in use are from third-parties. To get more information about them, 
-please check the links and references.
+To get more information about the third-parties databases and tools that MeLanGE uses, 
+please check the respective links and references. 
 
-### 1.1) Third-parties databases and scripts:
-**Gene calling and general annotation**
 
-* [Prokka](https://github.com/tseemann/prokka)
+**Step 1: Gene calling and general annotation**
+MeLanGE starts with gene calling performed with [Prokka v1.14.6](https://github.com/tseemann/prokka). Prokka provides several output files per genome, including .gbk and .faa files, which are made available and used in the following steps. 
 
-**Functional annotation** 
+**Step2: Functional annotation** 
+Functional annotation is conducted with three databases: Pfam, COG and KEGG. 
 * **Pfam** \
-To annotate the genomes into Pfams, a local database is created.
-Lastest [Pfam-A.hmm](ftp://ftp.ebi.ac.uk/pub/databases/Pfam/current_release)
+For the annotation using Pfam identifiers, a local database using HMMER v3.3 is constructed from the lastest Pfam-A.hmm release, downloaded from the [Pfam official website](http://pfam.xfam.org/). Then, a hmmscan search is performed for input all genomes and the best hit per ORF (cut-off: -E 1e-5) is selected. 
 
 * **COG** \
-[cdd2cog](https://github.com/aleimba/bac-genomics-scripts/tree/master/cdd2cog)
+To perform the annotation regarding Clusters of Orthologous Genes (COG), the [cdd2cog v0.2 script](https://github.com/aleimba/bac-genomics-scripts/tree/master/cdd2cog)  was adapted. In summary, query proteins are blasted with RPS-BLAST+ (Reverse Position-Specific BLAST) function, from the blast+ v2.9.0 suite, against NCBI's Conserved Domain Database (CDD) and the best hit per ORF (cut-off: -E 1e-5) is selected. 
 
 * **Kegg** \
-[prokka2kegg](https://github.com/SilentGene/Bio-py/tree/master/prokka2kegg) - script that converts prokka annotation output into the respective KEGG IDs.
+To obtain the KEGG Orthology (KO) identification of the proteins, the [prokka2KEGG script](https://github.com/SilentGene/Bio-py/tree/master/prokka2kegg) was adapted. Here, previously annotated UniProtKB IDs by Prokka are converted into KO ids using a cross-reference database provided by [UniProt] (ftp.uniprot.org/pub/databases/uniprot/current_release/knowledgebase/idmapping/idmapping.dat.gz). 
+
 
 ### 1.2) Output files
 - Statistics.csv - % of Orfs annotated with each database.
@@ -77,7 +77,7 @@ As a default, MeLanGE only performs the functional annotation pipeline. To also 
 ## Citing
 For now MeLanGE does not have a publication describing its functionalities (we are working on it). Please use a link to MeLanGE github when you reference this tool.
 
-### Contributions
+### MeLanGE Contributions
 Sandra Godinho Silva (1,2), Masun Nabhan Homsi (3), Tina Keller-Costa (1,2), Ulisses Nunes da Rocha (3) and Rodrigo Costa (1,2)
 
 (1) Institute for Bioengineering and Biosciences, Department of Bioengineering, Instituto Superior Técnico da Universidade de Lisboa, Lisbon, Portugal \
