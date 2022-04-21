@@ -88,7 +88,8 @@ By running a single command:
 A DAG (saved as a .svg figure) is created. It contains a node for each job with the edges connecting them representing the dependencies. The frames of jobs that don’t need to be run (because their output is up-to-date) are dashed. 
 
 Example:
-![dag](https://github.com/sandragodinhosilva/MeLanGE/blob/master/docs/dag.png)
+<img src="dag.png" width="200">
+
 
 **Investigate results:**
 
