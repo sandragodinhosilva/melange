@@ -11,7 +11,7 @@ nav_exclude: false
 
 ![Header](bitmap3.jpeg)
 
-MeLanGE is a automated pipeline for the genomic annotation of a group of genomes, followed by the detection of the most important features to distinguish a group of genomes, as determined by a metadata label.
+MeLanGE is an automated pipeline for the genomic annotation of a group of genomes, followed by the detection of the most important features to distinguish a group of genomes, as determined by a metadata label.
 
 MeLanGE has two independent, but connected, components:  
 * [1) Genome annotation](#1-genome-annotation)
@@ -36,7 +36,7 @@ MeLanGE starts with gene calling performed with [Prokka v1.14.5](https://github.
 ### 1.2) Functional annotation
 Functional annotation is conducted with three databases: Pfam [2], COG [3] and KEGG [4]. 
 #### Pfam
-For the annotation using Pfam identifiers, a local database using HMMER v3.3 is constructed from the lastest Pfam-A.hmm release, downloaded from the [Pfam official website](http://pfam.xfam.org/). Then, a hmmscan search is performed for input all genomes and the best hit per ORF (cut-off: -E 1e-5) is selected. 
+For the annotation using Pfam identifiers, a local database using HMMER v3.3 is constructed from the latest Pfam-A.hmm release, downloaded from the [Pfam official website](http://pfam.xfam.org/). Then, a hmmscan search is performed on all input genomes and the best hit per ORF (cut-off: -E 1e-5) is selected. 
 
 #### COG
 To perform the annotation regarding Clusters of Orthologous Genes (COG), the [cdd2cog v0.2 script](https://github.com/aleimba/bac-genomics-scripts/tree/master/cdd2cog)  was adapted. In summary, query proteins are blasted with RPS-BLAST+ (Reverse Position-Specific BLAST) function, from the blast+ v2.9.0 suite, against COGs database, implemented within NCBI's Conserved Domain Database (CDD), and the best hit per ORF (cut-off: -E 1e-5) is selected. 
@@ -74,7 +74,7 @@ As a default, MeLanGE only performs the functional annotation pipeline. To also 
 
 
 ## Citing MeLanGE
-For now MeLanGE does not have a publication describing its functionalities (we are working on it). Please use a link to MeLanGE github when you reference this tool.
+For now, MeLanGE does not have a publication describing its functionalities (we are working on it). Please use a link to MeLanGE Github when you reference this tool.
 
 
 ### MeLanGE Contributions
