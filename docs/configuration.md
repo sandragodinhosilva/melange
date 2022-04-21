@@ -13,7 +13,7 @@ To adapt MeLanGE to your needs, change the default parameters in the configurati
     genome_extension: "{genome}.fa" 
 
 Change the input directory where your genome files are or simply paste them on the folder `data` inside MeLanGE repository.
-Please make sure all genomes have the same extension (e.g. .fa, .fna or .fasta) and change this setting in the configuration file accordingly.
+Please make sure all genomes have the same extension (e.g. `.fa`, `.fna` or `.fasta`) and change this setting in the configuration file accordingly.
 
 ## Output
     # --- Output directory
