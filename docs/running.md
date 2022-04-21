@@ -1,7 +1,7 @@
 ---
 layout: default
-title: Running MeLanGE
+title: MeLanGE configuration
 nav_order: 3
 ---
 
-# MeLanGE Configuration
+# MeLanGE configuration
