@@ -17,7 +17,7 @@ Please make sure all genomes have the same extension (e.g. .fa, .fna or .fasta) 
 
 ## Output
     # --- Output directory
-    outdir: "results" #"results"
+    outdir: "results" 
     outdir_anno: "results/Annotation" 
     logdir: "logs"
 
@@ -32,3 +32,7 @@ To run feature selection on the annotation results, change in configuration file
     # --- Run Feature Selection (True or False)
     FS: True
 
+Upload the respective metadata file and change its path in the input section:
+    # --- Input
+    ...
+    metadata: "data/metadata.csv" #only necessary if feature selection == True
