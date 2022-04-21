@@ -59,7 +59,7 @@ To obtain the KEGG Orthology (KO) identification of the proteins, the [prokka2KE
 
 After the annotation step, MeLanGE offers the opportunity to identify the most important genome functions to distinguish genomes according to a category such as isolation source, environment characteristics, etc. Such mapping information should be mentioned in the medatata.csv file.
 
-As a default, MeLanGE only performs the functional annotation pipeline. To also run the feature selection pipeline, substitute in config.yml for True to perform feature selection:
+As a default, MeLanGE only performs the functional annotation pipeline. To also run the feature selection pipeline, substitute in `config.yml` for True to perform feature selection:
 
     # --- Run Feature Selection (True or False)
     FS: True
