@@ -6,7 +6,8 @@ nav_order: 2
 
 # Installation & Execution
 
-MeLanGE is designed as a [Snakemake](https://snakemake.readthedocs.io) workflow, allowing to run all the steps in parallel on a cluster. \
+MeLanGE is designed as a [Snakemake](https://snakemake.readthedocs.io) workflow, allowing to run all the steps in parallel on a cluster. 
+
 
 ## Step 0: MeLanGE dependencies
 To run MeLanGE you need to have installed [conda](https://docs.conda.io/en/latest/) (or the lightest version - miniconda), snakemake and git.
@@ -61,19 +62,16 @@ Test your configuration by performing a dry-run via:
 Configure the workflow according to your needs by editing the file
 `config.yaml`.
 
-For more information on how to costumize this configuration file, see ["MeLanGE Configuration"](https://sandragodinhosilva.github.io/MeLanGE/configuration.html)
+For more information on how to costumize this configuration file, see section [MeLanGE Configuration](https://sandragodinhosilva.github.io/MeLanGE/configuration.html)
+
 
 ## Step 3: Execute workflow
-Test your configuration by performing a dry-run via
-
-    snakemake --use-conda -n
 
 Execute the workflow locally via
 
     snakemake --use-conda --cores N
 
 This will run the workflow locally using `N` cores. 
-
 
 ### Optional steps 
 **Examine workflow:**
