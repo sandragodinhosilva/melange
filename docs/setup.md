@@ -10,7 +10,7 @@ MeLanGE is designed as a [Snakemake](https://snakemake.readthedocs.io) workflow,
 
 
 ## Step 0: MeLanGE dependencies
-To run MeLanGE you need to have installed [conda](https://docs.conda.io/en/latest/) (or the lightest version - [miniconda](https://docs.conda.io/en/latest/miniconda.html), [Snakemake](https://snakemake.readthedocs.io) and [Git](https://git-scm.com/).
+To run MeLanGE you need to have installed [conda](https://docs.conda.io/en/latest/) (or the lightest version - [miniconda](https://docs.conda.io/en/latest/miniconda.html)), [Snakemake](https://snakemake.readthedocs.io) and [Git](https://git-scm.com/).
 
 ### Install conda 
 
