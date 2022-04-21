@@ -40,8 +40,3 @@ Configure the workflow according to your needs by editing the file
 Execute the workflow locally using `N` cores:
 
     snakemake --use-conda --cores N
-
-
-
-
-### Citing
