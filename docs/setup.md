@@ -6,15 +6,15 @@ nav_order: 2
 
 # Installation & Execution
 
-MeLanGE is based on snakemake workflow manager, allowing to run all the steps of the workflow in parallel on a cluster. \
-Apart from [conda](https://docs.conda.io/en/latest/), all databases and dependencies are installed **on the fly**.
+MeLanGE is designed as a [Snakemake](https://snakemake.readthedocs.io) workflow, allowing to run all the steps in parallel on a cluster. \
 
-## Step 0: Install conda, snakemake and ensure git
-[Conda](https://conda.io/docs/) and
-[Snakemake](https://snakemake.readthedocs.io) are required to be able to use
-MeLanGE. \
-Most people would probably want to install
-[Miniconda](https://conda.io/miniconda.html). \
+## Step 0: MeLanGE dependencies
+To run MeLanGE you need to have installed [conda](https://docs.conda.io/en/latest/) (or the lightest version - miniconda), snakemake and git.
+
+### Install conda 
+
+To install conda, follow the instructions in conda documentation: [Conda](https://conda.io/docs/).
+Most people would probably want to install [Miniconda](https://conda.io/miniconda.html). 
 
 If you haven't done it already you need to configure conda with the bioconda-channel and the conda-forge channel. This are sources for packages beyond the default one:
 
@@ -22,7 +22,7 @@ If you haven't done it already you need to configure conda with the bioconda-cha
     conda config --add channels bioconda
     conda config --add channels conda-forge
 
-### Install mamba
+### Install mamba (optional)
 Conda can be a bit slow because there are so many packages. A good way around this is to use [mamba] (another snake).
 
     conda install mamba
@@ -30,13 +30,13 @@ Conda can be a bit slow because there are so many packages. A good way around th
 From now on you can replace ``conda install`` with ``mamba install`` (check how much faster this snake is!)
 
 ### Install snakemake
-After having manba installed, install [Snakemake](https://snakemake.readthedocs.io/en/stable/getting_started/installation.html):
+After having conda (and mamba installed), install [Snakemake](https://snakemake.readthedocs.io/en/stable/getting_started/installation.html):
 
     mamba create -c conda-forge -c bioconda -n snakemake snakemake
     conda activate snakemake
 
 ### Install git
-To run MeLange, the only necessary step is to have git installed in your computer and clone MeLanGE repository.
+To run MeLange, you need to have git installed to clone the MeLanGE repository.
 
 For instructions on how to install git: [https://git-scm.com/book/en/v2/Getting-Started-Installing-Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
 
@@ -61,6 +61,7 @@ Test your configuration by performing a dry-run via:
 Configure the workflow according to your needs by editing the file
 `config.yaml`.
 
+For more information on how to costumize this configuration file, see ["MeLanGE Configuration"](https://sandragodinhosilva.github.io/MeLanGE/configuration.html)
 
 ## Step 3: Execute workflow
 Test your configuration by performing a dry-run via
