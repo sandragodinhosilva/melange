@@ -17,7 +17,7 @@ To run MeLanGE you need to have installed [conda](https://docs.conda.io/en/lates
 To install conda, follow the instructions in conda documentation: [Conda](https://conda.io/docs/).
 Most people would probably want to install [Miniconda](https://conda.io/miniconda.html). 
 
-If you haven't done it already you need to configure conda with the bioconda-channel and the conda-forge channel. This are sources for packages beyond the default one:
+If you haven't done it already you need to configure conda with the bioconda-channel and the conda-forge channel:
 
     conda config --add channels defaults
     conda config --add channels bioconda
@@ -79,7 +79,7 @@ This will run the workflow locally using `N` cores.
 ### Optional steps 
 **Examine workflow:**
 
-Snakemake has some cool features which are implemented in MeLanGE. One of them is the possibility of automatically creating directed acyclic graph (DAG) of jobs that allows the visualization of the whole workflow.
+Snakemake has some cool features which are implemented in MeLanGE. One of them is the possibility of automatically creating a directed acyclic graph (DAG) of jobs that allows the visualization of the whole workflow.
 
 By running a single command:
 
