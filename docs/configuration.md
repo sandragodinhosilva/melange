@@ -33,6 +33,7 @@ To run feature selection on the annotation results, change in configuration file
     FS: True
 
 Upload the respective metadata file and change its path in the input section:
+
     # --- Input
-    ...
-    metadata: "data/metadata.csv" #only necessary if feature selection == True
+    (...)
+    metadata: "data/metadata.csv" 
