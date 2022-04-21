@@ -42,6 +42,7 @@ To run MeLange, you need to have git installed to clone the MeLanGE repository.
 For instructions on how to install git: [https://git-scm.com/book/en/v2/Getting-Started-Installing-Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
 
 
+
 ## Step 1: Clone MeLanGE workflow
 To use MeLanGE, you need a local copy of the workflow repository. Start by making a clone of the repository: 
 
@@ -58,11 +59,13 @@ Test your configuration by performing a dry-run via:
     snakemake --use-conda -n
 
 
+
 ## Step 2: Configure workflow
 Configure the workflow according to your needs by editing the file
 `config.yaml`.
 
 For more information on how to costumize this configuration file, see section [MeLanGE Configuration](https://sandragodinhosilva.github.io/MeLanGE/configuration.html)
+
 
 
 ## Step 3: Execute workflow
