@@ -4,7 +4,7 @@ title: Installation
 nav_order: 2
 ---
 
-# Installation
+# Installation & Execution
 
 MeLanGE is based on snakemake workflow manager, allowing to run all the steps of the workflow in parallel on a cluster. \
 Apart from [conda](https://docs.conda.io/en/latest/), all databases and dependencies are installed **on the fly**.
@@ -77,9 +77,18 @@ This will run the workflow locally using `N` cores.
 ### Optional steps 
 **Examine workflow:**
 
+Snakemake has some cool features which are implemented in MeLanGE. One of them is the possibility of automatically creating directed acyclic graph (DAG) of jobs that allows the visualization of the whole workflow.
+
+By running a single command:
+
     snakemake --dag  | dot -Tsvg > dag.svg
 
-**Investigate results:** 
+A DAG (saved as a .svg figure) is created. It contains a node for each job with the edges connecting them representing the dependencies. The frames of jobs that don’t need to be run (because their output is up-to-date) are dashed. 
+
+Example:
+![dag](https://github.com/sandragodinhosilva/MeLanGE/blob/master/docs/dag.png)
+
+**Investigate results:**
 
 After successful execution, you can create a self-contained interactive HTML report with all results via:
 
