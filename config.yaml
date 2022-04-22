@@ -1,13 +1,13 @@
 # Pipeline configuration
 
 # --- Input
-inputdir: "data"
+inputdir: "example_data"
 genome_extension: "{genome}.fa" 
 dbdir: "databases" 
 metadata: "data/metadata.csv" #only necessary if feature selection == True
 
 # --- Output directory
-outdir: "results" #"results"
+outdir: "results" 
 outdir_anno: "results/Annotation" 
 logdir: "logs"
 
@@ -17,4 +17,4 @@ pfam_evalue: "1e-5"
 
 # --- Run Feature Selection (True or False)
 FS: False
-# Note: add metadata.csv to inputdir folder!
+# Note: To run Feature Selection add metadata.csv to inputdir folder!
