@@ -48,6 +48,10 @@ To use MeLanGE, you need a local copy of the [MeLanGE workflow repository](https
 
     git clone https://github.com/sandragodinhosilva/MeLanGE.git
 
+Now you should have a folder named MeLanGE. Inside you have everything necessary to run this workflow. To enter inside:
+
+    cd MeLanGE
+
 ### Optional: test correct installation with example data
 To test MeLanGE correct installation, you can use [example data](https://github.com/sandragodinhosilva/MeLanGE/tree/master/example_data). This data is automatically downloaded once you clone MeLanGE repository. Just ensure the following setting in the `config.yaml` file:
     
@@ -59,10 +63,17 @@ Test your configuration by performing a dry-run via:
     snakemake --use-conda -n
 
 
-
 ## Step 2: Configure workflow
-Configure the workflow according to your needs by editing the file
-`config.yaml`.
+Configure the workflow according to your needs by editing the file `config.yaml`.
+
+To edit `config.yaml` file you can use the text editor of your choice. 
+For example with [nano](https://www.nano-editor.org/):
+    
+    nano config.yaml
+    
+    ## Useful Commands: 
+        Ctrl+O	Offer to write file ("Save as")
+        Ctrl+X	Close buffer, exit from nano
 
 For more information on how to costumize this configuration file, see section [MeLanGE Configuration](https://sandragodinhosilva.github.io/MeLanGE/configuration.html)
 
