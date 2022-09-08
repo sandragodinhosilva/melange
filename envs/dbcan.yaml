@@ -7,5 +7,6 @@ dependencies:
   - diamond
   - hmmer
   - prodigal
+  - pip
   - pip:
-    - run-dbcan==2.0.11
+    - dbcan==3.0.6

@@ -35,6 +35,7 @@ METADATA = config["metadata"]
 # --- GET GENOMES
 GENOMES = set(glob_wildcards(INPUTDIR/GENOME_EXTENSION).genome)
 
+
 #if len(GENOMES) < 1:
 #    raise WorkflowError("Found no samples! Check input file pattern and path in config.yaml")
 #else:
@@ -60,6 +61,8 @@ include: "rules/prokka.smk"
 include: "rules/pfam.smk"
 include: "rules/cog.smk"
 include: "rules/kegg.smk"
+include: "rules/merops.smk"
+include: "rules/cazymes.smk"
 include: "rules/ensure_all.smk"
 include: "rules/join_all.smk"
 include: "rules/feature_selection.smk"
