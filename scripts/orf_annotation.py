@@ -372,7 +372,7 @@ df_counter_merops_abund.to_csv(os.path.join(output_dir,"Merops_abund.csv"), inde
 
 ###############################################################################
 ## CAZYMES
-df_counter_cazymes, df_counter_cazymes_PA, df_counter_cazymes_abund = GetCounter("Cazymes", d_count_merops)
+df_counter_cazymes, df_counter_cazymes_PA, df_counter_cazymes_abund = GetCounter("Cazymes", d_count_cazymes)
 
 df_counter_cazymes.to_csv(os.path.join(output_dir,"Cazymes_counts.csv"), index=False)
 df_counter_cazymes_PA.to_csv(os.path.join(output_dir,"Cazymes_PA.csv"), index=False)
