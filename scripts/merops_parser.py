@@ -9,11 +9,11 @@ parser=argparse.ArgumentParser(
 
 __file__ = "merops_parser.py"
 __author__ = 'Sandra Godinho Silva (sandragodinhosilva@gmail.com)'
-__version__ = '0.8'
-__date__ = 'December 3rd, 2020'
+__version__ = '0.9'
+__date__ = 'September 9th, 2022'
 
 parser.add_argument('inputFile', 
-		help='Full path to the input directory where all files are')
+		help='Full path to input file')
 
 # Execute parse_args()
 args = parser.parse_args()

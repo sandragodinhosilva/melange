@@ -112,8 +112,9 @@ l = os.listdir()
 ko_pattern = ".ko.out"
 pfam_pattern = "_tblout_pfam.txt"
 cog_pattern = "protein-id_cog.txt"
-cazyme_pattern = "overview.txt"
 merops_pattern = "_merops_out.txt"
+cazymes_pattern = "_cazymes_3tools.txt"
+
 
 entries = list()
 for (dirpath, dirnames, filenames) in os.walk(curdir):
@@ -126,15 +127,15 @@ def CreateDictionaries():
     d_count_kegg={}
     d_count_pfam={}
     d_count_cog={}
-    #d_count_cazyme={}
+    d_count_cazymes={}
     d_count_merops={}
     d_resumed = {} # for count table with one anno per orf
     d_stats_all = {} # for statistics
-    return d_count, d_count_kegg, d_count_pfam, d_count_cog, d_count_merops, d_resumed, d_stats_all
+    return d_count, d_count_kegg, d_count_pfam, d_count_cog, d_count_merops, d_count_cazymes, d_resumed, d_stats_all
 
 def FilesToUse():
     d_files = {} #for summarize all annotations files per genome
-    extensionsToCheck = (ko_pattern, pfam_pattern, cog_pattern, merops_pattern)
+    extensionsToCheck = (ko_pattern, pfam_pattern, cog_pattern, merops_pattern, cazymes_pattern)
     for filename in entries:
         if filename.endswith(extensionsToCheck):
             name = os.path.basename(filename)
@@ -147,18 +148,18 @@ def FilesToUse():
                     d_count_kegg[name] = []
                     d_count_pfam[name] = []
                     d_count_cog[name] = []
-                    #d_count_cazymes[name] = []
+                    d_count_cazymes[name] = []
                     d_count_merops[name] = []
                 else:
                     d_files[name] = []
                     d_files[name].append(filename)
                     d_count[name]= []
     return d_files, d_count
-#d_count_cazymes,
-d_count, d_count_kegg, d_count_pfam, d_count_cog,  d_count_merops, d_resumed, d_stats_all = CreateDictionaries()
+
+d_count, d_count_kegg, d_count_pfam, d_count_cog,  d_count_merops, d_count_cazymes, d_resumed, d_stats_all = CreateDictionaries()
 d_files, d_count = FilesToUse()
 
-print("Parsing input files: Kegg, Pfam, COG, Merops annotations")
+print("Parsing input files: Kegg, Pfam, COG, Merops, CAZymes annotations")
 ###############################################################################  
 #Step3: fill dictionaries for each annotation
 
@@ -176,7 +177,7 @@ def fill_dic():
                 pfam = file
             elif file.endswith(cog_pattern):
                 cog = file
-            elif file.endswith(cazyme_pattern):
+            elif file.endswith(cazymes_pattern):
                 cazymes = file
             elif file.endswith(merops_pattern):
                 merops = file
@@ -235,19 +236,34 @@ def fill_dic():
         ###############     merops     ############
         with open(os.path.join(merops)) as f:
             c=0
-            l_merops = dict() 
             lines = f.readlines()
             for line in lines[1:]:
                 c+=1
                 line = line.rstrip() # This removes the whitespace at the end of the line
                 tabs = line.split("\t") # And now we can create a list by splitting each line into pieces based on where the tabs are.         
                 query = tabs[0] # The first item in the line is the query protein. We can assign the variable "query" to it. 
-
-                l_merops[query] = l_merops.get(query, []) + [tabs[1]]
+                d_kegg[query].append(tabs[1])
                 d_count[name].append(tabs[1])
                 d_count_merops[name].append(tabs[1]) # for the individual file count
-
             d_stats["merops"]=c
+        ###############     CAZymes    ############
+        with open(os.path.join(cazymes)) as f:
+            c=0
+            lines = f.readlines()
+            for line in lines[1:]:
+                c+=1
+                line = line.rstrip() # This removes the whitespace at the end of the line
+                tabs = line.split("\t") # And now we can create a list by splitting each line into pieces based on where the tabs are.         
+                query = tabs[0] # The first item in the line is the query protein. We can assign the variable "query" to it. 
+                try:
+                    d_kegg[query].append(tabs[1])
+                except:
+                    d_kegg[query] = []
+                    d_kegg[query].append(tabs[1])
+                d_count[name].append(tabs[1])
+                d_count_merops[name].append(tabs[1]) # for the individual file count
+            d_stats["cazymes"]=c
+
         ###############     FINAL     ############# 
         
         for k,i in l_pfam.items():
@@ -255,7 +271,7 @@ def fill_dic():
             l_pfam[k]=i
                 
         df_pfam = pd.DataFrame.from_dict(l_pfam, orient='index')
-        df_pfam = df_pfam.rename(columns={0:"Pfam"})
+        df_pfam = df_pfam.rename(columns={0:"PFAM"})
         
         
         d_stats_all[name] = d_stats
@@ -263,8 +279,8 @@ def fill_dic():
         s=pd.Series(d_kegg).explode()
         s=s[s!='']
         df=pd.crosstab(index=s.index,columns=s.str[0],values=s,aggfunc='first')
-        
-        df = df.rename(columns={"K":"KO", "C": "COG"})
+        print(df)
+        df = df.rename(columns={"K":"KO", "C": "COG", "M":"MEROPS", "G":"CAZymes"})
         merge = pd.merge(df, df_pfam, how="left", left_index=True, right_index=True)        
         merge.to_csv(os.path.join(output_dir_genome,output))
 
@@ -275,12 +291,12 @@ print("All input files were correctly parsed.")
 ###############################################################################
 #Step4: Create Statistics table
 d_stats_all = pd.DataFrame.from_dict(d_stats_all).T
-df_stats = d_stats_all[["orfs", "pfam", "ko","cog",  "merops"]] #"cazymes",
+df_stats = d_stats_all[["orfs", "pfam", "ko","cog",  "merops", "cazymes"]]
 
 #df_stats["Orfs_anno_pfam%"] = df_stats["pfam"] / df_stats["orfs"] *100
 df_stats["Orfs_anno_ko%"] = df_stats["ko"] / df_stats["orfs"] *100
 df_stats["Orfs_anno_cog%"] = df_stats["cog"] / df_stats["orfs"] *100
-#df_stats["Orfs_anno_cazymes%"] = df_stats["cazymes"] / df_stats["orfs"] *100
+df_stats["Orfs_anno_cazymes%"] = df_stats["cazymes"] / df_stats["orfs"] *100
 df_stats["Orfs_anno_merops%"] = df_stats["merops"] / df_stats["orfs"] *100
 
 df_stats.to_csv(os.path.join(output_dir, "Statistics.csv"))
@@ -353,6 +369,14 @@ df_counter_merops, df_counter_merops_PA, df_counter_merops_abund = GetCounter("M
 df_counter_merops.to_csv(os.path.join(output_dir,"Merops_counts.csv"), index=False)
 df_counter_merops_PA.to_csv(os.path.join(output_dir,"Merops_PA.csv"), index=False)
 df_counter_merops_abund.to_csv(os.path.join(output_dir,"Merops_abund.csv"), index=False)
+
+###############################################################################
+## CAZYMES
+df_counter_cazymes, df_counter_cazymes_PA, df_counter_cazymes_abund = GetCounter("Cazymes", d_count_merops)
+
+df_counter_cazymes.to_csv(os.path.join(output_dir,"Cazymes_counts.csv"), index=False)
+df_counter_cazymes_PA.to_csv(os.path.join(output_dir,"Cazymes_PA.csv"), index=False)
+df_counter_cazymes_abund.to_csv(os.path.join(output_dir,"Cazymes_abund.csv"), index=False)
 
 ###############################################################################
 #Create mappting files

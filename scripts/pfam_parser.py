@@ -13,7 +13,7 @@ __version__ = '0.8'
 __date__ = 'December 3rd, 2020'
 
 parser.add_argument('inputFile', 
-		help='Full path to the input directory where all files are')
+		help='Full path to input file')
 
 # Execute parse_args()
 args = parser.parse_args()
