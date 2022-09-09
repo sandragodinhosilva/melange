@@ -51,6 +51,11 @@ def setup(genome):
         OUTDIR/"Annotation_results/Pfam_PA.csv"]
     return l
 
+
+#    if config["PFAM"] == True:
+#        l = [expand([OUTDIR/"Annotation_results/Orfs_per_genome/{genome}_all_features.csv"],  genome=GENOMES),
+#        OUTDIR/"Annotation_results/Pfam_PA.csv"]
+
 # --- ALL RULE 
 rule all:
     input: unpack(setup)

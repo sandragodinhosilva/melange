@@ -7,7 +7,7 @@ rule cazymes:
     output: OUTDIR/"{genome}overview.txt"
     threads: 8
     conda: "../envs/dbcan.yaml"
-    params:  dbdir=DBDIR, outdir=OUTDIR
+    params:  dbdir=DBDIR, outdir=OUTDIR_ANNO
     log: LOGDIR/"cazymes/{genome}.log"
 	shell: 
 		"""

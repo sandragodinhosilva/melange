@@ -15,6 +15,13 @@ logdir: "logs"
 cog_evalue: "1e-5"
 pfam_evalue: "1e-5"
 
+# --- Select databases to use
+PFAM: True
+COG: True
+KEGG: True
+CAZYMES: True
+MEROPS: True
+
 # --- Run Feature Selection (True or False)
 FS: False
 # Note: To run Feature Selection add metadata.csv to inputdir folder!

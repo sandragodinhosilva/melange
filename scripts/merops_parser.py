@@ -22,8 +22,8 @@ args = parser.parse_args()
 import os
 import re
 ###############################################################################
-#in_file = "./results/Aq_sp_Aq349_merops.txt"
-in_file = sys.argv[1]
+in_file = "/home/sandra/MeLanGE/results/Annotation/GCF_000009045.1_ASM904v1_genomic_merops.txt"
+#in_file = sys.argv[1]
 
 filename = os.path.basename(in_file)
 filename = filename.replace("_merops.txt","")
@@ -44,9 +44,9 @@ with open(in_file, 'r') as f:
         else:
             newline = re.sub("\s+", "\t", line) # Now we can replace the whitespace in the lines with tabs, which are easier to work with. 
             tabs = newline.split("\t") 
-            hit = tabs[3]             
+            hit = tabs[1]             
             query = tabs[0] # The first item in the line is the query protein. We can assign the variable "query" to it. 
-            bit_score = tabs[11] # The fifth item is the bit score. We can assign the variable "bit_score" to it. 
+            bit_score = tabs[10] # The fifth item is the bit score. We can assign the variable "bit_score" to it. 
     
             if query in protein2bit_dict: # If query is in prtein2bit_dict, it means we have seen this protein before, so now we want to see what bit score it had to the previous hit. 
                 if protein2bit_dict[query] > float(bit_score):

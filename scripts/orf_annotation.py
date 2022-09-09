@@ -10,12 +10,12 @@
 import argparse
 import sys
 parser=argparse.ArgumentParser(
-    description='''Join KO, Pfam, COG annotations in one table.''')
+    description='''Join KO, Pfam, COG, Merops annotations in one table.''')
 
 __file__ = "orf_annotation.py"
 __author__ = 'Sandra Godinho Silva (sandragodinhosilva@gmail.com)'
-__version__ = '0.9'
-__date__ = 'December 3rd, 2020'
+__version__ = '1'
+__date__ = 'September 9th, 2022'
 
 parser.add_argument('inputDirectory', 
 		help='Full path to the input directory where all files are')
@@ -39,7 +39,7 @@ import numpy as np
 
 # From the script location, find databases directory
 script_location = sys.path[0]
-#script_location = "/home/sandra/MeLanGE2/scripts"
+#script_location = "/home/sandra/MeLanGE/scripts"
 #out_dir = os.path.dirname(os.path.dirname(script_location))
 out_dir = os.path.dirname(script_location)
 
@@ -107,6 +107,8 @@ l = os.listdir()
 ko_pattern = ".ko.out"
 pfam_pattern = "_tblout_pfam.txt"
 cog_pattern = "protein-id_cog.txt"
+cazyme_pattern = "overview.txt"
+merops_pattern = "_merops_out.txt"
 
 entries = list()
 for (dirpath, dirnames, filenames) in os.walk(curdir):
@@ -119,13 +121,15 @@ def CreateDictionaries():
     d_count_kegg={}
     d_count_pfam={}
     d_count_cog={}
+    #d_count_cazyme={}
+    d_count_merops={}
     d_resumed = {} # for count table with one anno per orf
     d_stats_all = {} # for statistics
-    return d_count, d_count_kegg, d_count_pfam, d_count_cog, d_resumed, d_stats_all
+    return d_count, d_count_kegg, d_count_pfam, d_count_cog, d_count_merops, d_resumed, d_stats_all
 
 def FilesToUse():
     d_files = {} #for summarize all annotations files per genome
-    extensionsToCheck = (ko_pattern, pfam_pattern, cog_pattern)
+    extensionsToCheck = (ko_pattern, pfam_pattern, cog_pattern, merops_pattern)
     for filename in entries:
         if filename.endswith(extensionsToCheck):
             name = os.path.basename(filename)
@@ -138,16 +142,18 @@ def FilesToUse():
                     d_count_kegg[name] = []
                     d_count_pfam[name] = []
                     d_count_cog[name] = []
+                    #d_count_cazymes[name] = []
+                    d_count_merops[name] = []
                 else:
                     d_files[name] = []
                     d_files[name].append(filename)
                     d_count[name]= []
     return d_files, d_count
-
-d_count, d_count_kegg, d_count_pfam, d_count_cog, d_resumed, d_stats_all = CreateDictionaries()
+#d_count_cazymes,
+d_count, d_count_kegg, d_count_pfam, d_count_cog,  d_count_merops, d_resumed, d_stats_all = CreateDictionaries()
 d_files, d_count = FilesToUse()
 
-print("Parsing input files: Kegg, Pfam, COG annotations")
+print("Parsing input files: Kegg, Pfam, COG, Merops annotations")
 ###############################################################################  
 #Step3: fill dictionaries for each annotation
 
@@ -164,7 +170,11 @@ def fill_dic():
             elif file.endswith(pfam_pattern):
                 pfam = file
             elif file.endswith(cog_pattern):
-                cog= file
+                cog = file
+            elif file.endswith(cazyme_pattern):
+                cazymes = file
+            elif file.endswith(merops_pattern):
+                merops = file
         ###############     KEGG     #############
         with open(os.path.join(kegg)) as f:
             c=0
@@ -217,7 +227,22 @@ def fill_dic():
                     d_count[name].append(tabs[1])
                     d_count_cog[name].append(tabs[1]) # for the individual file count
             d_stats["cog"]=c
-        
+        ###############     merops     ############
+        with open(os.path.join(merops)) as f:
+            c=0
+            l_merops = dict() 
+            lines = f.readlines()
+            for line in lines[1:]:
+                c+=1
+                line = line.rstrip() # This removes the whitespace at the end of the line
+                tabs = line.split("\t") # And now we can create a list by splitting each line into pieces based on where the tabs are.         
+                query = tabs[0] # The first item in the line is the query protein. We can assign the variable "query" to it. 
+
+                l_merops[query] = l_merops.get(query, []) + [tabs[1]]
+                d_count[name].append(tabs[1])
+                d_count_merops[name].append(tabs[1]) # for the individual file count
+
+            d_stats["merops"]=c
         ###############     FINAL     ############# 
         
         for k,i in l_pfam.items():
@@ -245,11 +270,13 @@ print("All input files were correctly parsed.")
 ###############################################################################
 #Step4: Create Statistics table
 d_stats_all = pd.DataFrame.from_dict(d_stats_all).T
-df_stats = d_stats_all[["orfs", "pfam", "ko","cog"]]
+df_stats = d_stats_all[["orfs", "pfam", "ko","cog",  "merops"]] #"cazymes",
 
 #df_stats["Orfs_anno_pfam%"] = df_stats["pfam"] / df_stats["orfs"] *100
 df_stats["Orfs_anno_ko%"] = df_stats["ko"] / df_stats["orfs"] *100
 df_stats["Orfs_anno_cog%"] = df_stats["cog"] / df_stats["orfs"] *100
+#df_stats["Orfs_anno_cazymes%"] = df_stats["cazymes"] / df_stats["orfs"] *100
+df_stats["Orfs_anno_merops%"] = df_stats["merops"] / df_stats["orfs"] *100
 
 df_stats.to_csv(os.path.join(output_dir, "Statistics.csv"))
 print("Table Statistics.csv was created.")
@@ -257,9 +284,6 @@ print("Table Statistics.csv was created.")
 ###############################################################################
 #Step5: Create tables
 
-#dataset="Pfam"
-#d= d_count_pfam
-#x="pfam"
 def GetCounter(dataset, d, df_stats=df_stats, x="NA"):
     """ Create counts, Presence/Absence (PA) and relative abundance tables for the 
     input dictionary (d).
@@ -316,6 +340,14 @@ df_counter_cog, df_counter_cog_PA, df_counter_cog_abund = GetCounter("Cog", d_co
 df_counter_cog.to_csv(os.path.join(output_dir,"Cog_counts.csv"), index=False)
 df_counter_cog_PA.to_csv(os.path.join(output_dir,"Cog_PA.csv"), index=False)
 df_counter_cog_abund.to_csv(os.path.join(output_dir,"Cog_abund.csv"), index=False)
+
+###############################################################################
+## MEROPS
+df_counter_merops, df_counter_merops_PA, df_counter_merops_abund = GetCounter("Merops", d_count_merops)
+
+df_counter_cog.to_csv(os.path.join(output_dir,"Merops_counts.csv"), index=False)
+df_counter_merops_PA.to_csv(os.path.join(output_dir,"Merops_PA.csv"), index=False)
+df_counter_merops_abund.to_csv(os.path.join(output_dir,"Merops_abund.csv"), index=False)
 
 ###############################################################################
 #Create mappting files
