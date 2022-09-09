@@ -64,13 +64,18 @@ def LoadKoMap():
     ko_map = ko_map[["ID", "KO_id", "Desc"]].dropna(axis=0)
     ko_map = ko_map.drop_duplicates(subset="ID")
     return ko_map
+def LoadMeropsMap():
+    merops_map = pd.read_csv("merops_ids.csv")
+    merops_map = merops_map[["ID","name","desc"]]
+    return merops_map
 def CreateGeneralMap():
-    general_map = pd.DataFrame(np.concatenate([pfam_map[["ID", 'PFAM_Name', 'PFAM_desc']].values, cog_map[["ID", "func", "name"]].values, ko_map.values]), columns=["ID", "Name", "Desc"])
+    general_map = pd.DataFrame(np.concatenate([pfam_map[["ID", 'PFAM_Name', 'PFAM_desc']].values, cog_map[["ID", "func", "name"]].values, ko_map.values, merops_map[["ID","name","desc"]].values]), columns=["ID", "Name", "Desc"])
     return general_map
     
 pfam_map= LoadPfamMap()
 cog_map = LoadCogMap()
 ko_map = LoadKoMap()
+merops_map = LoadMeropsMap()
 general_map = CreateGeneralMap()
 
 ###############################################################################
@@ -345,7 +350,7 @@ df_counter_cog_abund.to_csv(os.path.join(output_dir,"Cog_abund.csv"), index=Fals
 ## MEROPS
 df_counter_merops, df_counter_merops_PA, df_counter_merops_abund = GetCounter("Merops", d_count_merops)
 
-df_counter_cog.to_csv(os.path.join(output_dir,"Merops_counts.csv"), index=False)
+df_counter_merops.to_csv(os.path.join(output_dir,"Merops_counts.csv"), index=False)
 df_counter_merops_PA.to_csv(os.path.join(output_dir,"Merops_PA.csv"), index=False)
 df_counter_merops_abund.to_csv(os.path.join(output_dir,"Merops_abund.csv"), index=False)
 
@@ -366,5 +371,9 @@ cog_dic.drop(columns=["ID"]).to_csv(os.path.join(output_dir,"Cog_description.csv
 kegg = df_counter_kegg[["index"]]
 kegg_dic = pd.merge(kegg, ko_map, how="left", left_on="index", right_on="ID")
 kegg_dic.drop(columns=["ID"]).to_csv(os.path.join(output_dir,"Kegg_description.csv"), index=False)
+
+merops = df_counter_merops[["index"]]
+merops_dic = pd.merge(merops, merops_map, how="left", left_on="index", right_on="ID")
+merops_dic.drop(columns=["ID"]).to_csv(os.path.join(output_dir,"Merops_description.csv"), index=False)
 
 #END

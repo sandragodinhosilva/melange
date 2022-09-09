@@ -22,8 +22,8 @@ args = parser.parse_args()
 import os
 import re
 ###############################################################################
-in_file = "/home/sandra/MeLanGE/results/Annotation/GCF_000009045.1_ASM904v1_genomic_merops.txt"
-#in_file = sys.argv[1]
+#in_file = "/home/sandra/MeLanGE/results/Annotation/GCF_003018455.1_ASM301845v1_genomic_merops.txt"
+in_file = sys.argv[1]
 
 filename = os.path.basename(in_file)
 filename = filename.replace("_merops.txt","")
