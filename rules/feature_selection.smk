@@ -2,9 +2,9 @@ rule feature_selection:
     input: 
         ind = METADATA, 
         out = OUTDIR,
-        file = OUTDIR/"Annotation_results/Pfam_PA.csv"
+        file = OUTDIR/"Annotation_results/Statistics.csv"
     output:
-        OUTDIR/"Annotation_results/Pfam_PA_metadata.csv",
+        OUTDIR/"Annotation_results/Statistics.csv",
         report(OUTDIR/"Feature_selection.csv",
             category="Feature selection",
             caption=os.path.join(workflow.basedir, "report/feature_selection.rst"))

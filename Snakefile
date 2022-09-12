@@ -41,25 +41,33 @@ GENOMES = set(glob_wildcards(INPUTDIR/GENOME_EXTENSION).genome)
 #else:
 #    print(f"Found the following samples in inputdir using input filename pattern '{config['genome_extension']}':\n{GENOMES}")
 
+myoutput= [OUTDIR/"Annotation_results/Orfs_per_genome/{genome}_all_features.csv"]
+
+if config["PFAM"] == True:
+    myoutput.append(OUTDIR_ANNO/"{genome}_tblout_pfam.txt")
+if config["COG"] == True:
+    myoutput.append(OUTDIR_ANNO/"{genome}protein-id_cog.txt")
+if config["KEGG"] == True:
+    myoutput.append(OUTDIR_ANNO/"{genome}.ko.out")
+if config["CAZYMES"] == True:
+    myoutput.append(OUTDIR_ANNO/"{genome}_cazymes_3tools.txt")
+if config["MEROPS"] == True:
+    myoutput.append(OUTDIR_ANNO/"{genome}_merops_out.txt")
+
 def setup(genome):
     if config["FS"] == True:
-        l = [expand([OUTDIR/"Annotation_results/Orfs_per_genome/{genome}_all_features.csv"],  genome=GENOMES),
-        OUTDIR/"Annotation_results/Pfam_PA_metadata.csv",
+        l = [expand(myoutput,  genome=GENOMES),
+        OUTDIR/"Annotation_results/Statistics.csv",
         OUTDIR/"Feature_selection.csv"]
     else:
-        l = [expand([OUTDIR/"Annotation_results/Orfs_per_genome/{genome}_all_features.csv"],  genome=GENOMES),
-        OUTDIR/"Annotation_results/Pfam_PA.csv"]
+        l = [expand(myoutput,  genome=GENOMES),
+        OUTDIR/"Annotation_results/Statistics.csv"]
     return l
 
-
-#    if config["PFAM"] == True:
-#        l = [expand([OUTDIR/"Annotation_results/Orfs_per_genome/{genome}_all_features.csv"],  genome=GENOMES),
-#        OUTDIR/"Annotation_results/Pfam_PA.csv"]
 
 # --- ALL RULE 
 rule all:
     input: unpack(setup)
-
 
 include: "rules/ensure_download.smk"
 include: "rules/prokka.smk"
