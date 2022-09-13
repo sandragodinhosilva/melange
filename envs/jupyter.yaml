@@ -6,6 +6,11 @@ dependencies:
   - jupyterlab_code_formatter =1.4
   - javabridge
   - matplotlib
+  - pandas
+  - graphviz
   - pygraphviz
-#  - pil
   - openjdk
+  - pip
+  - pip:
+    - cython
+    - python-weka-wrapper3
