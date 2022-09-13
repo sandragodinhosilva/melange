@@ -42,17 +42,29 @@ GENOMES = set(glob_wildcards(INPUTDIR/GENOME_EXTENSION).genome)
 #    print(f"Found the following samples in inputdir using input filename pattern '{config['genome_extension']}':\n{GENOMES}")
 
 myoutput= [OUTDIR/"Annotation_results/Orfs_per_genome/{genome}_all_features.csv"]
+extensions = []
+databases_in_use = []
 
 if config["PFAM"] == True:
     myoutput.append(OUTDIR_ANNO/"{genome}_tblout_pfam.txt")
+    extensions.append("_tblout_pfam.txt")
+    databases_in_use.append("pfam")
 if config["COG"] == True:
     myoutput.append(OUTDIR_ANNO/"{genome}protein-id_cog.txt")
+    extensions.append("protein-id_cog.txt")
+    databases_in_use.append("cog")
 if config["KEGG"] == True:
     myoutput.append(OUTDIR_ANNO/"{genome}.ko.out")
+    extensions.append(".ko.out")
+    databases_in_use.append("kegg")
 if config["CAZYMES"] == True:
     myoutput.append(OUTDIR_ANNO/"{genome}_cazymes_3tools.txt")
+    extensions.append("_cazymes_3tools.txt")
+    databases_in_use.append("cazymes")
 if config["MEROPS"] == True:
     myoutput.append(OUTDIR_ANNO/"{genome}_merops_out.txt")
+    extensions.append("_merops_out.txt")
+    databases_in_use.append("merops")
 
 def setup(genome):
     if config["FS"] == True:

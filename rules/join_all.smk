@@ -10,6 +10,7 @@ rule join_all:
     params: 
         i= OUTDIR_ANNO,
         input_dir= os.path.join(workflow.basedir, "results/Annotation"), #lambda wildcards, input : os.path.dirname(input[0]),
+        databases_in_use = list(databases_in_use),
         output_dir = OUTDIR, 
         db_dir = DBDIR
     threads: 4
@@ -17,5 +18,4 @@ rule join_all:
         "../envs/general.yaml"
     log: 
         LOGDIR/"all/all.log"
-    shell: "python3 scripts/orf_annotation.py {params.input_dir} 2> {log}"	# {params.output_dir} {params.db_dir}
-
+    shell: "python3 scripts/orf_annotation.py {params.input_dir} {params.databases_in_use} 2> {log}"	# {params.output_dir} {params.db_dir}
