@@ -12,8 +12,8 @@ To adapt MeLanGE to your needs, change the default parameters in the configurati
     inputdir: "data"
     genome_extension: "{genome}.fa" 
 
-Change the input directory where your genome files are or simply paste them on the folder `data` inside MeLanGE repository.
-Please make sure all genomes have the same extension (e.g. `.fa`, `.fna` or `.fasta`) and change this setting in the configuration file accordingly.
+Change the input directory where your genome files are located, or simply add them to the 'data' folder in the MeLanGE repository.
+Make sure that all genomes have the same extension (e.g. `.fa`, `.fna` or `.fasta`) and change this setting in the configuration file accordingly.
 
 ## Output
     # --- Output directory
@@ -26,8 +26,8 @@ Please make sure all genomes have the same extension (e.g. `.fa`, `.fna` or `.fa
     cog_evalue: "1e-5"
     pfam_evalue: "1e-5"
 
-## Run Feature Selection
-To run feature selection on the annotation results, change in configuration file `config.yaml`:
+## Perform feature selection
+To apply feature selection to the annotation results, modify the configuration file `config.yaml`:
 
     # --- Run Feature Selection (True or False)
     FS: True
