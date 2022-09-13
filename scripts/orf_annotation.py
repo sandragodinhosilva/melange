@@ -106,8 +106,7 @@ try:
     os.mkdir(output_dir_genome)
 except:
     pass
-print("Individual genome files: " + output_dir_genome)
-
+#print("Individual genome files: " + output_dir_genome)
 
 ko_pattern = ".ko.out"
 pfam_pattern = "_tblout_pfam.txt"
@@ -284,7 +283,7 @@ def fill_dic():
                         d_kegg[query] = []
                         d_kegg[query].append(tabs[1])
                     d_count[name].append(tabs[1])
-                    d_count_merops[name].append(tabs[1]) # for the individual file count
+                    d_count_cazymes[name].append(tabs[1]) # for the individual file count
                 d_stats["cazymes"]=c
 
         ###############     FINAL     #############   
@@ -314,28 +313,28 @@ print("All input files were correctly parsed.")
 #Step4: Create Statistics table
 d_stats_all = pd.DataFrame.from_dict(d_stats_all).T
 print(d_stats_all)
-df_stats = d_stats_all[["orfs", "pfam", "ko","cog",  "merops", "cazymes"]]
+#df_stats = d_stats_all[["orfs", "pfam", "ko","cog",  "merops", "cazymes"]]
 
 #df_stats["Orfs_anno_pfam%"] = df_stats["pfam"] / df_stats["orfs"] *100
 if "kegg" in databases_in_use:
-    df_stats["Orfs_anno_ko%"] = df_stats["ko"] / df_stats["orfs"] *100
+    d_stats_all["Orfs_anno_ko%"] = d_stats_all["ko"] / d_stats_all["orfs"] *100
 
 if "cog" in databases_in_use:
-    df_stats["Orfs_anno_cog%"] = df_stats["cog"] / df_stats["orfs"] *100
+    d_stats_all["Orfs_anno_cog%"] = d_stats_all["cog"] / d_stats_all["orfs"] *100
 
 if "merops" in databases_in_use:
-    df_stats["Orfs_anno_merops%"] = df_stats["merops"] / df_stats["orfs"] *100
+    d_stats_all["Orfs_anno_merops%"] = d_stats_all["merops"] / d_stats_all["orfs"] *100
 
 if "cazymes" in databases_in_use:
-    df_stats["Orfs_anno_cazymes%"] = df_stats["cazymes"] / df_stats["orfs"] *100
+    d_stats_all["Orfs_anno_cazymes%"] = d_stats_all["cazymes"] / d_stats_all["orfs"] *100
 
-df_stats.to_csv(os.path.join(output_dir, "Statistics.csv"))
+d_stats_all.to_csv(os.path.join(output_dir, "Statistics.csv"))
 print("Table Statistics.csv was created.")
 
 ###############################################################################
 #Step5: Create tables
 
-def GetCounter(dataset, d, df_stats=df_stats, x="NA"):
+def GetCounter(dataset, d, df_stats=d_stats_all, x="NA"):
     """ Create counts, Presence/Absence (PA) and relative abundance tables for the 
     input dictionary (d).
     """

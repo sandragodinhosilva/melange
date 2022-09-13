@@ -2,7 +2,7 @@
 
 # --- Input
 inputdir: "example_data"
-genome_extension: "{genome}.fa" 
+genome_extension: "{genome}.fa" #change according to genome file extension
 dbdir: "databases" 
 metadata: "data/metadata.csv" #only necessary if feature selection == True
 
@@ -20,7 +20,7 @@ PFAM: True
 COG: True
 KEGG: True
 CAZYMES: True
-MEROPS: True
+MEROPS: False
 
 # --- Run Feature Selection (True or False)
 FS: False
