@@ -11,38 +11,34 @@ nav_exclude: false
 
 ![Header](bitmap3.jpeg)
 
-MeLanGE is an automated pipeline for the genomic annotation of a group of genomes, followed by the detection of the most important features to distinguish a group of genomes, as determined by a metadata label.
+MeLanGE is an automated pipeline for the genomic annotation of a group of genomes, followed by the recognition of the most important features for distinguishing a group of genomes determined by a metadata label.
 
-MeLanGE has two independent, but connected, components:  
+MeLanGE consists of two independent but interconnected components:  
 * [1) Genome annotation](#1-genome-annotation)
 * [2) Feature selection](#2-feature-selection)  
 
-MeLanGE is implemented in a [Snakemake](https://snakemake.readthedocs.io/en/stable/#) workflow, thus contributing to reproducible and scalable data analysis. 
+MeLanGE is implemented in a [Snakemake](https://snakemake.readthedocs.io/en/stable/#) workflow, contributing to reproducible and scalable data analysis. 
 
 * * *
 
 
 ## 1) Genome annotation
-MeLanGE allows the quick annotation of a group 
-of genomes with several databases and gives as final output formatted tables with 
-the annotations per genome. \
-To get more information about the third-parties databases and tools that MeLanGE uses, 
-please check the respective links and references. 
-
+MeLanGE allows rapid annotation of a group of genomes with multiple databases and outputs formatted tables of annotations per genome as final output. \
+For more information on the third-party databases and tools that MeLanGE uses, see the relevant links and references. \
 
 ### 1.1) Gene calling and general annotation
-MeLanGE starts with gene calling performed with [Prokka v1.14.5](https://github.com/tseemann/prokka) [1]. Prokka provides several output files per genome, including .gbk and .faa files, which are made available and used in the following steps. 
+MeLanGE starts with gene calling performed with [Prokka v1.14.5](https://github.com/tseemann/prokka) [1]. Prokka provides several output files per genome, including .gbk and .faa files, which are used in the following steps. 
 
 ### 1.2) Functional annotation
 Functional annotation is conducted with three databases: Pfam [2], COG [3] and KEGG [4]. 
 #### Pfam
-For the annotation using Pfam identifiers, a local database using HMMER v3.3 is constructed from the latest Pfam-A.hmm release, downloaded from the [Pfam official website](http://pfam.xfam.org/). Then, a hmmscan search is performed on all input genomes and the best hit per ORF (cut-off: -E 1e-5) is selected. 
+For the annotation with Pfam identifiers, a local database is created using HMMER v3.3 from the latest version of Pfam-A.hmm downloaded from the [Pfam official website](http://pfam.xfam.org/). Then, a hmmscan search is performed on all input genomes and the best hit per ORF (cut-off: -E 1e-5) is selected. 
 
 #### COG
-To perform the annotation regarding Clusters of Orthologous Genes (COG), the [cdd2cog v0.2 script](https://github.com/aleimba/bac-genomics-scripts/tree/master/cdd2cog)  was adapted. In summary, query proteins are blasted with RPS-BLAST+ (Reverse Position-Specific BLAST) function, from the blast+ v2.9.0 suite, against COGs database, implemented within NCBI's Conserved Domain Database (CDD), and the best hit per ORF (cut-off: -E 1e-5) is selected. 
+To perform the annotation regarding Clusters of Orthologous Genes (COG), the script [cdd2cog v0.2](https://github.com/aleimba/bac-genomics-scripts/tree/master/cdd2cog)  was adapted. In summary, query proteins are blasted with RPS-BLAST+ (Reverse Position-Specific BLAST) function, from the blast+ v2.9.0 suite, against COGs database, implemented within NCBI's Conserved Domain Database (CDD), and the best hit per ORF (cut-off: -E 1e-5) is selected. 
 
 #### KEGG
-To obtain the KEGG Orthology (KO) identification of the proteins, the [prokka2KEGG script](https://github.com/SilentGene/Bio-py/tree/master/prokka2kegg) was adapted. Here, previously annotated UniProtKB IDs by Prokka are converted into KO ids using a cross-reference database provided by [UniProt](https://www.uniprot.org/). 
+To obtain the KEGG Orthology (KO) for protein identification, the [prokka2KEGG script](https://github.com/SilentGene/Bio-py/tree/master/prokka2kegg) was adapted. Here, the UniProtKB IDs previously annotated by Prokka are converted into KO IDs using a cross-reference database provided by [UniProt](https://www.uniprot.org/). 
 
 ### 1.3) Output files
 - Statistics.csv - % of Orfs annotated with each database.
@@ -57,9 +53,9 @@ To obtain the KEGG Orthology (KO) identification of the proteins, the [prokka2KE
 
 ## 2) Feature Selection
 
-After the annotation step, MeLanGE offers the opportunity to identify the most important genome functions to distinguish genomes according to a category such as isolation source, environment characteristics, etc. Such mapping information should be mentioned in the medatata.csv file.
+After the annotation step, MeLanGE offers the possibility to identify the most important genome functions to distinguish genomes according to a category such as isolation source, environmental characteristics, etc. Such mapping information should be specified in the medatata.csv file.
 
-As a default, MeLanGE only performs the functional annotation pipeline. To also run the feature selection pipeline, substitute in `config.yml` for True to perform feature selection:
+By default, MeLanGE only runs the functional annotation pipeline. To also run the feature selection pipeline, substitute True in the `config.yml` to run feature selection:
 
     # --- Run Feature Selection (True or False)
     FS: True
@@ -74,7 +70,7 @@ As a default, MeLanGE only performs the functional annotation pipeline. To also 
 
 
 ## Citing MeLanGE
-For now, MeLanGE does not have a publication describing its functionalities (we are working on it). Please use a link to MeLanGE Github when you reference this tool.
+At the moment, MeLanGE does not have a publication describing its features (we are working on it). Please use a link to MeLanGE Github when referring to this tool.
 
 
 ### MeLanGE Contributions
