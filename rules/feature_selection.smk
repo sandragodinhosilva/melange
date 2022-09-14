@@ -1,9 +1,9 @@
 rule feature_selection:
     input: 
         ind = METADATA, 
+        out = OUTDIR, 
         f = OUTDIR/"Annotation_results/Statistics.csv"
     output:
-        OUTDIR/"Annotation_results/Statistics.csv",
         report(OUTDIR/"Feature_selection.csv",
             category="Feature selection",
             caption=os.path.join(workflow.basedir, "report/feature_selection.rst"))
@@ -14,4 +14,4 @@ rule feature_selection:
         # optional path to the processed notebook
         notebook="logs/notebooks/processed_notebook.ipynb"
     notebook:
-        "rules/feature_selection_notebook.py.ipynb"
+        "feature_selection_notebook.py.ipynb"

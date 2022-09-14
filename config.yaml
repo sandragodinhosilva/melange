@@ -19,7 +19,7 @@ pfam_evalue: "1e-5"
 PFAM: True
 COG: True
 KEGG: True
-CAZYMES: True
+CAZYMES: False
 MEROPS: True
 
 # --- Run Feature Selection (True or False)

@@ -30,6 +30,11 @@ databases/*
 !databases/Feature_selection.csv
 
 #Files
+example_data/Aq78_pacbio.fa
+example_data/Aq107_pacbio.fa
+example_data/Aq135_pacbio.fa
+example_data/Aq349_pacbio.fa
+example_data/EL43_pacbio.fa
 temp*
 workspace.code-workspace
 drafts

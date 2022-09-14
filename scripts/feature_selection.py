@@ -6,10 +6,11 @@
 #### Usage: python orf_annotation.py /path/to/directory_wt_all_files/ [databases_in_use]
 #### Note: full path needed                                    
 ###############################################################################
-
+import os
+import re
 import argparse
-from calendar import c
 import sys
+
 parser=argparse.ArgumentParser(
     description='''Join KO, Pfam, COG, Merops, CAZymes annotations in one table.''')
 
@@ -28,8 +29,6 @@ parser.add_argument('inputDirectory',
 #args = parser.parse_args()
 ###############################################################################
 # import standard Python modules
-import os
-import re
 
 import pandas as pd
 import numpy as np
@@ -37,6 +36,32 @@ import numpy as np
 #import pygraphviz
 import os
 import traceback
+
+
+import sys
+import weka.core.jvm as jvm
+import weka.core.packages as packages
+from weka.core.classes import complete_classname
+
+jvm.start(packages=True)
+
+pkg = "DMNBtext"
+
+# install package if necessary
+if not packages.is_installed(pkg):
+    print("Installing %s..." % pkg)
+    packages.install_package(pkg)
+    print("Installed %s, please re-run script!" % pkg)
+    jvm.stop()
+    sys.exit(0)
+
+# testing classname completion
+print(complete_classname(".J48"))
+print(complete_classname(".DMNBtext"))
+
+
+
+
 
 import python-weka-wrapper3
 import weka.core.jvm as jvm

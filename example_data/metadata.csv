@@ -1,2 +1,7 @@
-GCF_000009045.1_ASM904v1_genomic,marine
-GCF_003018455.1_ASM301845v1_genomic,non-marine
+GCF_000009045.1_ASM904v1_genomic,E_coli
+GCF_003018455.1_ASM301845v1_genomic,E_coli
+Aq78_pacbio,Aquimarina
+Aq107_pacbio,Aquimarina
+Aq135_pacbio,Aquimarina
+Aq349_pacbio,Aquimarina
+EL43_pacbio,Aquimarina
