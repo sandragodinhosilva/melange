@@ -4,7 +4,7 @@ rule feature_selection:
         out = OUTDIR, 
         f = OUTDIR/"Annotation_results/Statistics.csv"
     output:
-        report(OUTDIR/"Feature_selection.csv",
+        report(OUTDIR/"AfterFS/Feature_selection.csv",
             category="Feature selection",
             caption=os.path.join(workflow.basedir, "report/feature_selection.rst"))
     params: 

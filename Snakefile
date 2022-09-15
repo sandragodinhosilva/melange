@@ -69,7 +69,7 @@ def setup(genome):
     if config["FS"] == True:
         l = [expand(myoutput,  genome=GENOMES),
         OUTDIR/"Annotation_results/Statistics.csv",
-        OUTDIR/"Feature_selection.csv"]
+        OUTDIR/"AfterFS/Feature_selection.csv"]
     else:
         l = [expand(myoutput,  genome=GENOMES),
         OUTDIR/"Annotation_results/Statistics.csv"]
