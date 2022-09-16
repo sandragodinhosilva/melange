@@ -108,3 +108,10 @@ Example:
 After successful execution, you can create a self-contained interactive HTML report with all results via:
 
     snakemake --report report.html
+   
+   
+## Extra: Run MeLanGE on a high performance cluster
+
+Snakemake can make use of cluster engines. In this case, Snakemake simply needs to be given a submit command that accepts a shell script as first positional argument:
+
+    snakemake --cluster qsub --use-conda --jobs 4
