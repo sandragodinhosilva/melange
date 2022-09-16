@@ -11,6 +11,7 @@ outdir: "results"
 outdir_anno: "results/Annotation" 
 logdir: "logs"
 
+# Step 1: Genome Annotation
 # --- Evalues:
 cog_evalue: "1e-5"
 pfam_evalue: "1e-5"
@@ -22,6 +23,11 @@ KEGG: True
 CAZYMES: False
 MEROPS: True
 
-# --- Run Feature Selection (True or False)
+# Step 2: Feature Selection (FS)
+# --- Run FS? (True or False)
 FS: True
-# Note: To run Feature Selection add metadata.csv to inputdir folder!
+
+# --- Category to be used in FS 
+Metadata_category: Origin
+
+# Note: To run Feature Selection, add metadata.csv to inputdir folder!
