@@ -4,7 +4,7 @@ title: License
 nav_order: 6 
 ---
 
-MeLanGE is licensed under the MIT License: 
+Melange is licensed under the MIT License: 
 
     MIT License
 
