@@ -9,7 +9,7 @@ nav_exclude: false
 [![Snakemake](https://img.shields.io/badge/snakemake-≥5.31-brightgreen.svg)](https://snakemake.bitbucket.io)
 [![python](https://img.shields.io/badge/python-≥3.8-brightgreen.svg)](https://www.python.org/)
 
-![Header](bitmap3.jpeg)
+![Header](melangev2_small.png)
 
 Melange is an automated pipeline for the genomic annotation of a group of genomes.
 
