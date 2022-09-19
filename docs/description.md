@@ -4,7 +4,7 @@ title: Melange description
 nav_order: 1
 ---
 
-# MeLanGE Description
+# Melange Description
 
 ## The problem
  With the advent of high-throughput DNA sequencing technologies, the amount of genomic data available far exceeds the amount of data that is thoroughly analysed. This can be partly explained by the difficulties of sorting and comparing large amounts of data, which is usually computationally intensive and often intractable. However, such large comparative genomics studies can be essential to determine important genomic or functional traits of different groups of organisms based on phylogeny, taxonomy, ecosystem origin, etc.
