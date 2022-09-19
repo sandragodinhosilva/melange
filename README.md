@@ -15,7 +15,7 @@ This repository contains the code for the Snakemake workflow of a functional ann
 ### Step 0: Install conda and Snakemake
 [Conda](https://conda.io/docs/) and
 [Snakemake](https://snakemake.readthedocs.io) are required to be able to use
-MeLanGE. \
+Melange. \
 Conda is easy to install via its lightweight version 
 [Miniconda](https://conda.io/miniconda.html). \
 After installing Conda, install [Snakemake](https://snakemake.readthedocs.io/en/stable/getting_started/installation.html):
@@ -27,10 +27,10 @@ After installing Conda, install [Snakemake](https://snakemake.readthedocs.io/en/
 
 
 ### Step 1: Clone workflow
-To use MeLanGE, you need a local copy of the workflow repository. Start by
+To use Melange, you need a local copy of the workflow repository. Start by
 creating a clone of the repository: 
 
-    git clone https://github.com/sandragodinhosilva/MeLanGE.git
+    git clone https://github.com/sandragodinhosilva/melange.git
 
 ### Step 2: Configure workflow
 Configure the workflow according to your needs by editing the file
