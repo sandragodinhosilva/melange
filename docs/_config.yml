@@ -23,7 +23,7 @@ email: sandragodinhosilva@gmail.com
 author: Sandra Godinho Silva
 description: >- # this means to ignore newlines until "baseurl:"
   Melange
-baseurl: "/Melange" # the subpath of your site, e.g. /blog
+baseurl: "/melange" # the subpath of your site, e.g. /blog
 url: "https://sandragodinhosilva.github.io" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: SandraGodSilva
 github_username:  sandragodinhosilva
