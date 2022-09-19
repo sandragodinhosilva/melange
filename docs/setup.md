@@ -6,11 +6,11 @@ nav_order: 2
 
 # Installation & Execution
 
-MeLanGE is designed as a [Snakemake](https://snakemake.readthedocs.io) workflow that allows all steps to be executed in parallel on a cluster. 
+Melange is designed as a [Snakemake](https://snakemake.readthedocs.io) workflow that allows all steps to be executed in parallel on a cluster. 
 
 
-## Step 0: MeLanGE dependencies
-To run MeLanGE you need to have [conda](https://docs.conda.io/en/latest/) (or the simplest version - [miniconda](https://docs.conda.io/en/latest/miniconda.html)), [Snakemake](https://snakemake.readthedocs.io) and [Git](https://git-scm.com/) installed.
+## Step 0: Melange dependencies
+To run Melange you need to have [conda](https://docs.conda.io/en/latest/) (or the simplest version - [miniconda](https://docs.conda.io/en/latest/miniconda.html)), [Snakemake](https://snakemake.readthedocs.io) and [Git](https://git-scm.com/) installed.
 
 ### Install conda 
 
@@ -37,23 +37,23 @@ After installing conda (and optionally mamba), install [Snakemake](https://snake
     conda activate snakemake
 
 ### Install git
-To run MeLange, you need to have git installed to clone the [MeLanGE repository](https://github.com/sandragodinhosilva/MeLanGE).
+To run Melange, you need to have git installed to clone the [Melange repository](https://github.com/sandragodinhosilva/Melange).
 
 Instructions for installing git can be found at: [https://git-scm.com/book/en/v2/Getting-Started-Installing-Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
 
 
 
-## Step 1: Clone MeLanGE workflow
-To use MeLanGE, you need a local copy of the [MeLanGE workflow repository](https://github.com/sandragodinhosilva/MeLanGE). Start by creating a clone of the repository: 
+## Step 1: Clone Melange workflow
+To use Melange, you need a local copy of the [Melange workflow repository](https://github.com/sandragodinhosilva/melange). Start by creating a clone of the repository: 
 
-    git clone https://github.com/sandragodinhosilva/MeLanGE.git
+    git clone https://github.com/sandragodinhosilva/melange.git
 
-Now you should have a folder called MeLanGE. In it you will find everything you need to run this workflow. To enter inside:
+Now you should have a folder called Melange. In it you will find everything you need to run this workflow. To enter inside:
 
     cd MeLanGE
 
 ### Optional:  Test the correct installation with sample data
-To test the correct installation of MeLanGE, you can use [example data](https://github.com/sandragodinhosilva/MeLanGE/tree/master/example_data). This data will be downloaded automatically when you clone the MeLanGE repository. Simply ensure the following setting in the `config.yaml` file:
+To test the correct installation of Melange, you can use [example data](https://github.com/sandragodinhosilva/melange/tree/master/example_data). This data will be downloaded automatically when you clone the Melange repository. Simply ensure the following setting in the `config.yaml` file:
     
     # --- Input
     inputdir: "example_data"
@@ -75,7 +75,7 @@ For example with [nano](https://www.nano-editor.org/):
         Ctrl+O	Offer to write file ("Save as")
         Ctrl+X	Close buffer, exit from nano
 
-For more information on customising this configuration file, see the section [MeLanGE Configuration](https://sandragodinhosilva.github.io/MeLanGE/configuration.html)
+For more information on customising this configuration file, see the section [Melange Configuration](https://sandragodinhosilva.github.io/melange/configuration.html)
 
 
 
@@ -90,7 +90,7 @@ This will run the workflow locally using `N` cores.
 ### Optional steps 
 **Examine workflow:**
 
-Snakemake has some cool features implemented in MeLanGE. One of them is the ability to automatically create a directed acyclic graph (DAG) of jobs that allows visualisation of the entire workflow.
+Snakemake has some cool features implemented in Melange. One of them is the ability to automatically create a directed acyclic graph (DAG) of jobs that allows visualisation of the entire workflow.
 
 By executing a single command:
 
@@ -110,7 +110,7 @@ After successful execution, you can create a self-contained interactive HTML rep
     snakemake --report report.html
    
    
-## Extra: Run MeLanGE on a high performance cluster
+## Extra: Run Melange on a high performance cluster
 
 Snakemake can make use of cluster engines. In this case, Snakemake simply needs to be given a submit command that accepts a shell script as first positional argument:
 

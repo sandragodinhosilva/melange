@@ -1,18 +1,18 @@
 ---
 layout: default
-title: MeLanGE configuration
+title: Melange configuration
 nav_order: 3
 ---
 
-# MeLanGE configuration
-To adapt MeLanGE to your needs, change the default parameters in the configuration file `config.yaml`:
+# Melange configuration
+To adapt Melange to your needs, change the default parameters in the configuration file `config.yaml`:
 
 ## Input
     # --- Input
     inputdir: "data"
     genome_extension: "{genome}.fa" 
 
-Change the input directory where your genome files are located, or simply add them to the 'data' folder in the MeLanGE repository.
+Change the input directory where your genome files are located, or simply add them to the 'data' folder in the Melange repository.
 Make sure that all genomes have the same extension (e.g. `.fa`, `.fna` or `.fasta`) and change this setting in the configuration file accordingly.
 
 ## Output
@@ -25,15 +25,3 @@ Make sure that all genomes have the same extension (e.g. `.fa`, `.fna` or `.fast
     # --- Evalues:
     cog_evalue: "1e-5"
     pfam_evalue: "1e-5"
-
-## Perform feature selection
-To apply feature selection to the annotation results, modify the configuration file `config.yaml`:
-
-    # --- Run Feature Selection (True or False)
-    FS: True
-
-Upload the respective metadata file and change its path in the input section:
-
-    # --- Input
-    (...)
-    metadata: "data/metadata.csv" 
