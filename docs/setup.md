@@ -48,9 +48,9 @@ To use Melange, you need a local copy of the [Melange workflow repository](https
 
     git clone https://github.com/sandragodinhosilva/melange.git
 
-Now you should have a folder called Melange. In it you will find everything you need to run this workflow. To enter inside:
+Now you should have a folder called **melange**. In it you will find everything you need to run this workflow. To enter inside:
 
-    cd MeLanGE
+    cd melange
 
 ### Optional:  Test the correct installation with sample data
 To test the correct installation of Melange, you can use [example data](https://github.com/sandragodinhosilva/melange/tree/master/example_data). This data will be downloaded automatically when you clone the Melange repository. Simply ensure the following setting in the `config.yaml` file:
