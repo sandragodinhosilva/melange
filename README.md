@@ -1,4 +1,4 @@
-![Header](logo/melangev2.png) 
+![Header](logo/melangev2_small.png) 
 
 
 [![Snakemake](https://img.shields.io/badge/snakemake-≥5.31-brightgreen.svg)](https://snakemake.bitbucket.io)
