@@ -34,12 +34,6 @@ METADATA = config["metadata"]
 # --- GET GENOMES
 GENOMES = set(glob_wildcards(INPUTDIR/GENOME_EXTENSION).genome)
 
-
-#if len(GENOMES) < 1:
-#    raise WorkflowError("Found no samples! Check input file pattern and path in config.yaml")
-#else:
-#    print(f"Found the following samples in inputdir using input filename pattern '{config['genome_extension']}':\n{GENOMES}")
-
 myoutput= [OUTDIR/"Annotation_results/Orfs_per_genome/{genome}_all_features.csv"]
 extensions = []
 databases_in_use = []
@@ -66,15 +60,9 @@ if config["MEROPS"] == True:
     databases_in_use.append("merops")
 
 def setup(genome):
-    if config["FS"] == True:
-        l = [expand(myoutput,  genome=GENOMES),
-        OUTDIR/"Annotation_results/Statistics.csv",
-        OUTDIR/"AfterFS/Feature_selection.csv"]
-    else:
-        l = [expand(myoutput,  genome=GENOMES),
-        OUTDIR/"Annotation_results/Statistics.csv"]
-    return l
-
+    l = [expand(myoutput,  genome=GENOMES),
+    OUTDIR/"Annotation_results/Statistics.csv"]
+return l
 
 # --- ALL RULE 
 rule all:
@@ -89,7 +77,6 @@ include: "rules/merops.smk"
 include: "rules/cazymes.smk"
 include: "rules/ensure_all.smk"
 include: "rules/join_all.smk"
-include: "rules/feature_selection.smk"
 
 onsuccess:
     print("Workflow finished, no error")

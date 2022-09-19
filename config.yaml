@@ -4,7 +4,6 @@
 inputdir: "example_data"
 genome_extension: "{genome}.fa" #change according to genome file extension
 dbdir: "databases" 
-metadata: "example_data/metadata.csv" #only necessary if feature selection == True
 
 # --- Output directory
 outdir: "results" 
@@ -22,12 +21,3 @@ COG: True
 KEGG: True
 CAZYMES: False
 MEROPS: True
-
-# Step 2: Feature Selection (FS)
-# --- Run FS? (True or False)
-FS: True
-
-# --- Category to be used in FS 
-Metadata_category: Origin
-
-# Note: To run Feature Selection, add metadata.csv to inputdir folder!
