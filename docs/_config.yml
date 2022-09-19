@@ -22,8 +22,8 @@ title: MeLanGE
 email: sandragodinhosilva@gmail.com
 author: Sandra Godinho Silva
 description: >- # this means to ignore newlines until "baseurl:"
-  MeLanGE - Machine Learning for Genomics
-baseurl: "/MeLanGE" # the subpath of your site, e.g. /blog
+  Melange
+baseurl: "/Melange" # the subpath of your site, e.g. /blog
 url: "https://sandragodinhosilva.github.io" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: SandraGodSilva
 github_username:  sandragodinhosilva
