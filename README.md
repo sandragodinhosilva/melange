@@ -7,7 +7,7 @@
 
 This repository contains the code for the Snakemake workflow of a functional annotation tool.
 
-## Documentation: https://sandragodinhosilva.github.io/MeLanGE/
+## Documentation: https://sandragodinhosilva.github.io/melange/
 
 
 ## Usage
