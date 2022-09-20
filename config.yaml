@@ -2,8 +2,10 @@
 
 # --- Input
 inputdir: "example_data"
-genome_extension: "{genome}.fa" #change according to genome file extension
 dbdir: "databases" 
+nucleotide_extension: "{genome}.fa" #change according to genome file extension
+aminoacid_extension: "{genome}.faa" #change according to genome file extension
+input_orfs: False
 
 # --- Output directory
 outdir: "results" 
@@ -12,8 +14,9 @@ logdir: "logs"
 
 # Step 1: Genome Annotation
 # --- Evalues:
-cog_evalue: "1e-5"
-pfam_evalue: "1e-5"
+cog_evalue: "1e-5" #for rpsblast
+pfam_evalue: "1e-5" #for hmmsearch
+merops_evalue: "1e-5" #for blastp
 
 # --- Select databases to use
 PFAM: True

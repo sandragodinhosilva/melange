@@ -1,14 +1,16 @@
 localrules:
     download_pfam,
     download_cog,
-    download_cazymes
+    download_cazymes,
+    download_merops
 
 rule ensure_download:
     input: 
         DBDIR/"Pfam-A.hmm",
         DBDIR/"cdd2cog2.pl",
         DBDIR/"whog",
-        DBDIR/"EscheriaColiK12MG1655.gff"
+        DBDIR/"EscheriaColiK12MG1655.gff",
+        DBDIR/"merops_new.lib"
     output: DBDIR/"dbs_done.txt"
     log: LOGDIR/"dbs.log"
     shell: "echo done > {output}"
@@ -77,3 +79,20 @@ rule download_cazymes:
         && wget http://bcb.unl.edu/dbCAN2/download/Samples/EscheriaColiK12MG1655.faa \
         && wget http://bcb.unl.edu/dbCAN2/download/Samples/EscheriaColiK12MG1655.gff
     """
+
+rule download_merops:
+    """Download latest Merops library"""
+    output:
+        DBDIR/"merops_new.lib"
+    log:
+        str(LOGDIR/"downloads/merops_database_download.log")
+    shadow:
+        "shallow"
+    conda: "../envs/blast.yaml"
+    params: db = DBDIR
+    shell:
+        """
+        cd {params.db}
+        wget ftp://ftp.ebi.ac.uk/pub/databases/merops/current_release/pepunit.lib
+        makeblastdb -in pepunit.lib -dbtype nucl
+        """

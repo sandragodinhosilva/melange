@@ -9,9 +9,6 @@ import textwrap
 from snakemake.utils import min_version
 min_version("5.30.0")
 
-onstart:
-    print("Starting")
-
 report: "report/workflow.rst"
 
 container: "docker://continuumio/miniconda3:4.4.10"
@@ -27,16 +24,20 @@ OUTDIR = Path(config["outdir"])
 OUTDIR_ANNO = Path(config["outdir_anno"])
 LOGDIR = Path(config["logdir"])
 DBDIR = Path(config["dbdir"])
-GENOME_EXTENSION = config["genome_extension"]
-METADATA = config["metadata"]
+NUCLEOTIDE_EXTENSION = config["nucleotide_extension"]
+AMINOACID_EXTENSION = config["aminoacid_extension"]
 
 # --- GET GENOMES
-GENOMES = set(glob_wildcards(INPUTDIR/GENOME_EXTENSION).genome)
+if config["input_orfs"] == False:
+    GENOMES = set(glob_wildcards(INPUTDIR/NUCLEOTIDE_EXTENSION).genome)
+else:
+    GENOMES = set(glob_wildcards(INPUTDIR/AMINOACID_EXTENSION).genome)
 
 myoutput= [OUTDIR/"Annotation_results/Orfs_per_genome/{genome}_all_features.csv"]
 extensions = []
 databases_in_use = []
 
+# --- SELECTION OF DATABASES TO USE
 if config["PFAM"] == True:
     myoutput.append(OUTDIR_ANNO/"{genome}_tblout_pfam.txt")
     extensions.append("_tblout_pfam.txt")
@@ -61,7 +62,7 @@ if config["MEROPS"] == True:
 def setup(genome):
     l = [expand(myoutput,  genome=GENOMES),
     OUTDIR/"Annotation_results/Statistics.csv"]
-return l
+    return l
 
 # --- ALL RULE 
 rule all:
@@ -69,6 +70,7 @@ rule all:
 
 include: "rules/ensure_download.smk"
 include: "rules/prokka.smk"
+include: "rules/copy_faa.smk"
 include: "rules/pfam.smk"
 include: "rules/cog.smk"
 include: "rules/kegg.smk"
@@ -76,6 +78,10 @@ include: "rules/merops.smk"
 include: "rules/cazymes.smk"
 include: "rules/ensure_all.smk"
 include: "rules/join_all.smk"
+
+onstart:
+    print("Starting")
+    print(GENOMES)
 
 onsuccess:
     print("Workflow finished, no error")
