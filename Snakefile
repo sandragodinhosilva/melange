@@ -1,8 +1,11 @@
 # The main entry point of the workflow.
 # After configuring, running snakemake -n in a clone of this repository should successfully execute a dry-run of the workflow.
-# Run: snakemake --use-conda --cores 8 -j
-# to create workflow view: snakemake --dag | dot -Tpdf > dag.pdf
-# snakemake --report report/report.html
+# Run: 
+#   snakemake --use-conda --cores 8 -j
+# To create workflow view: 
+#   snakemake --dag | dot -Tpdf > dag.pdf
+# To view report: 
+#   snakemake --report report/report.html
 
 from pathlib import Path
 import textwrap
@@ -80,7 +83,7 @@ include: "rules/ensure_all.smk"
 include: "rules/join_all.smk"
 
 onstart:
-    print("Starting")
+    print("Starting, files that will be annotated:")
     print(GENOMES)
 
 onsuccess:

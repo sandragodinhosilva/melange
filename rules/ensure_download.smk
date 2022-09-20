@@ -10,7 +10,7 @@ rule ensure_download:
         DBDIR/"cdd2cog2.pl",
         DBDIR/"whog",
         DBDIR/"EscheriaColiK12MG1655.gff",
-        DBDIR/"merops_new.lib"
+        DBDIR/"pepunit.lib"
     output: DBDIR/"dbs_done.txt"
     log: LOGDIR/"dbs.log"
     shell: "echo done > {output}"
@@ -83,7 +83,7 @@ rule download_cazymes:
 rule download_merops:
     """Download latest Merops library"""
     output:
-        DBDIR/"merops_new.lib"
+        DBDIR/"pepunit.lib"
     log:
         str(LOGDIR/"downloads/merops_database_download.log")
     shadow:
@@ -94,5 +94,5 @@ rule download_merops:
         """
         cd {params.db}
         wget ftp://ftp.ebi.ac.uk/pub/databases/merops/current_release/pepunit.lib
-        makeblastdb -in pepunit.lib -dbtype nucl
+        makeblastdb -in pepunit.lib -dbtype prot
         """

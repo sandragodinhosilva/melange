@@ -12,7 +12,6 @@ outdir: "results"
 outdir_anno: "results/Annotation" 
 logdir: "logs"
 
-# Step 1: Genome Annotation
 # --- Evalues:
 cog_evalue: "1e-5" #for rpsblast
 pfam_evalue: "1e-5" #for hmmsearch
@@ -24,3 +23,5 @@ COG: True
 KEGG: True
 CAZYMES: False
 MEROPS: True
+
+# Nr of threads/cores
