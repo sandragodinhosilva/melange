@@ -1,10 +1,10 @@
-GENOME_EXTENSION = config["genome_extension"]
+NUCLEOTIDE_EXTENSION = config["nucleotide_extension"]
 DBDIR = config["dbdir"]
 LOGDIR = Path(config["logdir"])
 OUTDIR_ANNO = Path(config["outdir_anno"])
 
 rule prokka:
-    input: input_genome = INPUTDIR/GENOME_EXTENSION, db ="databases/dbs_done.txt"
+    input: input_genome = INPUTDIR/NUCLEOTIDE_EXTENSION, db ="databases/dbs_done.txt"
 	output: 
 		faa=OUTDIR_ANNO/"{genome}.faa", 
 		gbk=OUTDIR_ANNO/"{genome}.gbk"
