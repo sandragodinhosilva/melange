@@ -36,9 +36,7 @@ creating a clone of the repository:
 Configure the workflow according to your needs by editing the file
 `config.yaml`.
 
-Here you can select which **databases** (Pfam, COG, Kegg, CAZymes and/or Merops) are to be used
-and whether a **feature selection** should be carried out.
-
+Here you can select which **databases** (Pfam, COG, Kegg, CAZymes and/or Merops) are to be used.
 
 ### Step 3: Execute workflow
 Execute the workflow locally with `N` cores:
