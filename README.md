@@ -11,6 +11,7 @@ This repository contains the code for the Snakemake workflow of a functional ann
 
 
 ## Usage
+This is a simple description on how to use melange. For more details, please see [Melange documentation](https://sandragodinhosilva.github.io/melange/).
 
 ### Step 0: Install conda and Snakemake
 [Conda](https://conda.io/docs/) and
