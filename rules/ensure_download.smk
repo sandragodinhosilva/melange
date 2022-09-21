@@ -2,7 +2,8 @@ localrules:
     download_pfam,
     download_cog,
     download_cazymes,
-    download_merops
+    download_merops,
+    download_kegg
 
 rule ensure_download:
     input: 
@@ -10,7 +11,8 @@ rule ensure_download:
         DBDIR/"cdd2cog2.pl",
         DBDIR/"whog",
         DBDIR/"EscheriaColiK12MG1655.gff",
-        DBDIR/"merops_scan.lib"
+        DBDIR/"merops_scan.lib",
+        DBDIR/"ko_list"
     output: DBDIR/"dbs_done.txt"
     log: LOGDIR/"dbs.log"
     shell: "echo done > {output}"
@@ -29,7 +31,7 @@ rule download_pfam:
     shell:
         """
         cd {params.db}
-        wget ftp://ftp.ebi.ac.uk/pub/databases/Pfam/current_release/Pfam-A.hmm.gz
+        wget -nc ftp://ftp.ebi.ac.uk/pub/databases/Pfam/current_release/Pfam-A.hmm.gz
         gunzip Pfam-A.hmm.gz
         """
 
@@ -47,13 +49,12 @@ rule download_cog:
     shell:
         """
         cd {params.db}
-        # wget https://raw.githubusercontent.com/aleimba/bac-genomics-scripts/master/cdd2cog/cdd2cog.pl
-        wget ftp://ftp.ncbi.nlm.nih.gov/pub/mmdb/cdd/cddid.tbl.gz
+        wget -nc ftp://ftp.ncbi.nlm.nih.gov/pub/mmdb/cdd/cddid.tbl.gz
         gunzip cddid.tbl.gz
-        wget ftp://ftp.ncbi.nlm.nih.gov/pub/mmdb/cdd/little_endian/Cog_LE.tar.gz
+        wget -nc ftp://ftp.ncbi.nlm.nih.gov/pub/mmdb/cdd/little_endian/Cog_LE.tar.gz
         tar xvfz Cog_LE.tar.gz
-        wget ftp://ftp.ncbi.nlm.nih.gov/pub/COG/COG/fun.txt
-        wget ftp://ftp.ncbi.nlm.nih.gov/pub/COG/COG/whog
+        wget -nc ftp://ftp.ncbi.nlm.nih.gov/pub/COG/COG/fun.txt
+        wget -nc ftp://ftp.ncbi.nlm.nih.gov/pub/COG/COG/whog
         """
 
 rule download_cazymes:
@@ -69,15 +70,16 @@ rule download_cazymes:
     shell:
         """
         cd {params.db}
-        wget http://bcb.unl.edu/dbCAN2/download/Databases/V11/CAZyDB.08062022.fa && diamond makedb --in CAZyDB.08062022.fa -d CAZy \
-        && wget https://bcb.unl.edu/dbCAN2/download/Databases/V11/dbCAN-HMMdb-V11.txt && mv dbCAN-HMMdb-V11.txt dbCAN.txt && hmmpress dbCAN.txt \
-        && wget https://bcb.unl.edu/dbCAN2/download/Databases/V11/tcdb.fa && diamond makedb --in tcdb.fa -d tcdb \
-        && wget http://bcb.unl.edu/dbCAN2/download/Databases/V11/tf-1.hmm && hmmpress tf-1.hmm \
-        && wget http://bcb.unl.edu/dbCAN2/download/Databases/V11/tf-2.hmm && hmmpress tf-2.hmm \
-        && wget https://bcb.unl.edu/dbCAN2/download/Databases/V11/stp.hmm && hmmpress stp.hmm \
-        && wget http://bcb.unl.edu/dbCAN2/download/Samples/EscheriaColiK12MG1655.fna \
-        && wget http://bcb.unl.edu/dbCAN2/download/Samples/EscheriaColiK12MG1655.faa \
-        && wget http://bcb.unl.edu/dbCAN2/download/Samples/EscheriaColiK12MG1655.gff
+        rm dbCAN.txt.h3i && rm tf-1.hmm.h3i
+        wget -nc http://bcb.unl.edu/dbCAN2/download/Databases/V11/CAZyDB.08062022.fa && diamond makedb --in CAZyDB.08062022.fa -d CAZy \
+        && wget -nc https://bcb.unl.edu/dbCAN2/download/Databases/V11/dbCAN-HMMdb-V11.txt && mv dbCAN-HMMdb-V11.txt dbCAN.txt && hmmpress dbCAN.txt \
+        && wget -nc https://bcb.unl.edu/dbCAN2/download/Databases/V11/tcdb.fa && diamond makedb --in tcdb.fa -d tcdb \
+        && wget -nc http://bcb.unl.edu/dbCAN2/download/Databases/V11/tf-1.hmm && hmmpress tf-1.hmm \
+        && wget -nc http://bcb.unl.edu/dbCAN2/download/Databases/V11/tf-2.hmm && hmmpress tf-2.hmm \
+        && wget -nc https://bcb.unl.edu/dbCAN2/download/Databases/V11/stp.hmm && hmmpress stp.hmm \
+        && wget -nc http://bcb.unl.edu/dbCAN2/download/Samples/EscheriaColiK12MG1655.fna \
+        && wget -nc http://bcb.unl.edu/dbCAN2/download/Samples/EscheriaColiK12MG1655.faa \
+        && wget -nc http://bcb.unl.edu/dbCAN2/download/Samples/EscheriaColiK12MG1655.gff
     """
 
 rule download_merops:
@@ -93,6 +95,27 @@ rule download_merops:
     shell:
         """
         cd {params.db}
-        wget ftp://ftp.ebi.ac.uk/pub/databases/merops/current_release/merops_scan.lib
+        wget -nc ftp://ftp.ebi.ac.uk/pub/databases/merops/current_release/merops_scan.lib
         makeblastdb -in merops_scan.lib -dbtype prot
+        """
+
+rule download_kegg:
+    """Download files necessary for kegg"""
+    output:
+        DBDIR/"ko_list"
+    log:
+        str(LOGDIR/"downloads/keggabase_download.log")
+    shadow:
+        "shallow"
+    conda: "../envs/hmmer.yaml"
+    params: db = DBDIR
+    shell:
+        """
+        cd {params.db}
+        wget -nc ftp://ftp.genome.jp/pub/db/kofam/ko_list.gz		# download the ko list 
+        wget -nc ftp://ftp.genome.jp/pub/db/kofam/profiles.tar.gz 		# download the hmm profiles
+        wget -nc ftp://ftp.genome.jp/pub/tools/kofamscan/kofamscan.tar.gz	# download kofamscan tool
+        gunzip ko_list.gz
+        tar xf profiles.tar.gz
+        tar xf kofamscan.tar.gz
         """

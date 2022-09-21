@@ -16,11 +16,11 @@ rule cog:
 
 rule cog2:
     input: 
-        OUTDIR_ANNO/"{genome}.cog.out"
+        inputfile=OUTDIR_ANNO/"{genome}.cog.out", db ="databases/dbs_done.txt"
     output: OUTDIR_ANNO/"{genome}protein-id_cog.txt"
     threads: 8
     conda: "../envs/perl.yaml"
     params: dbdir=DBDIR, outdir=OUTDIR_ANNO
 	log: LOGDIR/"cog2/{genome}.log"
-	shell: "perl {params.dbdir}/cdd2cog2.pl -r {input} -c {params.dbdir}/cddid.tbl -f {params.dbdir}/fun.txt -w {params.dbdir}/whog -o {params.outdir}/{wildcards.genome} 2> {log}"
+	shell: "perl {params.dbdir}/cdd2cog2.pl -r {input.inputfile} -c {params.dbdir}/cddid.tbl -f {params.dbdir}/fun.txt -w {params.dbdir}/whog -o {params.outdir}/{wildcards.genome} 2> {log}"
 

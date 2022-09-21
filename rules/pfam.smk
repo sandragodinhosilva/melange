@@ -3,7 +3,7 @@ localrules:
     
 rule pfam2:
     """ Parse tblout files """
-    input: OUTDIR_ANNO/"{genome}_tblout.txt"
+    input: OUTDIR_ANNO/"{genome}_tblout.txt", 
     output: OUTDIR_ANNO/"{genome}_tblout_pfam.txt"
     threads: 4
     params: 
@@ -16,7 +16,7 @@ rule pfam:
     """
     Pfam annotation. Default e-value: 1e-5
     """
-    input: genome_faa = OUTDIR_ANNO/"{genome}.faa"
+    input: genome_faa = OUTDIR_ANNO/"{genome}.faa", db ="databases/dbs_done.txt"
     output: OUTDIR_ANNO/"{genome}_tblout.txt"
     threads: 8
     conda: "../envs/hmmer.yaml"

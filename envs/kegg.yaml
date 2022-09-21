@@ -1,0 +1,9 @@
+channels:
+  - conda-forge
+  - bioconda
+
+dependencies:
+  - kofamscan
+  - hmmer
+  - parallel
+  - ruby

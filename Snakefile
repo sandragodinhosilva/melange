@@ -30,6 +30,7 @@ DBDIR = Path(config["dbdir"])
 NUCLEOTIDE_EXTENSION = config["nucleotide_extension"]
 AMINOACID_EXTENSION = config["aminoacid_extension"]
 
+
 # --- GET GENOMES
 if config["input_orfs"] == False:
     GENOMES = set(glob_wildcards(INPUTDIR/NUCLEOTIDE_EXTENSION).genome)
@@ -50,8 +51,8 @@ if config["COG"] == True:
     extensions.append("protein-id_cog.txt")
     databases_in_use.append("cog")
 if config["KEGG"] == True:
-    myoutput.append(OUTDIR_ANNO/"{genome}.ko.out")
-    extensions.append(".ko.out")
+    myoutput.append(OUTDIR_ANNO/"{genome}_kegg2.txt")
+    extensions.append("_kegg2.txt")
     databases_in_use.append("kegg")
 if config["CAZYMES"] == True:
     myoutput.append(OUTDIR_ANNO/"{genome}_cazymes_3tools.txt")
@@ -76,7 +77,7 @@ include: "rules/prokka.smk"
 include: "rules/copy_faa.smk"
 include: "rules/pfam.smk"
 include: "rules/cog.smk"
-include: "rules/kegg.smk"
+include: "rules/kegg2.smk"
 include: "rules/merops.smk"
 include: "rules/cazymes.smk"
 include: "rules/ensure_all.smk"

@@ -16,10 +16,10 @@ rule merops:
     """
     Merops annotation. Default e-value: 1e-5
     """
-    input: OUTDIR_ANNO/"{genome}.faa"
+    input: inputfile=OUTDIR_ANNO/"{genome}.faa", db ="databases/dbs_done.txt"
     output: OUTDIR_ANNO/"{genome}_merops.txt"
     threads: 4
     conda: "../envs/blast.yaml"
     log: LOGDIR/"merops/{genome}.log"
     params: evalue=config["merops_evalue"], dbdir=DBDIR
-    shell: "blastp -query {input} -db {params.dbdir}/merops_scan.lib -out {output} -evalue {params.evalue} -outfmt 6 -num_threads {threads} 2> {log}"
+    shell: "blastp -query {input.inputfile} -db {params.dbdir}/merops_scan.lib -out {output} -evalue {params.evalue} -outfmt 6 -num_threads {threads} 2> {log}"

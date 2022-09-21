@@ -5,7 +5,10 @@ inputdir: "example_data"
 dbdir: "databases" 
 nucleotide_extension: "{genome}.fa" #change according to genome file extension
 aminoacid_extension: "{genome}.faa" #change according to genome file extension
-input_orfs: False
+input_orfs: True
+metagenome: False
+unassembled_reads: False
+
 
 # --- Output directory
 outdir: "results" 

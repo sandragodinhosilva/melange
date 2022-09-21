@@ -5,7 +5,7 @@ if config["PFAM"] == True:
 if config["COG"] == True:
     myoutput.append(OUTDIR_ANNO/"{genome}protein-id_cog.txt")
 if config["KEGG"] == True:
-    myoutput.append(OUTDIR_ANNO/"{genome}.ko.out")
+    myoutput.append(OUTDIR_ANNO/"{genome}_kegg2.txt")
 if config["CAZYMES"] == True:
     myoutput.append(OUTDIR_ANNO/"{genome}_cazymes_3tools.txt")
 if config["MEROPS"] == True:
