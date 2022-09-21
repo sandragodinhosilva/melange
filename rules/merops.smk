@@ -22,4 +22,4 @@ rule merops:
     conda: "../envs/blast.yaml"
     log: LOGDIR/"merops/{genome}.log"
     params: evalue=config["merops_evalue"], dbdir=DBDIR
-    shell: "blastp -query {input} -db {params.dbdir}/pepunit.lib -out {output} -evalue {params.evalue} -outfmt 6 -num_threads {threads} 2> {log}"
+    shell: "blastp -query {input} -db {params.dbdir}/merops_scan.lib -out {output} -evalue {params.evalue} -outfmt 6 -num_threads {threads} 2> {log}"
