@@ -114,8 +114,6 @@ rule download_kegg:
         cd {params.db}
         wget -nc ftp://ftp.genome.jp/pub/db/kofam/ko_list.gz		# download the ko list 
         wget -nc ftp://ftp.genome.jp/pub/db/kofam/profiles.tar.gz 		# download the hmm profiles
-        wget -nc ftp://ftp.genome.jp/pub/tools/kofamscan/kofamscan.tar.gz	# download kofamscan tool
         gunzip ko_list.gz
         tar xf profiles.tar.gz
-        tar xf kofamscan.tar.gz
         """

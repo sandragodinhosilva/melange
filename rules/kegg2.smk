@@ -4,13 +4,13 @@ rule kegg2:
     """
     Kegg annotation with kofamscan.
     """
-    input: OUTDIR_ANNO/"{genome}.faa"
+    input: inputfile= OUTDIR_ANNO/"{genome}.faa", db="databases/ko_list"
     output: OUTDIR_ANNO/"{genome}_kegg2.txt"
-    threads: 4
+    threads: 8
     conda: "../envs/kegg.yaml"
     params: dbdir=DBDIR
     log: LOGDIR/"kegg2/{genome}.log"
     shell:
         """
-        databases/exec_annotation -o {output} {input} --cpu=8 --ko-list {params.dbdir}/"ko_list" --profile {params.dbdir}/"prokaryote.hal"
+        databases/exec_annotation -o {output} {input.inputfile} --cpu=8 --ko-list {params.dbdir}/"ko_list" --profile {params.dbdir}/"profiles/prokaryote.hal"
         """

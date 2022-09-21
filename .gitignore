@@ -20,6 +20,9 @@ old_data/
 
 #Ignore databases folder, except some specific files:
 databases/*
+!databases/lib/*
+!databases/config-template.yml
+!databases/exec_annotation
 !databases/merops_ids.csv
 !databases/Pfam-A.clans.tsv
 !databases/cdd2cog.pl
