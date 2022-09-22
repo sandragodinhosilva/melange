@@ -6,7 +6,7 @@ rule cog:
     Cog annotation. Default e-value: 1e-5
     """
     input: 
-        genome_faa = OUTDIR_ANNO/"{genome}.faa"
+        genome_faa = OUTDIR_ANNO/"{genome}.faa", db ="databases/dbs_done.txt"
     output: OUTDIR_ANNO/"{genome}.cog.out"
     threads: 8
     conda: "../envs/blast.yaml"
@@ -16,7 +16,7 @@ rule cog:
 
 rule cog2:
     input: 
-        inputfile=OUTDIR_ANNO/"{genome}.cog.out", db ="databases/dbs_done.txt"
+        inputfile=OUTDIR_ANNO/"{genome}.cog.out"
     output: OUTDIR_ANNO/"{genome}protein-id_cog.txt"
     threads: 8
     conda: "../envs/perl.yaml"

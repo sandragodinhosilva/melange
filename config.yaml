@@ -5,11 +5,13 @@ inputdir: "example_data"
 dbdir: "databases" 
 nucleotide_extension: "{genome}.fa" #change according to genome file extension
 aminoacid_extension: "{genome}.faa" #change according to genome file extension
+
+# Input files are nucleotide or aminoacid files?
 aminoacid_file: True #if True - gene calling (Prokka) won't be run
 
+# Input files - other characteristics:
 metagenome: False  #different setting in prokka?
 unassembled_reads: False
-
 
 # --- Output directory
 outdir: "results" 

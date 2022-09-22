@@ -74,7 +74,7 @@ rule all:
 
 include: "rules/ensure_download.smk"
 include: "rules/prokka.smk"
-include: "rules/copy_faa.smk"
+include: "rules/ensure_faa.smk"
 include: "rules/pfam.smk"
 include: "rules/cog.smk"
 include: "rules/kegg2.smk"

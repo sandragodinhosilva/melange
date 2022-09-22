@@ -18,6 +18,7 @@ AfterFS
 example_data_results
 old_data/
 tmp/*
+dag.pdf
 
 #Ignore databases folder, except some specific files:
 databases/*
