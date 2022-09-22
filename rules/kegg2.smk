@@ -4,7 +4,7 @@ rule kegg2:
     """
     Kegg annotation with kofamscan.
     """
-    input: inputfile= OUTDIR_ANNO/"{genome}.faa", db="databases/ko_list"
+    input: inputfile= OUTDIR_ANNO/"{genome}.faa", db ="databases/dbs_done.txt"
     output: OUTDIR_ANNO/"{genome}_kegg2.txt"
     threads: 8
     conda: "../envs/kegg.yaml"
