@@ -5,8 +5,9 @@ inputdir: "example_data"
 dbdir: "databases" 
 nucleotide_extension: "{genome}.fa" #change according to genome file extension
 aminoacid_extension: "{genome}.faa" #change according to genome file extension
-input_orfs: True
-metagenome: False
+aminoacid_file: True #if True - gene calling (Prokka) won't be run
+
+metagenome: False  #different setting in prokka?
 unassembled_reads: False
 
 
@@ -19,12 +20,13 @@ logdir: "logs"
 cog_evalue: "1e-5" #for rpsblast
 pfam_evalue: "1e-5" #for hmmsearch
 merops_evalue: "1e-5" #for blastp
+kegg_evalue: "1e-5" #for hmmsearch - implement
 
 # --- Select databases to use
 PFAM: True
 COG: True
 KEGG: True
-CAZYMES: False
+CAZYMES: True
 MEROPS: True
 
-# Nr of threads/cores
+# Nr of threads/cores - implement
