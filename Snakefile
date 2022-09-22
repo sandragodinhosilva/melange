@@ -51,8 +51,8 @@ if config["COG"] == True:
     extensions.append("protein-id_cog.txt")
     databases_in_use.append("cog")
 if config["KEGG"] == True:
-    myoutput.append(OUTDIR_ANNO/"{genome}_kegg_out.txt")
-    extensions.append("_kegg_out.txt")
+    myoutput.append(OUTDIR_ANNO/"{genome}_kegg.txt")
+    extensions.append("_kegg.txt")
     databases_in_use.append("kegg")
 if config["CAZYMES"] == True:
     myoutput.append(OUTDIR_ANNO/"{genome}_cazymes_3tools.txt")

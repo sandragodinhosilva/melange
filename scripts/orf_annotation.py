@@ -8,7 +8,6 @@
 ###############################################################################
 
 import argparse
-from calendar import c
 import sys
 parser=argparse.ArgumentParser(
     description='''Join KO, Pfam, COG, Merops, CAZymes annotations in one table.''')
@@ -39,11 +38,10 @@ import numpy as np
 
 # From the script location, find databases directory
 script_location = sys.path[0]
-#script_location = "/home/sandra/MeLanGE/scripts"
-#out_dir = os.path.dirname(os.path.dirname(script_location))
-out_dir = os.path.dirname(script_location)
+#script_location = "/home/sandra/melange/scripts" #comment when not debugging
+base_dir = os.path.dirname(script_location)
 
-database_path = os.path.join(out_dir, "databases")
+database_path = os.path.join(base_dir, "databases")
 os.chdir(database_path)
     
 def LoadPfamMap():
@@ -81,19 +79,22 @@ general_map = CreateGeneralMap()
 ###############################################################################
 print("Starting... ")
 
-outDirectory = sys.argv[1]
-curdir = outDirectory
-os.chdir(curdir)
+annotation_dir = sys.argv[1]
+#annotation_dir = os.path.join(base_dir, "results/Annotation") #comment when not debugging
+os.chdir(annotation_dir)
 
-print("Input directory: " + curdir)
+print("Input directory: " + annotation_dir)
 
 databases_in_use = sys.argv[2:]
+#databases_in_use = ["kegg","pfam","cog", "cazymes", "merops" ] #comment when not debugging
+
+
 print("Databases in use: " + str(databases_in_use))
 
 ###############################################################################
 #Step 2: Create output directory and list files
 
-output_dir = os.path.join(out_dir,"results/Annotation_results")
+output_dir = os.path.join(base_dir,"results/Annotation_results")
 output_dir_genome = os.path.join(output_dir,"Orfs_per_genome")
 
 try:
@@ -108,20 +109,19 @@ except:
     pass
 #print("Individual genome files: " + output_dir_genome)
 
-ko_pattern = "_kegg_out.txt"
+ko_pattern = "_kegg.txt"
 pfam_pattern = "_pfam_out.txt"
 cog_pattern = "protein-id_cog.txt"
 merops_pattern = "_merops_out.txt"
 cazymes_pattern = "_cazymes_3tools.txt"
 
 entries = list()
-for (dirpath, dirnames, filenames) in os.walk(curdir):
+for (dirpath, dirnames, filenames) in os.walk(annotation_dir):
     entries += [os.path.join(dirpath, file) for file in filenames]
 
 extensions_to_check = []
 
-# Create empty dictionaries:
-d_count={} # for count table
+
 
 # for the individual file counts:
 if "kegg" in databases_in_use:
@@ -142,10 +142,21 @@ if "merops" in databases_in_use:
 d_resumed = {} # for count table with one anno per orf
 d_stats_all = {} # for statistics
 
+
+# Create empty dictionaries:
+
 def FilesToUse():
+    d_count={} # for count table
     d_files = {} #for summarize all annotations files per genome
-    #extensionsToCheck = (ko_pattern, pfam_pattern, cog_pattern, merops_pattern, cazymes_pattern)
     for filename in entries:
+        if filename.endswith(".faa"):
+            name = os.path.basename(filename)
+            name = os.path.splitext(name)[0]
+            if name in d_files:
+                d_files[name].append(filename)
+            else:
+                d_files[name] = []
+                d_files[name].append(filename)
         if filename.endswith(tuple(extensions_to_check)):
             name = os.path.basename(filename)
             big_regex = re.compile('|'.join(map(re.escape, tuple(extensions_to_check))))
@@ -171,20 +182,20 @@ def FilesToUse():
 
 d_files, d_count = FilesToUse()
 print(d_files)
-print(d_count)
 
 print("Parsing input files: ")
 ###############################################################################  
 #Step3: fill dictionaries for each annotation
-
 def fill_dic():
     for k, files in d_files.items():
-        d_kegg = {}
+        d_total = {}
         d_stats ={}
         name = k
         output = name + "_all_features.csv"
         ###############     PATTERNS     #############        
         for file in files:
+            if file.endswith(".faa"):
+                genes = file
             if file.endswith(ko_pattern):
                 kegg = file
             if file.endswith(pfam_pattern):
@@ -195,33 +206,38 @@ def fill_dic():
                 cazymes = file
             if file.endswith(merops_pattern):
                 merops = file
-                
+        
+        with open(os.path.join(genes),"r") as f:
+            c=0
+            orf_list = []
+            for ln in f:
+                if ln.startswith(">"):
+                    c+=1
+                    orf = ln[1:].split()[0]
+                    orf_list.append(orf)
+                    d_total[orf] = []
+            d_stats["orfs"]=c
         ###############     KEGG     #############
         with open(os.path.join(kegg)) as f:
-            c=0
-            c_ko =0
+            c =0
             lines = f.readlines()
             for line in lines:
-                c+=1
                 line = line.rstrip() # This removes the whitespace at the end of the line
                 tabs = line.split("\t") # And now we can create a list by splitting each line into pieces based on where the tabs are.         
                 query = tabs[0] # The first item in the line is the query protein. We can assign the variable "query" to it. 
-                d_kegg[query] = []
-                if len(tabs) == 1:
-                    d_kegg[query].append("")
-                else:
-                    d_kegg
-                    d_kegg[query].append(tabs[1])
+                try:
+                    d_total[query].append(tabs[1])
                     d_count[name].append(tabs[1])
                     d_count_kegg[name].append(tabs[1]) # for the individual file count
-                    c_ko +=1
-            d_stats["orfs"]=c
-            d_stats["ko"] = c_ko
+                    c+=1
+                except:
+                    pass
+            d_stats["ko"] = c
             
         ###############     Pfam     ############
         if "pfam" in databases_in_use:
             with open(os.path.join(pfam)) as f:
-                c=0
+                c=0 #for nr of orfs annotated with this database
                 l_pfam = dict() 
                 lines = f.readlines()
                 for line in lines[1:]:
@@ -237,7 +253,7 @@ def fill_dic():
         ###############     COG     #############        
         if "cog" in databases_in_use:
             with open(os.path.join(cog)) as f:
-                c=0
+                c=0 #for nr of orfs annotated with this database
                 lines = f.readlines()
                 for line in lines:
                     if line.startswith("Query"):
@@ -247,7 +263,7 @@ def fill_dic():
                         line = line.rstrip() # This removes the whitespace at the end of the line
                         tabs = line.split("\t") # And now we can create a list by splitting each line into pieces based on where the tabs are.         
                         query = tabs[0] # The first item in the line is the query protein. We can assign the variable "query" to it. 
-                        d_kegg[query].append(tabs[1])
+                        d_total[query].append(tabs[1])
                         d_count[name].append(tabs[1])
                         d_count_cog[name].append(tabs[1]) # for the individual file count
                 d_stats["cog"]=c
@@ -255,14 +271,14 @@ def fill_dic():
         ###############     merops     ############
         if "merops" in databases_in_use:
             with open(os.path.join(merops)) as f:
-                c=0
+                c=0 #for nr of orfs annotated with this database
                 lines = f.readlines()
                 for line in lines[1:]:
                     c+=1
                     line = line.rstrip() # This removes the whitespace at the end of the line
                     tabs = line.split("\t") # And now we can create a list by splitting each line into pieces based on where the tabs are.         
                     query = tabs[0] # The first item in the line is the query protein. We can assign the variable "query" to it. 
-                    d_kegg[query].append(tabs[1])
+                    d_total[query].append(tabs[1])
                     d_count[name].append(tabs[1])
                     d_count_merops[name].append(tabs[1]) # for the individual file count
                 d_stats["merops"]=c
@@ -278,10 +294,10 @@ def fill_dic():
                     tabs = line.split("\t") # And now we can create a list by splitting each line into pieces based on where the tabs are.         
                     query = tabs[0] # The first item in the line is the query protein. We can assign the variable "query" to it. 
                     try:
-                        d_kegg[query].append(tabs[1])
+                        d_total[query].append(tabs[1])
                     except:
-                        d_kegg[query] = []
-                        d_kegg[query].append(tabs[1])
+                        d_total[query] = []
+                        d_total[query].append(tabs[1])
                     d_count[name].append(tabs[1])
                     d_count_cazymes[name].append(tabs[1]) # for the individual file count
                 d_stats["cazymes"]=c
@@ -296,7 +312,7 @@ def fill_dic():
         
         d_stats_all[name] = d_stats
 
-        s=pd.Series(d_kegg).explode()
+        s=pd.Series(d_total).explode()
         s=s[s!='']
         df=pd.crosstab(index=s.index,columns=s.str[0],values=s,aggfunc='first')
         print(df)
