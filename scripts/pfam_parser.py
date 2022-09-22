@@ -26,9 +26,9 @@ import re
 file = sys.argv[1]
 
 filename = os.path.basename(file)
-filename = filename.replace("_tblout.txt","")
+filename = filename.replace("_pfam.txt","")
 output_dir = os.path.dirname(file)
-out = os.path.join(output_dir,  filename + "_tblout_pfam.txt")
+out = os.path.join(output_dir,  filename + "_pfam_out.txt")
 
 
 protein2hit_dict = {}

@@ -108,8 +108,8 @@ except:
     pass
 #print("Individual genome files: " + output_dir_genome)
 
-ko_pattern = "_kegg2.txt"
-pfam_pattern = "_tblout_pfam.txt"
+ko_pattern = "_kegg_out.txt"
+pfam_pattern = "_pfam_out.txt"
 cog_pattern = "protein-id_cog.txt"
 merops_pattern = "_merops_out.txt"
 cazymes_pattern = "_cazymes_3tools.txt"

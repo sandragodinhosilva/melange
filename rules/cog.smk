@@ -7,7 +7,7 @@ rule cog:
     """
     input: 
         genome_faa = OUTDIR_ANNO/"{genome}.faa", db ="databases/dbs_done.txt"
-    output: OUTDIR_ANNO/"{genome}.cog.out"
+    output: OUTDIR_ANNO/"{genome}_cog.txt"
     threads: 8
     conda: "../envs/blast.yaml"
     log: LOGDIR/"cog/{genome}.log"
@@ -16,11 +16,10 @@ rule cog:
 
 rule cog2:
     input: 
-        inputfile=OUTDIR_ANNO/"{genome}.cog.out"
+        inputfile=OUTDIR_ANNO/"{genome}_cog.txt"
     output: OUTDIR_ANNO/"{genome}protein-id_cog.txt"
     threads: 8
     conda: "../envs/perl.yaml"
     params: dbdir=DBDIR, outdir=OUTDIR_ANNO
-	log: LOGDIR/"cog2/{genome}.log"
+	log: LOGDIR/"cog/{genome}_cog_parser.log"
 	shell: "perl {params.dbdir}/cdd2cog2.pl -r {input.inputfile} -c {params.dbdir}/cddid.tbl -f {params.dbdir}/fun.txt -w {params.dbdir}/whog -o {params.outdir}/{wildcards.genome} 2> {log}"
-

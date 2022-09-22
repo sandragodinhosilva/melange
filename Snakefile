@@ -43,16 +43,16 @@ databases_in_use = []
 
 # --- SELECTION OF DATABASES TO USE
 if config["PFAM"] == True:
-    myoutput.append(OUTDIR_ANNO/"{genome}_tblout_pfam.txt")
-    extensions.append("_tblout_pfam.txt")
+    myoutput.append(OUTDIR_ANNO/"{genome}_pfam_out.txt")
+    extensions.append("_pfam_out.txt")
     databases_in_use.append("pfam")
 if config["COG"] == True:
     myoutput.append(OUTDIR_ANNO/"{genome}protein-id_cog.txt")
     extensions.append("protein-id_cog.txt")
     databases_in_use.append("cog")
 if config["KEGG"] == True:
-    myoutput.append(OUTDIR_ANNO/"{genome}_kegg2.txt")
-    extensions.append("_kegg2.txt")
+    myoutput.append(OUTDIR_ANNO/"{genome}_kegg_out.txt")
+    extensions.append("_kegg_out.txt")
     databases_in_use.append("kegg")
 if config["CAZYMES"] == True:
     myoutput.append(OUTDIR_ANNO/"{genome}_cazymes_3tools.txt")
@@ -77,7 +77,7 @@ include: "rules/prokka.smk"
 include: "rules/ensure_faa.smk"
 include: "rules/pfam.smk"
 include: "rules/cog.smk"
-include: "rules/kegg2.smk"
+include: "rules/kegg.smk"
 include: "rules/merops.smk"
 include: "rules/cazymes.smk"
 include: "rules/ensure_all.smk"
