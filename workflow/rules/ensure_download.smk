@@ -10,7 +10,7 @@ rule ensure_download:
     """Verify if all databases were downloaded."""
     input:
         "workflow/databases/Pfam-A.hmm",
-        "workflow/databases/whog",
+        "workflow/databases/Cog.aux",
         "workflow/databases/EscheriaColiK12MG1655.gff",
         "workflow/databases/merops_scan.lib",
         "workflow/databases/ko_list",
@@ -42,7 +42,7 @@ rule download_pfam:
 rule download_cog:
     """Download necessary COG files."""
     output:
-        "workflow/databases/whog",
+        "workflow/databases/Cog.aux",
     log:
        "logs/downloads/cog_database_download.log",
     shadow:
