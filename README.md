@@ -45,3 +45,9 @@ You can also define if input files are either fasta nucleotide files (e.g. fna, 
 Execute the workflow locally with `N` cores:
 
     snakemake --use-conda --cores N
+    
+Execution on a cluster, example:
+
+    snakemake --use-conda --cluster qsub --jobs 8
+    
+For more information about running on a computational cluster, please check snakemake documentation about it: [https://snakemake.readthedocs.io/en/stable/executing/cluster.html](https://snakemake.readthedocs.io/en/stable/executing/cluster.html)
