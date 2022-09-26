@@ -8,7 +8,7 @@ rule prokka:
 	output: 
 		faa=OUTDIR_ANNO/"{genome}.faa", 
 		gbk=OUTDIR_ANNO/"{genome}.gbk"
-	params: outdir= str(OUTDIR_ANNO) 
+	params: outdir=lambda wildcards, output: OUTDIR_ANNO,
 	threads: 8
 	conda: "../envs/prokka.yaml"
 	log: LOGDIR/"prokka/{genome}.log"

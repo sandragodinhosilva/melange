@@ -1,5 +1,5 @@
 """
-Common code for unit testing of rules generated with Snakemake 5.30.2.
+Common code for unit testing of rules generated with Snakemake 7.5.0.
 """
 
 from pathlib import Path

@@ -8,7 +8,7 @@ rule kegg:
     output: OUTDIR_ANNO/"{genome}_kegg.txt"
     threads: 8
     conda: "../envs/kegg.yaml"
-    params: dbdir=DBDIR
+    params: dbdir=lambda wildcards, output: DBDIR
     log: LOGDIR/"kegg/{genome}.log"
     shell:
         """
