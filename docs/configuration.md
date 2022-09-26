@@ -19,7 +19,6 @@ Make sure that all genomes have the same extension (e.g. `.fa`, `.fna` or `.fast
     # --- Output directory
     outdir: "results" 
     outdir_anno: "results/Annotation" 
-    logdir: "logs"
 
 ## Expectation value threshold
     # --- Evalues:

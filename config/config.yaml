@@ -15,7 +15,6 @@ unassembled_reads: False
 # --- Output directory
 outdir: "results" 
 outdir_anno: "results/Annotation" 
-logdir: "logs"
 
 # --- Select databases to use
 PFAM: True

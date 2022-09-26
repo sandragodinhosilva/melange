@@ -2,7 +2,6 @@
 INPUTDIR = Path(config["inputdir"])
 OUTDIR = Path(config["outdir"])
 OUTDIR_ANNO = Path(config["outdir_anno"])
-LOGDIR = Path(config["logdir"])
 NUCLEOTIDE_EXTENSION = config["nucleotide_extension"]
 AMINOACID_EXTENSION = config["aminoacid_extension"]
 

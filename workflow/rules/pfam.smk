@@ -1,4 +1,3 @@
-LOGDIR = Path(config["logdir"])
 
 localrules:
     pfam2
@@ -10,7 +9,7 @@ rule pfam:
     output: OUTDIR_ANNO/"{genome}_pfam.txt"
     threads: 8
     conda: "../envs/hmmer.yaml",
-   	log: LOGDIR/"pfam/{genome}.log",
+   	log: "logs/pfam/{genome}.log",
     params:
         evalue=config["pfam_evalue"],
         dbdir=lambda w, input: os.path.dirname(input[1]),
@@ -24,5 +23,5 @@ rule pfam2:
     params: 
         input_dir=lambda wildcards, input : os.path.dirname(input[0])
     conda: "../envs/general.yaml"
-   	log: LOGDIR/"pfam/{genome}_pfam_parse.log"
+   	log: "logs/pfam/{genome}_pfam_parse.log"
     shell: "python3 workflow/scripts/pfam_parser.py {input} 2> {log}"	

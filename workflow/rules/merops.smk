@@ -1,5 +1,3 @@
-LOGDIR = Path(config["logdir"])
-
 localrules:
     merops2
 
@@ -10,7 +8,7 @@ rule merops:
     output: OUTDIR_ANNO/"{genome}_merops.txt"
     threads: 4
     conda: "../envs/blast.yaml"
-    log: LOGDIR/"merops_{genome}.log"
+    log: "logs/merops/{genome}.log"
     params: evalue=config["merops_evalue"],dbdir=lambda w, input: os.path.dirname(input[1]),
     shell: "blastp -query {input.inputfile} -db {params.dbdir}/merops_scan.lib -out {output} -evalue {params.evalue} -outfmt 6 -num_threads {threads} 2> {log}" 
 
@@ -21,5 +19,5 @@ rule merops2:
     threads: 4
     params: input_dir=lambda wildcards, input : os.path.dirname(input[0]),
     conda: "../envs/general.yaml",
-   	log: LOGDIR/"merops/{genome}_merops_parse.log",
+   	log: "logs/merops/{genome}_merops_parse.log",
     shell: "python3 workflow/scripts/merops_parser.py {input} 2> {log}"

@@ -1,6 +1,3 @@
-LOGDIR = Path(config["logdir"])
-
-
 rule kegg:
     """Kegg annotation with kofamscan."""
     input:
@@ -14,7 +11,7 @@ rule kegg:
     params:
         dbdir=lambda w, input: os.path.dirname(input[1]),
     log:
-        LOGDIR / "kegg/{genome}.log",
+        "logs/kegg/{genome}.log",
     shell:
         """
         workflow/databases/exec_annotation -o {output} {input.inputfile} --cpu=8 --ko-list {params.dbdir}/"ko_list" --profile {params.dbdir}/"profiles/prokaryote.hal" --tmp-dir={params.dbdir}/tmp  -f mapper 2> {log}

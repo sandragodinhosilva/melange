@@ -1,5 +1,4 @@
 NUCLEOTIDE_EXTENSION = config["nucleotide_extension"]
-LOGDIR = Path(config["logdir"])
 OUTDIR_ANNO = Path(config["outdir_anno"])
 
 rule prokka:
@@ -9,7 +8,7 @@ rule prokka:
 	params: outdir=lambda wildcards, output: OUTDIR_ANNO,
 	threads: 8
 	conda: "../envs/prokka.yaml"
-	log: LOGDIR/"prokka/{genome}.log"
+	log: "logs/prokka/{genome}.log"
 	shell:
 		"""
 		python3 scripts/contig_namer.py {input.input_genome} 

@@ -1,6 +1,3 @@
-LOGDIR = Path(config["logdir"])
-
-
 localrules:
     download_pfam,
     download_cog,
@@ -19,10 +16,8 @@ rule ensure_download:
         "workflow/databases/ko_list",
     output:
         "workflow/databases/dbs_done.txt",
-    log:
-        LOGDIR / "dbs.log",
-    shell:
-        "echo done > {output}"
+    log:"logs/dbs.log",
+    shell:"echo done > {output}"
 
 
 rule download_pfam:
@@ -30,7 +25,7 @@ rule download_pfam:
     output:
         "workflow/databases/Pfam-A.hmm",
     log:
-        str(LOGDIR / "downloads/pfam_database_download.log"),
+        "logs/downloads/pfam_database_download.log"
     shadow:
         "shallow"
     conda:
@@ -48,7 +43,7 @@ rule download_cog:
     output:
         "workflow/databases/whog",
     log:
-        str(LOGDIR / "downloads/cog_database_download.log"),
+        str("logs/downloads/cog_database_download.log"),
     shadow:
         "shallow"
     conda:
@@ -72,7 +67,7 @@ rule download_cazymes:
     output:
         "workflow/databases/EscheriaColiK12MG1655.gff",
     log:
-        str(LOGDIR / "downloads/cazymes_database_download.log"),
+        str("logs/downloads/cazymes_database_download.log"),
     shadow:
         "shallow"
     conda:
@@ -98,7 +93,7 @@ rule download_merops:
     output:
         "workflow/databases/merops_scan.lib",
     log:
-        str(LOGDIR / "downloads/merops_database_download.log"),
+        str("logs/downloads/merops_database_download.log"),
     shadow:
         "shallow"
     conda:
@@ -115,8 +110,7 @@ rule download_kegg:
     """Download files necessary for Kegg annotation."""
     output:
         "workflow/databases/ko_list",
-    log:
-        str(LOGDIR / "downloads/keggabase_download.log"),
+    log: "logs/downloads/keggabase_download.log",
     shadow:
         "shallow"
     conda:

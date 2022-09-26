@@ -1,5 +1,3 @@
-LOGDIR = Path(config["logdir"])
-
 
 rule join_all:
     """Run python script that joins all annotations."""
@@ -24,6 +22,6 @@ rule join_all:
     conda:
         "../envs/general.yaml"
     log:
-        LOGDIR / "all/all.log",
+        "logs/all/all.log",
     shell:
         "python3 workflow/scripts/orf_annotation.py {params.input_dir} {params.databases_in_use} 2> {log}"

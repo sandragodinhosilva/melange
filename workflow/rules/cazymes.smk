@@ -1,5 +1,3 @@
-LOGDIR = Path(config["logdir"])
-
 localrules:
     cazymes2
 
@@ -10,9 +8,8 @@ rule cazymes:
     output: OUTDIR/"{genome}overview.txt",
     threads: 8
     conda: "../envs/dbcan.yaml"
-    params:  outdir=OUTDIR_ANNO,
-    log: 
-       LOGDIR/"cazymes_{genome}.log",
+    log: "logs/cazymes/{genome}.log"
+    params: outdir=OUTDIR_ANNO,
 	shell: 
 		"""
         path=$(basename "{wildcards.genome}")
@@ -29,5 +26,5 @@ rule cazymes2:
     params: 
         input_dir=lambda wildcards, input : os.path.dirname(input[0])
     conda: "../envs/general.yaml"
-   	log: LOGDIR/"cazymes/{genome}_cazymes_parse.log"
+   	log: "logs/cazymes/{genome}_cazymes_parse.log"
     shell: "python3 workflow/scripts/cazymes_parser.py {input} 2> {log}"
