@@ -9,7 +9,7 @@ rule merops:
     threads: 4
     conda: "../envs/blast.yaml"
     log: LOGDIR/"merops/{genome}.log"
-    params: evalue=config["merops_evalue"], dbdir=lambda wildcards, output: DBDIR
+    params: evalue=config["merops_evalue"], dbdir="databases"
     shell: "blastp -query {input.inputfile} -db {params.dbdir}/merops_scan.lib -out {output} -evalue {params.evalue} -outfmt 6 -num_threads {threads} 2> {log}" 
 
 rule merops2:

@@ -1,5 +1,4 @@
 NUCLEOTIDE_EXTENSION = config["nucleotide_extension"]
-DBDIR = config["dbdir"]
 LOGDIR = Path(config["logdir"])
 OUTDIR_ANNO = Path(config["outdir_anno"])
 

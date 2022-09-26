@@ -1,18 +1,15 @@
-DBDIR = config["dbdir"]
-
-
 rule kegg:
     """Kegg annotation with kofamscan."""
     input:
         inputfile=OUTDIR_ANNO / "{genome}.faa",
-        db="database/dbs_done.txt",
+        db = "databases/dbs_done.txt",
     output:
         OUTDIR_ANNO / "{genome}_kegg.txt",
     threads: 8
     conda:
         "../envs/kegg.yaml"
     params:
-        dbdir=lambda wildcards, output: DBDIR,
+        dbdir="databases"
     log:
         LOGDIR / "kegg/{genome}.log",
     shell:

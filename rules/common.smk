@@ -1,20 +1,4 @@
-# --- VARIABLES
-INPUTDIR = Path(config["inputdir"])
-OUTDIR = Path(config["outdir"])
-OUTDIR_ANNO = Path(config["outdir_anno"])
-LOGDIR = Path(config["logdir"])
-DBDIR = Path(config["dbdir"])
-NUCLEOTIDE_EXTENSION = config["nucleotide_extension"]
-AMINOACID_EXTENSION = config["aminoacid_extension"]
 
-
-# --- GET GENOMES
-if (
-    config["aminoacid_file"] == False
-):  # files need to go through Prokka first (gene calling)
-    GENOMES = set(glob_wildcards(INPUTDIR / NUCLEOTIDE_EXTENSION).genome)
-else:  # files after gene calling (amino acid files)
-    GENOMES = set(glob_wildcards(INPUTDIR / AMINOACID_EXTENSION).genome)
 
 
 myoutput = [OUTDIR / "Annotation_results/Orfs_per_genome/{genome}_all_features.csv"]

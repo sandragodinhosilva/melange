@@ -2,12 +2,11 @@
 
 # --- Input
 inputdir: "example_data"
-dbdir: "databases" 
 nucleotide_extension: "{genome}.fa" #change according to genome file extension
 aminoacid_extension: "{genome}.faa" #change according to genome file extension
 
 # Input files are nucleotide or aminoacid files?
-aminoacid_file: False #if True - gene calling (Prokka) won't be run
+aminoacid_file: True #if True - gene calling (Prokka) won't be run
 
 # Input files - other characteristics - to implement
 metagenome: False  #different setting in prokka?

@@ -5,10 +5,10 @@ rule cazymes:
     """CAZYmes annotation."""
     input: 
         genome_faa=OUTDIR/"{genome}.faa", db ="databases/dbs_done.txt"
-    output: OUTDIR/"{genome}overview.txt"
+    output: OUTDIR/"{genome}overview.txt",
     threads: 8
     conda: "../envs/dbcan.yaml"
-    params:  dbdir=lambda wildcards, output: DBDIR, outdir=OUTDIR_ANNO
+    params:  dbdir="databases", outdir=OUTDIR_ANNO,
     log: LOGDIR/"cazymes/{genome}.log"
 	shell: 
 		"""
