@@ -48,6 +48,8 @@ import numpy as np
 script_location = sys.path[0]
 # script_location = "/home/sandra/melange/scripts" #comment when not debugging
 base_dir = os.path.dirname(script_location)
+base_base_dir = os.path.dirname(base_dir)
+
 
 database_path = os.path.join(base_dir, "databases")
 os.chdir(database_path)
@@ -107,35 +109,37 @@ general_map = CreateGeneralMap()
 ###############################################################################
 print("Starting... ")
 
-annotation_dir = sys.argv[1]
-# annotation_dir = os.path.join(base_dir, "results/Annotation") #comment when not debugging
-os.chdir(annotation_dir)
-
-print("Input directory: " + annotation_dir)
-
 databases_in_use = sys.argv[2:]
 # databases_in_use = ["kegg","pfam","cog", "cazymes", "merops" ] #comment when not debugging
-
-
 print("Databases in use: " + str(databases_in_use))
+
+
+annotation_dir = sys.argv[1]
+annotation_dir = os.path.join(base_base_dir, annotation_dir)
+print("Input directory: " + annotation_dir)
+# annotation_dir = os.path.join(base_dir, "results/Annotation") #comment when not debugging
 
 ###############################################################################
 # Step 2: Create output directory and list files
-
-output_dir = os.path.join(base_dir, "results/Annotation_results")
+output_dir = os.path.join(base_base_dir, "results/Annotation_results")
 output_dir_genome = os.path.join(output_dir, "Orfs_per_genome")
+
 
 try:
     os.mkdir(output_dir)
 except:
     pass
-print("Output folder: " + output_dir)
+
 
 try:
     os.mkdir(output_dir_genome)
 except:
     pass
-# print("Individual genome files: " + output_dir_genome)
+
+
+print("Output folder: " + output_dir)
+os.chdir(output_dir)
+
 
 ko_pattern = "_kegg.txt"
 pfam_pattern = "_pfam_out.txt"

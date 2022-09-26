@@ -10,8 +10,9 @@ rule cazymes:
     output: OUTDIR/"{genome}overview.txt",
     threads: 8
     conda: "../envs/dbcan.yaml"
-    params:  outdir=OUTDIR_ANNO, dbdir=lambda w, input: os.path.splitext(input[1])[0], 
-    log: LOGDIR/"cazymes_{genome}.log"
+    params:  outdir=OUTDIR_ANNO, dbdir ="workflow/databases",
+    log: 
+       LOGDIR/"cazymes_{genome}.log",
 	shell: 
 		"""
         path=$(basename "{wildcards.genome}")
@@ -29,4 +30,4 @@ rule cazymes2:
         input_dir=lambda wildcards, input : os.path.dirname(input[0])
     conda: "../envs/general.yaml"
    	log: LOGDIR/"cazymes/{genome}_cazymes_parse.log"
-    shell: "python3 scripts/cazymes_parser.py {input} 2> {log}"
+    shell: "python3 workflow/scripts/cazymes_parser.py {input} 2> {log}"

@@ -2,7 +2,6 @@
 .vscode
 
 .snakemake
-FAW_results/
 Hotpep/
 output/
 prokka/
@@ -34,6 +33,20 @@ databases/*
 !databases/idmapping_KO.tab.gz
 !databases/ko_mappings.tsv
 !databases/Feature_selection.csv
+
+workflow/databases/*
+!workflow/databases/lib/*
+!workflow/databases/config-template.yml
+!workflow/databases/exec_annotation
+!workflow/databases/merops_ids.csv
+!workflow/databases/Pfam-A.clans.tsv
+!workflow/databases/cdd2cog.pl
+!workflow/databases/cdd2cog2.pl
+!workflow/databases/cog_mappings.tsv
+!workflow/databases/pdb_pfam_mapping.txt
+!workflow/databases/idmapping_KO.tab.gz
+!workflow/databases/ko_mappings.tsv
+!workflow/databases/Feature_selection.csv
 
 #Files
 example_data/Aq78_pacbio.fa

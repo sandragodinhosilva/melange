@@ -12,14 +12,13 @@ localrules:
 rule ensure_download:
     """Verify if all databases were downloaded."""
     input:
-        "databases/Pfam-A.hmm",
-        "databases/cdd2cog2.pl",
-        "databases/whog",
-        "databases/EscheriaColiK12MG1655.gff",
-        "databases/merops_scan.lib",
-        "databases/ko_list",
+        "workflow/databases/Pfam-A.hmm",
+        "workflow/databases/whog",
+        "workflow/databases/EscheriaColiK12MG1655.gff",
+        "workflow/databases/merops_scan.lib",
+        "workflow/databases/ko_list",
     output:
-        "databases/dbs_done.txt",
+        "workflow/databases/dbs_done.txt",
     log:
         LOGDIR / "dbs.log",
     shell:
@@ -29,18 +28,16 @@ rule ensure_download:
 rule download_pfam:
     """Download latest Pfam-A.hmm."""
     output:
-        "databases/Pfam-A.hmm",
+        "workflow/databases/Pfam-A.hmm",
     log:
         str(LOGDIR / "downloads/pfam_database_download.log"),
     shadow:
         "shallow"
     conda:
         "../envs/hmmer.yaml"
-    params:
-        db=lambda w, input: os.path.splitext(input[0])[0],
     shell:
         """
-        cd {params.db}
+        cd workflow/databases
         wget -nc ftp://ftp.ebi.ac.uk/pub/databases/Pfam/current_release/Pfam-A.hmm.gz
         gunzip Pfam-A.hmm.gz
         """
@@ -49,7 +46,7 @@ rule download_pfam:
 rule download_cog:
     """Download necessary COG files."""
     output:
-        "databases/whog",
+        "workflow/databases/whog",
     log:
         str(LOGDIR / "downloads/cog_database_download.log"),
     shadow:
@@ -57,7 +54,7 @@ rule download_cog:
     conda:
         "../envs/hmmer.yaml"
     params:
-        dbdir=lambda wildcards, output: OUTDIR_ANNO,
+        dbdir=lambda w, input: os.path.splitext(output[0])[0],
     shell:
         """
         cd {params.dbdir}
@@ -73,7 +70,7 @@ rule download_cog:
 rule download_cazymes:
     """Download necessary CAZyme files."""
     output:
-        "databases/EscheriaColiK12MG1655.gff",
+        "workflow/databases/EscheriaColiK12MG1655.gff",
     log:
         str(LOGDIR / "downloads/cazymes_database_download.log"),
     shadow:
@@ -82,7 +79,7 @@ rule download_cazymes:
         "../envs/dbcan.yaml"
     shell:
         """
-        cd databases
+        cd workflow/databases
         rm dbCAN.txt.h3i && rm tf-1.hmm.h3i
         wget -nc http://bcb.unl.edu/dbCAN2/download/Databases/V11/CAZyDB.08062022.fa && diamond makedb --in CAZyDB.08062022.fa -d CAZy \
         && wget -nc https://bcb.unl.edu/dbCAN2/download/Databases/V11/dbCAN-HMMdb-V11.txt && mv dbCAN-HMMdb-V11.txt dbCAN.txt && hmmpress dbCAN.txt \
@@ -99,7 +96,7 @@ rule download_cazymes:
 rule download_merops:
     """Download latest Merops library."""
     output:
-        "databases/merops_scan.lib",
+        "workflow/databases/merops_scan.lib",
     log:
         str(LOGDIR / "downloads/merops_database_download.log"),
     shadow:
@@ -108,7 +105,7 @@ rule download_merops:
         "../envs/blast.yaml"
     shell:
         """
-        cd databases
+        cd workflow/databases
         wget -nc ftp://ftp.ebi.ac.uk/pub/databases/merops/current_release/merops_scan.lib
         makeblastdb -in merops_scan.lib -dbtype prot
         """
@@ -117,7 +114,7 @@ rule download_merops:
 rule download_kegg:
     """Download files necessary for Kegg annotation."""
     output:
-        "databases/ko_list",
+        "workflow/databases/ko_list",
     log:
         str(LOGDIR / "downloads/keggabase_download.log"),
     shadow:
@@ -126,7 +123,7 @@ rule download_kegg:
         "../envs/hmmer.yaml"
     shell:
         """
-        cd databases
+        cd workflow/databases
         wget -nc ftp://ftp.genome.jp/pub/db/kofam/ko_list.gz        # download the ko list 
         wget -nc ftp://ftp.genome.jp/pub/db/kofam/profiles.tar.gz         # download the hmm profiles
         gunzip ko_list.gz
