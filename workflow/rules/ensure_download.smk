@@ -49,11 +49,9 @@ rule download_cog:
         "shallow"
     conda:
         "../envs/hmmer.yaml"
-    params:
-        dbdir=lambda w, input: os.path.splitext(output[0])[0],
     shell:
         """
-        cd {params.dbdir}
+        cd workflow/databases
         wget -nc ftp://ftp.ncbi.nlm.nih.gov/pub/mmdb/cdd/cddid.tbl.gz
         gunzip cddid.tbl.gz
         wget -nc ftp://ftp.ncbi.nlm.nih.gov/pub/mmdb/cdd/little_endian/Cog_LE.tar.gz
