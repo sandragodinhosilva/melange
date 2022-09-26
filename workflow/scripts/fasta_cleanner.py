@@ -47,5 +47,4 @@ for filename in entries:
             fileinput.close()
 
 print("Removed '-' from the beginning of all lines that started with it.")
-
 ###############################################################################

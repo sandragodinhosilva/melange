@@ -20,7 +20,7 @@ report: "report/workflow.rst"
 container: "docker://continuumio/miniconda3:4.4.10"
 
 
-configfile: "config.yaml"
+configfile: "config/config.yaml"
 
 
 ##### load rules #####

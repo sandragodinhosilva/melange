@@ -82,5 +82,4 @@ with fileinput.FileInput(in_file, inplace=True) as file:
                 i += 1
         sys.stdout.write(line)
 fileinput.close()
-
 ###############################################################################

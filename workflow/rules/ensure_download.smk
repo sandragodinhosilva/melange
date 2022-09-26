@@ -1,5 +1,6 @@
 LOGDIR = Path(config["logdir"])
 
+
 localrules:
     download_pfam,
     download_cog,

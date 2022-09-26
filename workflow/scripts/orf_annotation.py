@@ -562,6 +562,5 @@ if "cazymes" in databases_in_use:
     df_counter_cazymes_abund.to_csv(
         os.path.join(output_dir, "Cazymes_abund.csv"), index=False
     )
-
 ###############################################################################
 # END

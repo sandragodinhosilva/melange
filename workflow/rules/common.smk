@@ -17,11 +17,11 @@ else:  # files after gene calling (amino acid files)
 def setup(genome):
     l = [expand(myoutput, genome=GENOMES), OUTDIR / "Annotation_results/Statistics.csv"]
     return l
-    
+
+
 myoutput = [OUTDIR / "Annotation_results/Orfs_per_genome/{genome}_all_features.csv"]
 extensions = []
 databases_in_use = []
-
 
 
 # --- SELECTION OF DATABASES TO USE
