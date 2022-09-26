@@ -3,15 +3,6 @@ channels:
   - bioconda
 
 dependencies:
-  - pandas=1.2
-  - numpy=1.19.2
-
-
-
-# import os
-# import pandas as pd
-# import re
-# from collections import Counter
-# import numpy as np
-# import argparse
-# import sys
+  - python
+  - pandas
+  - numpy

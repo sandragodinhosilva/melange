@@ -2,12 +2,11 @@ localrules:
     cog2
 
 rule cog:
-    """
-    Cog annotation. Default e-value: 1e-5
-    """
+    """Cog annotation. 
+    Default e-value: 1e-5"""
     input: 
-        genome_faa = OUTDIR_ANNO/"{genome}.faa", db ="databases/dbs_done.txt"
-    output: OUTDIR_ANNO/"{genome}_cog.txt"
+        genome_faa = OUTDIR_ANNO/"{genome}.faa", db ="databases/dbs_done.txt",
+    output: OUTDIR_ANNO/"{genome}_cog.txt",
     threads: 8
     conda: "../envs/blast.yaml"
     log: LOGDIR/"cog/{genome}.log"
@@ -15,8 +14,9 @@ rule cog:
     shell: "rpsblast -query {input.genome_faa} -db  {params.dbdir}/Cog -out {output} -outfmt 6 -evalue {params.evalue} 2> {log}"
 
 rule cog2:
+    """Step2: Parse rplsblast files.""" 
     input: 
-        inputfile=OUTDIR_ANNO/"{genome}_cog.txt"
+        inputfile=OUTDIR_ANNO/"{genome}_cog.txt",
     output: OUTDIR_ANNO/"{genome}protein-id_cog.txt"
     threads: 8
     conda: "../envs/perl.yaml"

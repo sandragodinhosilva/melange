@@ -3,31 +3,38 @@ localrules:
     download_cog,
     download_cazymes,
     download_merops,
-    download_kegg
+    download_kegg,
+
 
 rule ensure_download:
-    input: 
-        DBDIR/"Pfam-A.hmm",
-        DBDIR/"cdd2cog2.pl",
-        DBDIR/"whog",
-        DBDIR/"EscheriaColiK12MG1655.gff",
-        DBDIR/"merops_scan.lib",
-        DBDIR/"ko_list"
-    output: DBDIR/"dbs_done.txt"
-    log: LOGDIR/"dbs.log"
-    shell: "echo done > {output}"
+    """Verify if all databases were downloaded."""
+    input:
+        DBDIR / "Pfam-A.hmm",
+        DBDIR / "cdd2cog2.pl",
+        DBDIR / "whog",
+        DBDIR / "EscheriaColiK12MG1655.gff",
+        DBDIR / "merops_scan.lib",
+        DBDIR / "ko_list",
+    output:
+        DBDIR / "dbs_done.txt",
+    log:
+        LOGDIR / "dbs.log",
+    shell:
+        "echo done > {output}"
 
 
 rule download_pfam:
-    """Download latest Pfam-A.hmm"""
+    """Download latest Pfam-A.hmm."""
     output:
-        DBDIR/"Pfam-A.hmm"
+        DBDIR / "Pfam-A.hmm",
     log:
-        str(LOGDIR/"downloads/pfam_database_download.log")
+        str(LOGDIR / "downloads/pfam_database_download.log"),
     shadow:
         "shallow"
-    conda: "../envs/hmmer.yaml"
-    params: db = DBDIR
+    conda:
+        "../envs/hmmer.yaml"
+    params:
+        db=DBDIR,
     shell:
         """
         cd {params.db}
@@ -37,15 +44,17 @@ rule download_pfam:
 
 
 rule download_cog:
-    """Download necessary COG files"""
+    """Download necessary COG files."""
     output:
-        DBDIR/"whog"
+        DBDIR / "whog",
     log:
-        str(LOGDIR/"downloads/cog_database_download.log")
+        str(LOGDIR / "downloads/cog_database_download.log"),
     shadow:
         "shallow"
-    params: db = DBDIR
-    conda: "../envs/hmmer.yaml"
+    params:
+        db=DBDIR,
+    conda:
+        "../envs/hmmer.yaml"
     shell:
         """
         cd {params.db}
@@ -57,16 +66,19 @@ rule download_cog:
         wget -nc ftp://ftp.ncbi.nlm.nih.gov/pub/COG/COG/whog
         """
 
+
 rule download_cazymes:
-    """Download necessary CAZyme files"""
+    """Download necessary CAZyme files."""
     output:
-        DBDIR/"EscheriaColiK12MG1655.gff"
+        DBDIR / "EscheriaColiK12MG1655.gff",
     log:
-        str(LOGDIR/"downloads/cazymes_database_download.log")
+        str(LOGDIR / "downloads/cazymes_database_download.log"),
     shadow:
         "shallow"
-    params: db = DBDIR
-    conda: "../envs/dbcan.yaml"
+    params:
+        db=DBDIR,
+    conda:
+        "../envs/dbcan.yaml"
     shell:
         """
         cd {params.db}
@@ -80,18 +92,21 @@ rule download_cazymes:
         && wget -nc http://bcb.unl.edu/dbCAN2/download/Samples/EscheriaColiK12MG1655.fna \
         && wget -nc http://bcb.unl.edu/dbCAN2/download/Samples/EscheriaColiK12MG1655.faa \
         && wget -nc http://bcb.unl.edu/dbCAN2/download/Samples/EscheriaColiK12MG1655.gff
-    """
+        """
+
 
 rule download_merops:
-    """Download latest Merops library"""
+    """Download latest Merops library."""
     output:
-        DBDIR/"merops_scan.lib"
+        DBDIR / "merops_scan.lib",
     log:
-        str(LOGDIR/"downloads/merops_database_download.log")
+        str(LOGDIR / "downloads/merops_database_download.log"),
     shadow:
         "shallow"
-    conda: "../envs/blast.yaml"
-    params: db = DBDIR
+    conda:
+        "../envs/blast.yaml"
+    params:
+        db=DBDIR,
     shell:
         """
         cd {params.db}
@@ -99,21 +114,24 @@ rule download_merops:
         makeblastdb -in merops_scan.lib -dbtype prot
         """
 
+
 rule download_kegg:
-    """Download files necessary for kegg"""
+    """Download files necessary for Kegg annotation."""
     output:
-        DBDIR/"ko_list"
+        DBDIR / "ko_list",
     log:
-        str(LOGDIR/"downloads/keggabase_download.log")
+        str(LOGDIR / "downloads/keggabase_download.log"),
     shadow:
         "shallow"
-    conda: "../envs/hmmer.yaml"
-    params: db = DBDIR
+    conda:
+        "../envs/hmmer.yaml"
+    params:
+        db=DBDIR,
     shell:
         """
         cd {params.db}
-        wget -nc ftp://ftp.genome.jp/pub/db/kofam/ko_list.gz		# download the ko list 
-        wget -nc ftp://ftp.genome.jp/pub/db/kofam/profiles.tar.gz 		# download the hmm profiles
+        wget -nc ftp://ftp.genome.jp/pub/db/kofam/ko_list.gz        # download the ko list 
+        wget -nc ftp://ftp.genome.jp/pub/db/kofam/profiles.tar.gz         # download the hmm profiles
         gunzip ko_list.gz
         tar xf profiles.tar.gz
         """

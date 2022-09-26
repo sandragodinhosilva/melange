@@ -2,9 +2,7 @@ localrules:
     cazymes2
 
 rule cazymes:
-    """
-    CAZYmes annotation.
-    """
+    """CAZYmes annotation."""
     input: 
         genome_faa=OUTDIR/"{genome}.faa", db ="databases/dbs_done.txt"
     output: OUTDIR/"{genome}overview.txt"
@@ -21,7 +19,7 @@ rule cazymes:
 		"""
 
 rule cazymes2:
-    """ Parse  files """
+    """Step2: Parse CAZyme files."""
     input: OUTDIR_ANNO/"{genome}overview.txt"
     output: OUTDIR_ANNO/"{genome}_cazymes_3tools.txt"
     threads: 4

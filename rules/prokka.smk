@@ -4,6 +4,7 @@ LOGDIR = Path(config["logdir"])
 OUTDIR_ANNO = Path(config["outdir_anno"])
 
 rule prokka:
+    """Run Prokka."""
     input: input_genome = INPUTDIR/NUCLEOTIDE_EXTENSION, db ="databases/dbs_done.txt"
 	output: 
 		faa=OUTDIR_ANNO/"{genome}.faa", 

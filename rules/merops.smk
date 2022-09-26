@@ -2,9 +2,8 @@ localrules:
     merops2
 
 rule merops:
-    """
-    Merops annotation. Default e-value: 1e-5
-    """
+    """Merops annotation. 
+    Default e-value: 1e-5"""
     input: inputfile=OUTDIR_ANNO/"{genome}.faa", db ="databases/dbs_done.txt"
     output: OUTDIR_ANNO/"{genome}_merops.txt"
     threads: 4
@@ -14,7 +13,7 @@ rule merops:
     shell: "blastp -query {input.inputfile} -db {params.dbdir}/merops_scan.lib -out {output} -evalue {params.evalue} -outfmt 6 -num_threads {threads} 2> {log}" 
 
 rule merops2:
-    """ Parse blastp files """
+    """Step2: Parse blastp files."""
     input: OUTDIR_ANNO/"{genome}_merops.txt"
     output: OUTDIR_ANNO/"{genome}_merops_out.txt"
     threads: 4
