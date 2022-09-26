@@ -1,3 +1,5 @@
+LOGDIR = Path(config["logdir"])
+
 localrules:
     download_pfam,
     download_cog,
@@ -34,7 +36,7 @@ rule download_pfam:
     conda:
         "../envs/hmmer.yaml"
     params:
-        db="databases"
+        db=lambda w, input: os.path.splitext(input[0])[0],
     shell:
         """
         cd {params.db}
@@ -53,9 +55,11 @@ rule download_cog:
         "shallow"
     conda:
         "../envs/hmmer.yaml"
+    params:
+        dbdir=lambda wildcards, output: OUTDIR_ANNO,
     shell:
         """
-        cd databases
+        cd {params.dbdir}
         wget -nc ftp://ftp.ncbi.nlm.nih.gov/pub/mmdb/cdd/cddid.tbl.gz
         gunzip cddid.tbl.gz
         wget -nc ftp://ftp.ncbi.nlm.nih.gov/pub/mmdb/cdd/little_endian/Cog_LE.tar.gz

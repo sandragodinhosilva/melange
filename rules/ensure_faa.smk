@@ -1,3 +1,5 @@
+LOGDIR = Path(config["logdir"])
+
 rule ensure_faa:
     """Make sure that fasta aminoacid files are in the right folder."""
     input: input_to_copy=INPUTDIR/AMINOACID_EXTENSION, db ="databases/dbs_done.txt",

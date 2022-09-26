@@ -1,3 +1,5 @@
+LOGDIR = Path(config["logdir"])
+
 localrules:
     pfam2
 
@@ -9,7 +11,7 @@ rule pfam:
     threads: 8
     conda: "../envs/hmmer.yaml"
    	log: LOGDIR/"pfam/{genome}.log"
-    params: evalue=config["pfam_evalue"], dbdir="databases"
+    params: evalue=config["pfam_evalue"], dbdir=lambda w, input: os.path.splitext(input[1])[0],
     shell: "hmmsearch --cpu {threads} --tblout {output} -E {params.evalue} {params.dbdir}/Pfam-A.hmm {input.genome_faa} 2> {log}"
 
 rule pfam2:

@@ -1,3 +1,5 @@
+LOGDIR = Path(config["logdir"])
+
 localrules:
     cog2
 
@@ -10,7 +12,7 @@ rule cog:
     threads: 8
     conda: "../envs/blast.yaml"
     log: LOGDIR/"cog/{genome}.log"
-    params: evalue=config["cog_evalue"], dbdir="databases"
+    params: evalue=config["cog_evalue"], dbdir=lambda w, input: os.path.splitext(input[1])[0],
     shell: "rpsblast -query {input.genome_faa} -db  {params.dbdir}/Cog -out {output} -outfmt 6 -evalue {params.evalue} 2> {log}"
 
 rule cog2:

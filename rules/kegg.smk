@@ -1,15 +1,18 @@
+LOGDIR = Path(config["logdir"])
+
+
 rule kegg:
     """Kegg annotation with kofamscan."""
     input:
         inputfile=OUTDIR_ANNO / "{genome}.faa",
-        db = "databases/dbs_done.txt",
+        db="databases/dbs_done.txt",
     output:
         OUTDIR_ANNO / "{genome}_kegg.txt",
     threads: 8
     conda:
         "../envs/kegg.yaml"
     params:
-        dbdir="databases"
+        dbdir=lambda w, input: os.path.splitext(input[1])[0],
     log:
         LOGDIR / "kegg/{genome}.log",
     shell:

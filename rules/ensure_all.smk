@@ -1,3 +1,6 @@
+LOGDIR = Path(config["logdir"])
+
+
 rule ensure_all:
     """Verify that all annotations were performed."""
     input:
