@@ -16,7 +16,8 @@ rule ensure_download:
         "workflow/databases/ko_list",
     output:
         "workflow/databases/dbs_done.txt",
-    log:"logs/dbs.log",
+    log:
+       "logs/dbs.log",
     shell:"echo done > {output}"
 
 
@@ -43,7 +44,7 @@ rule download_cog:
     output:
         "workflow/databases/whog",
     log:
-        str("logs/downloads/cog_database_download.log"),
+       "logs/downloads/cog_database_download.log",
     shadow:
         "shallow"
     conda:
@@ -67,7 +68,7 @@ rule download_cazymes:
     output:
         "workflow/databases/EscheriaColiK12MG1655.gff",
     log:
-        str("logs/downloads/cazymes_database_download.log"),
+        "logs/downloads/cazymes_database_download.log",
     shadow:
         "shallow"
     conda:
@@ -93,7 +94,7 @@ rule download_merops:
     output:
         "workflow/databases/merops_scan.lib",
     log:
-        str("logs/downloads/merops_database_download.log"),
+        "logs/downloads/merops_database_download.log",
     shadow:
         "shallow"
     conda:
@@ -110,7 +111,8 @@ rule download_kegg:
     """Download files necessary for Kegg annotation."""
     output:
         "workflow/databases/ko_list",
-    log: "logs/downloads/keggabase_download.log",
+    log: 
+        "logs/downloads/keggabase_download.log",
     shadow:
         "shallow"
     conda:
