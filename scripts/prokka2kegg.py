@@ -31,13 +31,20 @@ __author__ = "Heyu Lin"
 __contact__ = "heyu.lin(AT)student.unimelb.edu.au"
 
 parser = argparse.ArgumentParser()
-parser.add_argument('-i', '--input', metavar='input_gbk', dest='i',
-                    type=str, required=True)
-parser.add_argument('-o', '--output', metavar='output', dest='o',
-                    type=str, required=True)
-parser.add_argument('-d', '--data', metavar='idmapping.dat.gz',
-                    dest='d', type=str,
-                    help='UniProtKB cross-references database')
+parser.add_argument(
+    "-i", "--input", metavar="input_gbk", dest="i", type=str, required=True
+)
+parser.add_argument(
+    "-o", "--output", metavar="output", dest="o", type=str, required=True
+)
+parser.add_argument(
+    "-d",
+    "--data",
+    metavar="idmapping.dat.gz",
+    dest="d",
+    type=str,
+    help="UniProtKB cross-references database",
+)
 args = parser.parse_args()
 
 
@@ -52,18 +59,23 @@ def gbk_parser(gbk):
         pattern_locus = re.compile('"(.*)"')
         pattern_uniprotkb = re.compile('UniProtKB:(.*)"')
         for line in input.readlines():
-            if line.startswith(' ' * 5 + 'CDS'):
+            if line.startswith(" " * 5 + "CDS"):
                 cds = 1  # This is a CDS
-            if line.startswith(' ' * 21 + '/locus_tag=') and cds == 1:
+            if line.startswith(" " * 21 + "/locus_tag=") and cds == 1:
                 locus_tag = pattern_locus.findall(line)[0]
                 locus = 1  # locus_tag was read
-            if line.startswith(' ' * 21 + '/inference="similar to AA sequence:UniProtKB') and locus == 1:
+            if (
+                line.startswith(
+                    " " * 21 + '/inference="similar to AA sequence:UniProtKB'
+                )
+                and locus == 1
+            ):
                 uniprotkb = pattern_uniprotkb.findall(line)[0]
                 arr.append([locus_tag, uniprotkb])
                 cds = 0
                 locus = 0
-            if line.startswith(' ' * 21 + '/codon_start') and locus == 1:
-                arr.append([locus_tag, ''])
+            if line.startswith(" " * 21 + "/codon_start") and locus == 1:
+                arr.append([locus_tag, ""])
                 cds = 0
                 locus = 0
     return arr
@@ -73,7 +85,7 @@ def dict_initialize(gzfile):
     dict = {}
     with gzip.open(gzfile) as fi:
         for line in fi.readlines():
-            fields = line.decode('utf-8').strip().split('\t')
+            fields = line.decode("utf-8").strip().split("\t")
             if fields[0] not in dict:
                 dict[fields[0]] = [fields[1]]
             else:
@@ -82,7 +94,7 @@ def dict_initialize(gzfile):
 
 
 def dict_load(json_file):
-    with open(json_file, 'r') as f:
+    with open(json_file, "r") as f:
         r = json.load(f)
     return r
 
@@ -102,14 +114,14 @@ def retrieve_KO(arr, dict):
     new_arr = []
     id_no_match = []  # record UniProtKB IDs have no corresponding KO numbers
     for cds in arr:
-        if cds[1] == '':
-            cds.append('')
+        if cds[1] == "":
+            cds.append("")
             new_arr.append(cds)
         else:
             ko = dict.get(cds[1], None)
             if ko is None:
                 id_no_match.append(cds[1])
-                cds.append('')
+                cds.append("")
                 new_arr.append(cds)
             else:
                 cds.append(ko)
@@ -124,7 +136,7 @@ def retrieve_KO(arr, dict):
 
 
 def write_json(content, outfile):
-    with open(outfile, 'w') as fo:
+    with open(outfile, "w") as fo:
         json.dump(content, fo)
 
 
@@ -136,7 +148,7 @@ def output(arr, outfile):
         ["AMLFNMKI_00027", "", ""]
     ]
     """
-    with open(outfile, 'w') as fo:
+    with open(outfile, "w") as fo:
         for cds in arr:
             if cds[2] != "":
                 for ko in cds[2]:
@@ -146,15 +158,15 @@ def output(arr, outfile):
 
 
 def main():
-    if os.path.exists(args.d + '.json'):
-        db_dict = dict_load(args.d + '.json')
+    if os.path.exists(args.d + ".json"):
+        db_dict = dict_load(args.d + ".json")
     else:
         db_dict = dict_initialize(args.d)
-        write_json(db_dict, args.d + '.json')
+        write_json(db_dict, args.d + ".json")
     mapping_array = gbk_parser(args.i)
     final_arr = retrieve_KO(mapping_array, db_dict)
     output(final_arr, args.o)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
