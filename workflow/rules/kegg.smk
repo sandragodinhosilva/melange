@@ -12,7 +12,7 @@ rule kegg:
     conda:
         "../envs/kegg.yaml"
     params:
-        dbdir="workflow/databases"
+        dbdir=lambda w, input: os.path.dirname(input[1]),
     log:
         LOGDIR / "kegg/{genome}.log",
     shell:

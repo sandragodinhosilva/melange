@@ -11,7 +11,7 @@ rule merops:
     threads: 4
     conda: "../envs/blast.yaml"
     log: LOGDIR/"merops_{genome}.log"
-    params: evalue=config["merops_evalue"],dbdir ="workflow/databases",
+    params: evalue=config["merops_evalue"],dbdir=lambda w, input: os.path.dirname(input[1]),
     shell: "blastp -query {input.inputfile} -db {params.dbdir}/merops_scan.lib -out {output} -evalue {params.evalue} -outfmt 6 -num_threads {threads} 2> {log}" 
 
 rule merops2:

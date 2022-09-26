@@ -6,18 +6,18 @@ localrules:
 rule cazymes:
     """CAZYmes annotation."""
     input: 
-        genome_faa=OUTDIR/"{genome}.faa", db ="databases/dbs_done.txt"
+        genome_faa=OUTDIR/"{genome}.faa", db ="workflow/databases/dbs_done.txt"
     output: OUTDIR/"{genome}overview.txt",
     threads: 8
     conda: "../envs/dbcan.yaml"
-    params:  outdir=OUTDIR_ANNO, dbdir ="workflow/databases",
+    params:  outdir=OUTDIR_ANNO,
     log: 
        LOGDIR/"cazymes_{genome}.log",
 	shell: 
 		"""
         path=$(basename "{wildcards.genome}")
         echo $path
-		run_dbcan --db_dir {params.dbdir} --out_pre $path {input.genome_faa} protein 2> {log} 
+		run_dbcan --db_dir workflow/databases --out_pre $path {input.genome_faa} protein 2> {log} 
 		mv output/* {params.outdir}
 		"""
 
