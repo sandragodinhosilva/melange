@@ -39,6 +39,8 @@ Configure the workflow according to your needs by editing the file
 
 Here you can select which **databases** (Pfam, COG, Kegg, CAZymes and/or Merops) are to be used.
 
+You can also define if input files are either fasta nucleotide files (e.g. fna, fa) or fasta aminoacid files.
+
 ### Step 3: Execute workflow
 Execute the workflow locally with `N` cores:
 
