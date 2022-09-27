@@ -41,6 +41,8 @@ Here you can select which **databases** (Pfam, COG, Kegg, CAZymes and/or Merops)
 
 You can also define if input files are either fasta nucleotide files (e.g. fna, fa) or fasta aminoacid files.
 
+More information about configuration settings can be found at: [config/README.md](https://github.com/sandragodinhosilva/melange/tree/master/config)
+
 ### Step 3: Execute workflow
 Execute the workflow locally with `N` cores:
 
