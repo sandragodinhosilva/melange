@@ -3,7 +3,7 @@
 
 [![Snakemake](https://img.shields.io/badge/snakemake-≥7.5.0-brightgreen.svg)](https://snakemake.bitbucket.io)
 [![python](https://img.shields.io/badge/python-≥3.8-brightgreen.svg)](https://www.python.org/)
-[![Actions Status](https://github.com/sandragodinhosilva/melange/workflows/tests/badge.svg)](https://github.com/sandragodinhosilva/melange/actions)
+[![Actions Status](https://github.com/sandragodinhosilva/melange/workflows/tests.yml/badge.svg)](https://github.com/sandragodinhosilva/melange/actions)
 
 
 
