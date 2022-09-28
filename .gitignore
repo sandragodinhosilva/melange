@@ -18,6 +18,8 @@ example_data_results
 old_data/
 tmp/*
 dag.pdf
+example_data/SRR9067257*
+
 
 #Ignore databases folder, except some specific files:
 databases/*

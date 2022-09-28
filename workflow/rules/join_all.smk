@@ -1,4 +1,3 @@
-
 rule join_all:
     """Run python script that joins all annotations."""
     input:
@@ -6,9 +5,7 @@ rule join_all:
     output:
         expand(
             OUTDIR / "Annotation_results/Orfs_per_genome/{genome}_all_features.csv",
-            zip,
-            genome=GENOMES,
-        ),
+            zip, genome=GENOMES ),
         OUTDIR / "Annotation_results/Pfam_PA.csv",
         report(
             OUTDIR / "Annotation_results/Statistics.csv",

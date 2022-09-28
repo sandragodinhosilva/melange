@@ -11,6 +11,6 @@ rule prokka:
 	log: "logs/prokka/{genome}.log"
 	shell:
 		"""
-		python3 scripts/contig_namer.py {input.input_genome} 
+		python3 workflow/scripts/contig_namer.py {input.input_genome} 
 		prokka --cpus {threads} --outdir {params.outdir} --force --locustag PROKKA --prefix {wildcards.genome} {input.input_genome} 
 		"""

@@ -32,7 +32,7 @@ rule all:
     input:
         unpack(setup),
 
-
+include: "rules/fastq_to_fasta.smk"
 include: "rules/ensure_download.smk"
 include: "rules/ensure_faa.smk"
 include: "rules/prokka.smk"

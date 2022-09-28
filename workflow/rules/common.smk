@@ -4,13 +4,20 @@ OUTDIR = Path(config["outdir"])
 OUTDIR_ANNO = Path(config["outdir_anno"])
 NUCLEOTIDE_EXTENSION = config["nucleotide_extension"]
 AMINOACID_EXTENSION = config["aminoacid_extension"]
+FASTQ_EXTENSION = config["fastq_extension"]
 
 if (
-    config["aminoacid_file"] == False
+    config["file_type"] == "aminoacid"
 ):  # files need to go through Prokka first (gene calling)
     GENOMES = set(glob_wildcards(INPUTDIR / NUCLEOTIDE_EXTENSION).genome)
-else:  # files after gene calling (amino acid files)
+elif(
+    config["file_type"] == "nucleotide"
+):  # files after gene calling (amino acid files)
     GENOMES = set(glob_wildcards(INPUTDIR / AMINOACID_EXTENSION).genome)
+elif(
+    config["file_type"] == "fastq"
+):  # files need to go through Prokka first (gene calling)
+    GENOMES = set(glob_wildcards(INPUTDIR / FASTQ_EXTENSION).genome)
 
 
 def setup(genome):
