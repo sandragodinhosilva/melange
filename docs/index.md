@@ -23,13 +23,13 @@ Melange is implemented in a [Snakemake](https://snakemake.readthedocs.io/en/stab
 
 ## 1) Genome annotation
 Melange allows rapid annotation of a group of genomes with multiple databases and outputs formatted tables of annotations per genome as final output. \
-For more information on the third-party databases and tools that Melange uses, see the relevant links and references. \
+For more information on the third-party databases and tools that Melange uses, see the relevant links and references. 
 
 ### 1.1) Gene calling and general annotation
 Melange starts with gene calling performed with [Prokka v1.14.5](https://github.com/tseemann/prokka) [1]. Prokka provides several output files per genome, including .gbk and .faa files, which are used in the following steps. 
 
 ### 1.2) Functional annotation
-Functional annotation is conducted with three databases: Pfam [2], COG [3] and KEGG [4]. 
+Functional annotation can be conducted with five databases: Pfam [2], COG [3], KEGG [4], CAZymes and Merops.
 #### Pfam
 For the annotation with Pfam identifiers, a local database is created using HMMER v3.3 from the latest version of Pfam-A.hmm downloaded from the [Pfam official website](http://pfam.xfam.org/). Then, a hmmscan search is performed on all input genomes and the best hit per ORF (cut-off: -E 1e-5) is selected. 
 
@@ -38,6 +38,12 @@ To perform the annotation regarding Clusters of Orthologous Genes (COG), the scr
 
 #### KEGG
 To obtain the KEGG Orthology (KO) for protein identification, the [prokka2KEGG script](https://github.com/SilentGene/Bio-py/tree/master/prokka2kegg) was adapted. Here, the UniProtKB IDs previously annotated by Prokka are converted into KO IDs using a cross-reference database provided by [UniProt](https://www.uniprot.org/). 
+
+#### CAZymes
+
+
+#### Merops
+
 
 ### 1.3) Output files
 - Statistics.csv - % of Orfs annotated with each database.
