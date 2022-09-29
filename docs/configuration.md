@@ -8,19 +8,31 @@ nav_order: 3
 To adapt Melange to your needs, change the default parameters in the configuration file `config.yaml`:
 
 ## Input
-    # --- Input
-    inputdir: "data"
-    genome_extension: "{genome}.fa" 
+By default, Melange looks for the input files in the 'example_data' directory. You can either change these definitions or transfer your data to this folder (delete example data so that it doesn't appear in the final output).
 
-Change the input directory where your genome files are located, or simply add them to the 'data' folder in the Melange repository.
-Make sure that all genomes have the same extension (e.g. `.fa`, `.fna` or `.fasta`) and change this setting in the configuration file accordingly.
+    # --- Input
+    inputdir: "example_data"
+    
+Melange can accept three file formats: Fasta nucleotide files, Fasta amino acid files and Fastq files. To be recognisable by Melange, make sure the following extensions are correct or change them accordingly: 
+
+      nucleotide_extension: "{genome}.fa"
+      aminoacid_extension: "{genome}.faa" 
+      fastq_extension: "{genome}.fastq"
+
+Finally, specify what kind of files Melange should start with.
+
+      file_type: "nucleotide" # OPTIONS: "nucleotide" "aminoacid" "fastq"
 
 ## Output
-    # --- Output directory
+Directories where your output files will appear. 
+
     outdir: "results" 
     outdir_anno: "results/Annotation" 
 
-## Expectation value threshold
+Predefined expectation value thresholds. Only change this if you know what you are doing.
+
     # --- Evalues:
-    cog_evalue: "1e-5"
-    pfam_evalue: "1e-5"
+    cog_evalue: "1e-5" #for rpsblast
+    pfam_evalue: "1e-5" #for hmmsearch
+    merops_evalue: "1e-5" #for blastp
+    kegg_evalue: "1e-5" #for hmmsearch 
