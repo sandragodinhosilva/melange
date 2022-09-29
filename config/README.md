@@ -1,38 +1,33 @@
 # Melange Configuration
 
-To configure this workflow, modify config/config.yaml according to your needs.
+To adapt Melange to your needs, change the default parameters in the configuration file `config.yaml`:
 
-### Input files
-Sample input files are in directory "example_data". Replace these files with your input or change the input directory:
+## Input
+By default, Melange looks for the input files in the 'example_data' directory. You can either change these definitions or transfer your data to this folder (delete example data so that it doesn't appear in the final output).
 
-      inputdir: "example_data"
-      
-Define the correct extensions so that Melange can detect input files:
-      
+    # --- Input
+    inputdir: "example_data"
+    
+Melange can accept three file formats: Fasta nucleotide files, Fasta amino acid files and Fastq files. To be recognisable by Melange, make sure the following extensions are correct or change them accordingly: 
+
       nucleotide_extension: "{genome}.fa"
       aminoacid_extension: "{genome}.faa" 
-      
-Input files are nucleotide or aminoacid files?
+      fastq_extension: "{genome}.fastq"
 
-      aminoacid_file: True #if True - gene calling (Prokka) won't be run
+Finally, specify what kind of files Melange should start with.
 
+      file_type: "nucleotide" # OPTIONS: "nucleotide" "aminoacid" "fastq"
 
+## Output
+Directories where your output files will appear. 
 
-### Output directory
-      outdir: "results" 
-      outdir_anno: "results/Annotation" 
+    outdir: "results" 
+    outdir_anno: "results/Annotation" 
 
-### Configure databases in use
-
-    PFAM: True
-    COG: True
-    KEGG: True
-    CAZYMES: True
-    MEROPS: True
-
-Change default Evalues:
-
-      cog_evalue: "1e-5" #for rpsblast
-      pfam_evalue: "1e-5" #for hmmsearch
-      merops_evalue: "1e-5" #for blastp
-      kegg_evalue: "1e-5" #for hmmsearch - implement
+Predefined expectation value thresholds. Only change this if you know what you are doing.
+    
+    # --- Evalues:
+    cog_evalue: "1e-5" #for rpsblast
+    pfam_evalue: "1e-5" #for hmmsearch
+    merops_evalue: "1e-5" #for blastp
+    kegg_evalue: "1e-5" #for hmmsearch 
