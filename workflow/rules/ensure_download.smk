@@ -58,6 +58,7 @@ rule download_cog:
         tar xvfz Cog_LE.tar.gz
         wget -nc ftp://ftp.ncbi.nlm.nih.gov/pub/COG/COG/fun.txt
         wget -nc ftp://ftp.ncbi.nlm.nih.gov/pub/COG/COG/whog
+        cp Cog.01.aux Cog.aux
         """
 
 
