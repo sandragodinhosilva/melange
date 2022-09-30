@@ -1,0 +1,9 @@
+# cluster_config.yml - cluster configuration - FOR SLURM HPC 
+# TO RUN ON CLUSTER: snakemake --use-conda --cluster "sbatch -t {cluster.time} -p {cluster.partition} -N {cluster.nodes} -n {cluster.ntasks-per-node}" --cluster-config cluster_config.yml --jobs 8 --conda-frontend conda
+__default__:
+    partition: hpc
+    time: 01:00:00 # time limit for each job
+    nodes: 1
+    ntasks-per-node: 14 #Request n cores be allocated per node.
+    output: a_name_for_my_job-%j.out
+    error: a_name_for_my_job-%j.err
