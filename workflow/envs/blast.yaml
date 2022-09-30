@@ -3,6 +3,6 @@ channels:
   - bioconda
 
 dependencies:
-  - blast = 2.10.1
+  - blast > 2.10
 
 
