@@ -2,15 +2,12 @@
 
 # --- Input
 inputdir: "example_data"
-nucleotide_extension: "{genome}.fa" #change according to genome file extension
-aminoacid_extension: "{genome}.faa" #change according to genome file extension
+nucleotide_extension: "{genome}.fa" #change according to fasta nucleotide file extension
+aminoacid_extension: "{genome}.faa" #change according to fasta aminoacid file extension
+fastq_extension: "{genome}.fastq" #change according to Fastq file extension (if needed)
 
 # Input files are nucleotide or aminoacid files?
-aminoacid_file: True #if True - gene calling (Prokka) won't be run
-
-# Input files - other characteristics - to implement
-metagenome: False  #different setting in prokka?
-unassembled_reads: False
+file_type: "nucleotide" #OPTIONS: "nucleotide" "aminoacid"  "fastq"
 
 # --- Output directory
 outdir: "results" 
