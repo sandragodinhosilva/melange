@@ -9,11 +9,11 @@ FASTQ_EXTENSION = config["fastq_extension"]
 if (
     config["file_type"] == "aminoacid"
 ):  # files need to go through Prokka first (gene calling)
-    GENOMES = set(glob_wildcards(INPUTDIR / NUCLEOTIDE_EXTENSION).genome)
+    GENOMES = set(glob_wildcards(INPUTDIR / AMINOACID_EXTENSION).genome)
 elif(
     config["file_type"] == "nucleotide"
 ):  # files after gene calling (amino acid files)
-    GENOMES = set(glob_wildcards(INPUTDIR / AMINOACID_EXTENSION).genome)
+    GENOMES = set(glob_wildcards(INPUTDIR / NUCLEOTIDE_EXTENSION).genome)
 elif(
     config["file_type"] == "fastq"
 ):  # files need to go through Prokka first (gene calling)
