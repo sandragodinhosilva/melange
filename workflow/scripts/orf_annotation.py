@@ -196,6 +196,7 @@ def FilesToUse():
             if "(1)" not in name:
                 if name in d_files:
                     d_files[name].append(filename)
+                    d_count[name] = []
                     if "kegg" in databases_in_use:
                         d_count_kegg[name] = []
                     if "pfam" in databases_in_use:
@@ -251,27 +252,28 @@ def fill_dic():
                     d_total[orf] = []
             d_stats["orfs"] = c
         ###############     KEGG     #############
-        with open(os.path.join(kegg)) as f:
-            c = 0
-            lines = f.readlines()
-            for line in lines:
-                line = (
-                    line.rstrip()
-                )  # This removes the whitespace at the end of the line
-                tabs = line.split(
-                    "\t"
-                )  # And now we can create a list by splitting each line into pieces based on where the tabs are.
-                query = tabs[
-                    0
-                ]  # The first item in the line is the query protein. We can assign the variable "query" to it.
-                try:
-                    d_total[query].append(tabs[1])
-                    d_count[name].append(tabs[1])
-                    d_count_kegg[name].append(tabs[1])  # for the individual file count
-                    c += 1
-                except:
-                    pass
-            d_stats["ko"] = c
+        if "kegg" in databases_in_use:
+            with open(os.path.join(kegg)) as f:
+                c = 0
+                lines = f.readlines()
+                for line in lines:
+                    line = (
+                        line.rstrip()
+                    )  # This removes the whitespace at the end of the line
+                    tabs = line.split(
+                        "\t"
+                    )  # And now we can create a list by splitting each line into pieces based on where the tabs are.
+                    query = tabs[
+                        0
+                    ]  # The first item in the line is the query protein. We can assign the variable "query" to it.
+                    try:
+                        d_total[query].append(tabs[1])
+                        d_count[name].append(tabs[1])
+                        d_count_kegg[name].append(tabs[1])  # for the individual file count
+                        c += 1
+                    except:
+                        pass
+                d_stats["ko"] = c
 
         ###############     Pfam     ############
         if "pfam" in databases_in_use:
