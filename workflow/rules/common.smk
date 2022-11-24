@@ -8,11 +8,11 @@ FASTQ_EXTENSION = config["fastq_extension"]
 
 if (
     config["file_type"] == "aminoacid"
-):  # files need to go through Prokka first (gene calling)
+):  # files after gene calling (amino acid files)
     GENOMES = set(glob_wildcards(INPUTDIR / AMINOACID_EXTENSION).genome)
 elif(
     config["file_type"] == "nucleotide"
-):  # files after gene calling (amino acid files)
+):  # files need to go through Prokka first (gene calling) 
     GENOMES = set(glob_wildcards(INPUTDIR / NUCLEOTIDE_EXTENSION).genome)
 elif(
     config["file_type"] == "fastq"
@@ -21,7 +21,7 @@ elif(
 
 
 def setup(genome):
-    l = [expand(myoutput, genome=GENOMES), OUTDIR / "Annotation_results/Statistics.csv"]
+    l = [expand(myoutput, genome=GENOMES), OUTDIR / "Annotation_results/Statistics.csv" , OUTDIR / "Annotation_results/benchmark_results.csv"]
     return l
 
 

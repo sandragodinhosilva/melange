@@ -19,7 +19,10 @@ old_data/
 tmp/*
 dag.pdf
 example_data/SRR9067257*
-
+benchmarks
+testing
+results_security
+config/config.yaml
 
 #Ignore databases folder, except some specific files:
 databases/*
@@ -198,3 +201,5 @@ dmypy.json
 .RData
 
 .~lock*
+5_Melange_test/OG0000001.fa
+example_data/OG0000001.fa

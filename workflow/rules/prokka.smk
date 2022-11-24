@@ -8,7 +8,8 @@ rule prokka:
 	params: outdir=lambda wildcards, output: OUTDIR_ANNO,
 	threads: 8
 	conda: "../envs/prokka.yaml"
-	log: "logs/prokka/{genome}.log"
+	log: "logs/prokka/{genome}.log" 
+	benchmark: "benchmarks/prokka_{genome}.benchmark.txt"
 	shell:
 		"""
 		python3 workflow/scripts/contig_namer.py {input.input_genome} 

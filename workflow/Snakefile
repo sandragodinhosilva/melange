@@ -32,18 +32,24 @@ rule all:
     input:
         unpack(setup),
 
-include: "rules/fastq_to_fasta.smk"
+if config["file_type"] == "aminoacid":  # files after gene calling (amino acid files)
+    include: "rules/ensure_faa.smk"
+elif config["file_type"] == "fastq": 
+    include: "rules/fastq_to_fasta.smk"
+    include: "rules/prokka.smk"
+elif config["file_type"] == "nucleotide":
+    include: "rules/prokka.smk"
+
 include: "rules/ensure_download.smk"
-include: "rules/ensure_faa.smk"
-include: "rules/prokka.smk"
+
 include: "rules/pfam.smk"
 include: "rules/cog.smk"
 include: "rules/kegg.smk"
 include: "rules/merops.smk"
 include: "rules/cazymes.smk"
+
 include: "rules/ensure_all.smk"
 include: "rules/join_all.smk"
-
 
 onstart:
     print("Starting, files that will be annotated:")

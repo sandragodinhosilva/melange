@@ -1,4 +1,3 @@
-
 localrules:
     pfam2
 
@@ -9,7 +8,9 @@ rule pfam:
     output: OUTDIR_ANNO/"{genome}_pfam.txt"
     threads: 8
     conda: "../envs/hmmer.yaml",
-   	log: "logs/pfam/{genome}.log",
+    group: "pfam"
+    log: "logs/pfam/{genome}.log",
+    benchmark: "benchmarks/pfam1_{genome}.benchmark.txt"
     params:
         evalue=config["pfam_evalue"],
         dbdir=lambda w, input: os.path.dirname(input[1]),
@@ -23,5 +24,7 @@ rule pfam2:
     params: 
         input_dir=lambda wildcards, input : os.path.dirname(input[0])
     conda: "../envs/general.yaml"
-   	log: "logs/pfam/{genome}_pfam_parse.log"
+    group: "pfam"
+    log: "logs/pfam/{genome}_pfam_parse.log"
+    benchmark: "benchmarks/pfam2_{genome}.benchmark.txt"
     shell: "python3 workflow/scripts/pfam_parser.py {input} 2> {log}"	

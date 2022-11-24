@@ -8,10 +8,12 @@ rule cazymes:
     output: OUTDIR/"{genome}overview.txt",
     threads: 8
     conda: "../envs/dbcan.yaml"
-    log: "logs/cazymes/{genome}.log"
+    log: "logs/cazymes1_{genome}.log"
     params: outdir=OUTDIR_ANNO,
-	shell: 
-		"""
+    group: "cazymes"
+    benchmark: "benchmarks/cazymes1_{genome}.benchmark.txt"
+    shell: 
+        """
         path=$(basename "{wildcards.genome}")
         echo $path
 		run_dbcan --db_dir workflow/databases --out_pre $path {input.genome_faa} protein 2> {log} 
@@ -26,5 +28,7 @@ rule cazymes2:
     params: 
         input_dir=lambda wildcards, input : os.path.dirname(input[0])
     conda: "../envs/general.yaml"
-   	log: "logs/cazymes/{genome}_cazymes_parse.log"
+    group: "cazymes"
+    log: "logs/{genome}_cazymes2_parse.log"
+    benchmark: "benchmarks/cazymes2_{genome}.benchmark.txt"
     shell: "python3 workflow/scripts/cazymes_parser.py {input} 2> {log}"

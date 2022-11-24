@@ -10,6 +10,7 @@ rule kegg:
         "../envs/kegg.yaml"
     params:
         dbdir=lambda w, input: os.path.dirname(input[1]),
+    benchmark: "benchmarks/kegg_{genome}.benchmark.txt"
     log:
         "logs/kegg/{genome}.log",
     shell:

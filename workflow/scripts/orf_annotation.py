@@ -175,8 +175,6 @@ d_stats_all = {}  # for statistics
 
 
 # Create empty dictionaries:
-
-
 def FilesToUse():
     d_count = {}  # for count table
     d_files = {}  # for summarize all annotations files per genome
