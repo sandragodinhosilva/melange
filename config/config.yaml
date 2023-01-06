@@ -24,7 +24,6 @@ MEROPS: False
 cog_evalue: "1e-5" #for rpsblast
 pfam_evalue: "1e-5" #for hmmsearch
 merops_evalue: "1e-5" #for blastp
-kegg_evalue: "1e-5" #for hmmsearch - implement
 
 # --- Nr of tools to consider for CAZymes annotation:
 cazymes_tools: 3 #default is 3
