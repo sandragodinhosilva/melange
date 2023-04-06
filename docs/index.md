@@ -4,65 +4,17 @@ title: Home
 nav_exclude: false
 ---
 
-# Melange - Documentation
+# Melange: A Snakemake workflow that streamlines structural and functional annotation of prokaryote genomes
 
 [![Snakemake](https://img.shields.io/badge/snakemake-≥5.31-brightgreen.svg)](https://snakemake.bitbucket.io)
 [![python](https://img.shields.io/badge/python-≥3.8-brightgreen.svg)](https://www.python.org/)
 
 ![Header](melangev2_small.png)
 
-Melange is an automated pipeline for the genomic annotation of a group of genomes.
-
-Melange consists of one main component:  
-* [1) Genome annotation](#1-genome-annotation)
-
-Melange is implemented in a [Snakemake](https://snakemake.readthedocs.io/en/stable/#) workflow, contributing to reproducible and scalable data analysis. 
-
-* * *
+Genome annotation involves identifying open reading frames (ORFs) and comparing them with information from curated databases for functional annotation. However, there are challenges with the current methods used for genome annotation, such as limited customization and automation options in web portals, and requiring technical know-how for command-line interfaces (CLIs). To address these challenges, our solution is Melange, a user-friendly, customizable, and scalable CLI tool for genome annotation. Melange combines five databases, including Pfam, COG, KEGG, CAZyme, and MEROPS, to provide a more comprehensive and reliable functional annotation of proteins in a genome. The tool is suitable for small to large-scale genome annotation efforts and is widely used by scientists in various fields.
 
 
-## 1) Genome annotation
-Melange allows rapid annotation of a group of genomes with multiple databases and outputs formatted tables of annotations per genome as final output. \
-For more information on the third-party databases and tools that Melange uses, see the relevant links and references. 
-
-### 1.1) Gene calling and general annotation
-Melange starts with gene calling performed with [Prokka v1.14.5](https://github.com/tseemann/prokka) [1]. Prokka provides several output files per genome, including .gbk and .faa files, which are used in the following steps. 
-
-### 1.2) Functional annotation
-Functional annotation can be conducted with five databases: Pfam [2], COG [3], KEGG [4], CAZymes and Merops.
-#### Pfam
-For the annotation with Pfam identifiers, a local database is created using HMMER v3.3 from the latest version of Pfam-A.hmm downloaded from the [Pfam official website](http://pfam.xfam.org/). Then, a hmmscan search is performed on all input genomes and the best hit per ORF (cut-off: -E 1e-5) is selected. 
-
-#### COG
-To perform the annotation regarding Clusters of Orthologous Genes (COG), the script [cdd2cog v0.2](https://github.com/aleimba/bac-genomics-scripts/tree/master/cdd2cog)  was adapted. In summary, query proteins are blasted with RPS-BLAST+ (Reverse Position-Specific BLAST) function, from the blast+ v2.9.0 suite, against COGs database, implemented within NCBI's Conserved Domain Database (CDD), and the best hit per ORF (cut-off: -E 1e-5) is selected. 
-
-#### KEGG
-To obtain the KEGG Orthology (KO) for protein identification, the [prokka2KEGG script](https://github.com/SilentGene/Bio-py/tree/master/prokka2kegg) was adapted. Here, the UniProtKB IDs previously annotated by Prokka are converted into KO IDs using a cross-reference database provided by [UniProt](https://www.uniprot.org/). 
-
-#### CAZymes
-
-
-#### Merops
-
-
-### 1.3) Output files
-- Statistics.csv - % of Orfs annotated with each database.
-
-- for each database: counts, presence/absence (PA) and relative abundance tables.
-
-- Pfam_description.csv, Cog_description.csv, Kegg_description.csv - the mapping of the identified annotation with clans, names, descriptions, etc.
-
-- folder Orf_per_genome: each genome has a unique file containing all orfs identified by Prokka and the subsequent annotations with the four different databases.
-
-* * *
-
-## Future implementations
-- [ ] Improve report output.
-
-* * *
-
-
-## Citing Melange
+### Citing Melange
 At the moment, Melange does not have a publication describing its features (we are working on it). Please use a link to Melange Github when referring to this tool.
 
 
@@ -84,13 +36,3 @@ At the moment, Melange does not have a publication describing its features (we a
 
 ### Funding
 <font size="2"> This work was supported by the Portuguese Foundation for Science and Technology (FCT) through the research project PTDC/MAR-BIO/1547/2014 and by ‘Direção-Geral de Política do Mar’, Ministry of the Sea through the “Fundo the Azul” funding program of  (grant number FA_05_2017_032). SGS is the recipient of a PhD scholarship conceded by FCT (PD/BD/143029/2018) and was supported by a FEMS-GO-2019-511 research and training grant conceded by the Federation of European Microbiological Societies (FEMS). Further support was provided from national funds through FCT in the scope of the projects UIDB/04565/2020 and UIDP/04565/2020 of the Research Unit Institute for Bioengineering and Biosciences - iBB and the project LA/P/0140/2020 of the Associate Laboratory Institute for Health and Bioeconomy - i4HB. UNR was funded by the Helmholtz Young Investigator grant VH-NG-1248 Micro “Big Data”. </font>
-
-* * *
-
-## References
-
-* [1]	Seemann T. Prokka: rapid prokaryotic genome annotation. Bioinformatics. 2014;30(14):2068-9. 
-* [2]	Galperin MY, Kristensen DM, Makarova KS, Wolf YI, Koonin EV. Microbial genome analysis: the COG approach. Brief Bioinform. 2019;20(4):1063-70. 
-* [3]	Mistry J, Chuguransky S, Williams L, Qureshi M, Salazar GA, Sonnhammer ELL, et al. Pfam: The protein families database in 2021. Nucleic Acids Res. 2020. 
-* [4]	Kanehisa M, Goto S. KEGG: kyoto encyclopedia of genes and genomes. Nucleic Acids Res. 2000;28(1):27-30.
-
