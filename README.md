@@ -140,9 +140,9 @@ Execution on a cluster, example:
     
 For more information about running on a computational cluster, please check snakemake documentation about it: [https://snakemake.readthedocs.io/en/stable/executing/cluster.html](https://snakemake.readthedocs.io/en/stable/executing/cluster.html)
 
-* * *
 
-## Citing Melange
+***
+### Citing Melange
 At the moment, Melange does not have a publication describing its features (we are working on it). Please use a link to Melange Github when referring to this tool.
 
 
@@ -157,8 +157,7 @@ At the moment, Melange does not have a publication describing its features (we a
 <sup>3</sup> Department of Environmental Microbiology, Helmholtz Centre for Environmental Research – UFZ, Leipzig, Germany 
 
 
-
-<img src="./images/IBB-Logo.png" width="175">  <img src="./images/IST.jpg" width="175">   
+<img src="./docs/images/IBB-Logo.png" width="175">  <img src="./docs/images/IST.jpg" width="175">   
 <img src="./docs/images/ufz.png" width="250">
  
 
