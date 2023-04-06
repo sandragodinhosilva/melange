@@ -4,14 +4,15 @@ title: Home
 nav_exclude: false
 ---
 
-# Melange: A Snakemake workflow that streamlines structural and functional annotation of prokaryote genomes
+# Melange
 
+**A Snakemake workflow that streamlines structural and functional annotation of prokaryote genomes**
+
+![Header](melangev2_small.png)
 [![Snakemake](https://img.shields.io/badge/snakemake-≥5.31-brightgreen.svg)](https://snakemake.bitbucket.io)
 [![python](https://img.shields.io/badge/python-≥3.8-brightgreen.svg)](https://www.python.org/)
 
-![Header](melangev2_small.png)
-
-Genome annotation involves identifying open reading frames (ORFs) and comparing them with information from curated databases for functional annotation. However, there are challenges with the current methods used for genome annotation, such as limited customization and automation options in web portals, and requiring technical know-how for command-line interfaces (CLIs). To address these challenges, our solution is Melange, a user-friendly, customizable, and scalable CLI tool for genome annotation. Melange combines five databases, including Pfam, COG, KEGG, CAZyme, and MEROPS, to provide a more comprehensive and reliable functional annotation of proteins in a genome. The tool is suitable for small to large-scale genome annotation efforts and is widely used by scientists in various fields.
+Genome annotation involves identifying open reading frames (ORFs) and comparing them with information from curated databases for functional annotation. However, there are challenges with the current methods used for genome annotation, such as limited customization and automation options in web portals, and requiring technical know-how for command-line interfaces (CLIs). To address these challenges, our solution is Melange, a user-friendly, customizable, and scalable CLI tool for genome annotation. Melange combines five databases, including Pfam, COG, KEGG, CAZyme, and MEROPS, to provide a more comprehensive and reliable functional annotation of proteins in a genome. The tool is suitable for small to large-scale genome annotation efforts can be used for various annotations needs.
 
 
 ### Citing Melange
