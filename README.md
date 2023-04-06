@@ -39,11 +39,11 @@ Full documentation: https://sandragodinhosilva.github.io/melange/
 </p>
 
 Melange allows the simultaneous functional annotation of prokaryote genomes or metagenomes with multiple annotation schemes. Here are illustrated all Melange features: 
-- [A) Input files](): unassembled fastq, nucleotide fasta or amino acid fasta files (to be configured in *config.yml*)
-- [B) Genome annotation](): annotation databases (and respective search algorithm used to query the proteins): Pfam, COG, KEGG, CAZymes or MEROPS (to be configured in *config.yml*)
-- [C) Outputs]() 
+- [A) Input files](#a-inputs): unassembled fastq, nucleotide fasta or amino acid fasta files (to be configured in *config.yml*)
+- [B) Genome annotation](#b-genome-annotation): annotation databases (and respective search algorithm used to query the proteins): Pfam, COG, KEGG, CAZymes or MEROPS (to be configured in *config.yml*)
+- [C) Outputs](#c-outputs) 
 
-### A) Input
+### A) Inputs
 Melange accepts 3 types of input files: 
 - unassembled (meta)genomic data (.fastq)
 - (meta)genome assemblies (.fna, .fasta, .ffn, .faa, .frn, .fa)
