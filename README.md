@@ -15,10 +15,10 @@ Full documentation: https://sandragodinhosilva.github.io/melange/
 
 - Melange is a genome annotation tool that enables the simultaneous annotation of large genome datasets using multiple databases: Pfam, COG, KEGG, CAZyme, MEROPS.
 - Melange can handle unassembled and assembled sequencing data and amino acid sequences, with automatic download and configuration of necessary tools and databases.
-- As a [Snakemake](https://snakemake.readthedocs.io/en/stable/#) pipeline, Melange is highly scalable, reproducible and has a transparent workflow, and can be used to annotate one to thousands of genomes, producing several easy-to-analyze, tabular outputs.
+- As a [Snakemake](https://snakemake.readthedocs.io/en/stable/#) pipeline, Melange is highly scalable, reproducible and has a transparent workflow, and can be used to annotate one to thousands of genomes, producing several easy-to-analyze, [tabular outputs](#c-outputs).
 
 <p align="center" width="100%">
-    <img src="./docs/images/abstract.png" width="700" >
+    <img src="./docs/images/abstract.png" width="600" >
 </p>
 
 **Sinopse:** *Melange - a versatile and user-friendly genome annotation tool that enables the simultaneous annotation of large genome datasets using multiple databases. Melange is designed to be continuously updated and its implementation in Snakemake allows flexibility and scalability. The unified output tables facilitate further analysis and are suitable for various comparative studies. It is publicly available and well-documented, making it easy to use and customize for a variety of annotation needs.*
@@ -38,7 +38,7 @@ Melange utilizes **Snakemake** for modularity and automatic parallelization of j
 ## 3 Melange features
 
 <p align="center" width="100%">
-    <img src="./docs/images/workflow.png" title="Workflow" width="700" >
+    <img src="./docs/images/workflow.png" title="Workflow" width="800" >
 </p>
 
 **Melange workflow** \
@@ -53,7 +53,7 @@ Melange accepts 3 types of input files:
 - (meta)genome assemblies (.fna, .fasta, .ffn, .faa, .frn, .fa)
 - predicted amino acid sequences (.faa). 
 
-The directory  and file types that Melange accepts  as input are defined in the *config.yml* file. If fastq files are inputted, Melange will convert them to fasta nucleotide files using the EMBOSS tool seqret before annotation [REF]. 
+The directory  and file types that Melange accepts  as input are defined in the *config.yml* file. If fastq files are inputted, Melange will convert them to fasta nucleotide files using the [EMBOSS tool seqret](https://www.ebi.ac.uk/Tools/sfc/emboss_seqret/) before annotation. 
 
 ### B) Genome annotation
 
@@ -64,15 +64,19 @@ When nucleotide files are submitted, Melange first performs a structural annotat
 Melange allows functional annotation of genomes with up to five databases: Pfam, COG, KEGG, CAZymes and MEROPS.  
 The databases to be used can be selected by editing the "config.yml" file. This feature intends to enhance flexibility and reduce any unnecessary computational burden by only running the desired annotation procedures. 
 
-**Pfam**: For the annotation with Pfam identifiers, a local database is created using HMMER v3.3 from the latest version of Pfam-A.hmm file (currently v35.0) downloaded from the downloaded from the [InterPro repository](ftp://ftp.ebi.ac.uk/pub/databases/Pfam/current_release) and a local database is constructed using HMMER v3.3 [15]. Once the local database has been created, query proteins are searched against it using the hmmscan function from the HMMER suite. The best hit per ORF (cut-off: -E 1e-5) is selected. 
+<p align="center" width="100%">
+    <img src="./docs/images/table.png" title="Annotation databases" width="600" >
+</p>
 
-**COG (Clusters of Orthologous Groups)**: The COG annotation procedure follows the [cdd2cog v0.2 workflow](https://github.com/aleimba/bac-genomics-scripts/tree/master/cdd2cog). First, several files are downloaded from the NCBI's FTP server, including a preformatted database of the NCBI's Conserved Domain Database (CDD) COG distribution (2020 release). Query proteins are then blasted against this database using reverse position-specific BLAST (rps-blast) function from the blast+ v2.9.0 suite and the results are parsed to a readable format with a Perl script (cdd2cog.pl). The best hit per ORF (cut-off: -E 1e-5) is selected. 
+**Pfam**: For the annotation with Pfam identifiers, a local database is created using HMMER v3.3 from the latest version of Pfam-A.hmm file (currently v35.0) downloaded from the downloaded from the [InterPro repository](ftp://ftp.ebi.ac.uk/pub/databases/Pfam/current_release) and a local database is constructed using HMMER v3.3. Once the local database has been created, query proteins are searched against it using the hmmscan function from the HMMER suite. The best hit per ORF (cut-off: -E 1e-5) is selected. 
 
-**KEGG (Kyoto Encyclopaedia of Genes and Genomes)**: To obtain the KEGG Orthology (KO) for protein identification, the command line (CLI) version  KofamKoala tool - Kofamscan - is used. Kofamscan performs K number assignments using hidden Markov model (HMM) profile search, which involves searching query proteins against a customized HMM database of [KOs](ftp://ftp.genome.jp/pub/db/kofam) (KEGG release 103.0). This database includes predefined thresholds for individual KOs, resulting in more reliable assignments than sequence similarity searches. Kofamscan uses the *hmmsearch* function from the HMMER suite to perform the search. 
+**COG (Clusters of Orthologous Groups)**: The COG annotation procedure follows the [cdd2cog v0.2 workflow](https://github.com/aleimba/bac-genomics-scripts/tree/master/cdd2cog). First, several files are downloaded from the [NCBI's FTP server](https://ftp.ncbi.nlm.nih.gov/), including a preformatted database of the [NCBI's Conserved Domain Database (CDD) COG distribution](https://www.ncbi.nlm.nih.gov/cdd/) (2020 release). Query proteins are then blasted against this database using reverse position-specific BLAST (*rps-blast*) function from the Blast+ v2.9.0 suite and the results are parsed to a readable format with a Perl script (*cdd2cog.pl*). The best hit per ORF (cut-off: -E 1e-5) is selected. 
 
-**CAZymes (Carbohydrate-active enzymes)**: The CAZymes annotation procedure uses the meta server dbCAN2 [20], specifically, the standalone version [run_dbcan v2.0.11](https://github.com/linnabrown/run_dbcan) implemented with default settings. Run_dbcan is a tool that performs annotation of CAZymes using three different approaches: a HMMER v3.3 search against the dbCAN HMM database, a DIAMOND v0.9.32 search against the CAZy database, and the eCAMI (Simultaneous Classification and Motif Identification) algorithm – an amino acid k-mer-based CAZyme classification and motif identification tool that uses a bipartite network algorithm. For improved annotation accuracy, ORFs are only annotated with the respective CAZyme name if at least two database searches were positive, as suggested by dbCAN2 authors.
+**KEGG (Kyoto Encyclopaedia of Genes and Genomes)**: To obtain the KEGG Orthology (KO) for protein identification, the command line (CLI) version of KofamKoala(https://www.genome.jp/tools/kofamkoala/) - [Kofamscan](https://github.com/takaram/kofam_scan) - is used. Kofamscan performs K number assignments using hidden Markov model (HMM) profile search, which involves searching query proteins against a customized HMM database of [KOs](ftp://ftp.genome.jp/pub/db/kofam) (KEGG release 103.0). This database includes predefined thresholds for individual KOs, resulting in more reliable assignments than sequence similarity searches. Kofamscan uses the *hmmsearch* function from the HMMER suite to perform the search. 
 
-**Merops**: For the identification of ORFs encoding for peptidases and their inhibitors the ["merops_scan.lib", release 12.4](ftp://ftp.ebi.ac.uk/pub/databases/merops/current_release/merops_scan.lib) file is downloaded from [MEROPS](). Then *makedblast* is used to produce a local BLAST database. Query aminoacid sequences are then searched for matches with this database with *blastp*. 
+**CAZymes (Carbohydrate-active enzymes)**: The CAZymes annotation procedure uses the meta server [dbCAN3 - UPDATE](https://bcb.unl.edu/dbCAN2/), specifically, the standalone version [run_dbcan v2.0.11](https://github.com/linnabrown/run_dbcan) implemented with default settings. Run_dbcan is a tool that performs annotation of CAZymes using three different approaches: a HMMER v3.3 search against the dbCAN HMM database, a DIAMOND v0.9.32 search against the CAZy database, and the eCAMI (Simultaneous Classification and Motif Identification) algorithm – an amino acid k-mer-based CAZyme classification and motif identification tool that uses a bipartite network algorithm. For improved annotation accuracy, ORFs are only annotated with the respective CAZyme name if at least two database searches were positive, as suggested by dbCAN2 authors in [Zhang et al.](https://pubmed.ncbi.nlm.nih.gov/29771380/).
+
+**Merops**: For the identification of ORFs encoding for peptidases and their inhibitors the ["merops_scan.lib", release 12.4](ftp://ftp.ebi.ac.uk/pub/databases/merops/current_release/merops_scan.lib) file is downloaded from [MEROPS](https://www.ebi.ac.uk/merops/). Then *makedblast* is used to produce a local BLAST database. Query aminoacid sequences are then searched for matches with this database with *blastp*. 
 
 
 
@@ -80,12 +84,20 @@ The databases to be used can be selected by editing the "config.yml" file. This 
 
 Melange produces several different output formats tailored to meet users' diverse needs, with almost no additional computational cost. This is achieved by leveraging the output of each annotation database and transforming it into different tables. 
 
-In summary, three files with distinct data representation modes are created for each annotation type: **counts, presence/absence (PA), and relative abundance**. 
+In summary, three files with distinct data representation modes are created for each annotation type: 
+- **counts**
+- **presence/absence (PA)** 
+- **relative abundance** 
 
-**Schematic representation of Melange output tables:** Each row represents a database identifier (ID), and each column represents an input (either nucleotide or amino acid (meta)genome files). While in counts **(A)**, nij represents the number of proteins or protein domains (depending on the database in use) identified with a certain ID for a given input, in the PA table **(B)**, nij equal to 1 indicates the existence of a certain identifier in the input, and 0 indicates its absence. In the relative abundance annotation table **(C)**, nij represents the normalized count of an ID per the total number of ORFs in each input.
+<p align="center" width="100%">
+    <img src="./docs/images/outputs.png" title="Outputs" width="600" >
+</p>
+
+**Schematic representation of Melange output tables:** Each row represents a database identifier (ID), and each column represents an input (either nucleotide or amino acid (meta)genome files). 
+While in counts **(A)**, nij represents the number of proteins or protein domains (depending on the database in use) identified with a certain ID for a given input, in the PA table **(B)**, nij equal to 1 indicates the existence of a certain identifier in the input, and 0 indicates its absence. In the relative abundance annotation table **(C)**, nij represents the normalized count of an ID per the total number of ORFs in each input.
 
 
-In addition to the annotation tables, Melange also provides:
+**In addition to the annotation tables, Melange also provides:**
 - descriptive file containing a summarised description of each annotation ID and an individual file per input listing all identified ORFs along with the matches inside each annotation database. 
 - outputs related to the structural annotation procedure and intermediate files, including amino acid files, are also available for further analysis in a dedicated directory.
 
@@ -158,7 +170,7 @@ At the moment, Melange does not have a publication describing its features (we a
 
 
 
-<img src="./docs/images/ibb.png" alt="iBB" width="250">
+<img src="./docs/images/IBB-logo.png" alt="iBB-" width="250">
 <img src="./docs/images/ufz.png" width="250">
  
 
