@@ -1,15 +1,34 @@
+# Melange: A Snakemake workflow that streamlines structural and functional annotation of prokaryote genomes
+
 ![Header](logo/melangev2_small.png) 
 
 
 [![Snakemake](https://img.shields.io/badge/snakemake-≥7.5.0-brightgreen.svg)](https://snakemake.bitbucket.io)
 [![python](https://img.shields.io/badge/python-≥3.8-brightgreen.svg)](https://www.python.org/)
-[![Actions Status](https://github.com/sandragodinhosilva/melange/workflows/tests.yml/badge.svg)](https://github.com/sandragodinhosilva/melange/actions)
+<!-- [![Actions Status](https://github.com/sandragodinhosilva/melange/workflows/tests.yml/badge.svg)](https://github.com/sandragodinhosilva/melange/actions) -->
 
 
+Full documentation: https://sandragodinhosilva.github.io/melange/
 
-This repository contains the code for the Snakemake workflow of a functional annotation tool.
 
-## Documentation: https://sandragodinhosilva.github.io/melange/
+## 1 Overview 
+
+- Melange is a novel genomic annotation tool for large-scale comparative studies of prokaryote genomes or metagenomes with up to five different databases (Pfam, COG, KEGG, CAZyme, MEROPS).
+- Melange can handle unassembled and assembled sequencing data and amino acid sequences, with automatic download and configuration of necessary tools and databases.
+- As a Snakemake pipeline, Melange is highly scalable, reproducible and has a transparent workflow, and can be used to annotate one to thousands of genomes, producing several easy-to-analyze, tabular outputs.
+
+
+## 2 System requirements
+
+Melange is designed to run on Linux systems and requires installation of Python (v≥3.8), Snakemake (v≥5.19.2) and Conda (v≥4.10.1). Optionally, git can also be installed for easy download of the repository. 
+
+A test dataset (available in the "example_data" directory) is provid to allow for a test run to confirm the correct installation. 
+
+Melange utilizes Snakemake for modularity and automatic parallelization of jobs, making it suitable for implementation on high-performance computational clusters. 
+
+## Customization
+
+Melange is designed to be an easy-to-use and highly customizable  tool for the functional annotation of genomes. To accomplish this, only databases selected in the config.yml file are downloaded and configured locally, reducing storage requirements to run Melange. 
 
 
 ## Usage
