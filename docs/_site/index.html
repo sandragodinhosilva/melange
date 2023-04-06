@@ -5,17 +5,17 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="MeLanGE - Machine Learning for Genomics">
+  <meta name="description" content="Melange">
   
   
 
-  <link rel="shortcut icon" href="https://sandragodinhosilva.github.io/MeLanGE/assets/img/favicon.ico">
+  <link rel="shortcut icon" href="http://localhost:4000/melange/assets/img/favicon.ico">
 
-  <title>Home - MeLanGE</title>
+  <title>Home - Melange</title>
 
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
-  <link rel="stylesheet" href="https://sandragodinhosilva.github.io/MeLanGE/assets/css/theme.css" />
-  <link rel="stylesheet" href="https://sandragodinhosilva.github.io/MeLanGE/assets/css/theme_extra.css" />
+  <link rel="stylesheet" href="http://localhost:4000/melange/assets/css/theme.css" />
+  <link rel="stylesheet" href="http://localhost:4000/melange/assets/css/theme_extra.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github-gist.min.css" />
 <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-0070F7FP3Q"></script>
@@ -35,30 +35,59 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search">
-            <a href="https://sandragodinhosilva.github.io" class="icon icon-home"> MeLanGE</a>
+            <a href="http://localhost:4000" class="icon icon-home"> Melange</a>
           
         </div>
 
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-          
+          <ul>
+  <li class="toctree-l1 current"><a href="#melange---documentation">Melange - Documentation</a>
+    <ul>
+      <li class="toctree-l2"><a href="#1-genome-annotation">1) Genome annotation</a>
+        <ul>
+          <li class="toctree-l3"><a href="#11-gene-calling-and-general-annotation">1.1) Gene calling and general annotation</a></li>
+          <li class="toctree-l3"><a href="#12-functional-annotation">1.2) Functional annotation</a>
+            <ul>
+              <li class="toctree-l4"><a href="#pfam">Pfam</a></li>
+              <li class="toctree-l4"><a href="#cog">COG</a></li>
+              <li class="toctree-l4"><a href="#kegg">KEGG</a></li>
+              <li class="toctree-l4"><a href="#cazymes">CAZymes</a></li>
+              <li class="toctree-l4"><a href="#merops">Merops</a></li>
+            </ul>
+          </li>
+          <li class="toctree-l3"><a href="#13-output-files">1.3) Output files</a></li>
+        </ul>
+      </li>
+      <li class="toctree-l2"><a href="#future-implementations">Future implementations</a></li>
+      <li class="toctree-l2"><a href="#citing-melange">Citing Melange</a>
+        <ul>
+          <li class="toctree-l3"><a href="#melange-contributions">Melange Contributions</a></li>
+          <li class="toctree-l3"><a href="#funding">Funding</a></li>
+        </ul>
+      </li>
+      <li class="toctree-l2"><a href="#references">References</a></li>
+    </ul>
+  </li>
+</ul>
+
                 <ul>
                     <li class="toctree-l1">
-                        <a class="reference internal" href="https://sandragodinhosilva.github.io/MeLanGE/description.html">MeLanGE description</a>
+                        <a class="reference internal" href="http://localhost:4000/melange/description.html">Melange description</a>
                     </li>
                 </ul>
                 <ul>
                     <li class="toctree-l1">
-                        <a class="reference internal" href="https://sandragodinhosilva.github.io/MeLanGE/getting_started.html">Getting started</a>
+                        <a class="reference internal" href="http://localhost:4000/melange/setup.html">Installation & Execution</a>
                     </li>
                 </ul>
                 <ul>
                     <li class="toctree-l1">
-                        <a class="reference internal" href="https://sandragodinhosilva.github.io/MeLanGE/running.html">Running MeLanGE</a>
+                        <a class="reference internal" href="http://localhost:4000/melange/configuration.html">Melange configuration</a>
                     </li>
                 </ul>
                 <ul>
                     <li class="toctree-l1">
-                        <a class="reference internal" href="https://sandragodinhosilva.github.io/MeLanGE/License.html">License</a>
+                        <a class="reference internal" href="http://localhost:4000/melange/License.html">License</a>
                     </li>
                 </ul>
 
@@ -70,109 +99,133 @@
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
       <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
         <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="https://sandragodinhosilva.github.io">MeLanGE</a>
+        <a href="http://localhost:4000">Melange</a>
       </nav>
       <div class="wy-nav-content">
         <div class="rst-content">
           <div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
-        <li><a href="https://sandragodinhosilva.github.io">Docs</a>&raquo;</li>
+        <li><a href="http://localhost:4000">Docs</a>&raquo;</li>
         <li>Home</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
+    <div class="rst-breadcrumbs-buttons" role="navigation" aria-label="breadcrumb navigation">
+        <a href="http://localhost:4000/melange/description.html" class="btn btn-neutral float-right" title="Melange description">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
 
   <hr/>
 </div>
 
           <div role="main">
             <div class="section">
-              <h1 id="melange---documentation">MeLanGE - Documentation</h1>
+              <h1 id="melange---documentation">Melange - Documentation</h1>
 
 <p><a href="https://snakemake.bitbucket.io"><img src="https://img.shields.io/badge/snakemake-≥5.31-brightgreen.svg" alt="Snakemake" /></a>
 <a href="https://www.python.org/"><img src="https://img.shields.io/badge/python-≥3.8-brightgreen.svg" alt="python" /></a></p>
 
-<p><img src="bitmap3.jpeg" alt="Header" /></p>
+<p><img src="melangev2_small.png" alt="Header" /></p>
 
-<p>MeLanGE is a automated pipeline for the genomic annotation of a group of genomes, followed by the detection of the most important features to distinguish a group of genomes, as determined by a metadata label.</p>
+<p>Melange is an automated pipeline for the genomic annotation of a group of genomes.</p>
 
-<p>MeLanGE has two independent, but connected, components:</p>
+<p>Melange consists of one main component:</p>
 <ul>
-  <li><strong>Genome annotation</strong></li>
-  <li><strong>Feature selection</strong></li>
+  <li><a href="#1-genome-annotation">1) Genome annotation</a></li>
 </ul>
 
-<p>MeLanGE is implemented in a <a href="https://snakemake.readthedocs.io/en/stable/#">Snakemake</a> workflow, thus contributing to reproducible and scalable data analysis.</p>
+<p>Melange is implemented in a <a href="https://snakemake.readthedocs.io/en/stable/#">Snakemake</a> workflow, contributing to reproducible and scalable data analysis.</p>
 
 <hr />
 
-<h2 id="quick-setup">Quick setup</h2>
+<h2 id="1-genome-annotation">1) Genome annotation</h2>
+<p>Melange allows rapid annotation of a group of genomes with multiple databases and outputs formatted tables of annotations per genome as final output. <br />
+For more information on the third-party databases and tools that Melange uses, see the relevant links and references.</p>
 
-<h3 id="step-0-install-conda-snakemake-and-ensure-git">Step 0: Install conda, snakemake and ensure git</h3>
-<p><a href="https://conda.io/docs/">Conda</a> and
-<a href="https://snakemake.readthedocs.io">Snakemake</a> are required to be able to use
-MeLanGE. <br />
-Most people would probably want to install
-<a href="https://conda.io/miniconda.html">Miniconda</a>. <br />
-After having conda installed, install <a href="https://snakemake.readthedocs.io/en/stable/getting_started/installation.html">Snakemake</a>:</p>
+<h3 id="11-gene-calling-and-general-annotation">1.1) Gene calling and general annotation</h3>
+<p>Melange starts with gene calling performed with <a href="https://github.com/tseemann/prokka">Prokka v1.14.5</a> [1]. Prokka provides several output files per genome, including .gbk and .faa files, which are used in the following steps.</p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># As described in Snakemake documentation:
-conda install -c conda-forge mamba
-mamba create -c conda-forge -c bioconda -n snakemake snakemake
-conda activate snakemake
-</code></pre></div></div>
+<h3 id="12-functional-annotation">1.2) Functional annotation</h3>
+<p>Functional annotation can be conducted with five databases: Pfam [2], COG [3], KEGG [4], CAZymes and Merops.</p>
+<h4 id="pfam">Pfam</h4>
+<p>For the annotation with Pfam identifiers, a local database is created using HMMER v3.3 from the latest version of Pfam-A.hmm downloaded from the <a href="http://pfam.xfam.org/">Pfam official website</a>. Then, a hmmscan search is performed on all input genomes and the best hit per ORF (cut-off: -E 1e-5) is selected.</p>
 
-<h3 id="step-1-clone-workflow">Step 1: Clone workflow</h3>
-<p>To use MeLanGE, you need a local copy of the workflow repository. Start by
-making a clone of the repository:</p>
+<h4 id="cog">COG</h4>
+<p>To perform the annotation regarding Clusters of Orthologous Genes (COG), the script <a href="https://github.com/aleimba/bac-genomics-scripts/tree/master/cdd2cog">cdd2cog v0.2</a>  was adapted. In summary, query proteins are blasted with RPS-BLAST+ (Reverse Position-Specific BLAST) function, from the blast+ v2.9.0 suite, against COGs database, implemented within NCBI’s Conserved Domain Database (CDD), and the best hit per ORF (cut-off: -E 1e-5) is selected.</p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git clone https://github.com/sandragodinhosilva/MeLanGE.git
-</code></pre></div></div>
+<h4 id="kegg">KEGG</h4>
+<p>To obtain the KEGG Orthology (KO) for protein identification, the <a href="https://github.com/SilentGene/Bio-py/tree/master/prokka2kegg">prokka2KEGG script</a> was adapted. Here, the UniProtKB IDs previously annotated by Prokka are converted into KO IDs using a cross-reference database provided by <a href="https://www.uniprot.org/">UniProt</a>.</p>
 
-<h3 id="step-2-configure-workflow">Step 2: Configure workflow</h3>
-<p>Configure the workflow according to your needs by editing the file
-<code class="language-plaintext highlighter-rouge">config.yaml</code>.</p>
+<h4 id="cazymes">CAZymes</h4>
 
-<h3 id="step-3-execute-workflow">Step 3: Execute workflow</h3>
-<p>Test your configuration by performing a dry-run via</p>
+<h4 id="merops">Merops</h4>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>snakemake --use-conda -n
-</code></pre></div></div>
-
-<p>Execute the workflow locally via</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>snakemake --use-conda --cores N
-</code></pre></div></div>
-
-<p>This will run the workflow locally using <code class="language-plaintext highlighter-rouge">N</code> cores.</p>
-
-<h3 id="optional">Optional:</h3>
-<p><strong>Examine workflow:</strong></p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>snakemake --dag  | dot -Tsvg &gt; dag.svg
-</code></pre></div></div>
-
-<p><strong>Investigate results:</strong></p>
-
-<p>After successful execution, you can create a self-contained interactive HTML report with all results via:</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>snakemake --report report.html
-</code></pre></div></div>
+<h3 id="13-output-files">1.3) Output files</h3>
+<ul>
+  <li>
+    <p>Statistics.csv - % of Orfs annotated with each database.</p>
+  </li>
+  <li>
+    <p>for each database: counts, presence/absence (PA) and relative abundance tables.</p>
+  </li>
+  <li>
+    <p>Pfam_description.csv, Cog_description.csv, Kegg_description.csv - the mapping of the identified annotation with clans, names, descriptions, etc.</p>
+  </li>
+  <li>
+    <p>folder Orf_per_genome: each genome has a unique file containing all orfs identified by Prokka and the subsequent annotations with the four different databases.</p>
+  </li>
+</ul>
 
 <hr />
 
-<h3 id="future-implementations">Future implementations</h3>
+<h2 id="future-implementations">Future implementations</h2>
 <ul class="task-list">
   <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />Improve report output.</li>
 </ul>
 
-<h3 id="citing">Citing</h3>
-<p>For now MeLanGE does not have a publication describing its functionalities (we are working on it). Please use a link to MeLanGE github when you reference this tool.</p>
+<hr />
+
+<h2 id="citing-melange">Citing Melange</h2>
+<p>At the moment, Melange does not have a publication describing its features (we are working on it). Please use a link to Melange Github when referring to this tool.</p>
+
+<h3 id="melange-contributions">Melange Contributions</h3>
+<ul>
+  <li>Sandra Godinho Silva <sup>1,2</sup> - <a href="https://www.facebook.com/MicroEcoEvo/">MicroEcoEvo</a> - <a href="https://ibb.tecnico.ulisboa.pt/">iBB, IST</a>.</li>
+  <li>Tina Keller-Costa <sup>1,2</sup> - <a href="https://www.facebook.com/MicroEcoEvo/">MicroEcoEvo</a> - <a href="https://ibb.tecnico.ulisboa.pt/">iBB, IST</a>.</li>
+  <li>Ulisses Nunes da Rocha <sup>3</sup> - <a href="https://www.ufz.de/index.php?de=43659">Microbial Systems Data Science</a> - <a href="https://www.ufz.de/">UFZ, Leipzig</a>.</li>
+  <li>Rodrigo Costa <sup>1,2</sup> - <a href="https://www.facebook.com/MicroEcoEvo/">MicroEcoEvo</a> - <a href="https://ibb.tecnico.ulisboa.pt/">iBB, IST</a>.</li>
+</ul>
+
+<p><sup>1</sup> Institute for Bioengineering and Biosciences, Department of Bioengineering, Instituto Superior Técnico da Universidade de Lisboa, Lisbon, Portugal <br />
+<sup>2</sup> Associate Laboratory, Institute for Health and Bioeconomy, Instituto Superior Técnico, University of Lisbon, Lisbon, Portugal <br />
+<sup>3</sup> Department of Environmental Microbiology, Helmholtz Centre for Environmental Research – UFZ, Leipzig, Germany</p>
+
+<p><br />
+<img src="./images/IBB-Logo.png" width="175" />  <img src="./images/IST.jpg" width="175" /></p>
+
+<p><img src="./images/ufz.png" width="250" /></p>
+
+<h3 id="funding">Funding</h3>
+<font size="2"> This work was supported by the Portuguese Foundation for Science and Technology (FCT) through the research project PTDC/MAR-BIO/1547/2014 and by ‘Direção-Geral de Política do Mar’, Ministry of the Sea through the “Fundo the Azul” funding program of  (grant number FA_05_2017_032). SGS is the recipient of a PhD scholarship conceded by FCT (PD/BD/143029/2018) and was supported by a FEMS-GO-2019-511 research and training grant conceded by the Federation of European Microbiological Societies (FEMS). Further support was provided from national funds through FCT in the scope of the projects UIDB/04565/2020 and UIDP/04565/2020 of the Research Unit Institute for Bioengineering and Biosciences - iBB and the project LA/P/0140/2020 of the Associate Laboratory Institute for Health and Bioeconomy - i4HB. UNR was funded by the Helmholtz Young Investigator grant VH-NG-1248 Micro “Big Data”. </font>
+
+<hr />
+
+<h2 id="references">References</h2>
+
+<ul>
+  <li>[1]	Seemann T. Prokka: rapid prokaryotic genome annotation. Bioinformatics. 2014;30(14):2068-9.</li>
+  <li>[2]	Galperin MY, Kristensen DM, Makarova KS, Wolf YI, Koonin EV. Microbial genome analysis: the COG approach. Brief Bioinform. 2019;20(4):1063-70.</li>
+  <li>[3]	Mistry J, Chuguransky S, Williams L, Qureshi M, Salazar GA, Sonnhammer ELL, et al. Pfam: The protein families database in 2021. Nucleic Acids Res. 2020.</li>
+  <li>[4]	Kanehisa M, Goto S. KEGG: kyoto encyclopedia of genes and genomes. Nucleic Acids Res. 2000;28(1):27-30.</li>
+</ul>
+
 
 
             </div>
           </div>
           <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="http://localhost:4000/melange/description.html" class="btn btn-neutral float-right" title="Melange description">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
 
     <hr/>
 
@@ -196,21 +249,22 @@ making a clone of the repository:</p>
   <div class="rst-versions" role="note" aria-label="versions">
     <span class="rst-current-version" data-toggle="rst-current-version">
         <a href="https://github.com/sandragodinhosilva/melange" class="fa fa-github" target="_blank" style="float: left; color: #fcfcfc"> GitHub</a>
+        <span style="margin-left: 15px"><a href="http://localhost:4000/melange/description.html" style="color: #fcfcfc">Next &raquo;</a></span>
     </span>
 </div>
 
 
   <script>var base_url = '';</script>
-  <script src="https://sandragodinhosilva.github.io/MeLanGE/assets/js/jquery-2.1.1.min.js" defer></script>
-  <script src="https://sandragodinhosilva.github.io/MeLanGE/assets/js/modernizr-2.8.3.min.js" defer></script>
+  <script src="http://localhost:4000/melange/assets/js/jquery-2.1.1.min.js" defer></script>
+  <script src="http://localhost:4000/melange/assets/js/modernizr-2.8.3.min.js" defer></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
-  <script src="https://sandragodinhosilva.github.io/MeLanGE/assets/js/theme.js" defer></script>
+  <script src="http://localhost:4000/melange/assets/js/theme.js" defer></script>
   <script type="text/javascript" defer>
     hljs.initHighlightingOnLoad();
     window.addEventListener('load', function() {
       SphinxRtdTheme.Navigation.enable(true);
     });
   </script>
-  <!-- Build Date: 2021-12-16 11:36 -->
+  <!-- Build Date: 2023-04-06 11:34 -->
 </body>
 </html>

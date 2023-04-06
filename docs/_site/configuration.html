@@ -11,7 +11,7 @@
 
   <link rel="shortcut icon" href="http://localhost:4000/melange/assets/img/favicon.ico">
 
-  <title>License - Melange</title>
+  <title>Melange configuration - Melange</title>
 
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
   <link rel="stylesheet" href="http://localhost:4000/melange/assets/css/theme.css" />
@@ -55,13 +55,20 @@
                     <li class="toctree-l1">
                         <a class="reference internal" href="http://localhost:4000/melange/setup.html">Installation & Execution</a>
                     </li>
-                </ul>
+                </ul><ul>
+  <li class="toctree-l1 current"><a href="#melange-configuration">Melange configuration</a>
+    <ul>
+      <li class="toctree-l2"><a href="#input">Input</a></li>
+      <li class="toctree-l2"><a href="#output">Output</a></li>
+    </ul>
+  </li>
+</ul>
+
                 <ul>
                     <li class="toctree-l1">
-                        <a class="reference internal" href="http://localhost:4000/melange/configuration.html">Melange configuration</a>
+                        <a class="reference internal" href="http://localhost:4000/melange/License.html">License</a>
                     </li>
                 </ul>
-
 
 
         </div>
@@ -78,12 +85,13 @@
           <div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
         <li><a href="http://localhost:4000">Docs</a>&raquo;</li>
-        <li>License</li>
+        <li>Melange configuration</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
     <div class="rst-breadcrumbs-buttons" role="navigation" aria-label="breadcrumb navigation">
-        <a href="http://localhost:4000/melange/configuration.html" class="btn btn-neutral" title="Melange configuration"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="http://localhost:4000/melange/License.html" class="btn btn-neutral float-right" title="License">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="http://localhost:4000/melange/setup.html" class="btn btn-neutral" title="Installation & Execution"><span class="icon icon-circle-arrow-left"></span> Previous</a>
     </div>
 
   <hr/>
@@ -91,29 +99,42 @@
 
           <div role="main">
             <div class="section">
-              <p>Melange is licensed under the MIT License:</p>
+              <h1 id="melange-configuration">Melange configuration</h1>
+<p>To adapt Melange to your needs, change the default parameters in the configuration file <code class="language-plaintext highlighter-rouge">config.yaml</code>:</p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>MIT License
+<h2 id="input">Input</h2>
+<p>By default, Melange looks for the input files in the ‘example_data’ directory. You can either change these definitions or transfer your data to this folder (delete example data so that it doesn’t appear in the final output).</p>
 
-Copyright (c) 2021 Sandra Godinho Silva
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># --- Input
+inputdir: "example_data"
+</code></pre></div></div>
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+<p>Melange can accept three file formats: Fasta nucleotide files, Fasta amino acid files and Fastq files. To be recognisable by Melange, make sure the following extensions are correct or change them accordingly:</p>
 
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  nucleotide_extension: "{genome}.fa"
+  aminoacid_extension: "{genome}.faa" 
+  fastq_extension: "{genome}.fastq"
+</code></pre></div></div>
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
+<p>Finally, specify what kind of files Melange should start with.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  file_type: "nucleotide" # OPTIONS: "nucleotide" "aminoacid" "fastq"
+</code></pre></div></div>
+
+<h2 id="output">Output</h2>
+<p>Directories where your output files will appear.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>outdir: "results" 
+outdir_anno: "results/Annotation" 
+</code></pre></div></div>
+
+<p>Predefined expectation value thresholds. Only change this if you know what you are doing.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># --- Evalues:
+cog_evalue: "1e-5" #for rpsblast
+pfam_evalue: "1e-5" #for hmmsearch
+merops_evalue: "1e-5" #for blastp
+kegg_evalue: "1e-5" #for hmmsearch 
 </code></pre></div></div>
 
 
@@ -121,7 +142,8 @@ SOFTWARE.
           </div>
           <footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-        <a href="http://localhost:4000/melange/configuration.html" class="btn btn-neutral" title="Melange configuration"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="http://localhost:4000/melange/License.html" class="btn btn-neutral float-right" title="License">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="http://localhost:4000/melange/setup.html" class="btn btn-neutral" title="Installation & Execution"><span class="icon icon-circle-arrow-left"></span> Previous</a>
     </div>
 
     <hr/>
@@ -146,7 +168,8 @@ SOFTWARE.
   <div class="rst-versions" role="note" aria-label="versions">
     <span class="rst-current-version" data-toggle="rst-current-version">
         <a href="https://github.com/sandragodinhosilva/melange" class="fa fa-github" target="_blank" style="float: left; color: #fcfcfc"> GitHub</a>
-        <span><a href="http://localhost:4000/melange/configuration.html" style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="http://localhost:4000/melange/setup.html" style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span style="margin-left: 15px"><a href="http://localhost:4000/melange/License.html" style="color: #fcfcfc">Next &raquo;</a></span>
     </span>
 </div>
 

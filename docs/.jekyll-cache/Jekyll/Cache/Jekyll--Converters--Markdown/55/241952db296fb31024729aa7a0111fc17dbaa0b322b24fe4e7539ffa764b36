@@ -1,0 +1,28 @@
+I"{
+<ul>
+  <li class="toctree-l1 current"><a href="#installation--execution">Installation &amp; Execution</a>
+    <ul>
+      <li class="toctree-l2"><a href="#step-0-melange-dependencies">Step 0: Melange dependencies</a>
+        <ul>
+          <li class="toctree-l3"><a href="#install-conda">Install conda</a></li>
+          <li class="toctree-l3"><a href="#install-mamba-optional">Install mamba (optional)</a></li>
+          <li class="toctree-l3"><a href="#install-snakemake">Install snakemake</a></li>
+          <li class="toctree-l3"><a href="#install-git">Install git</a></li>
+        </ul>
+      </li>
+      <li class="toctree-l2"><a href="#step-1-clone-melange-workflow">Step 1: Clone Melange workflow</a>
+        <ul>
+          <li class="toctree-l3"><a href="#optional--test-the-correct-installation-with-sample-data">Optional:  Test the correct installation with sample data</a></li>
+        </ul>
+      </li>
+      <li class="toctree-l2"><a href="#step-2-configure-workflow">Step 2: Configure workflow</a></li>
+      <li class="toctree-l2"><a href="#step-3-execute-workflow">Step 3: Execute workflow</a>
+        <ul>
+          <li class="toctree-l3"><a href="#optional-steps">Optional steps</a></li>
+        </ul>
+      </li>
+      <li class="toctree-l2"><a href="#extra-run-melange-on-a-high-performance-cluster">Extra: Run Melange on a high performance cluster</a></li>
+    </ul>
+  </li>
+</ul>
+:EF

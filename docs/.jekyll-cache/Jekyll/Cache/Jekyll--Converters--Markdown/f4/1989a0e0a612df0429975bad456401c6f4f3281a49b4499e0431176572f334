@@ -1,0 +1,38 @@
+I"�<h1 id="melange-configuration">Melange configuration</h1>
+<p>To adapt Melange to your needs, change the default parameters in the configuration file <code class="language-plaintext highlighter-rouge">config.yaml</code>:</p>
+
+<h2 id="input">Input</h2>
+<p>By default, Melange looks for the input files in the ‘example_data’ directory. You can either change these definitions or transfer your data to this folder (delete example data so that it doesn’t appear in the final output).</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># --- Input
+inputdir: "example_data"
+</code></pre></div></div>
+
+<p>Melange can accept three file formats: Fasta nucleotide files, Fasta amino acid files and Fastq files. To be recognisable by Melange, make sure the following extensions are correct or change them accordingly:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  nucleotide_extension: "{genome}.fa"
+  aminoacid_extension: "{genome}.faa" 
+  fastq_extension: "{genome}.fastq"
+</code></pre></div></div>
+
+<p>Finally, specify what kind of files Melange should start with.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  file_type: "nucleotide" # OPTIONS: "nucleotide" "aminoacid" "fastq"
+</code></pre></div></div>
+
+<h2 id="output">Output</h2>
+<p>Directories where your output files will appear.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>outdir: "results" 
+outdir_anno: "results/Annotation" 
+</code></pre></div></div>
+
+<p>Predefined expectation value thresholds. Only change this if you know what you are doing.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># --- Evalues:
+cog_evalue: "1e-5" #for rpsblast
+pfam_evalue: "1e-5" #for hmmsearch
+merops_evalue: "1e-5" #for blastp
+kegg_evalue: "1e-5" #for hmmsearch 
+</code></pre></div></div>
+:ET

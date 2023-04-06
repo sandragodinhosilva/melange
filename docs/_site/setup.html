@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  
+
+  <link rel="shortcut icon" href="http://localhost:4000/melange/assets/img/favicon.ico">
+
+  <title>Installation & Execution - Melange</title>
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
+  <link rel="stylesheet" href="http://localhost:4000/melange/assets/css/theme.css" />
+  <link rel="stylesheet" href="http://localhost:4000/melange/assets/css/theme_extra.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github-gist.min.css" />
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-0070F7FP3Q"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-0070F7FP3Q'
+         );
+</script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+            <a href="http://localhost:4000" class="icon icon-home"> Melange</a>
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+                <ul>
+                    <li class="toctree-l1">
+                        <a class="reference internal" href="http://localhost:4000/melange/">Home</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1">
+                        <a class="reference internal" href="http://localhost:4000/melange/description.html">Melange description</a>
+                    </li>
+                </ul><ul>
+  <li class="toctree-l1 current"><a href="#installation--execution">Installation &amp; Execution</a>
+    <ul>
+      <li class="toctree-l2"><a href="#step-0-melange-dependencies">Step 0: Melange dependencies</a>
+        <ul>
+          <li class="toctree-l3"><a href="#install-conda">Install conda</a></li>
+          <li class="toctree-l3"><a href="#install-mamba-optional">Install mamba (optional)</a></li>
+          <li class="toctree-l3"><a href="#install-snakemake">Install snakemake</a></li>
+          <li class="toctree-l3"><a href="#install-git">Install git</a></li>
+        </ul>
+      </li>
+      <li class="toctree-l2"><a href="#step-1-clone-melange-workflow">Step 1: Clone Melange workflow</a>
+        <ul>
+          <li class="toctree-l3"><a href="#optional--test-the-correct-installation-with-sample-data">Optional:  Test the correct installation with sample data</a></li>
+        </ul>
+      </li>
+      <li class="toctree-l2"><a href="#step-2-configure-workflow">Step 2: Configure workflow</a></li>
+      <li class="toctree-l2"><a href="#step-3-execute-workflow">Step 3: Execute workflow</a>
+        <ul>
+          <li class="toctree-l3"><a href="#optional-steps">Optional steps</a></li>
+        </ul>
+      </li>
+      <li class="toctree-l2"><a href="#extra-run-melange-on-a-high-performance-cluster">Extra: Run Melange on a high performance cluster</a></li>
+    </ul>
+  </li>
+</ul>
+
+                <ul>
+                    <li class="toctree-l1">
+                        <a class="reference internal" href="http://localhost:4000/melange/configuration.html">Melange configuration</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1">
+                        <a class="reference internal" href="http://localhost:4000/melange/License.html">License</a>
+                    </li>
+                </ul>
+
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="http://localhost:4000">Melange</a>
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+        <li><a href="http://localhost:4000">Docs</a>&raquo;</li>
+        <li>Installation & Execution</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+    <div class="rst-breadcrumbs-buttons" role="navigation" aria-label="breadcrumb navigation">
+        <a href="http://localhost:4000/melange/configuration.html" class="btn btn-neutral float-right" title="Melange configuration">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="http://localhost:4000/melange/description.html" class="btn btn-neutral" title="Melange description"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+    </div>
+
+  <hr/>
+</div>
+
+          <div role="main">
+            <div class="section">
+              <h1 id="installation--execution">Installation &amp; Execution</h1>
+
+<p>Melange is designed as a <a href="https://snakemake.readthedocs.io">Snakemake</a> workflow that allows all steps to be executed in parallel on a cluster.</p>
+
+<h2 id="step-0-melange-dependencies">Step 0: Melange dependencies</h2>
+<p>To run Melange you need to have <a href="https://docs.conda.io/en/latest/">conda</a> (or the simplest version - <a href="https://docs.conda.io/en/latest/miniconda.html">miniconda</a>), <a href="https://snakemake.readthedocs.io">Snakemake</a> and <a href="https://git-scm.com/">Git</a> installed.</p>
+
+<h3 id="install-conda">Install conda</h3>
+
+<p>To install conda, follow the instructions in conda documentation: <a href="https://conda.io/docs/">Conda</a>.
+Most users will probably want to install <a href="https://conda.io/miniconda.html">Miniconda</a>.</p>
+
+<p>If you have not already done so, you will need to configure conda with the bioconda-channel and the conda-forge channel:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>conda config --add channels defaults
+conda config --add channels bioconda
+conda config --add channels conda-forge
+</code></pre></div></div>
+
+<h3 id="install-mamba-optional">Install mamba (optional)</h3>
+<p>Conda can be a bit slow because there are so many packages. A good way around this is to use <a href="https://anaconda.org/conda-forge/mamba">Mamba</a> (another snake).</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>conda install mamba
+</code></pre></div></div>
+
+<p>From now on you can replace <code class="language-plaintext highlighter-rouge">conda install</code> with <code class="language-plaintext highlighter-rouge">mamba install</code> (check how much faster this snake is!)</p>
+
+<h3 id="install-snakemake">Install snakemake</h3>
+<p>After installing conda (and optionally mamba), install <a href="https://snakemake.readthedocs.io/en/stable/getting_started/installation.html">Snakemake</a>:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mamba create -c conda-forge -c bioconda -n snakemake snakemake
+conda activate snakemake
+</code></pre></div></div>
+
+<h3 id="install-git">Install git</h3>
+<p>To run Melange, you need to have git installed to clone the <a href="https://github.com/sandragodinhosilva/Melange">Melange repository</a>.</p>
+
+<p>Instructions for installing git can be found at: <a href="https://git-scm.com/book/en/v2/Getting-Started-Installing-Git">https://git-scm.com/book/en/v2/Getting-Started-Installing-Git</a></p>
+
+<h2 id="step-1-clone-melange-workflow">Step 1: Clone Melange workflow</h2>
+<p>To use Melange, you need a local copy of the <a href="https://github.com/sandragodinhosilva/melange">Melange workflow repository</a>. Start by creating a clone of the repository:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git clone https://github.com/sandragodinhosilva/melange.git
+</code></pre></div></div>
+
+<p>Now you should have a folder called <strong>melange</strong>. In it you will find everything you need to run this workflow. To enter inside:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cd melange
+</code></pre></div></div>
+
+<h3 id="optional--test-the-correct-installation-with-sample-data">Optional:  Test the correct installation with sample data</h3>
+<p>To test the correct installation of Melange, you can use <a href="https://github.com/sandragodinhosilva/melange/tree/master/example_data">example data</a>. This data will be downloaded automatically when you clone the Melange repository. Simply ensure the following setting in the <code class="language-plaintext highlighter-rouge">config.yaml</code> file:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># --- Input
+inputdir: "example_data"
+</code></pre></div></div>
+
+<p>Test your configuration by doing a dry-run via:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>snakemake --use-conda -n
+</code></pre></div></div>
+
+<h2 id="step-2-configure-workflow">Step 2: Configure workflow</h2>
+<p>Configure the workflow according to your needs by editing the file <code class="language-plaintext highlighter-rouge">config.yaml</code>.</p>
+
+<p>To edit the <code class="language-plaintext highlighter-rouge">config.yaml</code> file you can use a text editor of your choice. 
+For example with <a href="https://www.nano-editor.org/">nano</a>:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>nano config.yaml
+
+## Useful commands: 
+    Ctrl+O	Offer to write file ("Save as")
+    Ctrl+X	Close buffer, exit from nano
+</code></pre></div></div>
+
+<p>For more information on customising this configuration file, see the section <a href="https://sandragodinhosilva.github.io/melange/configuration.html">Melange Configuration</a></p>
+
+<h2 id="step-3-execute-workflow">Step 3: Execute workflow</h2>
+
+<p>Execute the workflow locally via</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>snakemake --use-conda --cores N
+</code></pre></div></div>
+
+<p>This will run the workflow locally using <code class="language-plaintext highlighter-rouge">N</code> cores.</p>
+
+<h3 id="optional-steps">Optional steps</h3>
+<p><strong>Examine workflow:</strong></p>
+
+<p>Snakemake has some cool features implemented in Melange. One of them is the ability to automatically create a directed acyclic graph (DAG) of jobs that allows visualisation of the entire workflow.</p>
+
+<p>By executing a single command:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>snakemake --dag  | dot -Tsvg &gt; dag.svg
+</code></pre></div></div>
+
+<p>A  DAG (saved as an .svg image) is created. It contains a node for each order, with the edges connecting them representing the dependencies. The frames of jobs that do not need to be executed (because their output is up to date) are dashed.</p>
+
+<p>Example:</p>
+
+<p><img src="dag.png" width="400" /></p>
+
+<p><strong>Investigate results:</strong></p>
+
+<p>After successful execution, you can create a self-contained interactive HTML report with all results via:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>snakemake --report report.html
+</code></pre></div></div>
+
+<h2 id="extra-run-melange-on-a-high-performance-cluster">Extra: Run Melange on a high performance cluster</h2>
+
+<p>Snakemake can make use of cluster engines. In this case, Snakemake simply needs to be given a submit command that accepts a shell script as first positional argument:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>snakemake --cluster qsub --use-conda --jobs 4
+</code></pre></div></div>
+
+
+            </div>
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="http://localhost:4000/melange/configuration.html" class="btn btn-neutral float-right" title="Melange configuration">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="http://localhost:4000/melange/description.html" class="btn btn-neutral" title="Melange description"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+    </div>
+
+    <hr/>
+
+    <div role="contentinfo">
+      <p>
+      </p>
+    </div>
+    Built with
+    <a href="https://jekyllrb.com" target="_blank">Jekyll</a>
+    using a <a href="https://github.com/carlosperate/jekyll-theme-rtd" target="_blank">theme</a>
+    based on <a href="https://sphinx-rtd-theme.readthedocs.io" target="_blank">Read the Docs</a>.
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+        <a href="https://github.com/sandragodinhosilva/melange" class="fa fa-github" target="_blank" style="float: left; color: #fcfcfc"> GitHub</a>
+        <span><a href="http://localhost:4000/melange/description.html" style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span style="margin-left: 15px"><a href="http://localhost:4000/melange/configuration.html" style="color: #fcfcfc">Next &raquo;</a></span>
+    </span>
+</div>
+
+
+  <script>var base_url = '';</script>
+  <script src="http://localhost:4000/melange/assets/js/jquery-2.1.1.min.js" defer></script>
+  <script src="http://localhost:4000/melange/assets/js/modernizr-2.8.3.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script src="http://localhost:4000/melange/assets/js/theme.js" defer></script>
+  <script type="text/javascript" defer>
+    hljs.initHighlightingOnLoad();
+    window.addEventListener('load', function() {
+      SphinxRtdTheme.Navigation.enable(true);
+    });
+  </script>
+  <!-- Build Date: 2023-04-06 11:34 -->
+</body>
+</html>
