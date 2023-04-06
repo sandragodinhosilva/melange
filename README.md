@@ -18,6 +18,10 @@ Full documentation: https://sandragodinhosilva.github.io/melange/
 - As a Snakemake pipeline, Melange is highly scalable, reproducible and has a transparent workflow, and can be used to annotate one to thousands of genomes, producing several easy-to-analyze, tabular outputs.
 
 
+<img src="https://github.com/sandragodinhosilva/melange/tree/master/docs/images/abstract.png" width="100">
+
+**Sinopse:** Melange - a versatile and user-friendly genome annotation tool that enables the simultaneous annotation of large genome datasets using multiple databases. Melange is designed to be continuously updated and its implementation in Snakemake allows flexibility and scalability. The unified output tables facilitate further analysis and are suitable for various comparative studies. It is publicly available and well-documented, making it easy to use and customize for a variety of annotation needs.
+
 ## 2 System requirements
 
 Melange is designed to run on Linux systems and requires installation of Python (v≥3.8), Snakemake (v≥5.19.2) and Conda (v≥4.10.1). Optionally, git can also be installed for easy download of the repository. 
@@ -26,12 +30,18 @@ A test dataset (available in the "example_data" directory) is provid to allow fo
 
 Melange utilizes Snakemake for modularity and automatic parallelization of jobs, making it suitable for implementation on high-performance computational clusters. 
 
-## Customization
+
+## 3 Customization
 
 Melange is designed to be an easy-to-use and highly customizable  tool for the functional annotation of genomes. To accomplish this, only databases selected in the config.yml file are downloaded and configured locally, reducing storage requirements to run Melange. 
 
+![Workflow](docs/images/workflow.png) 
+**Melange workflow** \
+Melange allows the simultaneous functional annotation of prokaryote genomes or metagenomes with multiple annotation schemes, including Pfam, COG, KEGG Orthology, CAZymes, and MEROPS. This figure illustrates all steps performed within Melange: the three possible data inputs (unassembled fastq, nucleotide fasta or amino acid fasta files), the annotation databases (Pfam, COG, KEGG, CAZymes or MEROPS) and the outputs provided after a successful Melange run. The respective search algorithm used to query the proteins is shown next to each database. 
 
-## Usage
+
+
+## 4 Usage
 This is a simple description on how to use melange. For more details, please see [Melange documentation](https://sandragodinhosilva.github.io/melange/).
 
 ### Step 0: Install conda and Snakemake
