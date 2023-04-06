@@ -13,7 +13,7 @@ Full documentation: https://sandragodinhosilva.github.io/melange/
 
 ## 1 Overview 
 
-- Melange is a novel genomic annotation tool for large-scale comparative studies of prokaryote genomes or metagenomes with up to five different databases (Pfam, COG, KEGG, CAZyme, MEROPS).
+- Melange is a genome annotation tool that enables the simultaneous annotation of large genome datasets using multiple databases: Pfam, COG, KEGG, CAZyme, MEROPS.
 - Melange can handle unassembled and assembled sequencing data and amino acid sequences, with automatic download and configuration of necessary tools and databases.
 - As a [Snakemake](https://snakemake.readthedocs.io/en/stable/#) pipeline, Melange is highly scalable, reproducible and has a transparent workflow, and can be used to annotate one to thousands of genomes, producing several easy-to-analyze, tabular outputs.
 
@@ -21,75 +21,79 @@ Full documentation: https://sandragodinhosilva.github.io/melange/
     <img src="./docs/images/abstract.png" width="700" >
 </p>
 
-**Sinopse:** Melange - a versatile and user-friendly genome annotation tool that enables the simultaneous annotation of large genome datasets using multiple databases. Melange is designed to be continuously updated and its implementation in Snakemake allows flexibility and scalability. The unified output tables facilitate further analysis and are suitable for various comparative studies. It is publicly available and well-documented, making it easy to use and customize for a variety of annotation needs.
+**Sinopse:** *Melange - a versatile and user-friendly genome annotation tool that enables the simultaneous annotation of large genome datasets using multiple databases. Melange is designed to be continuously updated and its implementation in Snakemake allows flexibility and scalability. The unified output tables facilitate further analysis and are suitable for various comparative studies. It is publicly available and well-documented, making it easy to use and customize for a variety of annotation needs.*
 
 
 ## 2 System requirements
 
-Melange is designed to run on Linux systems and requires installation of Python (v≥3.8), Snakemake (v≥5.19.2) and Conda (v≥4.10.1). Optionally, git can also be installed for easy download of the repository. 
+Melange is designed to run on **Linux** systems and requires installation of **Python** (v≥3.8), **Snakemake** (v≥5.19.2) and **Conda** (v≥4.10.1). Optionally, **git** can also be installed for easy download of the repository. 
 
-A test dataset (available in the "example_data" directory) is provided to allow for a test run to confirm the correct installation. 
+Only databases selected in the *config.yml* file are downloaded and configured locally, reducing storage requirements to run Melange. 
 
-Melange utilizes Snakemake for modularity and automatic parallelization of jobs, making it suitable for implementation on high-performance computational clusters. 
+A test dataset (available in the *"example_data"* directory) is provided to allow for a test run to confirm the correct installation. 
+
+Melange utilizes **Snakemake** for modularity and automatic parallelization of jobs, making it suitable for implementation on high-performance computational clusters. For more details on that check ["Run on HPCs"](#).
 
 
-## 3 Customization
-
-Melange is designed to be an easy-to-use and highly customizable  tool for the functional annotation of genomes. To accomplish this, only databases selected in the config.yml file are downloaded and configured locally, reducing storage requirements to run Melange. 
-
+## 3 Melange features
 
 <p align="center" width="100%">
     <img src="./docs/images/workflow.png" title="Workflow" width="700" >
 </p>
 
 **Melange workflow** \
-Melange allows the simultaneous functional annotation of prokaryote genomes or metagenomes with multiple annotation schemes. This figure illustrates all possible steps performed within Melange: 
-- * [1) Input files](#1-input): unassembled fastq, nucleotide fasta or amino acid fasta files
-- * [2) Genome annotation](#2-genome-annotation): annotation databases (and respective search algorithm used to query the proteins): [Pfam](#pfam), COG, KEGG, CAZymes or MEROPS
-- * [3) Outputs](#3-outputs) 
+Melange allows the simultaneous functional annotation of prokaryote genomes or metagenomes with multiple annotation schemes. This figure illustrates all Melange features: 
+- [A) Input files](): unassembled fastq, nucleotide fasta or amino acid fasta files
+- [B) Genome annotation](): annotation databases (and respective search algorithm used to query the proteins): [Pfam](#pfam), COG, KEGG, CAZymes or MEROPS
+- [C) Outputs]() 
 
-### 1) Input
-Melange accepts three types of input files: unassembled (meta)genomic data (.fastq), (meta)genome assemblies (.fna, .fasta, .ffn, .faa, .frn, .fa), and predicted amino acid sequences (.faa). The directory  and file types that Melange accepts  as input are defined in the config.yml file. If fastq files are inputted, Melange will convert them to fasta nucleotide files using the EMBOSS tool seqret before annotation [REF]. 
+### A) Input
+Melange accepts 3 types of input files: 
+- unassembled (meta)genomic data (.fastq)
+- (meta)genome assemblies (.fna, .fasta, .ffn, .faa, .frn, .fa)
+- predicted amino acid sequences (.faa). 
 
-### 2) Genome annotation
+The directory  and file types that Melange accepts  as input are defined in the *config.yml* file. If fastq files are inputted, Melange will convert them to fasta nucleotide files using the EMBOSS tool seqret before annotation [REF]. 
+
+### B) Genome annotation
+
+#### B1) Gene calling and general annotation
+When nucleotide files are submitted, Melange first performs a structural annotation step using [Prokka v1.14.5](https://github.com/tseemann/prokka) [1] with default settings. This gene calling step, performed by Prodigal v2.6 [REF], predicts ORFs, and outputs the corresponding translations into amino acid sequences in a fasta file. In addition to this output, which will be used in all subsequent steps, Prokka also generates other additional file formats, such as GenBank files, per genome. 
+
+#### B2) Functional annotation
 Melange allows functional annotation of genomes with up to five databases: Pfam, COG, KEGG, CAZymes and MEROPS.  
 The databases to be used can be selected by editing the "config.yml" file. This feature intends to enhance flexibility and reduce any unnecessary computational burden by only running the desired annotation procedures. 
 
-#### 2.1) Gene calling and general annotation
-When nucleotide files are submitted, Melange first performs a structural annotation step using [Prokka v1.14.5](https://github.com/tseemann/prokka) [1] with default settings. This gene calling step, performed by Prodigal v2.6 [REF], predicts ORFs, and outputs the corresponding translations into amino acid sequences in a fasta file. In addition to this output, which will be used in all subsequent steps, Prokka also generates other additional file formats, such as GenBank files, per genome. 
+**Pfam**: For the annotation with Pfam identifiers, a local database is created using HMMER v3.3 from the latest version of Pfam-A.hmm file (currently v35.0) downloaded from the downloaded from the [InterPro repository](ftp://ftp.ebi.ac.uk/pub/databases/Pfam/current_release) and a local database is constructed using HMMER v3.3 [15]. Once the local database has been created, query proteins are searched against it using the hmmscan function from the HMMER suite. The best hit per ORF (cut-off: -E 1e-5) is selected. 
 
-#### 2.2) Functional annotation
-Functional annotation can be conducted with five databases: Pfam [2], COG [3], KEGG [4], CAZymes and Merops.
+**COG (Clusters of Orthologous Groups)**: The COG annotation procedure follows the [cdd2cog v0.2 workflow](https://github.com/aleimba/bac-genomics-scripts/tree/master/cdd2cog). First, several files are downloaded from the NCBI's FTP server, including a preformatted database of the NCBI's Conserved Domain Database (CDD) COG distribution (2020 release). Query proteins are then blasted against this database using reverse position-specific BLAST (rps-blast) function from the blast+ v2.9.0 suite and the results are parsed to a readable format with a Perl script (cdd2cog.pl). The best hit per ORF (cut-off: -E 1e-5) is selected. 
 
-**Pfam**: For the annotation with Pfam identifiers, a local database is created using HMMER v3.3 from the latest version of Pfam-A.hmm downloaded from the [Pfam official website](http://pfam.xfam.org/). Then, a hmmscan search is performed on all input genomes and the best hit per ORF (cut-off: -E 1e-5) is selected. 
+**KEGG (Kyoto Encyclopaedia of Genes and Genomes)**: To obtain the KEGG Orthology (KO) for protein identification, the command line (CLI) version  KofamKoala tool - Kofamscan - is used. Kofamscan performs K number assignments using hidden Markov model (HMM) profile search, which involves searching query proteins against a customized HMM database of [KOs](ftp://ftp.genome.jp/pub/db/kofam) (KEGG release 103.0). This database includes predefined thresholds for individual KOs, resulting in more reliable assignments than sequence similarity searches. Kofamscan uses the *hmmsearch* function from the HMMER suite to perform the search. 
 
-**COG
-To perform the annotation regarding Clusters of Orthologous Genes (COG), the script [cdd2cog v0.2](https://github.com/aleimba/bac-genomics-scripts/tree/master/cdd2cog)  was adapted. In summary, query proteins are blasted with RPS-BLAST+ (Reverse Position-Specific BLAST) function, from the blast+ v2.9.0 suite, against COGs database, implemented within NCBI's Conserved Domain Database (CDD), and the best hit per ORF (cut-off: -E 1e-5) is selected. 
+**CAZymes (Carbohydrate-active enzymes)**: The CAZymes annotation procedure uses the meta server dbCAN2 [20], specifically, the standalone version [run_dbcan v2.0.11](https://github.com/linnabrown/run_dbcan) implemented with default settings. Run_dbcan is a tool that performs annotation of CAZymes using three different approaches: a HMMER v3.3 search against the dbCAN HMM database, a DIAMOND v0.9.32 search against the CAZy database, and the eCAMI (Simultaneous Classification and Motif Identification) algorithm – an amino acid k-mer-based CAZyme classification and motif identification tool that uses a bipartite network algorithm. For improved annotation accuracy, ORFs are only annotated with the respective CAZyme name if at least two database searches were positive, as suggested by dbCAN2 authors.
 
-**KEGG
-To obtain the KEGG Orthology (KO) for protein identification, the [prokka2KEGG script](https://github.com/SilentGene/Bio-py/tree/master/prokka2kegg) was adapted. Here, the UniProtKB IDs previously annotated by Prokka are converted into KO IDs using a cross-reference database provided by [UniProt](https://www.uniprot.org/). 
-
-**CAZymes
-
-
-**Merops
-
-
-Summary of the most important characteristics of each database-specific workflow
+**Merops**: For the identification of ORFs encoding for peptidases and their inhibitors the ["merops_scan.lib", release 12.4](ftp://ftp.ebi.ac.uk/pub/databases/merops/current_release/merops_scan.lib) file is downloaded from [MEROPS](). Then *makedblast* is used to produce a local BLAST database. Query aminoacid sequences are then searched for matches with this database with *blastp*. 
 
 
 
-### 3) Outputs
-Melange outputs formatted tables of annotations per genome as final output. \
+### C) Outputs
+
+Melange produces several different output formats tailored to meet users' diverse needs, with almost no additional computational cost. This is achieved by leveraging the output of each annotation database and transforming it into different tables. 
+
+In summary, three files with distinct data representation modes are created for each annotation type: **counts, presence/absence (PA), and relative abundance**. 
+
+**Schematic representation of Melange output tables:** Each row represents a database identifier (ID), and each column represents an input (either nucleotide or amino acid (meta)genome files). While in counts **(A)**, nij represents the number of proteins or protein domains (depending on the database in use) identified with a certain ID for a given input, in the PA table **(B)**, nij equal to 1 indicates the existence of a certain identifier in the input, and 0 indicates its absence. In the relative abundance annotation table **(C)**, nij represents the normalized count of an ID per the total number of ORFs in each input.
+
+
+In addition to the annotation tables, Melange also provides:
+- descriptive file containing a summarised description of each annotation ID and an individual file per input listing all identified ORFs along with the matches inside each annotation database. 
+- outputs related to the structural annotation procedure and intermediate files, including amino acid files, are also available for further analysis in a dedicated directory.
+
 - Statistics.csv - % of Orfs annotated with each database.
-
-- for each database: counts, presence/absence (PA) and relative abundance tables.
-
 - Pfam_description.csv, Cog_description.csv, Kegg_description.csv - the mapping of the identified annotation with clans, names, descriptions, etc.
-
 - folder Orf_per_genome: each genome has a unique file containing all orfs identified by Prokka and the subsequent annotations with the four different databases.
 
-* * *
+
 
 
 ## 4 Usage
@@ -136,6 +140,7 @@ Execution on a cluster, example:
     
 For more information about running on a computational cluster, please check snakemake documentation about it: [https://snakemake.readthedocs.io/en/stable/executing/cluster.html](https://snakemake.readthedocs.io/en/stable/executing/cluster.html)
 
+* * *
 
 ## Citing Melange
 At the moment, Melange does not have a publication describing its features (we are working on it). Please use a link to Melange Github when referring to this tool.
