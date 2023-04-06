@@ -90,12 +90,12 @@ In summary, three files with distinct data representation modes are created for 
 - **relative abundance** 
 
 <p align="center" width="100%">
-    <img src="./docs/images/outputs.png" title="Outputs" width="600" >
+    <img src="./docs/images/outputs.png" title="Outputs" width="700" > 
 </p>
 
-**Schematic representation of Melange output tables:** Each row represents a database identifier (ID), and each column represents an input (either nucleotide or amino acid (meta)genome files). 
-While in counts **(A)**, nij represents the number of proteins or protein domains (depending on the database in use) identified with a certain ID for a given input, in the PA table **(B)**, nij equal to 1 indicates the existence of a certain identifier in the input, and 0 indicates its absence. In the relative abundance annotation table **(C)**, nij represents the normalized count of an ID per the total number of ORFs in each input.
-
+<p align="center" width="50%">
+<font size="2">Schematic representation of Melange output tables: each row represents a database identifier (ID), and each column represents an input (either nucleotide or amino acid (meta)genome files). While in counts **(A)**, nij represents the number of proteins or protein domains (depending on the database in use) identified with a certain ID for a given input, in the PA table **(B)**, nij equal to 1 indicates the existence of a certain identifier in the input, and 0 indicates its absence. In the relative abundance annotation table **(C)**, nij represents the normalized count of an ID per the total number of ORFs in each input.</font>
+</p>
 
 **In addition to the annotation tables, Melange also provides:**
 - descriptive file containing a summarised description of each annotation ID and an individual file per input listing all identified ORFs along with the matches inside each annotation database. 
