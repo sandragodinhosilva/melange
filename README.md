@@ -158,7 +158,7 @@ At the moment, Melange does not have a publication describing its features (we a
 
 
 
-<img src="./docs/images/IBB-Logo.png" alt="iBB-" width="250">
+<img src="./images/IBB-Logo.png" width="175">  <img src="./images/IST.jpg" width="175">   
 <img src="./docs/images/ufz.png" width="250">
  
 
