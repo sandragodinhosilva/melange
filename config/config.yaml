@@ -17,7 +17,7 @@ outdir_anno: "results/Annotation"
 PFAM: True
 COG: True
 KEGG: False
-CAZYMES: False
+CAZYMES: True
 MEROPS: False
 
 # --- Evalues:
