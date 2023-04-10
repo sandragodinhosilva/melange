@@ -16,9 +16,9 @@ outdir_anno: "results/Annotation"
 # --- Select databases to use - True or False
 PFAM: True
 COG: True
-KEGG: False
+KEGG: True
 CAZYMES: True
-MEROPS: False
+MEROPS: True
 
 # --- Evalues:
 cog_evalue: "1e-5" #for rpsblast

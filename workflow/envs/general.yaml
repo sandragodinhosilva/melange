@@ -2,7 +2,7 @@ channels:
   - conda-forge
   - bioconda
 dependencies:
-  - python
-  - pandas
+  - python==3.10.4
+  - pandas==1.4.2
   - numpy
   - emboss
