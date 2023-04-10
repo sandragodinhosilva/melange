@@ -70,7 +70,7 @@ Here are described the main characteristics of the annotation procedure with eac
 
 **KEGG (Kyoto Encyclopaedia of Genes and Genomes)**: To obtain the KEGG Orthology (KO) for protein identification, the command line (CLI) version of KofamKoala(https://www.genome.jp/tools/kofamkoala/) - [Kofamscan](https://github.com/takaram/kofam_scan) - is used. Kofamscan performs K number assignments using hidden Markov model (HMM) profile search, which involves searching query proteins against a customized HMM database of [KOs](ftp://ftp.genome.jp/pub/db/kofam) (KEGG release 103.0). This database includes predefined thresholds for individual KOs, resulting in more reliable assignments than sequence similarity searches. Kofamscan uses the *hmmsearch* function from the HMMER suite to perform the search. 
 
-**CAZymes (Carbohydrate-active enzymes)**: The CAZymes annotation procedure uses the meta server [dbCAN3 - UPDATE](https://bcb.unl.edu/dbCAN2/), specifically, the standalone version [run_dbcan v2.0.11](https://github.com/linnabrown/run_dbcan) implemented with default settings. Run_dbcan is a tool that performs annotation of CAZymes using three different approaches: a HMMER v3.3 search against the dbCAN HMM database, a DIAMOND v0.9.32 search against the CAZy database, and the eCAMI algorithm. For improved annotation accuracy, ORFs are only annotated with the respective CAZyme name if at least two database searches were positive, as suggested by dbCAN2 authors in [Zhang et al.](https://pubmed.ncbi.nlm.nih.gov/29771380/).
+**CAZymes (Carbohydrate-active enzymes)**: The CAZymes annotation procedure uses the meta server [dbCAN2](https://bcb.unl.edu/dbCAN2/), specifically, the standalone version [run_dbcan v2.0.11](https://github.com/linnabrown/run_dbcan) implemented with default settings. Run_dbcan is a tool that performs annotation of CAZymes using three different approaches: a HMMER v3.3 search against the dbCAN HMM database, a DIAMOND v0.9.32 search against the CAZy database, and the eCAMI algorithm. For improved annotation accuracy, ORFs are only annotated with the respective CAZyme name if at least two database searches were positive, as suggested by dbCAN2 authors in [Zhang et al.](https://pubmed.ncbi.nlm.nih.gov/29771380/).
 
 **MEROPS**: For the identification of ORFs encoding for peptidases and their inhibitors the ["merops_scan.lib", release 12.4](ftp://ftp.ebi.ac.uk/pub/databases/merops/current_release/merops_scan.lib) file is downloaded from [MEROPS](https://www.ebi.ac.uk/merops/). Then *makedblast* is used to produce a local BLAST database. Query aminoacid sequences are then searched for matches with this database with *blastp*. 
 
@@ -92,12 +92,10 @@ In these output tables, each row represents a database identifier (ID), and each
 While in counts **(A)**, nij represents the number of proteins or protein domains (depending on the database in use) identified with a certain ID for a given input, in the PA table **(B)**, nij equal to 1 indicates the existence of a certain identifier in the input, and 0 indicates its absence. In the relative abundance annotation table **(C)**, nij represents the normalized count of an ID per the total number of ORFs in each input.
 
 
-**In addition to the annotation tables, Melange also provides - UPDATE:**
-- descriptive file containing a summarized description of each annotation ID and an individual file per input listing all identified ORFs along with the matches inside each annotation database. 
-- outputs related to the structural annotation procedure and intermediate files, including amino acid files, are also available for further analysis in a dedicated directory.
-
-- Statistics.csv - % of Orfs annotated with each database.
-- Pfam_description.csv, Cog_description.csv, Kegg_description.csv - the mapping of the identified annotation with clans, names, descriptions, etc.
+**In addition to the annotation tables, Melange also provides:**
+- intermediate files - including different file types (e.g. GenBank, GFFF, etc)
+- descriptive file (e.g. Pfam_description.csv) containing a summarized description of each annotation ID
+- **statistics.csv** - % of Orfs annotated with each database.
 - folder Orf_per_genome: each genome has a unique file containing all orfs identified by Prokka and the subsequent annotations with the four different databases.
 
 
