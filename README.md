@@ -93,10 +93,10 @@ While in counts **(A)**, nij represents the number of proteins or protein domain
 
 
 **In addition to the annotation tables, Melange also provides:**
-- intermediate files - including different file types (e.g. GenBank, GFFF, etc)
-- descriptive file (e.g. Pfam_description.csv) containing a summarized description of each annotation ID
-- **statistics.csv** - % of Orfs annotated with each database.
-- folder Orf_per_genome: each genome has a unique file containing all orfs identified by Prokka and the subsequent annotations with the four different databases.
+- intermediate files - including different file types (e.g. GenBank, GFFF, etc);
+- descriptive file (e.g. *Pfam_description.csv*) containing a summarized description of each annotation ID;
+- *statistics.csv* - % of Orfs annotated with each database;
+- folder *Orf_per_genome*: each genome has a unique file containing all orfs identified by Prokka and the subsequent annotations with the four different databases.
 
 
 ## 4 Usage
