@@ -96,8 +96,8 @@ While in counts **(A)**, nij represents the number of proteins or protein domain
 - intermediate files - including different file types (e.g. GenBank, GFFF, etc);
 - descriptive file (e.g. *Pfam_description.csv*) containing a summarized description of each annotation ID;
 - *statistics.csv* - % of Orfs annotated with each database;
-- folder *Orf_per_genome*: each genome has a unique file containing all orfs identified by Prokka and the subsequent annotations with the selected functional  databases.
-
+- folder *Orf_per_genome*: each genome has a unique file containing all orfs identified by Prokka and the subsequent annotations with the selected functional  databases;
+- benchmark results - Melange automatically records running metrics using the Snakemake directive [benchmark](https://snakemake.readthedocs.io/en/stable/tutorial/additional_features.html). 
 
 ## 4 Usage
 This is a simple description on how to use melange. For more details, please see [Melange documentation](https://sandragodinhosilva.github.io/melange/).
