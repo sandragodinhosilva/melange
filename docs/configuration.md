@@ -29,10 +29,9 @@ Directories where your output files will appear.
     outdir: "results" 
     outdir_anno: "results/Annotation" 
 
-Predefined expectation value thresholds. Only change this if you know what you are doing.
+Predefined expectation value thresholds. Only change this if you have a specific rationale behind this decision.
 
     # --- Evalues:
     cog_evalue: "1e-5" #for rpsblast
     pfam_evalue: "1e-5" #for hmmsearch
-    merops_evalue: "1e-5" #for blastp
-    kegg_evalue: "1e-5" #for hmmsearch 
+    merops_evalue: "1e-5" #for blastp 
