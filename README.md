@@ -64,15 +64,15 @@ Here are described the main characteristics of the annotation procedure with eac
     <img src="./docs/images/table.png" title="Annotation databases" width="600" >
 </p>
 
-**Pfam**: For the annotation with Pfam identifiers, a local database is created using HMMER v3.3 from the latest version of Pfam-A.hmm file (currently v35.0) downloaded from the downloaded from the [InterPro repository](http://ftp.ebi.ac.uk/pub/databases/Pfam/current_release/) A local database is constructed using HMMER v3.3. Once the local database has been created, query proteins are searched against it using the hmmscan function from the HMMER suite. The best hit per ORF (cut-off: -E 1e-5) is selected. 
+**Pfam**: For the annotation with Pfam identifiers, a local database is created using HMMER v3.3 from the latest version of Pfam-A.hmm file (currently v35.0) downloaded from the downloaded from the [InterPro repository](http://ftp.ebi.ac.uk/pub/databases/Pfam/current_release/) A local database is constructed using HMMER v3.3. Once the local database has been created, query proteins are searched against it using the hmmscan function from the HMMER suite. The best hit per ORF (cut-off: -E 1e-5) is selected. Selected references: [2,3].
 
-**COG (Clusters of Orthologous Groups)**: The COG annotation procedure follows the [cdd2cog v0.2 workflow](https://github.com/aleimba/bac-genomics-scripts/tree/master/cdd2cog). First, several files are downloaded from the [NCBI's FTP server](https://ftp.ncbi.nlm.nih.gov/), including a preformatted database of the [NCBI's Conserved Domain Database (CDD) COG distribution](https://www.ncbi.nlm.nih.gov/cdd/) (2020 release). Query proteins are then blasted against this database using reverse position-specific BLAST (*rps-blast*) function from the Blast+ v2.9.0 suite and the results are parsed to a readable format with a Perl script (*cdd2cog.pl*). The best hit per ORF (cut-off: -E 1e-5) is selected. 
+**COG (Clusters of Orthologous Groups)**: The COG annotation procedure follows the [cdd2cog v0.2 workflow](https://github.com/aleimba/bac-genomics-scripts/tree/master/cdd2cog). First, several files are downloaded from the [NCBI's FTP server](https://ftp.ncbi.nlm.nih.gov/), including a preformatted database of the [NCBI's Conserved Domain Database (CDD) COG distribution](https://www.ncbi.nlm.nih.gov/cdd/) (2020 release). Query proteins are then blasted against this database using reverse position-specific BLAST (*rps-blast*) function from the Blast+ v2.9.0 suite and the results are parsed to a readable format with a Perl script (*cdd2cog.pl*). The best hit per ORF (cut-off: -E 1e-5) is selected. Selected references: [4].
 
-**KEGG (Kyoto Encyclopaedia of Genes and Genomes)**: To obtain the KEGG Orthology (KO) for protein identification, the command line (CLI) version of KofamKoala(https://www.genome.jp/tools/kofamkoala/) - [Kofamscan](https://github.com/takaram/kofam_scan) - is used. Kofamscan performs K number assignments using hidden Markov model (HMM) profile search, which involves searching query proteins against a customized HMM database of [KOs](ftp://ftp.genome.jp/pub/db/kofam) (KEGG release 103.0). This database includes predefined thresholds for individual KOs, resulting in more reliable assignments than sequence similarity searches. Kofamscan uses the *hmmsearch* function from the HMMER suite to perform the search. 
+**KEGG (Kyoto Encyclopaedia of Genes and Genomes)**: To obtain the KEGG Orthology (KO) for protein identification, the command line (CLI) version of KofamKoala(https://www.genome.jp/tools/kofamkoala/) - [Kofamscan](https://github.com/takaram/kofam_scan) - is used. Kofamscan performs K number assignments using hidden Markov model (HMM) profile search, which involves searching query proteins against a customized HMM database of [KOs](ftp://ftp.genome.jp/pub/db/kofam) (KEGG release 103.0). This database includes predefined thresholds for individual KOs, resulting in more reliable assignments than sequence similarity searches. Kofamscan uses the *hmmsearch* function from the HMMER suite to perform the search. Selected references: [5,6].
 
-**CAZymes (Carbohydrate-active enzymes)**: The CAZymes annotation procedure uses the meta server [dbCAN2](https://bcb.unl.edu/dbCAN2/), specifically, the standalone version [run_dbcan v2.0.11](https://github.com/linnabrown/run_dbcan) implemented with default settings. Run_dbcan is a tool that performs annotation of CAZymes using three different approaches: a HMMER v3.3 search against the dbCAN HMM database, a DIAMOND v0.9.32 search against the CAZy database, and the eCAMI algorithm. For improved annotation accuracy, ORFs are only annotated with the respective CAZyme name if at least two database searches were positive, as suggested by dbCAN2 authors in [Zhang et al.](https://pubmed.ncbi.nlm.nih.gov/29771380/).
+**CAZymes (Carbohydrate-active enzymes)**[]: The CAZymes annotation procedure uses the meta server [dbCAN2](https://bcb.unl.edu/dbCAN2/), specifically, the standalone version [run_dbcan v2.0.11](https://github.com/linnabrown/run_dbcan) implemented with default settings. Run_dbcan is a tool that performs annotation of CAZymes using three different approaches: a HMMER v3.3 search against the dbCAN HMM database, a DIAMOND v0.9.32 search against the CAZy database, and the eCAMI algorithm. For improved annotation accuracy, ORFs are only annotated with the respective CAZyme name if at least two database searches were positive, as suggested by dbCAN2 authors in [Zhang et al.](https://pubmed.ncbi.nlm.nih.gov/29771380/). Selected references: [7,8].
 
-**MEROPS**: For the identification of ORFs encoding for peptidases and their inhibitors the ["merops_scan.lib", release 12.4](ftp://ftp.ebi.ac.uk/pub/databases/merops/current_release/merops_scan.lib) file is downloaded from [MEROPS](https://www.ebi.ac.uk/merops/). Then *makedblast* is used to produce a local BLAST database. Query aminoacid sequences are then searched for matches with this database with *blastp*. 
+**MEROPS**: For the identification of ORFs encoding for peptidases and their inhibitors the ["merops_scan.lib", release 12.4](ftp://ftp.ebi.ac.uk/pub/databases/merops/current_release/merops_scan.lib) file is downloaded from [MEROPS](https://www.ebi.ac.uk/merops/). Then *makedblast* is used to produce a local BLAST database. Query aminoacid sequences are then searched for matches with this database with *blastp*. Selected references: [9].
 
 
 ### C) Outputs
@@ -96,7 +96,7 @@ While in counts **(A)**, nij represents the number of proteins or protein domain
 - intermediate files - including different file types (e.g. GenBank, GFFF, etc);
 - descriptive file (e.g. *Pfam_description.csv*) containing a summarized description of each annotation ID;
 - *statistics.csv* - % of Orfs annotated with each database;
-- folder *Orf_per_genome*: each genome has a unique file containing all orfs identified by Prokka and the subsequent annotations with the four different databases.
+- folder *Orf_per_genome*: each genome has a unique file containing all orfs identified by Prokka and the subsequent annotations with the selected functional  databases.
 
 
 ## 4 Usage
@@ -165,9 +165,14 @@ At the moment, Melange does not have a publication describing its features (we a
 
 * * *
 
-## References
+## Selected References
 
-* [1]	Seemann T. Prokka: rapid prokaryotic genome annotation. Bioinformatics. 2014;30(14):2068-9. 
-* [2]	Galperin MY, Kristensen DM, Makarova KS, Wolf YI, Koonin EV. Microbial genome analysis: the COG approach. Brief Bioinform. 2019;20(4):1063-70. 
-* [3]	Mistry J, Chuguransky S, Williams L, Qureshi M, Salazar GA, Sonnhammer ELL, et al. Pfam: The protein families database in 2021. Nucleic Acids Res. 2020. 
-* [4]	Kanehisa M, Goto S. KEGG: kyoto encyclopedia of genes and genomes. Nucleic Acids Res. 2000;28(1):27-30.
+* [1]	Seemann T. Prokka: rapid prokaryotic genome annotation. Bioinformatics. 2014;30(14):2068-9.
+* [2]	El-Gebali S, Mistry J, Bateman A, Eddy SR, Luciani A, Potter SC, et al. The Pfam protein families database in 2019. Nucleic Acids Research. 2019;47(D1):D427-D32.
+* [3]	Blum M, Chang H-Y, Chuguransky S, Grego T, Kandasaamy S, Mitchell A, et al. The InterPro protein families and domains database: 20 years on. Nucleic Acids Research. 2021;49(D1):D344-D54.
+* [4]	Galperin MY, Wolf YI, Makarova KS, Vera Alvarez R, Landsman D, Koonin EV. COG database update: focus on microbial diversity, model organisms, and widespread pathogens. Nucleic Acids Research. 2021;49(D1):D274-D81.
+* [5]	Kanehisa M, Furumichi M, Sato Y, Ishiguro-Watanabe M, Tanabe M. KEGG: integrating viruses and cellular organisms. Nucleic Acids Research. 2021;49(D1):D545-D51.
+* [6]	Ogata H, Goto S, Kanehisa M, Ohkubo K, Endo H, Blanc-Mathieu R, et al. KofamKOALA: KEGG Ortholog assignment based on profile HMM and adaptive score threshold. Bioinformatics. 2020;36(7):2251-2.
+* [7]	Lombard V, Golaconda Ramulu H, Drula E, Coutinho PM, Henrissat B. The carbohydrate-active enzymes database (CAZy) in 2013. Nucleic Acids Research. 2014;42(Database issue):D490-5.
+* [8]	Zhang H, Yohe T, Huang L, Entwistle S, Wu P, Yang Z, et al. dbCAN2: a meta server for automated carbohydrate-active enzyme annotation. Nucleic Acids Research. 2018;46(W1):W95-W101.
+* [9]	Rawlings ND, Barrett AJ, Thomas PD, Huang X, Bateman A, Finn RD. The MEROPS database of proteolytic enzymes, their substrates and inhibitors in 2017 and a comparison with peptidases in the PANTHER database. Nucleic Acids Research. 2018;46(D1):D624-D32.
