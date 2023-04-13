@@ -3,8 +3,7 @@
 
 ###############################################################################
 #### Goal: join selected annotations
-#### Usage: python orf_annotation.py /path/to/directory_wt_all_files/ [databases_in_use]
-#### Note: full path needed
+#### Usage: python orf_annotation.py inputdir outputdir [databases_in_use]
 ###############################################################################
 
 import argparse
@@ -16,11 +15,15 @@ parser = argparse.ArgumentParser(
 
 __file__ = "orf_annotation.py"
 __author__ = "Sandra Godinho Silva (sandragodinhosilva@gmail.com)"
-__version__ = "1"
-__date__ = "September 9th, 2022"
+__version__ = "2"
+__date__ = "April 13th, 2023"
 
 parser.add_argument(
     "inputDirectory", help="Full path to the input directory where all files are"
+)
+
+parser.add_argument(
+    "outputDirectory", help="Path to the output annotation directory"
 )
 
 parser.add_argument(
@@ -42,19 +45,18 @@ from collections import Counter
 import numpy as np
 
 ###############################################################################
-# MAPPINGS:
-
 # From the script location, find databases directory
 script_location = sys.path[0]
-# script_location = "/home/sandra/melange/scripts" #comment when not debugging
-base_dir = os.path.dirname(script_location)
-base_base_dir = os.path.dirname(base_dir)
 
+workflow_dir = os.path.dirname(script_location) #goes one level up on directory
 
-database_path = os.path.join(base_dir, "databases")
+base_dir = os.path.dirname(workflow_dir)
+
+database_path = os.path.join(workflow_dir, "databases")
+
 os.chdir(database_path)
 
-
+# Load dataset mappings:
 def LoadPfamMap():
     pfam_map = pd.read_csv("Pfam-A.clans.tsv", sep="\t")
     pfam_map.columns = ["PFAM_ACC", "CLAN", "CLAN_Name", "PFAM_Name", "PFAM_desc"]
@@ -62,12 +64,10 @@ def LoadPfamMap():
     pfam_map = pfam_map.drop_duplicates(subset="ID")
     return pfam_map
 
-
 def LoadCogMap():
     cog_map = pd.read_csv("cog_mapping.tsv", sep="\t")
     cog_map = cog_map.rename(columns={"COG": "ID"})
     return cog_map
-
 
 def LoadKoMap():
     ko_map = pd.read_csv("ko_mapping.tsv", sep="   ", engine="python", header=None)
@@ -78,12 +78,10 @@ def LoadKoMap():
     ko_map = ko_map.drop_duplicates(subset="ID")
     return ko_map
 
-
 def LoadMeropsMap():
     merops_map = pd.read_csv("merops_ids.csv")
     merops_map = merops_map[["ID", "name", "desc"]]
     return merops_map
-
 
 def CreateGeneralMap():
     general_map = pd.DataFrame(
@@ -99,7 +97,6 @@ def CreateGeneralMap():
     )
     return general_map
 
-
 pfam_map = LoadPfamMap()
 cog_map = LoadCogMap()
 ko_map = LoadKoMap()
@@ -109,27 +106,31 @@ general_map = CreateGeneralMap()
 ###############################################################################
 print("Starting... ")
 
-databases_in_use = sys.argv[2:]
+os.chdir(base_dir)
+
+databases_in_use = sys.argv[3:]
 # databases_in_use = ["kegg","pfam","cog", "cazymes", "merops" ] #comment when not debugging
 print("Databases in use: " + str(databases_in_use))
+print(" ")
 
-
-annotation_dir = sys.argv[1]
-annotation_dir = os.path.join(base_base_dir, annotation_dir)
-print("Input directory: " + annotation_dir)
-# annotation_dir = os.path.join(base_dir, "results/Annotation") #comment when not debugging
+input_dir = os.path.abspath(sys.argv[1])
+print("Input directory: " + input_dir)
 
 ###############################################################################
 # Step 2: Create output directory and list files
-output_dir = os.path.join(base_base_dir, "results/Annotation_results")
+output_dir = os.path.abspath(sys.argv[2])
+print("Output directory: " + output_dir)
+
 output_dir_genome = os.path.join(output_dir, "Orfs_per_genome")
 
+print("Output directory for input per genome: " + output_dir_genome)
+print(" ")
 
+# Create directories if they do not exist
 try:
     os.mkdir(output_dir)
 except:
     pass
-
 
 try:
     os.mkdir(output_dir_genome)
@@ -137,9 +138,7 @@ except:
     pass
 
 
-print("Output folder: " + output_dir)
-os.chdir(output_dir)
-
+os.chdir(input_dir)
 
 ko_pattern = "_kegg.txt"
 pfam_pattern = "_pfam_out.txt"
@@ -148,7 +147,7 @@ merops_pattern = "_merops_out.txt"
 cazymes_pattern = "_cazymes_3tools.txt"
 
 entries = list()
-for (dirpath, dirnames, filenames) in os.walk(annotation_dir):
+for (dirpath, dirnames, filenames) in os.walk(input_dir):
     entries += [os.path.join(dirpath, file) for file in filenames]
 
 extensions_to_check = []
@@ -213,8 +212,8 @@ def FilesToUse():
 
 
 d_files, d_count = FilesToUse()
-print(d_files)
-
+print("Input files" + str(d_files))
+print(" ")
 print("Parsing input files: ")
 ###############################################################################
 # Step3: fill dictionaries for each annotation
@@ -394,11 +393,11 @@ def fill_dic():
 
 df = fill_dic()
 print("All input files were correctly parsed.")
-
+print(" ")
 ###############################################################################
 # Step4: Create Statistics table
 d_stats_all = pd.DataFrame.from_dict(d_stats_all).T
-print(d_stats_all)
+print("Statistics: " + str(d_stats_all))
 # df_stats = d_stats_all[["orfs", "pfam", "ko","cog",  "merops", "cazymes"]]
 
 # df_stats["Orfs_anno_pfam%"] = df_stats["pfam"] / df_stats["orfs"] *100
@@ -417,8 +416,8 @@ if "cazymes" in databases_in_use:
     )
 
 d_stats_all.to_csv(os.path.join(output_dir, "Statistics.csv"))
-print("Table Statistics.csv was created.")
-
+print("Table Statistics.csv was created: " + str(os.path.join(output_dir, "Statistics.csv")))
+print(" ")
 ###############################################################################
 # Step5: Create tables
 

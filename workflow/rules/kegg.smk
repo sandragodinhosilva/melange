@@ -1,10 +1,10 @@
 rule kegg:
     """Kegg annotation with kofamscan."""
     input:
-        inputfile=OUTDIR_ANNO / "{genome}.faa",
+        inputfile=OUTDIR / "Annotation/{genome}.faa",
         db="workflow/databases/dbs_done.txt",
     output:
-        OUTDIR_ANNO / "{genome}_kegg.txt",
+        OUTDIR/ "Annotation/{genome}_kegg.txt",
     threads: 8
     conda:
         "../envs/kegg.yaml"

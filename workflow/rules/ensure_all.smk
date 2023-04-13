@@ -3,7 +3,7 @@ rule ensure_all:
     input:
         myoutput,
     output:
-        OUTDIR_ANNO / "{genome}_done.txt",
+        OUTDIR / "Annotation/{genome}_done.txt",
     log:
         "logs/all/{genome}.log",
     shell:

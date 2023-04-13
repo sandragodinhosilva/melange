@@ -4,9 +4,9 @@ localrules:
 rule merops:
     """Merops annotation. 
     Default e-value: 1e-5"""
-    input: inputfile=OUTDIR_ANNO/"{genome}.faa", db ="workflow/databases/dbs_done.txt"
-    output: OUTDIR_ANNO/"{genome}_merops.txt"
-    threads: 4
+    input: inputfile=OUTDIR/"Annotation/{genome}.faa", db ="workflow/databases/dbs_done.txt"
+    output: OUTDIR/"Annotation/{genome}_merops.txt"
+    threads: 8
     params: evalue=config["merops_evalue"],dbdir=lambda w, input: os.path.dirname(input[1]),
     conda: "../envs/blast.yaml"
     group: "merops"
@@ -16,9 +16,8 @@ rule merops:
 
 rule merops2:
     """Step2: Parse blastp files."""
-    input: OUTDIR_ANNO/"{genome}_merops.txt",
-    output: OUTDIR_ANNO/"{genome}_merops_out.txt",
-    threads: 4
+    input: OUTDIR/"Annotation/{genome}_merops.txt",
+    output: OUTDIR/"Annotation/{genome}_merops_out.txt",
     params: input_dir=lambda wildcards, input : os.path.dirname(input[0]),
     conda: "../envs/general.yaml",
     group: "merops"

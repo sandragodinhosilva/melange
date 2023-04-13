@@ -5,8 +5,8 @@ rule cog:
     """Cog annotation. 
     Default e-value: 1e-5"""
     input: 
-        genome_faa = OUTDIR_ANNO/"{genome}.faa", db ="workflow/databases/dbs_done.txt",
-    output: OUTDIR_ANNO/"{genome}_cog.txt",
+        genome_faa = OUTDIR/"Annotation/{genome}.faa", db ="workflow/databases/dbs_done.txt",
+    output: OUTDIR/"Annotation/{genome}_cog.txt",
     threads: 8
     conda: "../envs/blast.yaml"
     group: "cog"
@@ -18,11 +18,11 @@ rule cog:
 rule cog2:
     """Step2: Parse rplsblast files.""" 
     input: 
-        inputfile=OUTDIR_ANNO/"{genome}_cog.txt",
-    output: OUTDIR_ANNO/"{genome}protein-id_cog.txt"
+        inputfile=OUTDIR/"Annotation/{genome}_cog.txt",
+    output: OUTDIR/"Annotation/{genome}protein-id_cog.txt"
     threads: 8
     conda: "../envs/perl.yaml"
-    params: outdir=lambda wildcards, output: OUTDIR_ANNO
+    params: outdir=lambda wildcards, output: OUTDIR/"Annotation/"
     group: "cog"
     log: "logs/cog/{genome}_cog_parser.log",
     benchmark: "benchmarks/cog2_{genome}.benchmark.txt" 

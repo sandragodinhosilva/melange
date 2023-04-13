@@ -2,8 +2,8 @@
 
 # --- Input
 inputdir: "example_data"
-nucleotide_extension: "{genome}.fna" #change according to fasta nucleotide file extension
-aminoacid_extension: "{genome}.fa" #change according to fasta aminoacid file extension
+nucleotide_extension: "{genome}.fna" #change according to fasta nucleotide file extension (if needed)
+aminoacid_extension: "{genome}.fa" #change according to fasta aminoacid file extension (if needed)
 fastq_extension: "{genome}.fastq" #change according to Fastq file extension (if needed)
 
 # Input files are nucleotide or aminoacid files?
@@ -11,7 +11,6 @@ file_type: "aminoacid" #OPTIONS: "nucleotide" "aminoacid"  "fastq"
 
 # --- Output directory
 outdir: "results" 
-outdir_anno: "results/Annotation" 
 
 # --- Select databases to use - True or False
 PFAM: True
@@ -28,4 +27,3 @@ merops_evalue: "1e-5" #for blastp
 # --- Nr of tools to consider for CAZymes annotation:
 cazymes_tools: 3 #default is 3
 
-# Nr of threads/cores - implement

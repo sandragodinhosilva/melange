@@ -4,8 +4,8 @@ OUTDIR_ANNO = Path(config["outdir_anno"])
 rule prokka:
     """Run Prokka."""
     input: input_genome = INPUTDIR/NUCLEOTIDE_EXTENSION, db ="workflow/databases/dbs_done.txt"
-	output: faa=OUTDIR_ANNO/"{genome}.faa",gbk=OUTDIR_ANNO/"{genome}.gbk", 
-	params: outdir=lambda wildcards, output: OUTDIR_ANNO,
+	output: faa=OUTDIR/"Annotation/{genome}.faa",gbk=OUTDIR/"Annotation/{genome}.gbk", 
+	params: outdir=lambda wildcards, output: OUTDIR/"Annotation/",
 	threads: 8
 	conda: "../envs/prokka.yaml"
 	log: "logs/prokka/{genome}.log" 

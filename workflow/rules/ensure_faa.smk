@@ -4,7 +4,7 @@ rule ensure_faa:
         input_to_copy=INPUTDIR/AMINOACID_EXTENSION,
         db ="workflow/databases/dbs_done.txt"
     output:
-        OUTDIR_ANNO/"{genome}.faa"
+        OUTDIR/"Annotation/{genome}.faa"
     conda: 
         "../envs/general.yaml"
     shell: 

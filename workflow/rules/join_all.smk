@@ -1,7 +1,7 @@
 rule join_all:
     """Run python script that joins all annotations."""
     input:
-        expand(OUTDIR_ANNO / "{genome}_done.txt", zip, genome=GENOMES),
+        expand(OUTDIR/ "Annotation/{genome}_done.txt", zip, genome=GENOMES),
     output:
         expand(
             OUTDIR / "Annotation_results/Orfs_per_genome/{genome}_all_features.csv",
@@ -14,7 +14,8 @@ rule join_all:
             caption=os.path.join(workflow.basedir, "report/statistics.rst"),
         ),
     params:
-        input_dir=OUTDIR_ANNO,
+        input_dir=OUTDIR/"Annotation/",
+        output_dir=OUTDIR/"Annotation_results",
         databases_in_use=list(databases_in_use),
     threads: 4
     conda:
@@ -24,6 +25,6 @@ rule join_all:
     benchmark: "benchmarks/join_all.benchmark.txt"
     shell:
         """
-        python3 workflow/scripts/orf_annotation.py {params.input_dir} {params.databases_in_use} 2> {log}
-        python3 workflow/scripts/benchmark_parser.py
+        python3 workflow/scripts/orf_annotation.py {params.input_dir} {params.output_dir} {params.databases_in_use} 2> {log}
+        python3 workflow/scripts/benchmark_parser.py  {params.output_dir} 2> {log}
         """

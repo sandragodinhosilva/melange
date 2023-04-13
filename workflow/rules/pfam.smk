@@ -4,8 +4,8 @@ localrules:
 rule pfam:
     """Pfam annotation. 
     Default e-value: 1e-5"""
-    input: genome_faa = OUTDIR_ANNO/"{genome}.faa", db ="workflow/databases/dbs_done.txt",
-    output: OUTDIR_ANNO/"{genome}_pfam.txt"
+    input: genome_faa = OUTDIR/"Annotation/{genome}.faa", db ="workflow/databases/dbs_done.txt",
+    output: OUTDIR/"Annotation/{genome}_pfam.txt"
     threads: 8
     conda: "../envs/hmmer.yaml",
     group: "pfam"
@@ -18,9 +18,8 @@ rule pfam:
 
 rule pfam2:
     """Step2: Parse tblout files."""
-    input: OUTDIR_ANNO/"{genome}_pfam.txt", 
-    output: OUTDIR_ANNO/"{genome}_pfam_out.txt"
-    threads: 4
+    input: OUTDIR/"Annotation/{genome}_pfam.txt", 
+    output: OUTDIR/"Annotation/{genome}_pfam_out.txt"
     params: 
         input_dir=lambda wildcards, input : os.path.dirname(input[0])
     conda: "../envs/general.yaml"
