@@ -17,6 +17,8 @@ Full documentation: https://sandragodinhosilva.github.io/melange/
 - Melange can handle unassembled and assembled sequencing data and amino acid sequences, with automatic download and configuration of necessary tools and databases.
 - As a [Snakemake](https://snakemake.readthedocs.io/en/stable/#) pipeline, Melange is highly scalable, reproducible and has a transparent workflow, and can be used to annotate one to thousands of genomes, producing several easy-to-analyze [tabular outputs](#c-outputs).
 
+Melange derives its name from the French term "mélange", which signifies a blend or collection of diverse entities. This choice of name is a tribute to its ability to facilitate annotation using multiple databases.
+
 <p align="center" width="100%">
     <img src="./docs/images/abstract.png" width="600" >
 </p>
