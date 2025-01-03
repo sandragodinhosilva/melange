@@ -12,7 +12,7 @@ import os, sys
 
 parser = argparse.ArgumentParser(
     description="""Script to rename contig headers, starting in contig1, 
-    		including ncbi accession number."""
+            including ncbi accession number."""
 )
 
 __file__ = "contig_namer.py"

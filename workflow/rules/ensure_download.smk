@@ -52,12 +52,12 @@ rule download_cog:
     shell:
         """
         cd workflow/databases
-        wget -nc ftp://ftp.ncbi.nlm.nih.gov/pub/mmdb/cdd/cddid.tbl.gz
-        gunzip cddid.tbl.gz
-        wget -nc ftp://ftp.ncbi.nlm.nih.gov/pub/mmdb/cdd/little_endian/Cog_LE.tar.gz
-        tar xvfz Cog_LE.tar.gz
-        wget -nc ftp://ftp.ncbi.nlm.nih.gov/pub/COG/COG/fun.txt
-        wget -nc ftp://ftp.ncbi.nlm.nih.gov/pub/COG/COG/whog
+        [ ! -f cddid.tbl.gz ] && wget -nc ftp://ftp.ncbi.nlm.nih.gov/pub/mmdb/cdd/cddid.tbl.gz
+        [ ! -f cddid.tbl ] && gunzip -k -f cddid.tbl.gz 
+        [ ! -f Cog_LE.tar.gz ] && wget -nc ftp://ftp.ncbi.nlm.nih.gov/pub/mmdb/cdd/little_endian/Cog_LE.tar.gz
+        [ ! -f Cog.00.aux ] && tar xvfz Cog_LE.tar.gz
+        [ ! -f fun.txt ] && wget -nc ftp://ftp.ncbi.nlm.nih.gov/pub/COG/COG/fun.txt
+        [ ! -f whog ] && wget -nc ftp://ftp.ncbi.nlm.nih.gov/pub/COG/COG/whog
         cp Cog.01.aux Cog.aux
         """
 

@@ -16,7 +16,7 @@ outdir: "results"
 PFAM: True
 COG: True
 KEGG: True
-CAZYMES: True
+CAZYMES: False
 MEROPS: True
 
 # --- Evalues:

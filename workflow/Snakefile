@@ -17,7 +17,7 @@ min_version("5.30.0")
 report: "report/workflow.rst"
 
 
-container: "docker://continuumio/miniconda3:4.4.10"
+#container: "docker://continuumio/miniconda3:4.4.10"
 
 
 configfile: "config/config.yaml"

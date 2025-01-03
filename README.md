@@ -27,7 +27,7 @@ Full documentation: https://sandragodinhosilva.github.io/melange/
 
 ## 2 System requirements
 
-- Melange is designed to run on **Linux** systems and requires installation of **Python** (v≥3.8), **Snakemake** (v≥5.19.2) and **Conda** (v≥4.10.1). Optionally, **git** can also be installed for easy download of the repository. 
+- Melange is designed to run on **Linux** systems and requires installation of **Python** (v3.10.4), **Snakemake** (v≥5.19.2) and **Conda** (v≥4.10.1). Optionally, **git** can also be installed for easy download of the repository. 
 - Only databases selected in the *config.yml* file are downloaded and configured locally, reducing storage requirements to run Melange. 
 - A test dataset (available in the *"example_data"* directory) is provided to allow for a test run to confirm the correct installation. 
 - Melange utilizes [Snakemake](https://snakemake.readthedocs.io/en/stable/#) for modularity and automatic parallelization of jobs, making it suitable for implementation on high-performance computational clusters. For more details on that check ["Run on HPCs"](#).

@@ -16,9 +16,9 @@ rule cazymes:
         """
         path=$(basename "{wildcards.genome}")
         echo $path
-		run_dbcan --db_dir workflow/databases --out_pre $path {input.genome_faa} protein 2> {log} 
-		mv output/* {params.outdir}
-		"""
+        run_dbcan --db_dir workflow/databases --out_pre $path {input.genome_faa} protein 2> {log} 
+        mv output/* {params.outdir}
+        """
 
 rule cazymes2:
     """Step2: Parse CAZyme files."""

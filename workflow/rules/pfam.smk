@@ -26,4 +26,4 @@ rule pfam2:
     group: "pfam"
     log: "logs/pfam/{genome}_pfam_parse.log"
     benchmark: "benchmarks/pfam2_{genome}.benchmark.txt"
-    shell: "python3 workflow/scripts/pfam_parser.py {input} 2> {log}"	
+    shell: "python3 workflow/scripts/pfam_parser.py {input} 2> {log}"
